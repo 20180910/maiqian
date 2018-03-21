@@ -58,7 +58,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':baselibrary')
 
-//    compile(name: 'mylibrary', ext: 'aar')
-//    compile(name: 'baseclass', ext: 'aar')
-//    compile(name: 'androidutils', ext: 'aar')
+    compile(name: 'sdklibrary', ext: 'aar')
+    compile(name: 'myrefresh', ext: 'aar')
+    compile(name: 'baseclass', ext: 'aar')
+    compile(name: 'androidutils', ext: 'aar')
 }
