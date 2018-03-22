@@ -62,7 +62,7 @@ public class HomeFragment extends BaseFragment {
         ll_home_liuxue.setLayoutParams(layoutParams);
 
         LinearLayout.LayoutParams hotLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        hotLayoutParams.height=PhoneUtils.getScreenHeight(mContext)-PhoneUtils.dip2px(mContext,150);
+        hotLayoutParams.height=PhoneUtils.getScreenHeight(mContext)-PhoneUtils.dip2px(mContext,200);
         vp_home_hot.setLayoutParams(hotLayoutParams);
 
 
