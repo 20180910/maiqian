@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import com.github.androidtools.PhoneUtils;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseFragment;
+import com.sk.maiqian.module.home.activity.DaYiJieHuoActivity;
+import com.sk.maiqian.module.home.activity.QianZhengDaiBanActivity;
 import com.sk.maiqian.module.home.adapter.HomeHotAdapter;
 
 import java.util.ArrayList;
@@ -117,12 +119,24 @@ public class HomeFragment extends BaseFragment {
     }
 
 
-    //    @OnClick({ })
+    @OnClick({R.id.tv_home_toutiao,R.id.ll_home_qianzheng,R.id.ll_home_peixun,R.id.ll_home_youxue,R.id.ll_home_liuxue})
     protected void onViewClick(View v) {
         switch (v.getId()) {
-           /* case R.id.ll_home_tab1:
-                STActivity(JiSuHuanKuanActivity.class);
-                break;*/
+            case R.id.tv_home_toutiao:
+                STActivity(DaYiJieHuoActivity.class);
+                break;
+            case R.id.ll_home_qianzheng:
+                STActivity(QianZhengDaiBanActivity.class);
+                break;
+            case R.id.ll_home_peixun:
+                STActivity(QianZhengDaiBanActivity.class);
+                break;
+            case R.id.ll_home_youxue:
+                STActivity(QianZhengDaiBanActivity.class);
+                break;
+            case R.id.ll_home_liuxue:
+                STActivity(QianZhengDaiBanActivity.class);
+                break;
         }
     }
 

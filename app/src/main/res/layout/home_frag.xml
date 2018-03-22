@@ -219,7 +219,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="签证代办"
+                                    android:text="英语培训"
                                     android:textColor="@color/gray_66"
                                     android:textSize="14sp"
                                     android:layout_margin="5dp"
@@ -227,7 +227,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="全球签证、加急签证"
+                                    android:text="托福、雅思"
                                     android:textSize="11sp"
                                     />
                             </LinearLayout>
@@ -261,7 +261,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="签证代办"
+                                    android:text="游学"
                                     android:textColor="@color/gray_66"
                                     android:textSize="14sp"
                                     android:layout_margin="5dp"
@@ -269,7 +269,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="全球签证、加急签证"
+                                    android:text="游学的特点"
                                     android:textSize="11sp"
                                     />
                             </LinearLayout>
@@ -299,7 +299,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="签证代办"
+                                    android:text="留学"
                                     android:textColor="@color/gray_66"
                                     android:textSize="14sp"
                                     android:layout_margin="5dp"
@@ -307,7 +307,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="全球签证、加急签证"
+                                    android:text="留学的特点"
                                     android:textSize="11sp"
                                     />
                             </LinearLayout>

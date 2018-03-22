@@ -23,6 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".module.home.activity.DaYiJieHuoActivity"/>
+        <activity android:name=".module.home.activity.QianZhengDaiBanActivity"/>
+        <activity android:name=".module.home.activity.WoYaoLiuYanActivity"/>
+        <activity android:name=".module.home.activity.QianZhengActivity"/>
+        <activity android:name=".module.home.activity.QianZhengDetailActivity"/>
     </application>
 
 </manifest>
