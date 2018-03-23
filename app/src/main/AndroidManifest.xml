@@ -28,6 +28,13 @@
         <activity android:name=".module.home.activity.WoYaoLiuYanActivity"/>
         <activity android:name=".module.home.activity.QianZhengActivity"/>
         <activity android:name=".module.home.activity.QianZhengDetailActivity"/>
+        <activity android:name=".module.home.activity.DingDanTianXieActivity"/>
+        <activity android:name=".module.home.activity.SelectDateActivity"/>
+        <activity android:name=".module.home.activity.AddressListActivity"/>
+        <activity android:name=".module.home.activity.EditAddressActivity"/>
+        <activity android:name=".module.home.activity.PaySuccessActivity"/>
+        <activity android:name=".module.home.activity.EditShenQingRenActivity"/>
+        <activity android:name=".module.home.activity.ZaiZhiRenYuanActivity"/>
     </application>
 
 </manifest>
