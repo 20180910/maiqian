@@ -12,7 +12,7 @@ import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseFragment;
 import com.sk.maiqian.module.home.activity.DaYiJieHuoActivity;
 import com.sk.maiqian.module.home.activity.QianZhengDaiBanActivity;
-import com.sk.maiqian.module.home.adapter.HomeHotAdapter;
+import com.sk.maiqian.adapter.FragmentAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,7 +43,7 @@ public class HomeFragment extends BaseFragment {
 
     @BindView(R.id.vp_home_hot)
     ViewPager vp_home_hot;
-    HomeHotAdapter homeHotAdapter;
+    FragmentAdapter fragmentAdapter;
 
 
     private List<String> bannerList = new ArrayList<String>();
@@ -79,11 +79,11 @@ public class HomeFragment extends BaseFragment {
         list.add(homeHotZiXunFragment3);
         list.add(homeHotZiXunFragment4);
 
-        homeHotAdapter=new HomeHotAdapter(getChildFragmentManager());
-        homeHotAdapter.setList(list);
+        fragmentAdapter =new FragmentAdapter(getChildFragmentManager());
+        fragmentAdapter.setList(list);
 
         vp_home_hot.setOffscreenPageLimit(list.size()-1);
-        vp_home_hot.setAdapter(homeHotAdapter);
+        vp_home_hot.setAdapter(fragmentAdapter);
 
         tab_home_hotzixun.setupWithViewPager(vp_home_hot);
 

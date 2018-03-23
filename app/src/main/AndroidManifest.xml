@@ -35,6 +35,8 @@
         <activity android:name=".module.home.activity.PaySuccessActivity"/>
         <activity android:name=".module.home.activity.EditShenQingRenActivity"/>
         <activity android:name=".module.home.activity.ZaiZhiRenYuanActivity"/>
+        <activity android:name=".module.yingyupeixun.activity.EnglishPeiXunActivity"/>
+        <activity android:name=".module.yingyupeixun.activity.KeChengDetailActivity"/>
     </application>
 
 </manifest>

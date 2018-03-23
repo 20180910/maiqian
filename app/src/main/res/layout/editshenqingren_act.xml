@@ -49,7 +49,6 @@
                 app:my_ll_corner_radius="4dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                app:my_ll_press="7dp"
                 >
             <TextView
                 android:layout_width="wrap_content"

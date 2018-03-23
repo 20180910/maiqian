@@ -1,4 +1,4 @@
-package com.sk.maiqian.module.home.adapter;
+package com.sk.maiqian.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Administrator on 2018/3/21.
  */
 
-public class HomeHotAdapter extends FragmentStatePagerAdapter {
+public class FragmentAdapter extends FragmentStatePagerAdapter {
     private List<Fragment> list;
     private String[]title=new String[]{"签证代办","英语培训","游学","留学"};
 
@@ -18,7 +18,11 @@ public class HomeHotAdapter extends FragmentStatePagerAdapter {
         this.list = list;
     }
 
-    public HomeHotAdapter(FragmentManager fm) {
+    public void setTitle(String[] title) {
+        this.title = title;
+    }
+
+    public FragmentAdapter(FragmentManager fm) {
         super(fm);
     }
 

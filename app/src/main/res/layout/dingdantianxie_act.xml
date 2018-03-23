@@ -302,7 +302,7 @@
                     android:orientation="vertical"
                     android:background="@color/white"
                     android:layout_marginTop="2px"
-                    android:paddingBottom="20dp"
+                    android:paddingBottom="0dp"
                     >
                     <com.github.customview.MyRadioButton
                         android:layout_width="match_parent"
@@ -340,6 +340,28 @@
                         android:background="@color/background_f2"
                         />
                 </RadioGroup>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:background="@color/white"
+                    android:padding="10dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="提交订单表示已经了解"
+                        android:textSize="12sp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="签证须知"
+                        android:textColor="@color/blue_00"
+                        android:textSize="12sp"
+                        />
+                </LinearLayout>
             </LinearLayout>
             </android.support.v4.widget.NestedScrollView>
             <com.github.customview.MyLinearLayout

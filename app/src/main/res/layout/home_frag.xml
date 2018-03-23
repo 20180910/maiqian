@@ -173,7 +173,7 @@
                                 android:orientation="vertical"
                                 >
 
-                                <com.github.customview.CircleImageView
+                                <de.hdodenhof.circleimageview.CircleImageView
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
                                     tools:src="@drawable/home_banner"
@@ -211,7 +211,7 @@
                                 android:orientation="vertical"
                                 >
 
-                                <com.github.customview.CircleImageView
+                                <de.hdodenhof.circleimageview.CircleImageView
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
                                     tools:src="@drawable/home_banner"
@@ -253,7 +253,7 @@
                                 android:orientation="vertical"
                                 >
 
-                                <com.github.customview.CircleImageView
+                                <de.hdodenhof.circleimageview.CircleImageView
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
                                     tools:src="@drawable/home_banner"
@@ -291,7 +291,7 @@
                                 android:orientation="vertical"
                                 >
 
-                                <com.github.customview.CircleImageView
+                                <de.hdodenhof.circleimageview.CircleImageView
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
                                     tools:src="@drawable/home_banner"
