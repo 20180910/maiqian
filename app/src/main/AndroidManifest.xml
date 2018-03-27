@@ -37,6 +37,19 @@
         <activity android:name=".module.home.activity.ZaiZhiRenYuanActivity"/>
         <activity android:name=".module.yingyupeixun.activity.EnglishPeiXunActivity"/>
         <activity android:name=".module.yingyupeixun.activity.KeChengDetailActivity"/>
+        <activity android:name=".module.yingyupeixun.activity.LaoShiJieShaoActivity"/>
+        <activity android:name=".module.yingyupeixun.activity.TiJiaoOrderActivity"/>
+        <activity android:name=".module.yingyupeixun.activity.YinpinDetailActivity"/>
+        <activity android:name=".module.youxue.activity.YouXueActivity"/>
+        <activity android:name=".module.youxue.activity.YouXueDetailActivity"/>
+        <activity android:name=".module.youxue.activity.YouXueShenQingActivity"/>
+        <activity android:name=".module.liuxue.activity.LiuXueShenQingActivity"/>
+        <activity android:name=".module.liuxue.activity.LiuXueActivity"/>
+        <activity android:name=".module.liuxue.activity.LiuXueDetailActivity"/>
+        <activity android:name=".module.my.activity.LoginActivity"/>
+        <activity android:name=".module.my.activity.RegisterActivity"/>
+        <activity android:name=".module.my.activity.FindPWDActivity"/>
+        <activity android:name=".module.my.activity.ResetPWDActivity"/>
     </application>
 
 </manifest>

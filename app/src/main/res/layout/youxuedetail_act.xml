@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/background_f2"
+              android:orientation="vertical"
+    >
+
+
+    <com.library.base.ProgressLayout
+        android:id="@id/pl_load"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/app_title"/>
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@id/nsv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/ll_qianzheng_detail"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background_f2"
+                android:orientation="vertical"
+                >
+                <!--your view-->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:background="@drawable/liuxue_img"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        >
+                    </LinearLayout>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="155dp"
+                        app:cardCornerRadius="7dp"
+                        app:cardElevation="4dp"
+                        >
+
+                        <com.github.customview.MyLinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:padding="7dp"
+                            app:my_ll_corner_radius="7dp"
+                            app:my_ll_solid="@color/white"
+                            >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginTop="10dp"
+                                android:ellipsize="end"
+                                android:maxLines="4"
+                                android:text="老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师"
+                                android:textColor="@color/gray_33"
+                                android:textSize="15sp"
+                                />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:background="@color/white"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                >
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:background="@color/white"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    >
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="行程天数"
+                                        />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="16天"
+                                        android:layout_marginTop="3dp"
+                                        android:textColor="@color/gray_33"
+                                        android:textSize="15sp"
+                                        />
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width="2px"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/background_f2"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:background="@color/white"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    >
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="适合年龄"
+                                        />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="中学生"
+                                        android:textColor="@color/gray_33"
+                                        android:layout_marginTop="3dp"
+                                        android:textSize="15sp"
+                                        />
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width="2px"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/background_f2"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:background="@color/white"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    >
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="出发地"
+                                        />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="3dp"
+                                        android:text="上海"
+                                        android:textColor="@color/gray_33"
+                                        android:textSize="15sp"
+                                        />
+
+                                </LinearLayout>
+                            </LinearLayout>
+                        </com.github.customview.MyLinearLayout>
+
+                    </android.support.v7.widget.CardView>
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务"
+                        android:textSize="13sp"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@color/white"
+                    android:layout_marginTop="2px"
+                    >
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/blue_00"
+                        android:layout_margin="10dp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="旅途风光"
+                        android:textSize="15sp"
+                        android:textColor="@color/gray_33"
+                        />
+                </LinearLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_youxue_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2px"
+                    >
+                </android.support.v7.widget.RecyclerView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@color/white"
+                    android:layout_marginTop="5dp"
+                    >
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/blue_00"
+                        android:layout_margin="10dp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="该游学特色"
+                        android:textSize="15sp"
+                        android:textColor="@color/gray_33"
+                        />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="·有移民计划有移民计划有移民计划有移民计划有移民计划有移民计划有移民计划"
+                    android:textSize="13sp"
+                    android:background="@color/white"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="3dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="·有移民计划有移民计划有移民计划有移民计划"
+                    android:textSize="13sp"
+                    android:background="@color/white"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="5dp"
+                    />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+        <com.github.customview.MyLinearLayout
+            android:id="@+id/ll_qianzheng_detail"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            app:my_ll_solid="@color/white"
+            app:my_ll_top_line="true"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/zixun"
+                android:gravity="center"
+                android:text="咨询"
+                />
+
+            <View
+                android:layout_width="2px"
+                android:layout_height="match_parent"
+                android:background="@color/background_f2"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/wujiaoxing"
+                android:gravity="center"
+                android:text="收藏"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@color/blue_00"
+                android:gravity="center"
+                android:text="游学申请"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                />
+        </com.github.customview.MyLinearLayout>
+    </com.library.base.ProgressLayout>
+</LinearLayout>

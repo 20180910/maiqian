@@ -6,6 +6,7 @@ import android.view.View;
 import com.github.androidtools.SPUtils;
 import com.sk.maiqian.BuildConfig;
 import com.sk.maiqian.Constant;
+import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.module.home.activity.MainActivity;
 
@@ -18,15 +19,13 @@ import java.util.Map;
 
 public class LoginActivity extends BaseActivity {
 
-
-
-
     private int flag=0;
 
     @Override
     protected int getContentView() {
         setAppTitle("登录");
-        return 0;
+        setAppRightImg(R.drawable.share);
+        return R.layout.login_act;
     }
 
     @Override
@@ -59,8 +58,6 @@ public class LoginActivity extends BaseActivity {
             STActivity(MainActivity.class);
             finish();
         }
-
-
     }
 
     @Override
