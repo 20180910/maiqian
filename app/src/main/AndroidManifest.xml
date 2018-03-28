@@ -50,6 +50,18 @@
         <activity android:name=".module.my.activity.RegisterActivity"/>
         <activity android:name=".module.my.activity.FindPWDActivity"/>
         <activity android:name=".module.my.activity.ResetPWDActivity"/>
+        <activity android:name=".module.my.activity.PersonInfoActivity"/>
+        <activity android:name=".module.my.activity.JiFenActivity"/>
+        <activity android:name=".module.my.activity.JiFenShuoMingActivity"/>
+        <activity android:name=".module.my.activity.JiFenMingXiActivity"/>
+        <activity android:name=".module.my.activity.MyBankListActivity"/>
+        <activity android:name=".module.my.activity.TiXianActivity"/>
+        <activity android:name=".module.my.activity.TiXianSuccessActivity"/>
+        <activity android:name=".module.my.activity.AddBankActivity"/>
+        <activity android:name=".module.my.activity.FenXiaoActivity"/>
+        <activity android:name=".module.my.activity.MyMessageActivity"/>
+        <activity android:name=".module.my.activity.SettingActivity"/>
+        <activity android:name=".module.my.activity.MyAddressListActivity"/>
     </application>
 
 </manifest>
