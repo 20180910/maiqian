@@ -61,7 +61,7 @@
                     android:drawableLeft="@drawable/zhuce_icon01"
                     android:drawablePadding="15dp"
                     android:gravity="center_vertical"
-                    android:hint="输入手机号获取验证码"
+                    android:hint="设置新手机号"
                     android:imeOptions="actionNext"
                     android:inputType="number"
                     android:textSize="13sp"

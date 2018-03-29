@@ -65,6 +65,7 @@
         <activity android:name=".module.my.activity.EditNicknameActivity"/>
         <activity android:name=".module.my.activity.YiJianFanKuiActivity"/>
         <activity android:name=".module.my.activity.EditPhoneActivity"/>
+        <activity android:name=".module.my.activity.MyCollectionActivity"/>
     </application>
 
 </manifest>
