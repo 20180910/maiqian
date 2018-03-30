@@ -69,6 +69,7 @@
         <activity android:name=".module.my.activity.ZiXunDetailActivity"/>
         <activity android:name=".module.my.activity.LookAnswerActivity"/>
         <activity android:name=".module.order.activity.OrderListActivity"/>
+        <activity android:name=".module.order.activity.QianZhengOrderActivity"/>
     </application>
 
 </manifest>
