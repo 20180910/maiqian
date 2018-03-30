@@ -5,10 +5,14 @@ import android.view.View;
 
 import com.github.baseclass.adapter.MyLoadMoreAdapter;
 import com.github.baseclass.adapter.MyRecyclerViewHolder;
+import com.github.rxbus.rxjava.MyFlowableSubscriber;
+import com.github.rxbus.rxjava.MyRx;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseFragment;
 
 import butterknife.BindView;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.annotations.NonNull;
 
 /**
  * Created by Administrator on 2018/3/29.
@@ -34,6 +38,26 @@ public class MyCollectFragment extends BaseFragment {
         adapter.setOnLoadMoreListener(this);
         rv_my_collection.setAdapter(adapter);
 
+        MyRx.start(new MyFlowableSubscriber<String>() {
+            @Override
+            public void subscribe(@NonNull FlowableEmitter<String> emitter) {
+                emitter.onNext("");
+                emitter.onComplete();
+            }
+            @Override
+            public void onNext(String obj) {
+
+            }
+        });
+
+        /*MyRxBus.getInstance().post(new LoginObj());
+        MyDisposable disposable = MyRxBus.getInstance().getEvent(LoginObj.class, new MyConsumer<LoginObj>() {
+            @Override
+            public void onAccept(LoginObj obj) {
+
+            }
+        });
+        disposable.dispose();*/
     }
 
     @Override
