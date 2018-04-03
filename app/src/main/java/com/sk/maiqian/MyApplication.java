@@ -22,11 +22,13 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        //正式
+        String baseUrl="http://121.40.186.118:10088/";
         if(true&&BuildConfig.DEBUG){
-            NetWorkManager.getInstance(getApplicationContext(),"http:/",BuildConfig.DEBUG).complete();
-        }else{
-            NetWorkManager.getInstance(getApplicationContext(),"http:/",BuildConfig.DEBUG).complete();
+            //测试
+            baseUrl="http://121.40.186.118:10089/";
         }
+        NetWorkManager.getInstance(getApplicationContext(),baseUrl,BuildConfig.DEBUG).complete();
 
 
         Loading.setLoadView(R.layout.app_loading_view);

@@ -15,6 +15,15 @@ public class RegisterBody {
     private String username;
     private String password;
     private String distribution_yard;
+    private String sms_code;
+
+    public String getSms_code() {
+        return sms_code;
+    }
+
+    public void setSms_code(String sms_code) {
+        this.sms_code = sms_code;
+    }
 
     public String getUsername() {
         return username;

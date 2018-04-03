@@ -76,5 +76,6 @@ dependencies {
     compile 'com.github.zcweng:switch-button:0.0.3@aar'
     //圆形图片
     compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'com.github:RxBus:1.0.2'
+
+    compile 'com.github:RxBus:1.0.4'
 }

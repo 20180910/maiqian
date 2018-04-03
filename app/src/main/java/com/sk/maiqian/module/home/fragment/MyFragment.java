@@ -3,7 +3,7 @@ package com.sk.maiqian.module.home.fragment;
 import android.content.Intent;
 import android.view.View;
 
-import com.github.baseclass.rx.IOCallBack;
+import com.github.rxbus.rxjava.MyFlowableSubscriber;
 import com.library.base.tools.has.BitmapUtils;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseFragment;
@@ -13,7 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import rx.Subscriber;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.annotations.NonNull;
 import top.zibin.luban.Luban;
 
 import static android.app.Activity.RESULT_OK;
@@ -141,21 +142,21 @@ public class MyFragment extends BaseFragment {
 
     private void uploadImg(final String imgPath) {
         showLoading();
-        RXStart(new IOCallBack<String>() {
+        RXStart(new MyFlowableSubscriber<String>() {
             @Override
-            public void call(Subscriber<? super String> subscriber) {
+            public void subscribe(@NonNull FlowableEmitter<String> subscriber) {
                 try {
                     List<File> files = Luban.with(mContext).ignoreBy(700).load(imgPath).get();
                     String imgStr = BitmapUtils.fileToString(files.get(0));
                     subscriber.onNext(imgStr);
-                    subscriber.onCompleted();
+                    subscriber.onComplete();
                 } catch (Exception e) {
                     e.printStackTrace();
                     subscriber.onError(e);
                 }
             }
             @Override
-            public void onMyNext(String baseImg) {
+            public void onNext(String obj) {
                 /*UploadImgBody body=new UploadImgBody();
                 body.setFile(baseImg);
                 String rnd = getRnd();
@@ -171,8 +172,8 @@ public class MyFragment extends BaseFragment {
                 });*/
             }
             @Override
-            public void onMyError(Throwable e) {
-                super.onMyError(e);
+            public void onError(Throwable t) {
+                super.onError(t);
                 dismissLoading();
                 showToastS("图片处理失败");
             }

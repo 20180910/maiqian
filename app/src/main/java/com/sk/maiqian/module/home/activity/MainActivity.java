@@ -3,17 +3,21 @@ package com.sk.maiqian.module.home.activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.customview.MyRadioButton;
+import com.github.rxbus.MyConsumer;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
+import com.sk.maiqian.event.LoginSuccessEvent;
 import com.sk.maiqian.module.home.fragment.HomeFragment;
 import com.sk.maiqian.module.home.fragment.MyFragment;
 import com.sk.maiqian.module.home.fragment.SelectFragment;
+import com.sk.maiqian.module.my.activity.LoginActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -73,6 +77,7 @@ public class MainActivity extends BaseActivity {
     }
 
 
+
     @NonNull
     private MyOnClickListener getTabClickListener(final int index) {
         return new MyOnClickListener() {
@@ -87,27 +92,34 @@ public class MainActivity extends BaseActivity {
 //                            STActivity(LoginActivity.class);
 //                            selectView.setChecked(true);
 //                        } else {
-                            selectChaXun();
+                        selectChaXun();
 //                        }
                         break;
                     case 3:
-//                        if (TextUtils.equals(noLoginCode, getUserId())) {
-//                            STActivity(LoginActivity.class);
-//                            selectView.setChecked(true);
-//                        } else {
+                        if (TextUtils.equals(noLoginCode, getUserId())) {
+                            STActivity(LoginActivity.class);
+                            selectView.setChecked(true);
+                        } else {
                             selectMy();
-//                        }
+                        }
                         break;
                 }
             }
         };
     }
-
-
-
+    @Override
+    protected void initRxBus() {
+        super.initRxBus();
+        getEvent(LoginSuccessEvent.class, new MyConsumer<LoginSuccessEvent>() {
+            @Override
+            public void onAccept(LoginSuccessEvent event) {
+                selectMy();
+            }
+        });
+    }
 
     private void selectHome() {
-        if(selectView == rb_home_tab1){
+        if (selectView == rb_home_tab1) {
             return;
         }
         selectView = rb_home_tab1;
@@ -122,7 +134,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void selectChaXun() {
-        if(selectView == rb_home_tab2){
+        if (selectView == rb_home_tab2) {
             return;
         }
         selectView = rb_home_tab2;
@@ -137,7 +149,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void selectMy() {
-        if(selectView == rb_home_tab3){
+        if (selectView == rb_home_tab3) {
             return;
         }
         selectView = rb_home_tab3;
@@ -167,10 +179,11 @@ public class MainActivity extends BaseActivity {
         getPaymentURL(1);//获取支付宝回传地址
         getPaymentURL(2);//获取微信回传地址
     }
+
     private void updateApp() {
-        Map<String,String>map=new HashMap<String,String>();
-        map.put("rnd",getRnd());
-        map.put("sign",getSign(map));
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("rnd", getRnd());
+        map.put("sign", getSign(map));
        /* NetApiRequest.getAPPVersion(map, new MyCallBack<APPVersionObj>(mContext) {
             @Override
             public void onSuccess(APPVersionObj obj) {
@@ -205,6 +218,7 @@ public class MainActivity extends BaseActivity {
             }
         });*/
     }
+
     private void getPaymentURL(int type) {
        /* Map<String, String> map = new HashMap<String, String>();
         map.put("payment_type", type + "");
@@ -222,11 +236,9 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void initRxBus() {
-        super.initRxBus();
 
-    }
+
+
 
     protected void onViewClick(View v) {
         switch (v.getId()) {
@@ -240,6 +252,7 @@ public class MainActivity extends BaseActivity {
 
 
     private long mExitTime;
+
     @Override
     public void onBackPressed() {
         if ((System.currentTimeMillis() - mExitTime) > 1500) {

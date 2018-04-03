@@ -6,5 +6,7 @@ package com.sk.maiqian;
 
 public class IntentParam {
     public static final String major = "major";
+    public static final String phone = "phone";
+    public static final String smsCode = "smsCode";
 
 }

@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.github.androidtools.SPUtils;
 import com.github.androidtools.inter.MyOnClickListener;
-import com.github.baseclass.rx.RxUtils;
+import com.github.rxbus.rxjava.MyFlowableSubscriber;
 import com.library.base.MyBaseActivity;
 import com.library.base.view.MyWebViewClient;
 import com.sdklibrary.base.share.ShareParam;
@@ -35,9 +35,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import rx.Observable;
-import rx.Observer;
-import rx.Subscription;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2017/12/18.
@@ -184,29 +186,63 @@ public abstract class BaseActivity extends MyBaseActivity {
     }
 
     public void countDown(TextView textView) {
+        MyFlowableSubscriber<Long> subscriber = new MyFlowableSubscriber<Long>() {
+            @Override
+            public void subscribe(@NonNull FlowableEmitter<Long> emitter) {
+                textView.setEnabled(true);
+                textView.setText("获取验证码");
+            }
+            @Override
+            public void onNext(Long aLong) {
+                textView.setText("剩下" + aLong + "s");
+            }
+        };
         textView.setEnabled(false);
         final long count = 30;
-        Subscription subscribe = Observable.interval(1, TimeUnit.SECONDS)
+        Flowable.interval(1, TimeUnit.SECONDS)
+                .take(31)
+                .map(integer -> count - integer)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+        addSubscription(subscriber.getSubscription());
+                /*new FlowableSubscriber<Long>() {
+                    @Override
+                    public void onSubscribe(@NonNull org.reactivestreams.Subscription s) {
+                        s.request(Long.MAX_VALUE);
+                    }
+                    @Override
+                    public void onNext(Long aLong) {
+                        textView.setText("剩下" + aLong + "s");
+                    }
+                    @Override
+                    public void onError(Throwable t) {
+                    }
+                    @Override
+                    public void onComplete() {
+                        textView.setEnabled(true);
+                        textView.setText("获取验证码");
+
+                    }
+                }*/
+       /* Subscription subscribe = Observable.interval(1, TimeUnit.SECONDS)
                 .take(31)//计时次数
                 .map(integer -> count - integer)
                 .compose(RxUtils.appSchedulers())
                 .subscribe(new Observer<Long>() {
                     @Override
                     public void onCompleted() {
-                        textView.setEnabled(true);
-                        textView.setText("获取验证码");
                     }
 
                     @Override
                     public void onNext(Long aLong) {
-                        textView.setText("剩下" + aLong + "s");
                     }
 
                     @Override
                     public void onError(Throwable e) {
                     }
                 });
-        addSubscription(subscribe);
+        addSubscription(subscribe);*/
     }
 
     protected void setBannerList(Banner bn_home, List bannerList) {
