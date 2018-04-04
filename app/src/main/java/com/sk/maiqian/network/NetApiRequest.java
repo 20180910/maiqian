@@ -4,6 +4,7 @@ import com.github.retrofitutil.NoNetworkException;
 import com.library.base.BaseApiRequest;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.base.MyCallBack;
+import com.sk.maiqian.network.request.UploadImgBody;
 
 import java.util.Map;
 
@@ -16,6 +17,10 @@ public class NetApiRequest extends BaseApiRequest {
     public static void getMsgCode(Map map , MyCallBack callBack) {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
         getGeneralClient(NetIRequest.class).getMsgCode(map).enqueue(callBack);
+    }
+    public static void uploadImg(Map map , UploadImgBody body, MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(NetIRequest.class).uploadImg(map,body).enqueue(callBack);
     }
 
 }

@@ -21,6 +21,6 @@ public class AppXml {
     public static final String message_sink = "message_sink";
     public static final String is_validation = "is_validation";
     public static final String cumulative_reward = "cumulative_reward";
-    public static final String major = "major";
+    public static final String updatePWD = "updatePWD";
 
 }

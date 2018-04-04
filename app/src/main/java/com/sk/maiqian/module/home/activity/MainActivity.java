@@ -7,9 +7,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.github.androidtools.SPUtils;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.customview.MyRadioButton;
 import com.github.rxbus.MyConsumer;
+import com.sk.maiqian.AppXml;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
@@ -59,6 +61,10 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView() {
 
+        if(SPUtils.getBoolean(mContext, AppXml.updatePWD,false)){
+            clearUserId();
+            SPUtils.setPrefBoolean(mContext, AppXml.updatePWD,false);
+        }
 
         homeFragment = new HomeFragment();
         addFragment(R.id.fl_content, homeFragment);

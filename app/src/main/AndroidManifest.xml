@@ -72,6 +72,7 @@
         <activity android:name=".module.order.activity.OrderListActivity"/>
         <activity android:name=".module.order.activity.QianZhengOrderActivity"/>
         <activity android:name=".module.my.activity.XieYiActivity"/>
+        <activity android:name=".module.my.activity.UpdatePWDActivity"/>
     </application>
 
 </manifest>

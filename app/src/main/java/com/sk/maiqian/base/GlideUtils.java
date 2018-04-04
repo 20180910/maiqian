@@ -15,13 +15,13 @@ import com.sk.maiqian.R;
  */
 
 public class GlideUtils {
-    public static void into(Context mContext, ImageView imageView){
-        Glide.with(mContext).load(mContext).asBitmap().encoder(new BitmapEncoder(Bitmap.CompressFormat.PNG,90)).error(R.color.c_press).into(imageView);
+    public static void into(Context mContext,String url, ImageView imageView){
+        Glide.with(mContext).load(url).asBitmap().encoder(new BitmapEncoder(Bitmap.CompressFormat.PNG,90)).error(R.color.c_press).into(imageView);
     }
-    public static void into(Context mContext, ImageView imageView,@ColorRes int color){
-        Glide.with(mContext).load(mContext).asBitmap().encoder(new BitmapEncoder(Bitmap.CompressFormat.PNG,90)).error(color).into(imageView);
+    public static void into(Context mContext,String url, ImageView imageView,@ColorRes int color){
+        Glide.with(mContext).load(url).asBitmap().encoder(new BitmapEncoder(Bitmap.CompressFormat.PNG,90)).error(color).into(imageView);
     }
-    public static void intoD(Context mContext, ImageView imageView,@DrawableRes int drawable){
-        Glide.with(mContext).load(mContext).asBitmap().encoder(new BitmapEncoder(Bitmap.CompressFormat.PNG,90)).error(drawable).into(imageView);
+    public static void intoD(Context mContext,String url, ImageView imageView,@DrawableRes int drawable){
+        Glide.with(mContext).load(url).asBitmap().encoder(new BitmapEncoder(Bitmap.CompressFormat.PNG,90)).error(drawable).into(imageView);
     }
 }

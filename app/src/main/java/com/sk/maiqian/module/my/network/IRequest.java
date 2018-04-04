@@ -2,9 +2,12 @@ package com.sk.maiqian.module.my.network;
 
 import com.library.base.BaseObj;
 import com.library.base.ResponseObj;
+import com.sk.maiqian.module.my.network.request.FanKuiBody;
 import com.sk.maiqian.module.my.network.request.RegisterBody;
+import com.sk.maiqian.module.my.network.response.FanKuiTypeObj;
 import com.sk.maiqian.module.my.network.response.LoginObj;
 
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -33,6 +36,23 @@ public interface IRequest {
     //重置密码(忘记密码)
     @GET("api/MQUserBase/GetSetPassword")
     Call<ResponseObj<BaseObj>> forgetPWD(@QueryMap Map<String, String> map);
+
+    //消息开关
+    @GET("api/MQUserBase/GetMessageSink")
+    Call<ResponseObj<BaseObj>> setMessageSink(@QueryMap Map<String, String> map);
+
+    //修改密码
+    @GET("api/MQUserBase/GetSetNewPassword")
+    Call<ResponseObj<BaseObj>> updatePWD(@QueryMap Map<String, String> map);
+
+    //获取意见反馈类型
+    @GET("api/MQUserBase/GetFeedbackType")
+    Call<ResponseObj<List<FanKuiTypeObj>>> getFanKuiType(@QueryMap Map<String, String> map);
+
+
+    //意见反馈
+    @POST("api/MQUserBase/PostSubmitFeedback")
+    Call<ResponseObj<BaseObj>> fanKui(@QueryMap Map<String, String> map, @Body List<FanKuiBody> body);
 
 
 }

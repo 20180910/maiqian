@@ -4,8 +4,10 @@ import com.github.retrofitutil.NoNetworkException;
 import com.library.base.BaseApiRequest;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.base.MyCallBack;
+import com.sk.maiqian.module.my.network.request.FanKuiBody;
 import com.sk.maiqian.module.my.network.request.RegisterBody;
 
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.http.Body;
@@ -33,6 +35,22 @@ public class ApiRequest extends BaseApiRequest {
     public static void forgetPWD(Map map,MyCallBack callBack) {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
         getGeneralClient(IRequest.class).forgetPWD(map).enqueue(callBack);
+    }
+    public static void setMessageSink(Map map,MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(IRequest.class).setMessageSink(map).enqueue(callBack);
+    }
+    public static void updatePWD(Map map,MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(IRequest.class).updatePWD(map).enqueue(callBack);
+    }
+    public static void getFanKuiType(Map map,MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(IRequest.class).getFanKuiType(map).enqueue(callBack);
+    }
+    public static void fanKui(Map map, List<FanKuiBody> body,MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(IRequest.class).fanKui(map,body).enqueue(callBack);
     }
 
 

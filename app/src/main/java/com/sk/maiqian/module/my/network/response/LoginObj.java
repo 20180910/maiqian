@@ -25,7 +25,6 @@ public class LoginObj extends BaseObj {
     private String nick_name;
     private String avatar;
     private String mobile;
-    private int message_sink;
     private double point;
 
     public String getUser_id() {
@@ -68,13 +67,6 @@ public class LoginObj extends BaseObj {
         this.mobile = mobile;
     }
 
-    public int getMessage_sink() {
-        return message_sink;
-    }
-
-    public void setMessage_sink(int message_sink) {
-        this.message_sink = message_sink;
-    }
 
     public double getPoint() {
         return point;
