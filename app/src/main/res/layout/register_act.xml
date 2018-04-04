@@ -10,7 +10,13 @@
         android:id="@id/pl_load"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <include layout="@layout/app_title"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/zhuce_bg"
+            android:scaleType="centerCrop"
+            />
         <android.support.v4.widget.NestedScrollView
                 android:id="@id/nsv"
                 android:layout_width="match_parent"
@@ -20,7 +26,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:background="@drawable/zhuce_bg"
                 >
                 <ImageView
                     android:layout_width="wrap_content"
@@ -44,7 +49,6 @@
                         android:id="@+id/et_register_phone"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:background="@color/white"
                         android:gravity="center_vertical"
                         android:textSize="13sp"
                         app:my_et_solid="@color/white"
@@ -53,6 +57,8 @@
                         android:drawableLeft="@drawable/zhuce_icon01"
                         android:hint="手机号"
                         android:drawablePadding="15dp"
+                        android:paddingLeft="7dp"
+                        android:background="@color/white"
                         />
                     <View
                         android:layout_width="match_parent"
@@ -79,6 +85,8 @@
                             android:drawableLeft="@drawable/zhuce_icon02"
                             android:hint="验证码"
                             android:drawablePadding="15dp"
+                            android:paddingLeft="7dp"
+                            android:background="@color/white"
                             />
                         <com.github.customview.MyTextView
                             android:id="@+id/tv_register_getmsg"
@@ -112,6 +120,8 @@
                         android:drawableLeft="@drawable/zhuce_icon03"
                         android:hint="填写密码(设置6-12位数字加密码字母组合)"
                         android:drawablePadding="15dp"
+                        android:paddingLeft="7dp"
+                        android:background="@color/white"
                         />
                     <View
                         android:layout_width="match_parent"
@@ -130,6 +140,8 @@
                         android:drawableLeft="@drawable/zhuce_icon03"
                         android:hint="确认密码"
                         android:drawablePadding="15dp"
+                        android:paddingLeft="7dp"
+                        android:background="@color/white"
                         />
                     <View
                         android:layout_width="match_parent"
@@ -148,6 +160,8 @@
                         android:drawableLeft="@drawable/zhuce_icon04"
                         android:hint="分销码"
                         android:drawablePadding="15dp"
+                        android:paddingLeft="7dp"
+                        android:background="@color/white"
                         />
                     <View
                         android:layout_width="match_parent"
@@ -221,5 +235,6 @@
                 android:textColor="@color/blue_00"
                 />
         </LinearLayout>
+        <include layout="@layout/app_title"/>
     </com.library.base.ProgressLayout>
 </LinearLayout>
