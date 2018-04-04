@@ -20,6 +20,15 @@ public class MyMessageObj  {
     private String add_time;
     private int is_check;
     private String image;
+    private boolean isZhanKai;
+
+    public boolean isZhanKai() {
+        return isZhanKai;
+    }
+
+    public void setZhanKai(boolean zhanKai) {
+        isZhanKai = zhanKai;
+    }
 
     public int getId() {
         return id;

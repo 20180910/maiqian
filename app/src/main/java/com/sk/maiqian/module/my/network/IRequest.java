@@ -5,7 +5,9 @@ import com.library.base.ResponseObj;
 import com.sk.maiqian.module.my.network.request.FanKuiBody;
 import com.sk.maiqian.module.my.network.request.RegisterBody;
 import com.sk.maiqian.module.my.network.response.FanKuiTypeObj;
+import com.sk.maiqian.module.my.network.response.FenXiaoObj;
 import com.sk.maiqian.module.my.network.response.LoginObj;
+import com.sk.maiqian.module.my.network.response.MyMessageObj;
 
 import java.util.List;
 import java.util.Map;
@@ -54,5 +56,13 @@ public interface IRequest {
     @POST("api/MQUserBase/PostSubmitFeedback")
     Call<ResponseObj<BaseObj>> fanKui(@QueryMap Map<String, String> map, @Body List<FanKuiBody> body);
 
+    //意见反馈
+    @GET("api/MQUserBase/GetMyDistributionYard")
+    Call<ResponseObj<FenXiaoObj>> getFenXiao(@QueryMap Map<String, String> map);
+
+
+    //我的消息
+    @GET("api/MQHomePage/GetNewsList")
+    Call<ResponseObj<List<MyMessageObj>>> getMyMessage(@QueryMap Map<String, String> map);
 
 }

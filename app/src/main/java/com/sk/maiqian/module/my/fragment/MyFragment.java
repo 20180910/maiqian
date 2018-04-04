@@ -6,6 +6,8 @@ import android.widget.TextView;
 
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseFragment;
+import com.sk.maiqian.module.my.activity.FenXiaoActivity;
+import com.sk.maiqian.module.my.activity.MyMessageActivity;
 import com.sk.maiqian.module.my.activity.SettingActivity;
 
 import butterknife.BindView;
@@ -62,11 +64,13 @@ public class MyFragment extends BaseFragment {
             case R.id.ll_my_collection:
                 break;
             case R.id.ll_my_message:
+                STActivity(MyMessageActivity.class);
                 break;
             case R.id.ll_my_setting:
                 STActivity(SettingActivity.class);
                 break;
             case R.id.ll_my_fenxiao:
+                STActivity(FenXiaoActivity.class);
                 break;
         }
     }

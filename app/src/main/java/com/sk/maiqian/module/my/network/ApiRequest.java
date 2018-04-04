@@ -52,6 +52,14 @@ public class ApiRequest extends BaseApiRequest {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
         getGeneralClient(IRequest.class).fanKui(map,body).enqueue(callBack);
     }
+    public static void getFenXiao(Map map,MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(IRequest.class).getFenXiao(map).enqueue(callBack);
+    }
+    public static void getMyMessage(Map map,MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(IRequest.class).getMyMessage(map).enqueue(callBack);
+    }
 
 
 }
