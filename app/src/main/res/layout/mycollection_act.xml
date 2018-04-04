@@ -19,12 +19,21 @@
             >
             <!--your view-->
             <android.support.design.widget.TabLayout
+                android:id="@+id/tab_collection"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
                 android:background="@color/white"
                 >
 
             </android.support.design.widget.TabLayout>
+            <com.library.base.view.MyViewPager
+                android:id="@+id/vp_collection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2px"
+                >
+
+            </com.library.base.view.MyViewPager>
         </LinearLayout>
     </com.library.base.ProgressLayout>
 </LinearLayout>

@@ -65,4 +65,8 @@ public interface IRequest {
     @GET("api/MQHomePage/GetNewsList")
     Call<ResponseObj<List<MyMessageObj>>> getMyMessage(@QueryMap Map<String, String> map);
 
+    //我的收藏
+    @GET("api/MQUserBase/GetMyCollection")
+    Call<ResponseObj<List<MyMessageObj>>> getMyCollection(@QueryMap Map<String, String> map);
+
 }
