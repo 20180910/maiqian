@@ -1,7 +1,5 @@
 package com.sk.maiqian;
 
-import android.util.Log;
-
 import com.github.androidtools.MD5;
 
 import java.util.Arrays;
@@ -58,7 +56,7 @@ public class GetSign {
             }
         }
         sb.append(Config.KEY);
-        Log.i("-----","---"+sb.toString());
+//        Log.i("-----","---"+sb.toString());
         String packageSign = MD5.getMessageDigest(sb.toString().getBytes())
                 .toUpperCase();
         return exChange(packageSign);
@@ -123,7 +121,7 @@ public class GetSign {
         sb.append(Config.weixing_miyao);
         String packageSign = MD5.getMessageDigest(sb.toString().getBytes())
                 .toUpperCase();
-        Log.i("-----","---"+packageSign);
+//        Log.i("-----","---"+packageSign);
         return packageSign;
     }
 }

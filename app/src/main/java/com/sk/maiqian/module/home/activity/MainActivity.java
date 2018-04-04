@@ -15,9 +15,9 @@ import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.event.LoginSuccessEvent;
 import com.sk.maiqian.module.home.fragment.HomeFragment;
-import com.sk.maiqian.module.home.fragment.MyFragment;
 import com.sk.maiqian.module.home.fragment.SelectFragment;
 import com.sk.maiqian.module.my.activity.LoginActivity;
+import com.sk.maiqian.module.my.fragment.MyFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -113,7 +113,12 @@ public class MainActivity extends BaseActivity {
         getEvent(LoginSuccessEvent.class, new MyConsumer<LoginSuccessEvent>() {
             @Override
             public void onAccept(LoginSuccessEvent event) {
-                selectMy();
+                if(event.status==LoginSuccessEvent.status_1){
+                    selectMy();
+                }else if(event.status==LoginSuccessEvent.status_0){
+                    selectHome();
+                }
+                selectView.setChecked(true);
             }
         });
     }

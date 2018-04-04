@@ -3,8 +3,11 @@ package com.sk.maiqian.module.my.activity;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.github.androidtools.PhoneUtils;
 import com.github.customview.MyCheckBox;
 import com.github.customview.MyEditText;
 import com.library.base.BaseObj;
@@ -42,16 +45,23 @@ public class RegisterActivity extends BaseActivity {
     MyCheckBox cb_register_xieyi;
     @BindView(R.id.tv_register_getmsg)
     TextView tv_register_getmsg;
+//    @BindView(R.id.iv_register_bg)
+//    ImageView iv_register_bg;
     private String smsCode;
 
     @Override
     protected int getContentView() {
         setAppRightImg(R.drawable.share);
+        setTitleBackgroud(R.color.transparent);
         return R.layout.register_act;
     }
 
     @Override
     protected void initView() {
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.height= PhoneUtils.getScreenHeight(mContext);
+
+//        iv_register_bg.setLayoutParams(layoutParams);
 
     }
 

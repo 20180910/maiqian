@@ -10,6 +10,7 @@ import android.webkit.WebViewClient;
 
 import com.github.androidtools.SPUtils;
 import com.library.base.MyBaseFragment;
+import com.sk.maiqian.AppXml;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.GetSign;
 import com.youth.banner.Banner;
@@ -30,6 +31,9 @@ public abstract class BaseFragment extends MyBaseFragment {
     protected String getUserId() {
         return SPUtils.getString(mContext, Config.user_id, "0");
     }
+    protected void clearUserId() {
+        SPUtils.removeKey(mContext, AppXml.user_id);
+    }
     public boolean noLogin(){
         if("0".equals(getUserId())){
             return true;
@@ -40,7 +44,9 @@ public abstract class BaseFragment extends MyBaseFragment {
     protected String getSign(Map map) {
         return GetSign.getSign(map);
     }
-
+    public void Log(String msg){
+        Log.i(TAG+"===",msg);
+    }
 
     protected String getSign(String key, String value) {
         return GetSign.getSign(key, value);

@@ -3,6 +3,7 @@ package com.sk.maiqian.base;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.support.annotation.DrawableRes;
 import android.support.design.widget.BottomSheetDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,12 +53,37 @@ public abstract class BaseActivity extends MyBaseActivity {
     protected String getUserId() {
         return SPUtils.getString(mContext, AppXml.user_id, noLoginCode);
     }
-
+    protected void clearUserId() {
+          SPUtils.removeKey(mContext, AppXml.user_id);
+    }
     public boolean noLogin() {
         if (noLoginCode.equals(getUserId())) {
             return true;
         } else {
             return false;
+        }
+    }
+    public void Log(String msg){
+        Log.i(TAG+"===",msg);
+    }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()){
+            case R.id.app_right_iv:
+                if("share".equals(v.getTag())){
+                    Log("===分享=");
+                }
+            break;
+        }
+    }
+
+    @Override
+    public void setAppRightImg(@DrawableRes int appRightImg) {
+        super.setAppRightImg(appRightImg);
+        if(appRightImg==R.drawable.share){
+            isShareImg=true;
         }
     }
 

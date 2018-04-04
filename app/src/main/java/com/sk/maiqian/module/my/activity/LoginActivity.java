@@ -154,7 +154,7 @@ public class LoginActivity extends BaseActivity {
 //        SPUtils.setPrefString(mContext, AppXml.birthday, obj.getBirthday());
 
 //        LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent(Config.Bro.operation));
-        MyRxBus.getInstance().post(new LoginSuccessEvent());
+        MyRxBus.getInstance().post(new LoginSuccessEvent(LoginSuccessEvent.status_1));
 //        Intent intent = new Intent();
 //        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 //        STActivity(intent, MainActivity.class);

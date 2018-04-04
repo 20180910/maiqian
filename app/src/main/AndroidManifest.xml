@@ -48,7 +48,7 @@
         <activity android:name=".module.liuxue.activity.LiuXueActivity"/>
         <activity android:name=".module.liuxue.activity.LiuXueDetailActivity"/>
         <activity android:name=".module.my.activity.LoginActivity"/>
-        <activity android:name=".module.my.activity.RegisterActivity"/>
+        <activity android:name=".module.my.activity.RegisterActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".module.my.activity.FindPWDActivity"/>
         <activity android:name=".module.my.activity.ResetPWDActivity"/>
         <activity android:name=".module.my.activity.PersonInfoActivity"/>

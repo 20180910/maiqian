@@ -49,13 +49,8 @@ public class FindPWDActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void onViewClick(View v) {
-
-    }
-
     @OnClick({R.id.tv_findpwd_getmsg, R.id.tv_findpwd_next})
-    public void onClick(View view) {
+    public void onViewClick(View view) {
         String phone;
         switch (view.getId()) {
             case R.id.tv_findpwd_getmsg:
