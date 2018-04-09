@@ -4,25 +4,33 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/background_f2"
+              android:background="@color/white"
     >
 <include layout="@layout/app_title"/>
     <com.library.base.ProgressLayout
         android:id="@id/pl_load"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_mybank"
+        <in.srain.cube.views.ptr.PtrClassicFrameLayout
+            android:id="@id/pcfl_refresh"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2px"
-            android:layout_alignParentTop="true"
-            android:layout_above="@+id/ll_add_bank"
-            android:padding="10dp"
-            android:background="@color/white"
+            android:layout_height="match_parent"
+            app:ptr_resistance="2.1"
+            app:ptr_ratio_of_header_height_to_refresh="1.2"
             >
-            
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_mybank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2px"
+                android:layout_alignParentTop="true"
+                android:layout_above="@+id/ll_add_bank"
+                android:background="@color/white"
+                >
+
+            </android.support.v7.widget.RecyclerView>
+        </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+
         <com.github.customview.MyLinearLayout
             android:id="@+id/ll_add_bank"
             android:layout_width="match_parent"
@@ -33,7 +41,7 @@
             app:my_ll_all_line="true"
             app:my_ll_corner_radius="3dp"
             android:layout_alignParentBottom="true"
-            android:layout_margin="20dp"
+            android:layout_margin="10dp"
             >
             <ImageView
                 android:layout_width="wrap_content"

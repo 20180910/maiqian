@@ -40,6 +40,7 @@
                         android:text="联&#8194;系&#8194;人"
                         />
                     <com.github.customview.MyEditText
+                        android:id="@+id/et_address_name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
@@ -68,6 +69,7 @@
                         android:text="手&#8194;机&#8194;号"
                         />
                     <com.github.customview.MyEditText
+                        android:id="@+id/et_address_phone"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
@@ -96,6 +98,7 @@
                         android:text="地&#12288;&#12288;区"
                         />
                     <TextView
+                        android:id="@+id/tv_address_area"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
@@ -123,6 +126,7 @@
                         android:text="详细地址"
                         />
                     <com.github.customview.MyEditText
+                        android:id="@+id/et_address_detail"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
@@ -144,7 +148,7 @@
                     android:layout_marginTop="2px"
                     >
                     <com.github.customview.MyTextView
-                        android:id="@+id/tv_commit_liuyan"
+                        android:id="@+id/tv_commit_address"
                         android:layout_width="match_parent"
                         android:layout_height="43dp"
                         android:text="保存"

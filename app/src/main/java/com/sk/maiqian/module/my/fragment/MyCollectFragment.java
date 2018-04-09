@@ -3,14 +3,17 @@ package com.sk.maiqian.module.my.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.MyLoadMoreAdapter;
 import com.github.baseclass.adapter.MyRecyclerViewHolder;
-import com.github.rxbus.rxjava.MyFlowableSubscriber;
-import com.github.rxbus.rxjava.MyRx;
+import com.library.base.BaseObj;
 import com.sk.maiqian.Constant;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseFragment;
+import com.sk.maiqian.base.GlideUtils;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.module.my.network.ApiRequest;
 import com.sk.maiqian.module.my.network.response.MyCollectionObj;
@@ -20,8 +23,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import io.reactivex.FlowableEmitter;
-import io.reactivex.annotations.NonNull;
 
 /**
  * Created by Administrator on 2018/3/29.
@@ -35,6 +36,8 @@ public class MyCollectFragment extends BaseFragment {
     @BindView(R.id.rv_my_collection)
     RecyclerView rv_my_collection;
     MyLoadMoreAdapter adapter;
+    private String type;
+
     @Override
     protected int getContentView() {
         return R.layout.mycollection_frag;
@@ -49,26 +52,79 @@ public class MyCollectFragment extends BaseFragment {
     }
     @Override
     protected void initView() {
-        adapter=new MyLoadMoreAdapter<MyCollectionObj>(mContext,R.layout.mycollection_item2,pageSize) {
+        pcfl.disableWhenHorizontalMove(true);
+        int layoutId=R.layout.mycollection_item1;
+        type = getArguments().getString(Constant.type);
+        switch (type){
+            case type_1:
+                layoutId=R.layout.mycollection_item1;
+            break;
+            case type_2:
+                layoutId=R.layout.mycollection_item2;
+            break;
+            case type_3:
+                layoutId=R.layout.mycollection_item3;
+            break;
+            case type_4:
+                layoutId=R.layout.mycollection_item3;
+            break;
+        }
+        adapter=new MyLoadMoreAdapter<MyCollectionObj>(mContext,layoutId,pageSize) {
             @Override
             public void bindData(MyRecyclerViewHolder holder, int position, MyCollectionObj bean) {
+                ImageView imageView = holder.getImageView(R.id.iv_my_collection);
+                GlideUtils.into(mContext,bean.getImg_url(),imageView);
+                holder.setText(R.id.tv_my_collection_title,bean.getTitle());
+                switch (type){
+                    case type_1:
+                        holder.setText(R.id.tv_my_collection_price,bean.getPrice()+"");
+                        break;
+                    case type_2:
+                        holder.setText(R.id.tv_my_collection_price,bean.getPrice()+"");
+                        holder.setText(R.id.tv_my_collection_old_price,"¥"+bean.getOriginal_price());
+                        holder.setText(R.id.tv_my_collection_flag,bean.getBiaoqian());
+                        break;
+                    case type_3:
+                        holder.setText(R.id.tv_my_collection_subtitle,bean.getEnglish_title());
+                        holder.setText(R.id.tv_my_collection_xingqu,bean.getInterested_peopleum()+"人申请");
+                        break;
+                    case type_4:
+                        layoutId=R.layout.mycollection_item3;
+                        holder.setText(R.id.tv_my_collection_subtitle,bean.getEnglish_title());
+                        holder.setText(R.id.tv_my_collection_xingqu,bean.getInterested_peopleum()+"人感兴趣");
+                        break;
+                }
 
+
+                TextView tv_collection_cancel =   holder.getTextView(R.id.tv_collection_cancel);
+                tv_collection_cancel.setOnClickListener(new MyOnClickListener() {
+                    @Override
+                    protected void onNoDoubleClick(View view) {
+                        cancelCollection(bean.getId());
+                    }
+                });
             }
         };
         adapter.setOnLoadMoreListener(this);
         rv_my_collection.setAdapter(adapter);
 
-        MyRx.start(new MyFlowableSubscriber<String>() {
-            @Override
-            public void subscribe(@NonNull FlowableEmitter<String> emitter) {
-                emitter.onNext("");
-                emitter.onComplete();
-            }
-            @Override
-            public void onNext(String obj) {
 
+
+    }
+
+    private void cancelCollection(String id) {
+        showLoading();
+        Map<String,String>map=new HashMap<String,String>();
+        map.put("mid",id);
+        map.put("user_id",getUserId());
+        map.put("sign",getSign(map));
+        ApiRequest.cancelMyCollection(map, new MyCallBack<BaseObj>(mContext) {
+            @Override
+            public void onSuccess(BaseObj obj) {
+                getData(1,false);
             }
         });
+
     }
 
     @Override

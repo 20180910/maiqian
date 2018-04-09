@@ -4,7 +4,7 @@ package com.sk.maiqian.module.my.network.request;
  * Created by Administrator on 2017/11/23.
  */
 
-public class AddAccountBody {
+public class AddBankBody {
 
     /**
      * realname : sample string 1
@@ -17,8 +17,8 @@ public class AddAccountBody {
     private String realname;
     private String bank_card_num;
     private String id_number;
-    private String card_type;
     private String opening_bank;
+    private String bank_id;
 
     public String getRealname() {
         return realname;
@@ -44,19 +44,19 @@ public class AddAccountBody {
         this.id_number = id_number;
     }
 
-    public String getCard_type() {
-        return card_type;
-    }
-
-    public void setCard_type(String card_type) {
-        this.card_type = card_type;
-    }
-
     public String getOpening_bank() {
         return opening_bank;
     }
 
     public void setOpening_bank(String opening_bank) {
         this.opening_bank = opening_bank;
+    }
+
+    public String getBank_id() {
+        return bank_id;
+    }
+
+    public void setBank_id(String bank_id) {
+        this.bank_id = bank_id;
     }
 }

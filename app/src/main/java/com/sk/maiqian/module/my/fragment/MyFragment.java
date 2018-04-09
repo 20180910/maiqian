@@ -7,6 +7,8 @@ import android.widget.TextView;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseFragment;
 import com.sk.maiqian.module.my.activity.FenXiaoActivity;
+import com.sk.maiqian.module.my.activity.MyAddressListActivity;
+import com.sk.maiqian.module.my.activity.MyBankListActivity;
 import com.sk.maiqian.module.my.activity.MyCollectionActivity;
 import com.sk.maiqian.module.my.activity.MyMessageActivity;
 import com.sk.maiqian.module.my.activity.SettingActivity;
@@ -59,8 +61,10 @@ public class MyFragment extends BaseFragment {
             case R.id.ll_my_jifen:
                 break;
             case R.id.ll_my_bank:
+                STActivity(MyBankListActivity.class);
                 break;
             case R.id.ll_my_address:
+                STActivity(MyAddressListActivity.class);
                 break;
             case R.id.ll_my_collection:
                 STActivity(MyCollectionActivity.class);

@@ -1,80 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@color/white"
-              android:padding="10dp"
+<com.mcxtzhang.swipemenulib.SwipeMenuLayout
+    android:id="@+id/sml_collection"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:clickable="true"
+    android:orientation="vertical"
     >
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="10dp"
         >
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
             android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             >
+
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 >
+
                 <ImageView
+                    android:id="@+id/iv_my_collection"
                     android:layout_width="@dimen/img_w"
                     android:layout_height="@dimen/img_h"
-                    tools:src="@drawable/item_img"
                     android:scaleType="fitCenter"
+                    tools:src="@drawable/item_img"
                     />
             </FrameLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
                 android:background="@color/white"
                 android:gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:paddingTop="2dp"
+                android:orientation="vertical"
                 android:paddingBottom="2dp"
+                android:paddingTop="2dp"
                 >
+
                 <TextView
+                    android:id="@+id/tv_my_collection_title"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="美国"
-                    android:textSize="15sp"
+                    android:ellipsize="end"
+                    android:lines="2"
+                    android:maxLines="2"
                     android:textColor="@color/gray_33"
+                    android:textSize="15sp"
+                    tools:text="美国签证"
                     />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
                     android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/youxue_huo"
-                        />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="200人申请"
-                        android:textColor="@color/orange"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="15sp"
+                        android:text="¥"
+                        android:textColor="@color/blue_00"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_my_collection_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:textColor="@color/blue_00"
+                        android:textSize="17sp"
+                        tools:text="200"
                         />
                 </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
-</LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_collection_cancel"
+        android:layout_width="65dp"
+        android:layout_height="match_parent"
+        android:background="@color/red"
+        android:gravity="center"
+        android:text="取消\n收藏"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        />
+</com.mcxtzhang.swipemenulib.SwipeMenuLayout>

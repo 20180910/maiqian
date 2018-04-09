@@ -1,62 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.mcxtzhang.swipemenulib.SwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:background="@color/white"
-    >
-<com.github.customview.MyLinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:gravity="center_vertical"
-    app:my_ll_solid="@color/blue_00"
-    app:my_ll_corner_radius="4dp"
+              android:clickable="true"
     >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
+        android:background="@color/white"
         android:gravity="center_vertical"
         android:padding="10dp"
         >
-        <com.github.customview.MyImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/yinhangka"
-            />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <com.github.customview.MyLinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="招商银行"
-            android:textColor="@color/white"
-            android:layout_marginLeft="10dp"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="储蓄卡"
-            android:textColor="@color/white"
-            />
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            app:my_ll_solid="@color/blue_00"
+            app:my_ll_corner_radius="6dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                >
+                <com.github.customview.MyImageView
+                    android:id="@+id/iv_bank"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/yinhangka"
+                    app:my_iv_radius="15dp"
+                    />
+                <TextView
+                    android:id="@+id/tv_bank_name"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    tools:text="招商银行"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="10dp"
+                    />
+                <TextView
+                    android:id="@+id/tv_bank_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="储蓄卡"
+                    android:textColor="@color/white"
+                    />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/background_f2"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                />
+            <TextView
+                android:id="@+id/tv_bank_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="**********342432"
+                android:textSize="19sp"
+                android:padding="10dp"
+                android:gravity="right"
+                android:textColor="@color/white"
+                />
+        </com.github.customview.MyLinearLayout>
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/background_f2"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        />
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="**********342432"
-        android:textSize="19sp"
-        android:padding="10dp"
-        android:gravity="right"
+        android:id="@+id/tv_bank_delete"
+        android:layout_width="65dp"
+        android:layout_height="match_parent"
+        android:background="@color/red"
+        android:gravity="center"
+        android:text="删除"
         android:textColor="@color/white"
+        android:textSize="15sp"
         />
-</com.github.customview.MyLinearLayout>
-</LinearLayout>
+</com.mcxtzhang.swipemenulib.SwipeMenuLayout>

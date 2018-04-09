@@ -4,13 +4,22 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/background_f2"
+              android:background="@color/white"
     >
-<com.library.base.view.MyRecyclerView
-    android:id="@+id/rv_my_collection"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="2px"
-    >
-</com.library.base.view.MyRecyclerView>
+    <in.srain.cube.views.ptr.PtrClassicFrameLayout
+        android:id="@id/pcfl_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:ptr_resistance="2.1"
+        app:ptr_ratio_of_header_height_to_refresh="1.2"
+        >
+
+        <com.library.base.view.MyRecyclerView
+            android:id="@+id/rv_my_collection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2px"
+            >
+        </com.library.base.view.MyRecyclerView>
+    </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 </LinearLayout>

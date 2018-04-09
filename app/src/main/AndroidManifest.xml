@@ -32,7 +32,7 @@
         <activity android:name=".module.home.activity.DingDanTianXieActivity"/>
         <activity android:name=".module.home.activity.SelectDateActivity"/>
         <activity android:name=".module.home.activity.AddressListActivity"/>
-        <activity android:name=".module.home.activity.EditAddressActivity"/>
+        <activity android:name=".module.my.activity.EditAddressActivity"/>
         <activity android:name=".module.home.activity.PaySuccessActivity"/>
         <activity android:name=".module.home.activity.EditShenQingRenActivity"/>
         <activity android:name=".module.home.activity.ZaiZhiRenYuanActivity"/>
@@ -58,7 +58,7 @@
         <activity android:name=".module.my.activity.MyBankListActivity"/>
         <activity android:name=".module.my.activity.TiXianActivity"/>
         <activity android:name=".module.my.activity.TiXianSuccessActivity"/>
-        <activity android:name=".module.my.activity.AddBankActivity"/>
+        <activity android:name=".module.my.activity.AddBankActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".module.my.activity.FenXiaoActivity"/>
         <activity android:name=".module.my.activity.MyMessageActivity"/>
         <activity android:name=".module.my.activity.SettingActivity"/>

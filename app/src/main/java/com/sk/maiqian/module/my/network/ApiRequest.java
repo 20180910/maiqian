@@ -4,6 +4,7 @@ import com.github.retrofitutil.NoNetworkException;
 import com.library.base.BaseApiRequest;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.base.MyCallBack;
+import com.sk.maiqian.module.my.network.request.AddBankBody;
 import com.sk.maiqian.module.my.network.request.FanKuiBody;
 import com.sk.maiqian.module.my.network.request.RegisterBody;
 
@@ -63,6 +64,34 @@ public class ApiRequest extends BaseApiRequest {
     public static void getMyCollection(Map map,MyCallBack callBack) {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
         getGeneralClient(IRequest.class).getMyCollection(map).enqueue(callBack);
+    }
+    public static void cancelMyCollection(Map map,MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(IRequest.class).cancelMyCollection(map).enqueue(callBack);
+    }
+    public static void addAddress(Map map,MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(IRequest.class).addAddress(map).enqueue(callBack);
+    }
+    public static void getAddress(Map map,MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(IRequest.class).getAddress(map).enqueue(callBack);
+    }
+    public static void deleteAddress(Map map,  List<String> body,MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(IRequest.class).deleteAddress(map,body).enqueue(callBack);
+    }
+    public static void addBank(Map map, AddBankBody body, MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(IRequest.class).addBank(map,body).enqueue(callBack);
+    }
+    public static void getBank(Map map,MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(IRequest.class).getBank(map).enqueue(callBack);
+    }
+    public static void deleteBank(Map map,MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(IRequest.class).deleteBank(map).enqueue(callBack);
     }
 
 

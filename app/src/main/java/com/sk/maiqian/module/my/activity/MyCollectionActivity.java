@@ -44,6 +44,7 @@ public class MyCollectionActivity extends BaseActivity {
         adapter.setList(list);
         vp_collection.setAdapter(adapter);
         vp_collection.setOffscreenPageLimit(list.size()-1);
+        vp_collection.setScroll(false);
 
         tab_collection.setupWithViewPager(vp_collection);
 

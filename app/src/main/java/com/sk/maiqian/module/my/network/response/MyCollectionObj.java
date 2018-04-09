@@ -14,8 +14,46 @@ public class MyCollectionObj {
 
     private String id;
     private String title;
+    private String english_title;
     private String img_url;
     private double price;
+
+    private String biaoqian;
+    private String original_price;
+    private String interested_peopleum;
+
+
+    public String getEnglish_title() {
+        return english_title;
+    }
+
+    public void setEnglish_title(String english_title) {
+        this.english_title = english_title;
+    }
+
+    public String getBiaoqian() {
+        return biaoqian;
+    }
+
+    public void setBiaoqian(String biaoqian) {
+        this.biaoqian = biaoqian;
+    }
+
+    public String getOriginal_price() {
+        return original_price;
+    }
+
+    public void setOriginal_price(String original_price) {
+        this.original_price = original_price;
+    }
+
+    public String getInterested_peopleum() {
+        return interested_peopleum;
+    }
+
+    public void setInterested_peopleum(String interested_peopleum) {
+        this.interested_peopleum = interested_peopleum;
+    }
 
     public String getId() {
         return id;

@@ -16,10 +16,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="@color/background_f2"
-            android:layout_above="@+id/ll_address_list"
+            android:layout_above="@+id/ll_address_bottom"
             >
             <!--your view-->
             <LinearLayout
+                android:id="@+id/ll_address_add"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:orientation="horizontal"
@@ -40,55 +41,75 @@
                     android:textColor="@color/blue_00"
                     />
             </LinearLayout>
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_my_address"
+            <in.srain.cube.views.ptr.PtrClassicFrameLayout
+                android:id="@id/pcfl_refresh"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_height="match_parent"
+                app:ptr_resistance="2.1"
+                app:ptr_ratio_of_header_height_to_refresh="1.2"
                 >
-            </android.support.v7.widget.RecyclerView>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_my_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    >
+                </android.support.v7.widget.RecyclerView>
+            </in.srain.cube.views.ptr.PtrClassicFrameLayout>
         </LinearLayout>
         <com.github.customview.MyLinearLayout
-            android:id="@+id/ll_address_list"
+            android:id="@+id/ll_address_bottom"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:gravity="center_vertical"
+            android:layout_alignParentBottom="true"
             app:my_ll_solid="@color/white"
             app:my_ll_top_line="true"
-            android:layout_alignParentBottom="true"
             >
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="@color/white"
+            <com.github.customview.MyLinearLayout
+                android:id="@+id/ll_address_list"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
                 android:gravity="center_vertical"
                 >
-                <com.github.customview.MyCheckBox
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
-                    app:my_checkbox_checked="@drawable/wodedizhi_icon_select"
-                    app:my_checkbox_normal="@drawable/wodedizhi_icon_normal"
-                    android:text="全选"
+                    android:orientation="vertical"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    >
+                    <com.github.customview.MyCheckBox
+                        android:id="@+id/cb_address_all"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:my_checkbox_checked="@drawable/wodedizhi_icon_select"
+                        app:my_checkbox_normal="@drawable/wodedizhi_icon_normal"
+                        app:my_checkbox_checked_drawable="left"
+                        android:button="@null"
+                        android:text="全选"
+                        android:gravity="left|center_vertical"
+                        android:textColor="@color/gray_66"
+                        android:textSize="15sp"
+                        android:paddingLeft="70dp"
+                        android:drawablePadding="20dp"
+                        />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_address_delete"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:layout_height="match_parent"
+                    android:text="删除"
+                    android:background="@color/red"
+                    android:textColor="@color/white"
                     android:gravity="center"
-                    android:textColor="@color/gray_66"
-                    android:paddingLeft="20dp"
-                    android:layout_marginLeft="70dp"
                     android:textSize="15sp"
                     />
-            </LinearLayout>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1.2"
-                android:layout_height="match_parent"
-                android:text="删除"
-                android:background="@color/red"
-                android:textColor="@color/white"
-                android:gravity="center"
-                android:textSize="15sp"
-                />
+            </com.github.customview.MyLinearLayout>
         </com.github.customview.MyLinearLayout>
     </com.library.base.ProgressLayout>
 </LinearLayout>
