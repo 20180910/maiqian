@@ -23,6 +23,17 @@ public class ExampleUnitTest {
         a.setB("2");
         a.setC("3");
         System.out.println(new Gson().toJson(a));
+
+        double resultJifen = Double.parseDouble("012");
+        System.out.println(resultJifen);
+        System.out.println(Double.parseDouble("02"));
+        System.out.println(Double.parseDouble("0"));
+        System.out.println(Double.parseDouble("00"));
+        String jifen="01";
+        if(jifen.indexOf("0")==0){
+            jifen=jifen.substring(1,jifen.length());
+        }
+        System.out.println(jifen);
     }
     public class TestA{
         private String a;

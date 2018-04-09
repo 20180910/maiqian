@@ -5,8 +5,10 @@ import com.library.base.ResponseObj;
 import com.sk.maiqian.module.my.network.request.AddBankBody;
 import com.sk.maiqian.module.my.network.request.FanKuiBody;
 import com.sk.maiqian.module.my.network.request.RegisterBody;
+import com.sk.maiqian.module.my.network.response.DefaultBankObj;
 import com.sk.maiqian.module.my.network.response.FanKuiTypeObj;
 import com.sk.maiqian.module.my.network.response.FenXiaoObj;
+import com.sk.maiqian.module.my.network.response.JiFenShuoMingObj;
 import com.sk.maiqian.module.my.network.response.LoginObj;
 import com.sk.maiqian.module.my.network.response.MyAddressObj;
 import com.sk.maiqian.module.my.network.response.MyAllBankObj;
@@ -100,5 +102,20 @@ public interface IRequest {
     //删除银行卡
     @GET("api/MQCashWithdrawal/GetDelAccount")
     Call<ResponseObj<BaseObj>> deleteBank(@QueryMap Map<String, String> map);
+
+
+    //积分说明
+    @GET("api/MQUserBase/GetIntegralDescription")
+    Call<ResponseObj<JiFenShuoMingObj>> getJiFenShuoMing(@QueryMap Map<String, String> map);
+
+    //获取默认银行账户列表
+    @GET("api/MQCashWithdrawal/GetAccountDefault")
+    Call<ResponseObj<DefaultBankObj>> getDefaultAccount(@QueryMap Map<String, String> map);
+
+    //提现
+    @GET("api/MQCashWithdrawal/GetWithdrawals")
+    Call<ResponseObj<BaseObj>> tiXian(@QueryMap Map<String, String> map);
+
+
 
 }

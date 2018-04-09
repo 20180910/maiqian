@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/background_f2"
+              android:background="@color/white"
     >
 <include layout="@layout/app_title"/>
     <com.library.base.ProgressLayout
@@ -15,13 +16,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/background_f2"
+            android:background="@color/white"
             >
             <!--your view-->
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="150dp"
-                android:src="@drawable/home_banner"
+                android:id="@+id/iv_zhuanjifen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:src="@drawable/home_banner"
+                android:scaleType="fitCenter"
                 />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -32,6 +35,7 @@
                 android:layout_marginTop="2px"
                 >
                 <com.github.customview.MyLinearLayout
+                    android:id="@+id/ll_zhuanjifen_xiadan"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="130dp"
@@ -56,6 +60,7 @@
                 </com.github.customview.MyLinearLayout>
 
                 <com.github.customview.MyLinearLayout
+                    android:id="@+id/ll_zhuanjifen_yaoqing"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="130dp"

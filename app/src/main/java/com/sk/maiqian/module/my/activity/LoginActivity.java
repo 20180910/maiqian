@@ -149,7 +149,7 @@ public class LoginActivity extends BaseActivity {
         SPUtils.setPrefString(mContext, AppXml.avatar, obj.getAvatar());
         SPUtils.setPrefString(mContext, AppXml.mobile, obj.getMobile());
         SPUtils.setPrefInt(mContext, AppXml.message_sink, obj.getMessage_sink());
-        SPUtils.setPrefFloat(mContext, AppXml.message_sink, (float) obj.getPoint());
+        SPUtils.setPrefString(mContext, AppXml.jifen,  obj.getPoint()+"");
 //        SPUtils.setPrefString(mContext, AppXml.sex, obj.getSex());
 //        SPUtils.setPrefString(mContext, AppXml.birthday, obj.getBirthday());
 

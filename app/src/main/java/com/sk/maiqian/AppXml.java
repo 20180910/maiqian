@@ -16,7 +16,7 @@ public class AppXml {
     public static final String needLogin = "needLogin";
     public static final String birthday = "birthday";
 
-    public static final String amount = "amount";
+    public static final String jifen = "jifen";
     public static final String commission = "commission";
     public static final String message_sink = "message_sink";
     public static final String is_validation = "is_validation";

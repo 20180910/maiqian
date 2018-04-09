@@ -73,6 +73,7 @@
         <activity android:name=".module.order.activity.QianZhengOrderActivity"/>
         <activity android:name=".module.my.activity.XieYiActivity"/>
         <activity android:name=".module.my.activity.UpdatePWDActivity"/>
+        <activity android:name=".module.my.activity.ZhuanJiFenActivity"/>
     </application>
 
 </manifest>

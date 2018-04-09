@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/background_f2"
     >
-<include layout="@layout/app_title"/>
-    <com.library.base.ProgressLayout
+    <include layout="@layout/app_title"/>
+   <!-- <com.library.base.ProgressLayout
         android:id="@id/pl_load"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent">-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,26 +21,28 @@
             <!--your view-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="150dp"
                 android:orientation="vertical"
                 android:background="@color/blue_00"
                 android:gravity="center"
                 >
                 <TextView
+                    android:id="@+id/tv_jifen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="11111积分"
+                    tools:text="11111积分"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     />
                 <com.github.customview.MyTextView
+                    android:id="@+id/tv_jifen_tx"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:text="提现"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:gravity="center"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="30dp"
                     app:my_tv_border_color="@color/white"
                     app:my_tv_all_line="true"
                     android:paddingLeft="25dp"
@@ -58,6 +61,7 @@
                 android:layout_marginBottom="2px"
                 >
                 <TextView
+                    android:id="@+id/tv_jifen_shuoming"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -72,6 +76,7 @@
                     android:background="@color/background_f2"
                     />
                 <TextView
+                    android:id="@+id/tv_jifen_zhuanjifen"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -86,6 +91,7 @@
                     android:background="@color/background_f2"
                     />
                 <TextView
+                    android:id="@+id/tv_jifen_mingxi"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -97,5 +103,5 @@
             </LinearLayout>
 
         </LinearLayout>
-    </com.library.base.ProgressLayout>
+    <!--</com.library.base.ProgressLayout>-->
 </LinearLayout>

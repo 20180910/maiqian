@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -23,6 +24,7 @@
                 android:layout_height="wrap_content"
                 >
                 <LinearLayout
+                    android:id="@+id/ll_tixian_selectbank"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:orientation="horizontal"
@@ -45,6 +47,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/ll_tixian_defaultbank"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:orientation="horizontal"
@@ -53,11 +56,13 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     >
-                    <ImageView
-                        android:layout_width="wrap_content"
+                    <com.github.customview.MyImageView
+                        android:id="@+id/iv_tixian"
+                        android:layout_width="34dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/yinhangka"
+                        tools:src="@drawable/yinhangka"
                         android:layout_marginRight="15dp"
+                        app:my_iv_radius="17dp"
                         />
                     <LinearLayout
                         android:layout_width="0dp"
@@ -68,15 +73,17 @@
                         android:gravity="center_vertical"
                         >
                         <TextView
+                            android:id="@+id/tv_tixian_bank"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="招商银行"
+                            tools:text="招商银行"
                             android:textSize="14sp"
                             />
                         <TextView
+                            android:id="@+id/tv_tixian_bankcode"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="尾号2222"
+                            tools:text="尾号2222"
                             android:textSize="11sp"
                             android:layout_marginTop="2dp"
                             />
@@ -108,6 +115,7 @@
                 android:layout_marginBottom="2px"
                 >
                 <EditText
+                    android:id="@+id/et_tixian_jifen"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="40dp"
@@ -117,6 +125,7 @@
                     android:inputType="number"
                     android:imeOptions="actionNext"
                     android:hint="点击填写需要提现的积分"
+                    android:maxLength="7"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -132,7 +141,7 @@
                 android:gravity="center_vertical"
                 >
                 <com.github.customview.MyTextView
-                    android:id="@+id/tv_commit_liuyan"
+                    android:id="@+id/tv_tixian"
                     android:layout_width="match_parent"
                     android:layout_height="43dp"
                     android:text="提现"
