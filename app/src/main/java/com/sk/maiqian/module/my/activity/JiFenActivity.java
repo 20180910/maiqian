@@ -44,12 +44,16 @@ public class JiFenActivity extends BaseActivity {
 //
 //            }
 //        });
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tv_jifen.setText(SPUtils.getString(mContext, AppXml.jifen,"0")+"积分");
     }
 
     @Override
     protected void initData() {
-        tv_jifen.setText(SPUtils.getString(mContext, AppXml.jifen,"0")+"积分");
     }
 
     @OnClick({R.id.tv_jifen_shuoming, R.id.tv_jifen_zhuanjifen, R.id.tv_jifen_mingxi,R.id.tv_jifen_tx})
@@ -65,6 +69,7 @@ public class JiFenActivity extends BaseActivity {
                 STActivity(ZhuanJiFenActivity.class);
                 break;
             case R.id.tv_jifen_mingxi:
+                STActivity(JiFenMingXiActivity.class);
                 break;
         }
     }

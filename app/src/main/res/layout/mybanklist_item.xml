@@ -17,6 +17,7 @@
         android:padding="10dp"
         >
         <com.github.customview.MyLinearLayout
+            android:id="@+id/ll_bank_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"

@@ -53,6 +53,10 @@ public class ApiRequest extends BaseApiRequest {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
         getGeneralClient(IRequest.class).fanKui(map,body).enqueue(callBack);
     }
+    public static void getUserInfo(Map map, MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(IRequest.class).getUserInfo(map).enqueue(callBack);
+    }
     public static void getFenXiao(Map map,MyCallBack callBack) {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
         getGeneralClient(IRequest.class).getFenXiao(map).enqueue(callBack);
@@ -104,6 +108,14 @@ public class ApiRequest extends BaseApiRequest {
     public static void tiXian(Map map,MyCallBack callBack) {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
         getGeneralClient(IRequest.class).tiXian(map).enqueue(callBack);
+    }
+    public static void getJiFenMingXi(Map map,MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(IRequest.class).getJiFenMingXi(map).enqueue(callBack);
+    }
+    public static void setDefault(Map map,MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(IRequest.class).setDefault(map).enqueue(callBack);
     }
 
 

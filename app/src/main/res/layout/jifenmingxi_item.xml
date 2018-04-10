@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -23,23 +24,26 @@
         android:gravity="center_vertical"
         >
         <TextView
+            android:id="@+id/tv_jifen_mingxi_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="分享奖励"
+            tools:text="分享奖励"
             android:textColor="@color/gray_33"
             />
         <TextView
+            android:id="@+id/tv_jifen_mingxi_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2018-11-11"
+            tools:text="2018-11-11"
             android:textSize="11sp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="5dp"
             />
     </LinearLayout>
     <TextView
+        android:id="@+id/tv_jifen_mingxi_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+10分"
+        tools:text="+10分"
         android:textColor="@color/blue_00"
         />
 </LinearLayout>

@@ -44,7 +44,6 @@
                 app:my_radio_normal="@drawable/yingyupeixun_zhifufangshi_icon_normal"
                 app:my_radio_checked_drawable="right"
                 android:button="@drawable/pay_wx"
-                android:checked="true"
                 android:text="微信支付"
                 android:background="@color/white"
                 android:padding="10dp"

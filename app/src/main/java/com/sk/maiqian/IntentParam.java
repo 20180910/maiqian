@@ -11,5 +11,7 @@ public class IntentParam {
     public static final String isEditAddress = "isEditAddress";
     public static final String addressId = "addressId";
     public static final String addressBean = "addressBean";
+    public static final String selectBank = "selectBank";
+    public static final String bank = "bank";
 
 }

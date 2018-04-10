@@ -12,6 +12,7 @@ import com.github.baseclass.adapter.MyLoadMoreAdapter;
 import com.github.baseclass.adapter.MyRecyclerViewHolder;
 import com.github.customview.MyLinearLayout;
 import com.library.base.BaseObj;
+import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.base.GlideUtils;
@@ -37,10 +38,14 @@ public class MyBankListActivity extends BaseActivity {
     MyLinearLayout ll_add_bank;
 
     MyLoadMoreAdapter adapter;
+    private boolean isSelectBank;
 
 
     @Override
     protected int getContentView() {
+        isSelectBank = getIntent().getBooleanExtra(IntentParam.selectBank, false);
+
+
         setAppTitle("我的银行卡");
         setAppRightImg(R.drawable.share);
         return R.layout.mybanklist_act;
@@ -64,6 +69,14 @@ public class MyBankListActivity extends BaseActivity {
                         deleteBank(bean.getId());
                     }
                 });
+                if(isSelectBank){
+                    holder.getView(R.id.ll_bank_list).setOnClickListener(new MyOnClickListener() {
+                        @Override
+                        protected void onNoDoubleClick(View view) {
+                            setDefaultBank(bean);
+                        }
+                    });
+                }
             }
         };
         adapter.setOnLoadMoreListener(this);
@@ -71,6 +84,24 @@ public class MyBankListActivity extends BaseActivity {
         rv_mybank.addItemDecoration(getItemDivider(PhoneUtils.dip2px(mContext,5),R.color.white));
         rv_mybank.setAdapter(adapter);
 
+
+    }
+
+    private void setDefaultBank(MyAllBankObj bean) {
+        showLoading();
+        Map<String,String>map=new HashMap<String,String>();
+        map.put("account_id",bean.getId());
+        map.put("user_id",getUserId());
+        map.put("sign",getSign(map));
+        ApiRequest.setDefault(map, new MyCallBack<BaseObj>(mContext) {
+            @Override
+            public void onSuccess(BaseObj obj) {
+                Intent intent=new Intent();
+                intent.putExtra(IntentParam.bank,bean);
+                setResult(RESULT_OK,intent);
+                finish();
+            }
+        });
 
     }
 

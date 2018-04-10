@@ -4,8 +4,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.androidtools.SPUtils;
+import com.sk.maiqian.AppXml;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseFragment;
+import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.module.my.activity.FenXiaoActivity;
 import com.sk.maiqian.module.my.activity.JiFenActivity;
 import com.sk.maiqian.module.my.activity.MyAddressListActivity;
@@ -13,6 +16,11 @@ import com.sk.maiqian.module.my.activity.MyBankListActivity;
 import com.sk.maiqian.module.my.activity.MyCollectionActivity;
 import com.sk.maiqian.module.my.activity.MyMessageActivity;
 import com.sk.maiqian.module.my.activity.SettingActivity;
+import com.sk.maiqian.module.my.network.ApiRequest;
+import com.sk.maiqian.module.my.network.response.LoginObj;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -39,6 +47,36 @@ public class MyFragment extends BaseFragment {
     protected void initView() {
 
 
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(!hidden){
+            getUserInfo();
+        }
+    }
+
+    private void getUserInfo() {
+        Map<String,String> map=new HashMap<String,String>();
+        map.put("user_id",getUserId());
+        map.put("sign",getSign(map));
+        ApiRequest.getUserInfo(map, new MyCallBack<LoginObj>(mContext) {
+            @Override
+            public void onSuccess(LoginObj obj) {
+                loginResult(obj);
+            }
+        });
+    }
+    private void loginResult(LoginObj obj) {
+
+        SPUtils.setPrefString(mContext, AppXml.user_id, obj.getUser_id());
+        SPUtils.setPrefString(mContext, AppXml.user_name, obj.getUser_name());
+        SPUtils.setPrefString(mContext, AppXml.nick_name, obj.getNick_name());
+        SPUtils.setPrefString(mContext, AppXml.avatar, obj.getAvatar());
+        SPUtils.setPrefString(mContext, AppXml.mobile, obj.getMobile());
+        SPUtils.setPrefInt(mContext, AppXml.message_sink, obj.getMessage_sink());
+        SPUtils.setPrefString(mContext, AppXml.jifen,  obj.getPoint()+"");
     }
 
     @Override

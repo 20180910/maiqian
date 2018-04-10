@@ -7,14 +7,18 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.androidtools.SPUtils;
 import com.github.customview.MyImageView;
-import com.library.base.BaseObj;
+import com.sk.maiqian.AppXml;
+import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.base.GlideUtils;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.module.my.network.ApiRequest;
 import com.sk.maiqian.module.my.network.response.DefaultBankObj;
+import com.sk.maiqian.module.my.network.response.JiFenObj;
+import com.sk.maiqian.module.my.network.response.MyAllBankObj;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -86,11 +90,15 @@ public class TiXianActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.ll_tixian_selectbank, R.id.tv_tixian})
+    @OnClick({R.id.ll_tixian_selectbank, R.id.tv_tixian,R.id.ll_tixian_defaultbank})
     public void onViewClick(View view) {
         switch (view.getId()) {
+            case R.id.ll_tixian_defaultbank:
             case R.id.ll_tixian_selectbank:
-                STActivityForResult(AddBankActivity.class,100);
+//                STActivityForResult(AddBankActivity.class,100);
+                Intent intent=new Intent();
+                intent.putExtra(IntentParam.selectBank,true);
+                STActivityForResult(intent,MyBankListActivity.class,100);
                 break;
             case R.id.tv_tixian:
                 if(TextUtils.isEmpty(bankId)){
@@ -113,6 +121,8 @@ public class TiXianActivity extends BaseActivity {
         }
     }
 
+
+
     private void tiXian(String jifen) {
         showLoading();
         Map<String,String>map=new HashMap<String,String>();
@@ -120,24 +130,35 @@ public class TiXianActivity extends BaseActivity {
         map.put("account_id",bankId);
         map.put("point",jifen);
         map.put("sign",getSign(map));
-        ApiRequest.tiXian(map, new MyCallBack<BaseObj>(mContext) {
+        ApiRequest.tiXian(map, new MyCallBack<JiFenObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(JiFenObj obj) {
                 //需要返回剩余积分
                 //添加银行卡无默认
-                showMsg(obj.getMsg());
+//                showMsg(obj.getMsg());
+                SPUtils.setPrefString(mContext, AppXml.jifen,obj.getPoint());
+                STActivity(TiXianSuccessActivity.class);
+                finish();
             }
         });
-
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode==RESULT_OK){
             switch (requestCode){
                 case 100:
-                    getData(1,false);
+                    if(data!=null){
+                        MyAllBankObj obj = (MyAllBankObj) data.getSerializableExtra(IntentParam.bank);
+
+                        bankId = obj.getId()+"";
+                        GlideUtils.into(mContext,obj.getBank_image(),iv_tixian);
+                        tv_tixian_bank.setText(obj.getBank_name());
+                        tv_tixian_bankcode.setText(obj.getBank_card());
+
+                        ll_tixian_selectbank.setVisibility(View.GONE);
+                        ll_tixian_defaultbank.setVisibility(View.VISIBLE);
+                    }
                 break;
             }
         }
