@@ -8,6 +8,7 @@ import com.github.customview.MyEditText;
 import com.github.customview.MyTextView;
 import com.library.base.BaseObj;
 import com.sk.maiqian.AppXml;
+import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.base.MyCallBack;
@@ -38,6 +39,10 @@ public class EditNicknameActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        String nickName = getIntent().getStringExtra(IntentParam.nickName);
+        if (nickName != null) {
+            et_editnickname_name.setText(nickName);
+        }
 
     }
 

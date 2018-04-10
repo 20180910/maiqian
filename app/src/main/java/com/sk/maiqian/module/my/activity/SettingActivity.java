@@ -38,7 +38,7 @@ public class SettingActivity extends BaseActivity {
     SwitchButton sb_setting;
     @BindView(R.id.tv_setting_cache)
     TextView tv_setting_cache;
-    private float message_sink;
+    private int message_sink;
 
     @Override
     protected int getContentView() {
@@ -49,7 +49,7 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        message_sink = SPUtils.getFloat(mContext, AppXml.message_sink,0);
+        message_sink =   SPUtils.getInt(mContext, AppXml.message_sink,0);
         if (message_sink==0) {
             sb_setting.setChecked(false);
         }else {
