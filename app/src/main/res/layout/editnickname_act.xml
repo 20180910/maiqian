@@ -19,6 +19,7 @@
             >
             <!--your view-->
             <com.github.customview.MyEditText
+                android:id="@+id/et_editnickname_name"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@color/white"
@@ -30,7 +31,7 @@
                 android:hint="请输入昵称"
                 />
             <com.github.customview.MyTextView
-                android:id="@+id/tv_commit_liuyan"
+                android:id="@+id/tv_editnickname_save"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
                 android:text="保存"

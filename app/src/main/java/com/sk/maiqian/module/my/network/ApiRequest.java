@@ -5,6 +5,7 @@ import com.library.base.BaseApiRequest;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.module.my.network.request.AddBankBody;
+import com.sk.maiqian.module.my.network.request.EditNickNameBody;
 import com.sk.maiqian.module.my.network.request.FanKuiBody;
 import com.sk.maiqian.module.my.network.request.RegisterBody;
 
@@ -19,6 +20,11 @@ import retrofit2.http.Body;
 
 public class ApiRequest extends BaseApiRequest {
 
+    //登录
+    public static void editNickName(Map map, EditNickNameBody body, MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(IRequest.class).editNickName(map,body).enqueue(callBack);
+    }
     //登录
     public static void userLogin(Map map, MyCallBack callBack) {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
@@ -116,6 +122,10 @@ public class ApiRequest extends BaseApiRequest {
     public static void setDefault(Map map,MyCallBack callBack) {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
         getGeneralClient(IRequest.class).setDefault(map).enqueue(callBack);
+    }
+    public static void updatePhone(Map map,MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(IRequest.class).updatePhone(map).enqueue(callBack);
     }
 
 

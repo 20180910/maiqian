@@ -8,6 +8,7 @@ import com.github.androidtools.SPUtils;
 import com.sk.maiqian.AppXml;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseFragment;
+import com.sk.maiqian.base.GlideUtils;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.module.my.activity.FenXiaoActivity;
 import com.sk.maiqian.module.my.activity.JiFenActivity;
@@ -15,6 +16,7 @@ import com.sk.maiqian.module.my.activity.MyAddressListActivity;
 import com.sk.maiqian.module.my.activity.MyBankListActivity;
 import com.sk.maiqian.module.my.activity.MyCollectionActivity;
 import com.sk.maiqian.module.my.activity.MyMessageActivity;
+import com.sk.maiqian.module.my.activity.PersonInfoActivity;
 import com.sk.maiqian.module.my.activity.SettingActivity;
 import com.sk.maiqian.module.my.network.ApiRequest;
 import com.sk.maiqian.module.my.network.response.LoginObj;
@@ -24,6 +26,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -38,6 +41,9 @@ public class MyFragment extends BaseFragment {
 
     @BindView(R.id.tv_my_phone)
     TextView tv_my_phone;
+
+    @BindView(R.id.civ_my)
+    CircleImageView civ_my;
     @Override
     protected int getContentView() {
         return R.layout.my_frag;
@@ -47,6 +53,22 @@ public class MyFragment extends BaseFragment {
     protected void initView() {
 
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setInfo();
+    }
+
+    private void setInfo() {
+        String avatar = SPUtils.getString(mContext, AppXml.avatar, null);
+        GlideUtils.intoD(mContext,avatar,civ_my, R.drawable.default_person);
+
+        String name = SPUtils.getString(mContext, AppXml.nick_name, null);
+        String mobile = SPUtils.getString(mContext, AppXml.mobile, null);
+        tv_my_name.setText(name);
+        tv_my_phone.setText(mobile);
     }
 
     @Override
@@ -77,6 +99,9 @@ public class MyFragment extends BaseFragment {
         SPUtils.setPrefString(mContext, AppXml.mobile, obj.getMobile());
         SPUtils.setPrefInt(mContext, AppXml.message_sink, obj.getMessage_sink());
         SPUtils.setPrefString(mContext, AppXml.jifen,  obj.getPoint()+"");
+
+
+        setInfo();
     }
 
     @Override
@@ -88,6 +113,7 @@ public class MyFragment extends BaseFragment {
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.ll_my:
+                STActivity(PersonInfoActivity.class);
                 break;
             case R.id.ll_my_qianzheng_order:
                 break;

@@ -3,6 +3,7 @@ package com.sk.maiqian.module.my.network;
 import com.library.base.BaseObj;
 import com.library.base.ResponseObj;
 import com.sk.maiqian.module.my.network.request.AddBankBody;
+import com.sk.maiqian.module.my.network.request.EditNickNameBody;
 import com.sk.maiqian.module.my.network.request.FanKuiBody;
 import com.sk.maiqian.module.my.network.request.RegisterBody;
 import com.sk.maiqian.module.my.network.response.DefaultBankObj;
@@ -32,6 +33,11 @@ import retrofit2.http.QueryMap;
  */
 
 public interface IRequest {
+    //修改昵称
+    @Headers("User-Agent:android")
+    @POST("api/MQUserBase/PostEditUserInfo")
+    Call<ResponseObj<BaseObj>> editNickName(@QueryMap Map<String, String> map, @Body EditNickNameBody body);
+
     //登录
     @Headers("User-Agent:android")
     @GET("api/MQUserBase/GetUserLogin")
@@ -153,6 +159,11 @@ public interface IRequest {
     @Headers("User-Agent:android")
     @GET("api/MQCashWithdrawal/GetEditDefalut")
     Call<ResponseObj<BaseObj>> setDefault(@QueryMap Map<String, String> map);
+
+    //修改手机号
+    @Headers("User-Agent:android")
+    @GET("api/MQUserBase/GetSetMobilePhone")
+    Call<ResponseObj<BaseObj>> updatePhone(@QueryMap Map<String, String> map);
 
 
 

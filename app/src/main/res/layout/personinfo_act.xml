@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/white"
     >
 <include layout="@layout/app_title"/>
-    <com.library.base.ProgressLayout
+   <!-- <com.library.base.ProgressLayout
         android:id="@id/pl_load"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent">-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -19,6 +20,7 @@
             >
             <!--your view-->
             <LinearLayout
+                android:id="@+id/ll_personinfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -34,9 +36,10 @@
                     android:textSize="15sp"
                     />
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/civ_personinfo"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/wode_icon_touxiang"
+                    android:src="@drawable/default_person"
                     />
                 <ImageView
                     android:layout_width="wrap_content"
@@ -62,11 +65,12 @@
                     android:textSize="15sp"
                     />
                 <TextView
+                    android:id="@+id/tv_personinfo_phone"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:gravity="right|center_vertical"
                     android:layout_height="match_parent"
-                    android:text="19983408"
+                    tools:text="19983408"
                     android:textSize="15sp"
                     />
                 <ImageView
@@ -94,11 +98,12 @@
                     android:textSize="15sp"
                     />
                 <TextView
+                    android:id="@+id/tv_personinfo_nickname"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:gravity="right|center_vertical"
                     android:layout_height="match_parent"
-                    android:text="张三"
+                    tools:text="张三"
                     android:textSize="15sp"
                     />
                 <ImageView
@@ -109,5 +114,5 @@
                     />
             </LinearLayout>
         </LinearLayout>
-    </com.library.base.ProgressLayout>
+   <!-- </com.library.base.ProgressLayout>-->
 </LinearLayout>
