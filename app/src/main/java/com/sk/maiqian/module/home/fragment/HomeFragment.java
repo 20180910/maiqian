@@ -183,24 +183,24 @@ public class HomeFragment extends BaseFragment {
                 List<HomeDaYiJieHuoObj.TypeListBean> type_list = obj.getType_list();
                 if (notEmpty(type_list)) {
                     if (type_list.size() >= 1) {
-                        GlideUtils.intoSimple(mContext, type_list.get(0).getImg_url(), civ_home_qzdb);
+                        GlideUtils.intoD(mContext, type_list.get(0).getImg_url(), civ_home_qzdb,R.drawable.home_icon03_qianzhengdaiban);
                         tv_home_qzdb.setText(type_list.get(0).getTitle());
                         tv_home_qzdb_second.setText(type_list.get(0).getIntroduction());
                     }
                     if (type_list.size() >= 2) {
-                        GlideUtils.intoSimple(mContext, type_list.get(1).getImg_url(), civ_home_yypx);
+                        GlideUtils.intoD(mContext, type_list.get(1).getImg_url(), civ_home_yypx,R.drawable.home_icon_peixun);
                         tv_home_yypx.setText(type_list.get(1).getTitle());
                         tv_home_yypx_second.setText(type_list.get(1).getIntroduction());
 
                     }
                     if (type_list.size() >= 3) {
-                        GlideUtils.intoSimple(mContext, type_list.get(2).getImg_url(), civ_home_yx);
+                        GlideUtils.intoD(mContext, type_list.get(2).getImg_url(), civ_home_yx,R.drawable.home_icon_youxue);
                         tv_home_yx.setText(type_list.get(2).getTitle());
                         tv_home_yx_second.setText(type_list.get(2).getIntroduction());
 
                     }
                     if (type_list.size() >= 4) {
-                        GlideUtils.intoSimple(mContext, type_list.get(3).getImg_url(), civ_home_lx);
+                        GlideUtils.intoD(mContext, type_list.get(3).getImg_url(), civ_home_lx,R.drawable.home_icon_liuxue);
                         tv_home_lx.setText(type_list.get(3).getTitle());
                         tv_home_lx_second.setText(type_list.get(3).getIntroduction());
 

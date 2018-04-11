@@ -73,7 +73,12 @@ public class AddBankActivity extends BaseActivity {
                 }
                 break;
             case R.id.tv_add_bank_bankname:
-                getBank(true);
+                if(isEmpty(bankList)){
+                    showLoading();
+                    getBank(true);
+                }else{
+                    showBank(bankList);
+                }
                 break;
             case R.id.tv_add_bank_save:
                 String name=getSStr(et_add_bank_name);
@@ -109,22 +114,18 @@ public class AddBankActivity extends BaseActivity {
         }
     }
     public void getBank(boolean isShow){
-        if(isShow){
-            showBank(bankList);
-        }else{
-            Map<String,String> map=new HashMap<String,String>();
-            map.put("rnd",getRnd());
-            map.put("sign",getSign(map));
-            NetApiRequest.getBankList(map, new MyCallBack<List<BankNameObj>>(mContext) {
-                @Override
-                public void onSuccess(List<BankNameObj> list) {
-                    bankList = list;
-                    if(isShow){
-                        showBank(list);
-                    }
+        Map<String,String> map=new HashMap<String,String>();
+        map.put("rnd",getRnd());
+        map.put("sign",getSign(map));
+        NetApiRequest.getBankList(map, new MyCallBack<List<BankNameObj>>(mContext) {
+            @Override
+            public void onSuccess(List<BankNameObj> list) {
+                bankList = list;
+                if(isShow){
+                    showBank(list);
                 }
-            });
-        }
+            }
+        });
     }
 
     public void showBank(List<BankNameObj> list){

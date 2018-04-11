@@ -1,19 +1,25 @@
 package com.sk.maiqian.module.home.activity;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.androidtools.PhoneUtils;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.MyBaseRecyclerAdapter;
 import com.github.baseclass.adapter.MyRecyclerViewHolder;
+import com.github.baseclass.permission.PermissionCallback;
 import com.github.baseclass.view.MyDialog;
 import com.github.customview.MyTextView;
 import com.library.base.view.MyRecyclerView;
@@ -21,11 +27,14 @@ import com.library.base.view.richedit.RichEditor;
 import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
+import com.sk.maiqian.base.GlideUtils;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.module.home.network.ApiRequest;
 import com.sk.maiqian.module.home.network.response.CollectObj;
 import com.sk.maiqian.module.home.network.response.QianZhengDetailObj;
+import com.sk.maiqian.module.home.network.response.ZiXunObj;
 import com.sk.maiqian.module.my.activity.LoginActivity;
+import com.sk.maiqian.tools.FileUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -91,6 +100,7 @@ public class QianZhengDetailActivity extends BaseActivity {
 
     private String visaId;
     private String mingXi;
+    private ZiXunObj ziXunObj;
 
     @Override
     protected int getContentView() {
@@ -109,7 +119,23 @@ public class QianZhengDetailActivity extends BaseActivity {
     @Override
     protected void initData() {
         showProgress();
+        getZiXunData(false);
         getData(1, false);
+    }
+
+    private void getZiXunData(boolean isShow) {
+        Map<String,String>map=new HashMap<String,String>();
+        map.put("rnd",getRnd());
+        map.put("sign",getSign(map));
+        ApiRequest.getZiXunInfo(map, new MyCallBack<ZiXunObj>(mContext) {
+            @Override
+            public void onSuccess(ZiXunObj obj) {
+                ziXunObj = obj;
+                if(isShow){
+                    showZiXun();
+                }
+            }
+        });
     }
 
     @Override
@@ -219,7 +245,12 @@ public class QianZhengDetailActivity extends BaseActivity {
                 mDialog.create().show();
                 break;
             case R.id.tv_qianzheng_detail_zixun:
-                showZiXun();
+                if(ziXunObj==null){
+                    showLoading();
+                    getZiXunData(true);
+                }else{
+                    showZiXun();
+                }
                 break;
             case R.id.tv_qianzheng_detail_collect:
                 if (noLogin()) {
@@ -247,18 +278,67 @@ public class QianZhengDetailActivity extends BaseActivity {
         ll_zixun_tel.setOnClickListener(new MyOnClickListener() {
             @Override
             protected void onNoDoubleClick(View view) {
-
+                dialog.dismiss();
+                requestPermission(Manifest.permission.CALL_PHONE, new PermissionCallback() {
+                    @Override
+                    public void onGranted() {
+                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ziXunObj.getPhone()));
+                        startActivity(intent);
+                    }
+                    @Override
+                    public void onDenied(String s) {
+                        showMsg("无法获取拨打电话权限,请开启权限之后再试");
+                    }
+                });
             }
         });
         View ll_zixun_wx = zixun_popu.findViewById(R.id.ll_zixun_wx);
         ll_zixun_wx.setOnClickListener(new MyOnClickListener() {
             @Override
             protected void onNoDoubleClick(View view) {
-
+                dialog.dismiss();
+                showWX();
             }
         });
         dialog.setContentView(zixun_popu);
         dialog.show();
+    }
+
+    private void showWX() {
+        View view = getLayoutInflater().inflate(R.layout.kechengdetail_wx_popu, null);
+        view.findViewById(R.id.tv_wx_zixun).setOnClickListener(getListenerSaveIMG());
+        ImageView iv_wx_zixun = view.findViewById(R.id.iv_wx_zixun);
+        iv_wx_zixun.setOnClickListener(getListenerSaveIMG());
+        GlideUtils.into(mContext,ziXunObj.getWechat_code(),iv_wx_zixun);
+        TextView tv_wx_zixun_code=view.findViewById(R.id.tv_wx_zixun_code);
+        tv_wx_zixun_code.setText("微信号:"+ziXunObj.getWechat_id()+"(点击复制)");
+        tv_wx_zixun_code.setOnClickListener(new MyOnClickListener() {
+            @Override
+            protected void onNoDoubleClick(View view) {
+                PhoneUtils.copyText(mContext,ziXunObj.getWechat_id());
+                showMsg("复制成功");
+            }
+        });
+
+
+        Dialog dialog = new Dialog(mContext,R.style.DialogStyle);
+        Window win = dialog.getWindow();
+        win.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        win.setGravity(Gravity.CENTER);
+        win.getDecorView().setPadding(0, 0, 0, 0);
+        win.setBackgroundDrawableResource(R.color.transparent_half);
+        dialog.setContentView(view);
+        dialog.show();
+    }
+
+    @NonNull
+    private MyOnClickListener getListenerSaveIMG() {
+        return new MyOnClickListener() {
+            @Override
+            protected void onNoDoubleClick(View view) {
+                FileUtils.downloadImg(mContext,ziXunObj.getWechat_code());
+            }
+        };
     }
 
     private void collect() {

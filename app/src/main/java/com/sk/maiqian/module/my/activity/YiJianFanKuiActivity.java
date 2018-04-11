@@ -258,6 +258,7 @@ public class YiJianFanKuiActivity extends BaseActivity {
             break;
             case R.id.tv_fankui_type:
                 if(isEmpty(typeList)){
+                    showLoading();
                     getType(true);
                 }else{
                     showType();

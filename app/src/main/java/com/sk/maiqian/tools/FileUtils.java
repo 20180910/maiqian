@@ -4,14 +4,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.Target;
+import com.github.rxbus.rxjava.MyFlowableSubscriber;
+import com.github.rxbus.rxjava.MyRx;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.List;
+
+import io.reactivex.FlowableEmitter;
 
 /**
  * Created by aspsine on 15-4-19.
@@ -25,7 +37,7 @@ public class FileUtils {
         }
         return new File(context.getCacheDir(), DOWNLOAD_DIR);*/
         File file = new File(Environment.getExternalStorageDirectory(), DOWNLOAD_DIR);
-        if(!file.exists()){
+        if (!file.exists()) {
             file.mkdirs();
         }
         return file;
@@ -40,18 +52,18 @@ public class FileUtils {
     }
 
     public static boolean deleteFile(String fileName) {
-        File file = new File(getDownloadDir()+"/"+fileName);
+        File file = new File(getDownloadDir() + "/" + fileName);
         // 如果文件路径所对应的文件存在，并且是一个文件，则直接删除
         if (file.exists() && file.isFile()) {
             if (file.delete()) {
-                Log.i("===","删除单个文件" + fileName + "成功！");
+                Log.i("===", "删除单个文件" + fileName + "成功！");
                 return true;
             } else {
-                Log.i("===","删除单个文件" + fileName + "失败！");
+                Log.i("===", "删除单个文件" + fileName + "失败！");
                 return false;
             }
         } else {
-            Log.i("===","文件" + fileName + "不存在！");
+            Log.i("===", "文件" + fileName + "不存在！");
             return false;
         }
     }
@@ -80,7 +92,7 @@ public class FileUtils {
     public static String getApkFilePackage(Context context, File apkFile) {
         PackageManager pm = context.getPackageManager();
         PackageInfo info = pm.getPackageArchiveInfo(apkFile.getPath(), PackageManager.GET_ACTIVITIES);
-        if (info != null){
+        if (info != null) {
             return info.applicationInfo.packageName;
         }
         return null;
@@ -97,4 +109,72 @@ public class FileUtils {
         }
         return false;
     }
+
+
+    public static void downloadImg(Context context, final String url) {
+        MyRx.start(new MyFlowableSubscriber<Boolean>() {
+            @Override
+            public void subscribe(@io.reactivex.annotations.NonNull FlowableEmitter<Boolean> emitter) {
+                try {
+                    Bitmap bitmap = Glide.with(context)
+                            .load(url)
+                            .asBitmap()
+                            .into(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                            .get();
+                    if(bitmap!=null){
+                        saveImageToGallery(context,bitmap);
+                        emitter.onNext(true);
+                    }else{
+                        emitter.onNext(false);
+                    }
+                } catch (Exception e) {
+                    Log.e("保存图片异常", e.getMessage());
+                    emitter.onNext(false);
+                }
+                emitter.onComplete();
+            }
+            @Override
+            public void onNext(Boolean obj) {
+                if(obj){
+                    Toast.makeText(context,"图片保存成功",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(context,"图片保存失败",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private static void saveImageToGallery(Context context, Bitmap bmp) {
+        // 首先保存图片
+        File file = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsoluteFile();//注意小米手机必须这样获得public绝对路径
+        String fileName = "maiqian";
+        File appDir = new File(file ,fileName);
+        if (!appDir.exists()) {
+            appDir.mkdirs();
+        }
+        File currentFile = new File(appDir, System.currentTimeMillis() + ".jpg");
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(currentFile);
+            bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.flush();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fos != null) {
+                    fos.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        // 最后通知图库更新
+        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
+                Uri.fromFile(new File(currentFile.getPath()))));
+    }
+
 }

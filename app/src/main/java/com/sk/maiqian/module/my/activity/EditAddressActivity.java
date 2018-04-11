@@ -70,7 +70,7 @@ public class EditAddressActivity extends BaseActivity {
     }
 
     private void getAllArea(boolean isShow) {
-        if (isShow) {
+        if (isShow&&notEmpty(options1Items)) {
             showArea();
         } else {
             MyRx.start(new MyFlowableSubscriber<List<CityObj>>() {
@@ -114,7 +114,6 @@ public class EditAddressActivity extends BaseActivity {
 
                 @Override
                 public void onNext(List<CityObj> list) {
-
                     if (isShow) {
                         showArea();
                     }

@@ -53,6 +53,10 @@ public class ApiRequest extends BaseApiRequest {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
         getGeneralClient(IRequest.class).collect(map).enqueue(callBack);
     }
+    public static void getZiXunInfo(Map map , MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
+        getGeneralClient(IRequest.class).getZiXunInfo(map).enqueue(callBack);
+    }
 
 
 }

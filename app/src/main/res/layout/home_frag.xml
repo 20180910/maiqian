@@ -179,7 +179,7 @@
                                     android:id="@+id/civ_home_qzdb"
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
-                                    android:src="@drawable/home_icon03_qianzhengdaiban"
+                                    tools:src="@drawable/home_icon03_qianzhengdaiban"
                                     />
                                 <TextView
                                     android:id="@+id/tv_home_qzdb"
@@ -220,7 +220,7 @@
                                     android:id="@+id/civ_home_yypx"
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
-                                    android:src="@drawable/home_icon_peixun"
+                                    tools:src="@drawable/home_icon_peixun"
                                     />
                                 <TextView
                                     android:id="@+id/tv_home_yypx"
@@ -265,7 +265,7 @@
                                     android:id="@+id/civ_home_yx"
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
-                                    android:src="@drawable/home_icon_youxue"
+                                    tools:src="@drawable/home_icon_youxue"
                                     />
                                 <TextView
                                     android:id="@+id/tv_home_yx"
@@ -306,7 +306,7 @@
                                     android:id="@+id/civ_home_lx"
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
-                                    android:src="@drawable/home_icon_liuxue"
+                                    tools:src="@drawable/home_icon_liuxue"
                                     />
                                 <TextView
                                     android:id="@+id/tv_home_lx"

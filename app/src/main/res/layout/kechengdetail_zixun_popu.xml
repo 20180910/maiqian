@@ -69,7 +69,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="电话咨询"
+                    android:text="微信咨询"
                     android:textColor="@color/gray_33"
                     android:textSize="14sp"
                     android:layout_marginTop="5dp"
@@ -78,7 +78,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="周一至周日10:00-18:00"
+                    android:text="周一至周日10:00-20:00"
                     />
             </LinearLayout>
         </LinearLayout>

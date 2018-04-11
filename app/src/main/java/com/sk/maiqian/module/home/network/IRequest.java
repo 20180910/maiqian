@@ -10,6 +10,7 @@ import com.sk.maiqian.module.home.network.response.HomeZiXunObj;
 import com.sk.maiqian.module.home.network.response.QianZhengDaiBanObj;
 import com.sk.maiqian.module.home.network.response.QianZhengDetailObj;
 import com.sk.maiqian.module.home.network.response.QianZhengObj;
+import com.sk.maiqian.module.home.network.response.ZiXunObj;
 
 import java.util.List;
 import java.util.Map;
@@ -62,6 +63,11 @@ public interface IRequest {
     //签证代办-收藏
     @GET("api/MQUserBase/GetCollectAll")
     Call<ResponseObj<CollectObj>> collect(@QueryMap Map<String, String> map);
+
+
+    //签证代办-收藏
+    @GET("api/MQLib/GetConsultingInformation")
+    Call<ResponseObj<ZiXunObj>> getZiXunInfo(@QueryMap Map<String, String> map);
 
 
 
