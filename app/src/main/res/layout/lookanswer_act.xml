@@ -1,83 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
               android:background="@color/white"
+              android:orientation="vertical"
     >
-<include layout="@layout/app_title"/>
-    <com.library.base.ProgressLayout
-        android:id="@id/pl_load"
+
+    <include layout="@layout/app_title"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@id/nsv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <android.support.v4.widget.NestedScrollView
-                android:id="@id/nsv"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_f2"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/background_f2"
+                android:orientation="vertical"
                 >
+                <!--your view-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/icon_answer"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_answer_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="拒签有哪几种常见原因?"
+                        android:textColor="@color/gray_33"
+                        android:textSize="15sp"
+                        />
+                </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@color/background_f2"
+                    android:layout_marginTop="2px"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
                     >
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:background="@color/background_f2"
-                        >
-                        <!--your view-->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:background="@color/white"
-                            android:paddingLeft="10dp"
-                            >
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/icon_answer"
-                                android:layout_marginRight="10dp"
-                                />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="拒签有哪几种常见原因?"
-                                android:textSize="15sp"
-                                android:textColor="@color/gray_33"
-                                />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:background="@color/white"
-                            android:padding="10dp"
-                            android:layout_marginTop="2px"
-                            >
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/icon_question"
-                                android:layout_marginRight="10dp"
-                                android:layout_gravity="top"
-                                android:layout_marginTop="2dp"
-                                />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因"
-                                />
-                        </LinearLayout>
 
-                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/icon_question"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_answer_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因拒签有哪几种常见原因"
+                        />
                 </LinearLayout>
-            </android.support.v4.widget.NestedScrollView>
 
-    </com.library.base.ProgressLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

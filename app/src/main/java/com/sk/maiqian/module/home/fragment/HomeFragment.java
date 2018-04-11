@@ -1,5 +1,6 @@
 package com.sk.maiqian.module.home.fragment;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.github.androidtools.PhoneUtils;
 import com.github.rxbus.MyRxBus;
+import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.adapter.FragmentAdapter;
 import com.sk.maiqian.base.BaseFragment;
@@ -18,6 +20,7 @@ import com.sk.maiqian.base.GlideUtils;
 import com.sk.maiqian.base.ImageSizeUtils;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.module.home.activity.DaYiJieHuoActivity;
+import com.sk.maiqian.module.home.activity.LookAnswerActivity;
 import com.sk.maiqian.module.home.activity.QianZhengDaiBanActivity;
 import com.sk.maiqian.module.home.event.ZiXunEvent;
 import com.sk.maiqian.module.home.network.ApiRequest;
@@ -163,6 +166,17 @@ public class HomeFragment extends BaseFragment {
                     for (int i = 0; i < obj.getAnswer_doubts_list().size(); i++) {
                         info.add(obj.getAnswer_doubts_list().get(i).getTitle());
                     }
+                    /*LookAnswerActivity*/
+                    tv_home_toutiao.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(int position, TextView textView) {
+
+                            Intent intent=new Intent();
+                            intent.putExtra(IntentParam.dayijiehuo_title,obj.getAnswer_doubts_list().get(position).getTitle());
+                            intent.putExtra(IntentParam.dayijiehuo_content,obj.getAnswer_doubts_list().get(position).getContent());
+                            STActivity(intent,LookAnswerActivity.class);
+                        }
+                    });
                     tv_home_toutiao.startWithList(info);
                 }
 

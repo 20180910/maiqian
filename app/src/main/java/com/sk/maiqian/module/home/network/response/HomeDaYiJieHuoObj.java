@@ -2,6 +2,7 @@ package com.sk.maiqian.module.home.network.response;
 
 import com.library.base.BaseObj;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public class HomeDaYiJieHuoObj extends BaseObj {
         this.type_list = type_list;
     }
 
-    public static class AnswerDoubtsListBean {
+    public static class AnswerDoubtsListBean implements Serializable{
         /**
          * id : 55
          * title : 签证多久可以办下来?

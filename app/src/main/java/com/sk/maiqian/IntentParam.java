@@ -14,5 +14,7 @@ public class IntentParam {
     public static final String selectBank = "selectBank";
     public static final String bank = "bank";
     public static final String nickName = "nickName";
+    public static final String dayijiehuo_title = "dayijiehuo_title";
+    public static final String dayijiehuo_content = "dayijiehuo_content";
 
 }

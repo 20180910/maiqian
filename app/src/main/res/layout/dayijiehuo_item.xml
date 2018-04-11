@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -11,7 +12,7 @@
     android:id="@+id/tv_dayijiehuo_question"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="签证什么时候下来?"
+    tools:text="签证什么时候下来?"
     android:maxLines="2"
     android:lines="2"
     android:gravity="center_vertical"

@@ -30,4 +30,5 @@ public class PaySuccessActivity extends BaseActivity {
     protected void onViewClick(View v) {
 
     }
+
 }

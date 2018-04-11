@@ -1,16 +1,20 @@
 package com.sk.maiqian.module.home.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.MyLoadMoreAdapter;
 import com.github.baseclass.adapter.MyRecyclerViewHolder;
 import com.github.rxbus.MyConsumer;
 import com.sk.maiqian.Constant;
+import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseFragment;
 import com.sk.maiqian.base.MyCallBack;
+import com.sk.maiqian.module.home.activity.LookAnswerActivity;
 import com.sk.maiqian.module.home.event.DaYiJieHuoEvent;
 import com.sk.maiqian.module.home.network.ApiRequest;
 import com.sk.maiqian.module.home.network.response.HomeDaYiJieHuoObj;
@@ -55,7 +59,16 @@ public class DaYiJieHuoFragment extends BaseFragment {
         adapter=new MyLoadMoreAdapter<HomeDaYiJieHuoObj.AnswerDoubtsListBean>(mContext,R.layout.dayijiehuo_item,pageSize) {
             @Override
             public void bindData(MyRecyclerViewHolder holder, int position, HomeDaYiJieHuoObj.AnswerDoubtsListBean bean) {
-
+                holder.setText(R.id.tv_dayijiehuo_question,bean.getTitle());
+                holder.itemView.setOnClickListener(new MyOnClickListener() {
+                    @Override
+                    protected void onNoDoubleClick(View view) {
+                        Intent intent=new Intent();
+                        intent.putExtra(IntentParam.dayijiehuo_title,bean.getTitle());
+                        intent.putExtra(IntentParam.dayijiehuo_content,bean.getContent());
+                        STActivity(intent,LookAnswerActivity.class);
+                    }
+                });
             }
         };
         adapter.setOnLoadMoreListener(this);
