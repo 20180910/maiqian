@@ -16,6 +16,7 @@
     android:background="@color/white"
     >
     <ImageView
+        android:id="@+id/iv_home_zixun"
         android:layout_width="@dimen/img_w"
         android:layout_height="@dimen/img_h"
         tools:src="@drawable/item_img"
@@ -32,10 +33,11 @@
         android:paddingBottom="2dp"
         >
         <TextView
+            android:id="@+id/tv_home_zixun_content"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游"
+            tools:text="春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游"
             android:maxLines="2"
             android:ellipsize="end"
             android:textColor="@color/gray_33"
@@ -55,17 +57,19 @@
                 android:textColor="@color/gray_99"
                 />
             <TextView
+                android:id="@+id/tv_home_zixun_laiyuan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="新华社"
+                tools:text="新华社"
                 android:textSize="11sp"
                 android:textColor="@color/gray_99"
                 />
             <TextView
+                android:id="@+id/tv_home_zixun_date"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="2018-11-11"
+                tools:text="2018-11-11"
                 android:gravity="right"
                 android:textSize="11sp"
                 android:textColor="@color/gray_99"

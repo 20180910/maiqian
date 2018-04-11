@@ -6,11 +6,10 @@
               android:layout_height="match_parent"
               android:background="@color/white"
     >
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/rv_zi_xun"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
-
-</android.support.v7.widget.RecyclerView>
+    <com.library.base.view.MyRecyclerView
+        android:id="@+id/rv_dayijiehuo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+    </com.library.base.view.MyRecyclerView>
 </LinearLayout>

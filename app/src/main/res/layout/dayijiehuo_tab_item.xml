@@ -5,6 +5,8 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:background="@color/white"
+              android:paddingRight="5dp"
+              android:paddingLeft="5dp"
     >
 <com.github.customview.MyTextView
     android:id="@+id/tv_dayijiehuo_tabtitle"
@@ -15,8 +17,8 @@
     android:gravity="center"
     android:text="常见问题"
     app:my_tv_all_line="true"
-    app:my_tv_border_color="#FFC820"
+    app:my_tv_border_color="@color/white"
     app:my_tv_corner_radius="15dp"
-    android:textColor="#FFC820"
+    android:textColor="@color/gray_66"
     />
 </LinearLayout>

@@ -144,14 +144,16 @@
                                 app:mvTextColor="@color/gray_66"
                                 app:mvTextSize="13sp"/>
                             <TextView
+                                android:id="@+id/tv_home_more"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:gravity="center"
+                                android:gravity="center|right"
                                 android:text="更多"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
-                                android:drawablePadding="3dp"
+                                android:drawablePadding="5dp"
                                 android:drawableRight="@drawable/jiantou_right"
+                                android:ems="4"
                                 />
                         </LinearLayout>
                         <LinearLayout
@@ -174,11 +176,13 @@
                                 >
 
                                 <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/civ_home_qzdb"
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
-                                    tools:src="@drawable/home_banner"
+                                    android:src="@drawable/home_icon03_qianzhengdaiban"
                                     />
                                 <TextView
+                                    android:id="@+id/tv_home_qzdb"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="签证代办"
@@ -187,6 +191,7 @@
                                     android:layout_margin="5dp"
                                     />
                                 <TextView
+                                    android:id="@+id/tv_home_qzdb_second"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="全球签证、加急签证"
@@ -212,11 +217,13 @@
                                 >
 
                                 <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/civ_home_yypx"
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
-                                    tools:src="@drawable/home_banner"
+                                    android:src="@drawable/home_icon_peixun"
                                     />
                                 <TextView
+                                    android:id="@+id/tv_home_yypx"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="英语培训"
@@ -225,6 +232,7 @@
                                     android:layout_margin="5dp"
                                     />
                                 <TextView
+                                    android:id="@+id/tv_home_yypx_second"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="托福、雅思"
@@ -254,11 +262,13 @@
                                 >
 
                                 <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/civ_home_yx"
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
-                                    tools:src="@drawable/home_banner"
+                                    android:src="@drawable/home_icon_youxue"
                                     />
                                 <TextView
+                                    android:id="@+id/tv_home_yx"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="游学"
@@ -267,6 +277,7 @@
                                     android:layout_margin="5dp"
                                     />
                                 <TextView
+                                    android:id="@+id/tv_home_yx_second"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="游学的特点"
@@ -292,11 +303,13 @@
                                 >
 
                                 <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/civ_home_lx"
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
-                                    tools:src="@drawable/home_banner"
+                                    android:src="@drawable/home_icon_liuxue"
                                     />
                                 <TextView
+                                    android:id="@+id/tv_home_lx"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="留学"
@@ -305,6 +318,7 @@
                                     android:layout_margin="5dp"
                                     />
                                 <TextView
+                                    android:id="@+id/tv_home_lx_second"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="留学的特点"

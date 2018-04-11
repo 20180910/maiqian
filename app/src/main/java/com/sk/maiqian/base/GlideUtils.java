@@ -15,6 +15,9 @@ import com.sk.maiqian.R;
  */
 
 public class GlideUtils {
+    public static void intoSimple(Context mContext, String url, ImageView imageView){
+        Glide.with(mContext).load(url).asBitmap().encoder(new BitmapEncoder(Bitmap.CompressFormat.PNG,90)).into(imageView);
+    }
     public static void into(Context mContext,String url, ImageView imageView){
         Glide.with(mContext).load(url).asBitmap().encoder(new BitmapEncoder(Bitmap.CompressFormat.PNG,90)).error(R.color.c_press).into(imageView);
     }
