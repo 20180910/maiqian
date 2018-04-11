@@ -26,7 +26,7 @@
         </activity>
         <activity android:name=".module.home.activity.DaYiJieHuoActivity"/>
         <activity android:name=".module.home.activity.QianZhengDaiBanActivity"/>
-        <activity android:name=".module.home.activity.WoYaoLiuYanActivity"/>
+        <activity android:name=".module.home.activity.WoYaoLiuYanActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".module.home.activity.QianZhengActivity"/>
         <activity android:name=".module.home.activity.QianZhengDetailActivity"/>
         <activity android:name=".module.home.activity.DingDanTianXieActivity"/>

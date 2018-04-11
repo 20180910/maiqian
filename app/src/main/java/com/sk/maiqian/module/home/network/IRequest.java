@@ -1,15 +1,21 @@
 package com.sk.maiqian.module.home.network;
 
+import com.library.base.BaseObj;
 import com.library.base.ResponseObj;
+import com.sk.maiqian.module.home.network.request.QianZhengLiuYanBody;
 import com.sk.maiqian.module.home.network.response.BannerObj;
 import com.sk.maiqian.module.home.network.response.HomeDaYiJieHuoObj;
 import com.sk.maiqian.module.home.network.response.HomeZiXunObj;
+import com.sk.maiqian.module.home.network.response.QianZhengDaiBanObj;
+import com.sk.maiqian.module.home.network.response.QianZhengObj;
 
 import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
 
 /**
@@ -33,6 +39,18 @@ public interface IRequest {
     //答疑解惑列表
     @GET("api/MQHomePage/GetAnswerDoubtsList")
     Call<ResponseObj<List<HomeDaYiJieHuoObj.AnswerDoubtsListBean>>> getDaYiJieHuoList(@QueryMap Map<String, String> map);
+
+    //签证代办-国家列表
+    @GET("api/MQVisaAgent/GetCountrieRegion")
+    Call<ResponseObj<List<QianZhengDaiBanObj>>> getQianZhengDaiBan(@QueryMap Map<String, String> map);
+
+    //签证代办-列表
+    @GET("api/MQVisaAgent/GetVisaList")
+    Call<ResponseObj<QianZhengObj>> getQianZhengList(@QueryMap Map<String, String> map);
+
+    //签证代办-留言
+    @POST("api/MQLib/PostLeaveMessage")
+    Call<ResponseObj<BaseObj>> qianZhengLiuYan(@QueryMap Map<String, String> map, @Body QianZhengLiuYanBody body);
 
 
 

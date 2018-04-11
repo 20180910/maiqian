@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 >
                 <ImageView
+                    android:id="@+id/iv_qianzhengdaiban"
                     android:layout_width="@dimen/img_w"
                     android:layout_height="@dimen/img_h"
                     tools:src="@drawable/item_img"
@@ -43,15 +44,17 @@
                 android:paddingBottom="1dp"
                 >
                 <TextView
+                    android:id="@+id/tv_qianzhengdaiban_guojia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="美国"
+                    tools:text="美国"
                     android:textColor="@color/gray_33"
                     />
                 <TextView
+                    android:id="@+id/tv_qianzhengdaiban_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游"
+                    tools:text="春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游"
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:textColor="@color/gray_66"
@@ -73,17 +76,19 @@
                         android:textColor="@color/gray_99"
                         />
                     <TextView
+                        android:id="@+id/tv_qianzhengdaiban_shichang"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="预计2天"
+                        tools:text="预计2天"
                         android:textSize="11sp"
                         android:textColor="@color/gray_99"
                         />
                 </LinearLayout>
                 <TextView
+                    android:id="@+id/tv_qianzhengdaiban_renshu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="已经有100人申请"
+                    tools:text="已经有100人申请"
                     android:textSize="11sp"
                     android:textColor="@color/gray_99"
                     android:layout_marginTop="1dp"
@@ -106,10 +111,11 @@
                 android:gravity="bottom"
                 />
             <TextView
+                android:id="@+id/tv_qianzhengdaiban_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/blue_00"
-                android:text="300"
+                tools:text="300"
                 />
             <TextView
                 android:layout_width="wrap_content"

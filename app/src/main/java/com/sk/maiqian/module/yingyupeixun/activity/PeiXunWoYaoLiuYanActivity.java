@@ -36,7 +36,7 @@ public class PeiXunWoYaoLiuYanActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.tv_liuyan_time, R.id.tv_liuyan_guojia, R.id.tv_liuyan_type, R.id.tv_commit_liuyan})
+    @OnClick({R.id.tv_liuyan_time, R.id.tv_liuyan_guojia,  R.id.tv_commit_liuyan})
     protected void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.app_right_iv:
@@ -44,8 +44,6 @@ public class PeiXunWoYaoLiuYanActivity extends BaseActivity {
             case R.id.tv_liuyan_time:
                 break;
             case R.id.tv_liuyan_guojia:
-                break;
-            case R.id.tv_liuyan_type:
                 break;
             case R.id.tv_commit_liuyan:
                 break;

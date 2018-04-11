@@ -17,4 +17,7 @@ public class IntentParam {
     public static final String dayijiehuo_title = "dayijiehuo_title";
     public static final String dayijiehuo_content = "dayijiehuo_content";
 
+    public static final String qianZhengType="qianZhengType";
+    public static final String dataId="dataId";
+    public static final String title="title";
 }

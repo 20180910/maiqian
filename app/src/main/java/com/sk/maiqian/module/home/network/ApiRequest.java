@@ -4,6 +4,7 @@ import com.github.retrofitutil.NoNetworkException;
 import com.library.base.BaseApiRequest;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.base.MyCallBack;
+import com.sk.maiqian.module.home.network.request.QianZhengLiuYanBody;
 
 import java.util.Map;
 
@@ -32,4 +33,18 @@ public class ApiRequest extends BaseApiRequest {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
         getGeneralClient(IRequest.class).getDaYiJieHuoList(map).enqueue(callBack);
     }
+    public static void getQianZhengDaiBan(Map map, MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
+        getGeneralClient(IRequest.class).getQianZhengDaiBan(map).enqueue(callBack);
+    }
+    public static void getQianZhengList(Map map, MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
+        getGeneralClient(IRequest.class).getQianZhengList(map).enqueue(callBack);
+    }
+    public static void qianZhengLiuYan(Map map, QianZhengLiuYanBody body, MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
+        getGeneralClient(IRequest.class).qianZhengLiuYan(map,body).enqueue(callBack);
+    }
+
+
 }

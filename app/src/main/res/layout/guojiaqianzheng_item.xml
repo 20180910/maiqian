@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 >
                 <ImageView
+                    android:id="@+id/iv_qianzheng"
                     android:layout_width="@dimen/img_w"
                     android:layout_height="@dimen/img_h"
                     tools:src="@drawable/item_img"
@@ -43,11 +44,11 @@
                 android:paddingBottom="3dp"
                 >
                 <TextView
-                    android:id="@+id/tv_guojiaqianzheng_title"
+                    android:id="@+id/tv_qianzheng_title"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游"
+                    tools:text="春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游"
                     android:maxLines="2"
                     android:ellipsize="end"
                     android:textColor="@color/gray_33"
@@ -69,10 +70,10 @@
                         android:textColor="@color/gray_99"
                         />
                     <TextView
-                        android:id="@+id/tv_guojiaqianzheng_day"
+                        android:id="@+id/tv_qianzheng_day"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="预计2天"
+                        tools:text="预计2天"
                         android:textSize="11sp"
                         android:textColor="@color/gray_99"
                         />
@@ -95,11 +96,11 @@
                 android:gravity="bottom"
                 />
             <TextView
-                android:id="@+id/tv_guojiaqianzheng_price"
+                android:id="@+id/tv_qianzheng_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/blue_00"
-                android:text="300"
+                tools:text="300"
                 />
         </LinearLayout>
 
