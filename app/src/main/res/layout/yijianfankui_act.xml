@@ -51,6 +51,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@color/white"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
+                                android:paddingLeft="3dp"
+                                android:paddingRight="3dp"
                                 >
                             </android.support.v7.widget.RecyclerView>
                             <TextView

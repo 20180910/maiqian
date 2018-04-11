@@ -1,5 +1,6 @@
 package com.sk.maiqian.module.home.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.androidtools.PhoneUtils;
+import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.MyLoadMoreAdapter;
 import com.github.baseclass.adapter.MyRecyclerViewHolder;
 import com.sk.maiqian.IntentParam;
@@ -40,7 +42,8 @@ public class QianZhengActivity extends BaseActivity {
     TextView tv_qianzheng_shuoming;
 
     MyLoadMoreAdapter adapter;
-    private String dataId, title;
+    private String dataId;
+    private String title="";
 
     @Override
     protected int getContentView() {
@@ -63,6 +66,16 @@ public class QianZhengActivity extends BaseActivity {
                 holder.setText(R.id.tv_qianzheng_title, bean.getTitle());
                 holder.setText(R.id.tv_qianzheng_day, bean.getFor_how_long());
                 holder.setText(R.id.tv_qianzheng_price, bean.getPrice() + "");
+
+                holder.itemView.setOnClickListener(new MyOnClickListener() {
+                    @Override
+                    protected void onNoDoubleClick(View view) {
+                        Intent intent=new Intent();
+                        intent.putExtra(IntentParam.title,title);
+                        intent.putExtra(IntentParam.visaId,bean.getVisa_id());
+                        STActivity(intent,QianZhengDetailActivity.class);
+                    }
+                });
             }
         };
         adapter.setOnLoadMoreListener(this);

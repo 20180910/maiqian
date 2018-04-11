@@ -3,6 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
               android:background="@color/background_f2"
               android:orientation="vertical"
     >
@@ -28,7 +29,7 @@
                 <!--your view-->
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="270dp"
+                    android:layout_height="278dp"
                     android:background="@color/white"
                     >
 
@@ -50,9 +51,10 @@
                             >
 
                             <TextView
+                                android:id="@+id/tv_qianzheng_detail_title"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="美国三个月单词个人旅游签证"
+                                tools:text="美国三个月单词个人旅游签证"
                                 android:textColor="@color/white"
                                 android:textSize="17sp"
                                 />
@@ -66,15 +68,17 @@
                                 >
 
                                 <TextView
+                                    android:id="@+id/tv_qianzheng_detail_price"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="20dp"
-                                    android:text="¥300"
+                                    tools:text="¥300"
                                     android:textColor="@color/white"
                                     android:textSize="17sp"
                                     />
 
                                 <com.github.customview.MyTextView
+                                    android:id="@+id/tv_qianzheng_detail_mx"
                                     android:layout_width="wrap_content"
                                     android:layout_height="22dp"
                                     android:layout_marginLeft="5dp"
@@ -104,9 +108,10 @@
                                     />
 
                                 <TextView
+                                    android:id="@+id/tv_qianzheng_detail_shichang"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="资料收齐后9-110工作日"
+                                    tools:text="资料收齐后9-110工作日"
                                     android:textColor="@color/white"
                                     />
                             </LinearLayout>
@@ -138,17 +143,19 @@
                                 >
 
                                 <TextView
+                                    android:id="@+id/tv_qianzheng_detail_youxiaoqi"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="3个月"
+                                    tools:text="3个月"
                                     android:textColor="@color/white"
                                     android:textSize="16sp"
                                     />
 
                                 <TextView
+                                    android:id="@+id/tv_qianzheng_detail_youxiaoqi_title"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="有效期限"
+                                    tools:text="有效期限"
                                     android:textColor="@color/white"
                                     />
                             </LinearLayout>
@@ -169,17 +176,19 @@
                                 >
 
                                 <TextView
+                                    android:id="@+id/tv_qianzheng_detail_tian"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="69天"
+                                    tools:text="69天"
                                     android:textColor="@color/white"
                                     android:textSize="16sp"
                                     />
 
                                 <TextView
+                                    android:id="@+id/tv_qianzheng_detail_tian_title"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="最长停留"
+                                    tools:text="最长停留"
                                     android:textColor="@color/white"
                                     />
                             </LinearLayout>
@@ -200,17 +209,19 @@
                                 >
 
                                 <TextView
+                                    android:id="@+id/tv_qianzheng_detail_ci"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="1次"
+                                    tools:text="1次"
                                     android:textColor="@color/white"
                                     android:textSize="16sp"
                                     />
 
                                 <TextView
+                                    android:id="@+id/tv_qianzheng_detail_ci_title"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="入境次数"
+                                    tools:text="入境次数"
                                     android:textColor="@color/white"
                                     />
                             </LinearLayout>
@@ -235,9 +246,10 @@
                             android:layout_margin="5dp"
                             >
                             <TextView
+                                android:id="@+id/tv_qianzheng_detail_chuqianlv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="出签率100%"
+                                tools:text="出签率100%"
                                 android:textColor="@color/blue_00"
                                 android:textSize="15sp"
                                 android:layout_gravity="center_horizontal"
@@ -292,15 +304,17 @@
                     android:padding="10dp"
                     >
                     <TextView
+                        android:id="@+id/tv_qianzheng_detail_service"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="服务内容:\t提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务"
+                        tools:text="服务内容:\t提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务"
                         android:textSize="11sp"
                         />
                     <TextView
+                        android:id="@+id/tv_qianzheng_detail_shouli"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="受理范围:\t不限领取"
+                        tools:text="受理范围:\t不限领取"
                         android:textSize="11sp"
                         android:layout_marginTop="3dp"
                         />
@@ -313,7 +327,6 @@
                     app:tabSelectedTextColor="@color/blue_00"
                     app:tabTextColor="@color/gray_66"
                     >
-
                 </android.support.design.widget.TabLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -353,9 +366,10 @@
                             android:textColor="@color/gray_66"
                             />
                         <TextView
+                            android:id="@+id/tv_qianzheng_detail_need1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="需要10项材料"
+                            tools:text="需要10项材料"
                             android:drawableRight="@drawable/jiantou_right"
                             android:layout_marginRight="10dp"
                             android:drawablePadding="5dp"
@@ -381,9 +395,10 @@
                             android:textColor="@color/gray_66"
                             />
                         <TextView
+                            android:id="@+id/tv_qianzheng_detail_need2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="需要10项材料"
+                            tools:text="需要10项材料"
                             android:drawableRight="@drawable/jiantou_right"
                             android:layout_marginRight="10dp"
                             android:drawablePadding="5dp"
@@ -409,9 +424,10 @@
                             android:textColor="@color/gray_66"
                             />
                         <TextView
+                            android:id="@+id/tv_qianzheng_detail_need3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="需要10项材料"
+                            tools:text="需要10项材料"
                             android:drawableRight="@drawable/jiantou_right"
                             android:layout_marginRight="10dp"
                             android:drawablePadding="5dp"
@@ -437,9 +453,10 @@
                             android:textColor="@color/gray_66"
                             />
                         <TextView
+                            android:id="@+id/tv_qianzheng_detail_need4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="需要10项材料"
+                            tools:text="需要10项材料"
                             android:drawableRight="@drawable/jiantou_right"
                             android:layout_marginRight="10dp"
                             android:drawablePadding="5dp"
@@ -465,9 +482,10 @@
                             android:textColor="@color/gray_66"
                             />
                         <TextView
+                            android:id="@+id/tv_qianzheng_detail_need5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="需要10项材料"
+                            tools:text="需要10项材料"
                             android:drawableRight="@drawable/jiantou_right"
                             android:layout_marginRight="10dp"
                             android:drawablePadding="5dp"
@@ -497,7 +515,13 @@
                         android:layout_height="2px"
                         android:background="@color/background_f2"
                         />
-                    <LinearLayout
+                    <com.library.base.view.MyRecyclerView
+                        android:id="@+id/rv_qianzheng_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                    </com.library.base.view.MyRecyclerView>
+                    <!--<LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -796,7 +820,7 @@
                                 android:text="根据您实际出行时间，在线选择对应签证产品进行支付"
                                 />
                         </LinearLayout>
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                 </LinearLayout>
                 <LinearLayout
@@ -822,20 +846,16 @@
                         android:layout_height="2px"
                         android:background="@color/background_f2"
                         />
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <com.library.base.view.richedit.RichEditor
+                        android:id="@+id/re_qianzheng_detail"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="未满16周岁的申请人必须要跟父母双方一同申请"
-                        android:layout_marginTop="5dp"
-                        android:drawableLeft="@drawable/asterisk"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="未满16周岁的申请人必须要跟父母双方一同申请"
-                        android:layout_marginTop="2dp"
-                        android:drawableLeft="@drawable/asterisk"
-                        />
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginRight="13dp"
+                        >
+
+                    </com.library.base.view.richedit.RichEditor>
                 </LinearLayout>
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
@@ -849,6 +869,7 @@
             app:my_ll_top_line="true"
             >
             <TextView
+                android:id="@+id/tv_qianzheng_detail_zixun"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -863,6 +884,7 @@
                 android:background="@color/background_f2"
                 />
             <TextView
+                android:id="@+id/tv_qianzheng_detail_collect"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -872,6 +894,7 @@
                 android:layout_marginTop="5dp"
                 />
             <TextView
+                android:id="@+id/tv_qianzheng_detail_yuding"
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="match_parent"

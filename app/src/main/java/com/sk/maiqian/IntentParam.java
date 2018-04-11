@@ -20,4 +20,5 @@ public class IntentParam {
     public static final String qianZhengType="qianZhengType";
     public static final String dataId="dataId";
     public static final String title="title";
+    public static final String visaId="visaId";
 }

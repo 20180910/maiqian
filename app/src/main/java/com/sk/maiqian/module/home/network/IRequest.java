@@ -4,9 +4,11 @@ import com.library.base.BaseObj;
 import com.library.base.ResponseObj;
 import com.sk.maiqian.module.home.network.request.QianZhengLiuYanBody;
 import com.sk.maiqian.module.home.network.response.BannerObj;
+import com.sk.maiqian.module.home.network.response.CollectObj;
 import com.sk.maiqian.module.home.network.response.HomeDaYiJieHuoObj;
 import com.sk.maiqian.module.home.network.response.HomeZiXunObj;
 import com.sk.maiqian.module.home.network.response.QianZhengDaiBanObj;
+import com.sk.maiqian.module.home.network.response.QianZhengDetailObj;
 import com.sk.maiqian.module.home.network.response.QianZhengObj;
 
 import java.util.List;
@@ -51,6 +53,15 @@ public interface IRequest {
     //签证代办-留言
     @POST("api/MQLib/PostLeaveMessage")
     Call<ResponseObj<BaseObj>> qianZhengLiuYan(@QueryMap Map<String, String> map, @Body QianZhengLiuYanBody body);
+
+
+    //签证代办-详情
+    @GET("api/MQVisaAgent/GetVisaDetaile")
+    Call<ResponseObj<QianZhengDetailObj>> qianZhengDetail(@QueryMap Map<String, String> map);
+
+    //签证代办-收藏
+    @GET("api/MQUserBase/GetCollectAll")
+    Call<ResponseObj<CollectObj>> collect(@QueryMap Map<String, String> map);
 
 
 
