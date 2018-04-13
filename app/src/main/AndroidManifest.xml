@@ -35,7 +35,7 @@
         <activity android:name=".module.home.activity.AddressListActivity"/>
         <activity android:name=".module.my.activity.EditAddressActivity"/>
         <activity android:name=".module.home.activity.PaySuccessActivity"/>
-        <activity android:name=".module.home.activity.EditShenQingRenActivity"/>
+        <activity android:name=".module.home.activity.EditShenQingRenActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".module.home.activity.ZaiZhiRenYuanActivity"/>
         <activity android:name=".module.yingyupeixun.activity.EnglishPeiXunActivity"/>
         <activity android:name=".module.yingyupeixun.activity.KeChengDetailActivity"/>
@@ -76,6 +76,7 @@
         <activity android:name=".module.my.activity.UpdatePWDActivity"/>
         <activity android:name=".module.my.activity.ZhuanJiFenActivity"/>
         <activity android:name=".module.home.activity.LookAnswerActivity"/>
+        <activity android:name=".module.home.activity.RiLiActivity"/>
     </application>
 
 </manifest>

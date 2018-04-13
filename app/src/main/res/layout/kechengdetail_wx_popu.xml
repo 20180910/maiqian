@@ -34,7 +34,7 @@
             android:id="@+id/tv_wx_zixun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="保存图片,微信识别二维码"
+            android:text="点击图片保存本地,微信识别二维码"
             />
     </LinearLayout>
 </LinearLayout>

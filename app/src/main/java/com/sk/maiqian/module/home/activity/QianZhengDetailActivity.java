@@ -101,6 +101,7 @@ public class QianZhengDetailActivity extends BaseActivity {
     private String visaId;
     private String mingXi;
     private ZiXunObj ziXunObj;
+    private QianZhengDetailObj qianZhengDetailObj;
 
     @Override
     protected int getContentView() {
@@ -148,6 +149,7 @@ public class QianZhengDetailActivity extends BaseActivity {
         ApiRequest.qianZhengDetail(map, new MyCallBack<QianZhengDetailObj>(mContext, pl_load, pcfl) {
             @Override
             public void onSuccess(QianZhengDetailObj obj) {
+                qianZhengDetailObj = obj;
                 setData(obj);
             }
         });
@@ -260,6 +262,9 @@ public class QianZhengDetailActivity extends BaseActivity {
                 collect();
                 break;
             case R.id.tv_qianzheng_detail_yuding:
+                Intent intent=new Intent();
+                intent.putExtra(IntentParam.qianZhengObj,qianZhengDetailObj);
+                STActivity(intent,DingDanTianXieActivity.class);
                 break;
         }
     }
@@ -336,7 +341,16 @@ public class QianZhengDetailActivity extends BaseActivity {
         return new MyOnClickListener() {
             @Override
             protected void onNoDoubleClick(View view) {
-                FileUtils.downloadImg(mContext,ziXunObj.getWechat_code());
+                requestPermission(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE},new PermissionCallback() {
+                    @Override
+                    public void onGranted() {
+                        FileUtils.downloadImg(mContext,ziXunObj.getWechat_code());
+                    }
+                    @Override
+                    public void onDenied(String s) {
+                        showMsg("获取文件管理权限失败,无法保存图片");
+                    }
+                });
             }
         };
     }

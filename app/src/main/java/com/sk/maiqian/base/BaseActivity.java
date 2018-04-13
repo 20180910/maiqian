@@ -5,6 +5,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.support.annotation.DrawableRes;
 import android.support.design.widget.BottomSheetDialog;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,13 +18,17 @@ import android.widget.TextView;
 import com.github.androidtools.SPUtils;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.rxbus.rxjava.MyFlowableSubscriber;
+import com.library.base.BaseObj;
 import com.library.base.MyBaseActivity;
+import com.library.base.tools.has.BitmapUtils;
 import com.library.base.view.MyWebViewClient;
 import com.sdklibrary.base.share.ShareParam;
 import com.sk.maiqian.AppXml;
 import com.sk.maiqian.BuildConfig;
 import com.sk.maiqian.GetSign;
 import com.sk.maiqian.R;
+import com.sk.maiqian.network.NetApiRequest;
+import com.sk.maiqian.network.request.UploadImgBody;
 import com.youth.banner.Banner;
 
 import org.jsoup.Jsoup;
@@ -31,6 +36,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +47,7 @@ import io.reactivex.FlowableEmitter;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.schedulers.Schedulers;
+import top.zibin.luban.Luban;
 
 /**
  * Created by Administrator on 2017/12/18.
@@ -57,7 +64,7 @@ public abstract class BaseActivity extends MyBaseActivity {
           SPUtils.removeKey(mContext, AppXml.user_id);
     }
     public boolean noLogin() {
-        if (noLoginCode.equals(getUserId())) {
+        if (noLoginCode.equals(getUserId())|| TextUtils.isEmpty(getUserId())) {
             return true;
         } else {
             return false;
@@ -400,6 +407,47 @@ public abstract class BaseActivity extends MyBaseActivity {
                 }
             }
         });*/
+    }
+    public interface UploadImgCallback{
+        void result(String imgUrl);
+    }
+    public void uploadImg(String imgPath,UploadImgCallback callback) {
+        showLoading();
+        RXStart(new MyFlowableSubscriber<String>() {
+            @Override
+            public void subscribe(@NonNull FlowableEmitter<String> subscriber) {
+                try {
+                    List<File> files = Luban.with(mContext).load(takePhotoImgSavePath).get();
+                    File file = files.get(0);
+                    String imgStr = BitmapUtils.fileToString(file);
+                    subscriber.onNext(imgStr);
+                    subscriber.onComplete();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    subscriber.onError(e);
+                }
+            }
+            @Override
+            public void onNext(String base64) {
+                Map<String,String>map=new HashMap<String,String>();
+                map.put("rnd",getRnd());
+                map.put("sign",getSign(map));
+                UploadImgBody body=new UploadImgBody();
+                body.setFile(base64);
+                NetApiRequest.uploadImg(map,body, new MyCallBack<BaseObj>(mContext) {
+                    @Override
+                    public void onSuccess(BaseObj obj) {
+                        callback.result(obj.getImg());
+                    }
+                });
+            }
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                dismissLoading();
+                showToastS("图片插入失败");
+            }
+        });
     }
 }
 

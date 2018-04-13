@@ -70,6 +70,17 @@ public class QianZhengDaiBanActivity extends BaseActivity {
             public void bindData(MyRecyclerViewHolder holder, int position, QianZhengDaiBanObj bean) {
                 ImageView imageView = holder.getImageView(R.id.iv_qianzhengdaiban);
                 GlideUtils.into(mContext,bean.getImg_url(),imageView);
+                ImageView iv_qianzhengdaiban_tag = holder.getImageView(R.id.iv_qianzhengdaiban_tag);
+                if(bean.getLabel_type()==0){
+                    iv_qianzhengdaiban_tag.setVisibility(View.GONE);
+                }else{
+                    iv_qianzhengdaiban_tag.setVisibility(View.VISIBLE);
+                    if(bean.getLabel_type()==1){
+                        iv_qianzhengdaiban_tag.setImageResource(R.drawable.jiaji);
+                    }else{
+                        iv_qianzhengdaiban_tag.setImageResource(R.drawable.jianhua);
+                    }
+                }
 
                 holder.setText(R.id.tv_qianzhengdaiban_guojia,bean.getTitle());
                 holder.setText(R.id.tv_qianzhengdaiban_content,bean.getContent());

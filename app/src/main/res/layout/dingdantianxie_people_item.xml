@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:gravity="center_vertical"
+    >
+
+    <com.github.customview.MyLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:my_ll_all_line="true"
+        app:my_ll_corner_radius="4dp"
+        app:my_ll_solid="@color/white"
+        >
+
+        <TextView
+            android:id="@+id/tv_order_shenqingren_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="3"
+            tools:text="张三"
+            />
+
+        <TextView
+            android:id="@+id/tv_order_shenqingren_zhiwei"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="在职员工"
+            android:gravity="right"
+            android:ems="5"
+            />
+    </com.github.customview.MyLinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_order_shenqingren_zhiwei"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:src="@drawable/img_delete"
+        />
+</LinearLayout>

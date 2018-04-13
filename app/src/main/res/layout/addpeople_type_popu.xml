@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/background_f2"
+              android:orientation="vertical"
+    >
+    <com.library.base.view.MyRecyclerView
+        android:id="@+id/rv_addpeople_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+    </com.library.base.view.MyRecyclerView>
+    <!--<TextView
+        android:id="@+id/tv_addpeople_type1"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="在职人员"
+        />
+
+    <TextView
+        android:id="@+id/tv_addpeople_type2"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="2px"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="自由职业者"
+        />
+
+    <TextView
+        android:id="@+id/tv_addpeople_type3"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="2px"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="退休人员"
+        />
+    <TextView
+        android:id="@+id/tv_addpeople_type4"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="2px"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="在校学生"
+        />
+
+    <TextView
+        android:id="@+id/tv_addpeople_type5"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="2px"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="学龄前儿童"
+        />-->
+</LinearLayout>

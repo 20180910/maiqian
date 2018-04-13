@@ -16,6 +16,7 @@
         >
 
         <TextView
+            android:id="@+id/tv_add_shengqingren_cancel"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
@@ -26,6 +27,7 @@
             />
 
         <TextView
+            android:id="@+id/tv_add_shengqingren_sure"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
@@ -43,6 +45,7 @@
         />
 
     <com.github.customview.MyLinearLayout
+        android:id="@+id/ll_add_shengqingren_add"
         android:layout_width="match_parent"
         android:layout_height="38dp"
         android:layout_margin="10dp"
@@ -63,11 +66,20 @@
             android:gravity="center_vertical"
             />
     </com.github.customview.MyLinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_lvke"
+    <in.srain.cube.views.ptr.PtrClassicFrameLayout
+        android:id="@id/pcfl_refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        app:ptr_resistance="2.1"
+        app:ptr_ratio_of_header_height_to_refresh="1.2"
         >
+        <com.library.base.view.MyRecyclerView
+            android:id="@+id/rv_lvke"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
 
-    </android.support.v7.widget.RecyclerView>
+        </com.library.base.view.MyRecyclerView>
+    </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+
 </LinearLayout>

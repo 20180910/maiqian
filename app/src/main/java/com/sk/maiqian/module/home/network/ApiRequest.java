@@ -58,5 +58,18 @@ public class ApiRequest extends BaseApiRequest {
         getGeneralClient(IRequest.class).getZiXunInfo(map).enqueue(callBack);
     }
 
+    public static void getKuaiDiList(Map map , MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
+        getGeneralClient(IRequest.class).getKuaiDiList(map).enqueue(callBack);
+    }
+    public static void getShenQingRen(Map map , MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
+        getGeneralClient(IRequest.class).getShenQingRen(map).enqueue(callBack);
+    }
+    public static void addShenQingRen(Map map , MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
+        getGeneralClient(IRequest.class).addShenQingRen(map).enqueue(callBack);
+    }
+
 
 }

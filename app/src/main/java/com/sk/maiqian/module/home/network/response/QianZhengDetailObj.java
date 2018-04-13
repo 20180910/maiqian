@@ -2,6 +2,7 @@ package com.sk.maiqian.module.home.network.response;
 
 import com.library.base.BaseObj;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -203,7 +204,7 @@ public class QianZhengDetailObj extends BaseObj {
         this.liucheng_list = liucheng_list;
     }
 
-    public static class CanshuListBean {
+    public static class CanshuListBean implements Serializable {
         /**
          * title : 有效期限
          * content : 3个月
@@ -229,7 +230,7 @@ public class QianZhengDetailObj extends BaseObj {
         }
     }
 
-    public static class LiuchengListBean {
+    public static class LiuchengListBean implements Serializable{
         /**
          * title : 预约并支付
          * content : 根据您实际出行时间，在线选择对应签证产品进行支付

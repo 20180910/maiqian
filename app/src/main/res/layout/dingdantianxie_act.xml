@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -25,9 +26,10 @@
                 >
                 <!--your view-->
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tv_qianzheng_order_title"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="美国三个月单次个人旅游签证美国三个月单次个人旅游签证美国三个月单次个人旅游签证美国三个月单次个人旅游签证"
+                    tools:text="美国三个月单次个人旅游签证美国三个月单次个人旅游签证美国三个月单次个人旅游签证美国三个月单次个人旅游签证"
                     android:padding="10dp"
                     android:background="@color/white"
                     android:textColor="@color/gray_33"
@@ -57,10 +59,13 @@
                         android:layout_marginRight="10dp"
                         />
                     <TextView
+                        android:id="@+id/tv_qianzheng_order_time"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="2018-11-11\t\t周一出发"
+                        android:layout_height="match_parent"
+                        tools:text="2018-11-11\t\t周一出发"
+                        android:hint="请选择日期"
                         android:textColor="@color/gray_66"
+                        android:gravity="center_vertical"
                         />
                 </LinearLayout>
                 <TextView
@@ -73,22 +78,32 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="2px"
                     />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_qianzheng_order_people"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    >
+                </android.support.v7.widget.RecyclerView>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center"
                     android:background="@color/white"
-                    android:padding="13dp"
+                    android:padding="10dp"
                     >
                     <com.github.customview.MyTextView
+                        android:id="@+id/tv_qianzheng_order_add"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="添加申请人"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
-                        android:paddingBottom="5dp"
-                        android:paddingTop="5dp"
+                        android:paddingBottom="7dp"
+                        android:paddingTop="7dp"
                         android:gravity="center"
                         app:my_tv_solid="@color/blue_00"
                         app:my_tv_corner_radius="4dp"
@@ -130,6 +145,7 @@
                         android:layout_marginRight="20dp"
                         />
                     <com.github.customview.MyEditText
+                        android:id="@+id/et_qianzheng_order_name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
@@ -166,6 +182,7 @@
                         android:layout_marginRight="20dp"
                         />
                     <com.github.customview.MyEditText
+                        android:id="@+id/et_qianzheng_order_phone"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
@@ -202,6 +219,7 @@
                         android:layout_marginRight="20dp"
                         />
                     <com.github.customview.MyEditText
+                        android:id="@+id/et_qianzheng_order_email"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
@@ -229,6 +247,7 @@
                         android:text="邮寄快递"
                         />
                     <TextView
+                        android:id="@+id/tv_qianzheng_order_kuaidi"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="快递选择"
@@ -253,12 +272,15 @@
                         android:text="配送地址"
                         />
                     <TextView
+                        android:id="@+id/tv_qianzheng_order_address"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="添加配送地址"
                         android:textColorHint="@color/blue_00"
                         android:layout_marginLeft="35dp"
                         android:gravity="center_vertical"
+                        android:maxLines="2"
+                        android:ellipsize="end"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -305,12 +327,14 @@
                     android:paddingBottom="0dp"
                     >
                     <com.github.customview.MyRadioButton
+                        android:id="@+id/rb_qianzheng_order_wx"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         app:my_radio_checked="@drawable/pay_select"
                         app:my_radio_normal="@drawable/pay_normal"
                         app:my_radio_checked_drawable="right"
                         android:button="@drawable/pay_wx"
+                        android:checked="true"
                         android:text="微信支付"
                         android:background="@color/white"
                         android:padding="10dp"
@@ -354,11 +378,14 @@
                         android:textSize="12sp"
                         />
                     <TextView
+                        android:id="@+id/rb_qianzheng_order_xuzhi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="签证须知"
                         android:textColor="@color/blue_00"
                         android:textSize="12sp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         />
                 </LinearLayout>
             </LinearLayout>
@@ -389,14 +416,16 @@
                         android:textSize="14sp"
                         />
                     <TextView
+                        android:id="@+id/rb_qianzheng_order_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="¥300"
+                        tools:text="¥300"
                         android:textColor="@color/orange"
                         android:textSize="16sp"
                         />
                 </LinearLayout>
                 <TextView
+                    android:id="@+id/tv_qianzheng_order_pay"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"

@@ -1,258 +1,355 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/background_f2"
+              android:background="#907F7F7F"
+              android:orientation="vertical"
     >
-<include layout="@layout/app_title"/>
-    <com.library.base.ProgressLayout
-        android:id="@id/pl_load"
+
+    <include layout="@layout/app_title"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@id/nsv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="#907F7F7F"
             >
             <!--your view-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:gravity="center"
                 android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal"
                 >
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/saoyisao"
                     />
+
                 <TextView
+                    android:id="@+id/tv_addpeople_scan"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="识别护照信息"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
-                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:text="识别护照信息"
                     android:textColor="@color/blue_00"
+                    android:textSize="16sp"
                     />
             </LinearLayout>
+
             <com.github.customview.MyLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
-                app:my_ll_solid="@color/white"
                 android:layout_margin="20dp"
-                app:my_ll_corner_radius="4dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
+                app:my_ll_corner_radius="4dp"
+                app:my_ll_solid="@color/white"
                 >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="申请人信息"
-                android:gravity="center_vertical"
-                android:textColor="@color/gray_33"
-                />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:text="申请人信息"
+                    android:textColor="@color/gray_33"
+                    />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2px"
                     android:background="@color/background_f2"
                     />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
                     android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:focusableInTouchMode="true"
+                    android:focusable="true"
                     >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="中文姓名"
                         android:layout_marginRight="12dp"
+                        android:text="中文姓名"
                         />
+
                     <com.github.customview.MyEditText
+                        android:id="@+id/et_addpeople_name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
                         android:gravity="center_vertical"
+                        android:hint="与证件姓名一致"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
                         android:textSize="13sp"
                         app:my_et_solid="@color/white"
-                        android:inputType="text"
-                        android:imeOptions="actionNext"
-                        android:hint="与证件姓名一致"
                         />
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2px"
                     android:background="@color/background_f2"
                     />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
                     android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     >
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="性&#12288;&#12288;别"
                         android:layout_marginRight="12dp"
+                        android:text="性&#12288;&#12288;别"
                         />
+
                     <com.github.customview.MyTextView
+                        android:id="@+id/tv_addpeople_nan"
                         android:layout_width="60dp"
                         android:layout_height="match_parent"
-                        android:text="男"
-                        android:layout_marginLeft="7dp"
-                        android:gravity="center"
-                        android:layout_marginTop="6dp"
                         android:layout_marginBottom="6dp"
-                        app:my_tv_solid="@color/white"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginTop="6dp"
+                        android:gravity="center"
+                        android:text="男"
+                        android:textColor="@color/blue_00"
                         app:my_tv_all_line="true"
                         app:my_tv_border_color="@color/blue_00"
                         app:my_tv_corner_bottomLeftRadius="4dp"
                         app:my_tv_corner_topLeftRadius="4dp"
-                        android:textColor="@color/blue_00"
+                        app:my_tv_solid="@color/white"
                         />
+
                     <com.github.customview.MyTextView
+                        android:id="@+id/tv_addpeople_nv"
                         android:layout_width="60dp"
                         android:layout_height="match_parent"
-                        android:text="女"
-                        android:gravity="center"
-                        android:layout_marginTop="6dp"
                         android:layout_marginBottom="6dp"
-                        app:my_tv_solid="@color/white"
+                        android:layout_marginTop="6dp"
+                        android:gravity="center"
+                        android:text="女"
                         app:my_tv_all_line="true"
                         app:my_tv_border_color="@color/gray_99"
                         app:my_tv_corner_bottomRightRadius="4dp"
                         app:my_tv_corner_topRightRadius="4dp"
+                        app:my_tv_solid="@color/white"
                         />
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2px"
                     android:background="@color/background_f2"
                     />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
                     android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     >
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="年&#8194;龄&#8194;段"
                         android:layout_marginRight="12dp"
+                        android:text="年&#8194;龄&#8194;段"
                         />
+
                     <TextView
+                        android:id="@+id/tv_addpeople_age"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
+                        android:drawableRight="@drawable/jiantou_down"
                         android:gravity="center_vertical"
-                        android:textSize="13sp"
                         android:hint="0-12岁儿童请选择儿童"
                         android:paddingLeft="7dp"
-                        android:drawableRight="@drawable/jiantou_down"
+                        android:textSize="13sp"
                         />
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2px"
                     android:background="@color/background_f2"
                     />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
                     android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     >
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="客户类型"
                         android:layout_marginRight="12dp"
+                        android:text="客户类型"
                         />
+
                     <TextView
+                        android:id="@+id/tv_addpeople_type"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
+                        android:drawableRight="@drawable/jiantou_down"
                         android:gravity="center_vertical"
-                        android:textSize="13sp"
                         android:hint="请选择类型"
                         android:paddingLeft="7dp"
-                        android:drawableRight="@drawable/jiantou_down"
+                        android:textSize="13sp"
                         />
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2px"
                     android:background="@color/background_f2"
                     />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
                     android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     >
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="护照号码"
                         android:layout_marginRight="12dp"
+                        android:text="护照号码"
                         />
+
                     <com.github.customview.MyEditText
+                        android:id="@+id/et_addpeople_code"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
                         android:gravity="center_vertical"
+                        android:hint="护照号码"
+                        android:imeOptions="actionNext"
+                        android:inputType="textWebEditText"
                         android:textSize="13sp"
                         app:my_et_solid="@color/white"
-                        android:inputType="text"
-                        android:imeOptions="actionNext"
-                        android:hint="护照号码"
                         />
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2px"
                     android:background="@color/background_f2"
                     />
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content"
                     android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="horizontal"
                     >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="身&#8194;份&#8194;证"
-                        android:layout_marginRight="12dp"
-                        />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/white"
-                        android:gravity="center_vertical"
-                        android:textSize="13sp"
-                        android:hint="点击上传身份证照片"
-                        android:paddingLeft="7dp"
-                        android:drawableRight="@drawable/jiantou_right"
-                        />
-                </LinearLayout>
-            </com.github.customview.MyLinearLayout>
 
+                    <com.github.customview.MyFrameLayout
+                        android:id="@+id/fl_addpeople_img1"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        app:my_fl_all_line="true"
+                        app:my_fl_corner_radius="5dp"
+                        app:my_fl_solid="@color/white"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="身份证正面照"
+                            android:textColor="@color/gray_99"
+                            android:layout_gravity="center"
+                            />
+                        <com.github.customview.MyImageView
+                            android:id="@+id/iv_addpeople_img1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@color/background_f2"
+                            app:my_iv_radius="5dp"
+                            android:visibility="gone"
+                            android:background="@color/border_e52"
+                            />
+                    </com.github.customview.MyFrameLayout>
+
+                    <com.github.customview.MyFrameLayout
+                        android:id="@+id/fl_addpeople_img2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        app:my_fl_all_line="true"
+                        app:my_fl_corner_radius="5dp"
+                        app:my_fl_solid="@color/white"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="身份证背面照"
+                            android:textColor="@color/gray_99"
+                            android:layout_gravity="center"
+                            />
+                        <com.github.customview.MyImageView
+                            android:id="@+id/iv_addpeople_img2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@color/background_f2"
+                            app:my_iv_radius="5dp"
+                            android:visibility="gone"
+                            android:background="@color/border_e52"
+                            />
+                    </com.github.customview.MyFrameLayout>
+                </LinearLayout>
+                <com.github.customview.MyTextView
+                    android:id="@+id/tv_addpeople_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:padding="5dp"
+                    android:text="添加申请人"
+                    android:textColor="@color/white"
+                    app:my_tv_corner_radius="4dp"
+                    app:my_tv_solid="@color/blue_00"
+                    />
+            </com.github.customview.MyLinearLayout>
         </LinearLayout>
-    </com.library.base.ProgressLayout>
+    </android.support.v4.widget.NestedScrollView>
+
 </LinearLayout>
