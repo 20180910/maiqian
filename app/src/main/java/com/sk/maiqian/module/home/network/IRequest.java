@@ -11,6 +11,7 @@ import com.sk.maiqian.module.home.network.response.QianZhengDaiBanObj;
 import com.sk.maiqian.module.home.network.response.QianZhengDetailObj;
 import com.sk.maiqian.module.home.network.response.QianZhengObj;
 import com.sk.maiqian.module.home.network.response.ShenQingRenObj;
+import com.sk.maiqian.module.home.network.response.ZiLiaoMuBanObj;
 import com.sk.maiqian.module.home.network.response.ZiXunObj;
 
 import java.util.List;
@@ -80,6 +81,11 @@ public interface IRequest {
     //签证代办-订单-添加申请人
     @GET("api/MQVisaAgent/GetSaveUserAddress")
     Call<ResponseObj<BaseObj>> addShenQingRen(@QueryMap Map<String, String> map);
+
+
+    //签证代办-资料模板
+    @GET("api/MQVisaAgent/GetVisaInformation")
+    Call<ResponseObj<List<ZiLiaoMuBanObj>>> getZiLiaoMuBan(@QueryMap Map<String, String> map);
 
 
 }

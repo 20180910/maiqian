@@ -231,9 +231,42 @@ public class QianZhengDetailActivity extends BaseActivity {
         win.setAttributes(lp);
     }
 
-    @OnClick({R.id.tv_qianzheng_detail_mx, R.id.tv_qianzheng_detail_zixun, R.id.tv_qianzheng_detail_collect, R.id.tv_qianzheng_detail_yuding})
+    @OnClick({R.id.tv_qianzheng_detail_need1,R.id.tv_qianzheng_detail_need2,R.id.tv_qianzheng_detail_need3,R.id.tv_qianzheng_detail_need4,
+            R.id.tv_qianzheng_detail_need5,
+            R.id.tv_qianzheng_detail_mx, R.id.tv_qianzheng_detail_zixun, R.id.tv_qianzheng_detail_collect, R.id.tv_qianzheng_detail_yuding})
     public void onViewClick(View view) {
+        Intent intent;
         switch (view.getId()) {
+            case R.id.tv_qianzheng_detail_need1:
+                intent = new Intent();
+                intent.putExtra(IntentParam.visa_id,visaId);
+                intent.putExtra(IntentParam.type,"1");
+                STActivity(intent,ZaiZhiRenYuanActivity.class);
+                break;
+            case R.id.tv_qianzheng_detail_need2:
+                intent = new Intent();
+                intent.putExtra(IntentParam.visa_id,visaId);
+                intent.putExtra(IntentParam.type,"2");
+                STActivity(intent,ZaiZhiRenYuanActivity.class);
+                break;
+            case R.id.tv_qianzheng_detail_need3:
+                intent = new Intent();
+                intent.putExtra(IntentParam.visa_id,visaId);
+                intent.putExtra(IntentParam.type,"3");
+                STActivity(intent,ZaiZhiRenYuanActivity.class);
+                break;
+            case R.id.tv_qianzheng_detail_need4:
+                intent = new Intent();
+                intent.putExtra(IntentParam.visa_id,visaId);
+                intent.putExtra(IntentParam.type,"4");
+                STActivity(intent,ZaiZhiRenYuanActivity.class);
+                break;
+            case R.id.tv_qianzheng_detail_need5:
+                intent = new Intent();
+                intent.putExtra(IntentParam.visa_id,visaId);
+                intent.putExtra(IntentParam.type,"5");
+                STActivity(intent,ZaiZhiRenYuanActivity.class);
+                break;
             case R.id.tv_qianzheng_detail_mx:
                 MyDialog.Builder mDialog = new MyDialog.Builder(mContext);
                 mDialog.setTitle("明细");
@@ -262,7 +295,7 @@ public class QianZhengDetailActivity extends BaseActivity {
                 collect();
                 break;
             case R.id.tv_qianzheng_detail_yuding:
-                Intent intent=new Intent();
+                intent=new Intent();
                 intent.putExtra(IntentParam.qianZhengObj,qianZhengDetailObj);
                 STActivity(intent,DingDanTianXieActivity.class);
                 break;

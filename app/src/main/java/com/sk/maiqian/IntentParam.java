@@ -5,12 +5,15 @@ package com.sk.maiqian;
  */
 
 public class IntentParam {
-    public static final String major = "major";
+    public static final String riliDate = "riliDate";
     public static final String phone = "phone";
     public static final String smsCode = "smsCode";
     public static final String isEditAddress = "isEditAddress";
     public static final String isEditPeople = "isEditPeople";
+    public static final String visa_id = "visa_id";
+    public static final String type = "type";
     public static final String peopleId = "peopleId";
+    public static final String imgUrl = "imgUrl";
     public static final String people = "people";
     public static final String addressId = "addressId";
     public static final String addressBean = "addressBean";

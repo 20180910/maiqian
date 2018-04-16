@@ -31,6 +31,7 @@ import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.base.SpaceItemDecoration;
+import com.sk.maiqian.module.home.bean.RiLiObj;
 import com.sk.maiqian.module.home.network.ApiRequest;
 import com.sk.maiqian.module.home.network.response.QianZhengDetailObj;
 import com.sk.maiqian.module.home.network.response.ShenQingRenObj;
@@ -39,6 +40,7 @@ import com.sk.maiqian.module.my.activity.MyAddressListActivity;
 import com.sk.maiqian.module.my.network.response.MyAddressObj;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -159,6 +161,7 @@ public class DingDanTianXieActivity extends BaseActivity {
                         kuaiDiName = bean;
                         tv_qianzheng_order_kuaidi.setText(bean);
                         dialog.dismiss();
+
                     }
                 });
             }
@@ -173,7 +176,9 @@ public class DingDanTianXieActivity extends BaseActivity {
     protected void onViewClick(View v) {
         switch (v.getId()) {
             case R.id.tv_qianzheng_order_time:
-                STActivity(RiLiActivity.class);
+                Intent riliIntent=new Intent();
+                riliIntent.putExtra(IntentParam.qianZhengObj,qianZhengDetailObj.getMax_apply_time());
+                STActivityForResult(riliIntent,RiLiActivity.class,1000);
                 break;
             case R.id.tv_qianzheng_order_kuaidi:
                 if (isEmpty(kuaiDiList)) {
@@ -209,6 +214,7 @@ public class DingDanTianXieActivity extends BaseActivity {
                 mDialog.create().show();
                 break;
             case R.id.tv_qianzheng_order_pay:
+
                 break;
         }
     }
@@ -429,6 +435,39 @@ public class DingDanTianXieActivity extends BaseActivity {
                     MyAddressObj addressObj= (MyAddressObj) data.getSerializableExtra(IntentParam.addressBean);
                     addressId =addressObj.getAddress_id()+"";
                     tv_qianzheng_order_address.setText(addressObj.getShipping_address()+addressObj.getShipping_address_details());
+                    break;
+                case 1000:
+                    if(data!=null){
+                        RiLiObj riLiObj= (RiLiObj) data.getSerializableExtra(IntentParam.riliDate);
+                        Calendar instance = Calendar.getInstance();
+                        instance.set(riLiObj.year,riLiObj.month,riLiObj.day);
+                        int week = instance.get(Calendar.WEEK_OF_MONTH);
+                        String str="一";
+                        switch (week){
+                            case 0:
+                                str="日";
+                            break;
+                            case 1:
+                                str="一";
+                            break;
+                            case 2:
+                                str="二";
+                            break;
+                            case 3:
+                                str="三";
+                            break;
+                            case 4:
+                                str="四";
+                            break;
+                            case 5:
+                                str="五";
+                            break;
+                            case 6:
+                                str="六";
+                            break;
+                        }
+                        tv_qianzheng_order_time.setText(riLiObj.year+"-"+riLiObj.month+"-"+riLiObj.day+"\t\t"+"周"+str+"出发");
+                    }
                     break;
             }
         }

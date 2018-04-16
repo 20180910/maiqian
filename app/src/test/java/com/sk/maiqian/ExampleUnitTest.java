@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 
 import org.junit.Test;
 
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -15,6 +17,11 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
+    }
+    @Test
+    public void asdf() throws Exception {
+        System.out.println(new Date().getYear());
+        System.out.println(new Date().getMonth());
     }
     @Test
     public void asdfasf() throws Exception {

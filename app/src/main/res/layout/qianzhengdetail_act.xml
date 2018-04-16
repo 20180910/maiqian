@@ -368,7 +368,8 @@
                         <TextView
                             android:id="@+id/tv_qianzheng_detail_need1"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
                             tools:text="需要10项材料"
                             android:drawableRight="@drawable/jiantou_right"
                             android:layout_marginRight="10dp"
@@ -397,7 +398,8 @@
                         <TextView
                             android:id="@+id/tv_qianzheng_detail_need2"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
                             tools:text="需要10项材料"
                             android:drawableRight="@drawable/jiantou_right"
                             android:layout_marginRight="10dp"
@@ -426,7 +428,8 @@
                         <TextView
                             android:id="@+id/tv_qianzheng_detail_need3"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
                             tools:text="需要10项材料"
                             android:drawableRight="@drawable/jiantou_right"
                             android:layout_marginRight="10dp"
@@ -455,7 +458,8 @@
                         <TextView
                             android:id="@+id/tv_qianzheng_detail_need4"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
                             tools:text="需要10项材料"
                             android:drawableRight="@drawable/jiantou_right"
                             android:layout_marginRight="10dp"
@@ -484,7 +488,8 @@
                         <TextView
                             android:id="@+id/tv_qianzheng_detail_need5"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
                             tools:text="需要10项材料"
                             android:drawableRight="@drawable/jiantou_right"
                             android:layout_marginRight="10dp"
