@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/background_f2"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="top"
+        android:background="@color/white"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp"
+        >
+        <TextView
+            android:id="@+id/tv_peixun_detail_yuyue_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="温馨提示"
+            android:ems="6"
+            />
+        <TextView
+            android:id="@+id/tv_peixun_detail_yuyue_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="如果需要发票如果需要发票如果需要发票如果需要发票如果需要发票如果需要发票如果需要发票如果需要发票"
+            />
+    </LinearLayout>
+</LinearLayout>

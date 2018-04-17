@@ -5,6 +5,10 @@ package com.sk.maiqian;
  */
 
 public class IntentParam {
+    public static final String flag = "flag";
+    public static final String keChengDetailObj = "keChengDetailObj";
+    public static final String teacherId = "teacherId";
+    public static final String kechengId = "kechengId";
     public static final String riliDate = "riliDate";
     public static final String phone = "phone";
     public static final String smsCode = "smsCode";

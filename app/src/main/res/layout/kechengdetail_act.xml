@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -16,6 +17,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/ll_kechengdetail"
+                android:background="@color/white"
                 >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -25,12 +27,12 @@
                 >
                 <!--your view-->
                 <ImageView
+                    android:id="@+id/iv_peixun_detail"
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:src="@drawable/home_banner"
+                    android:layout_height="wrap_content"
+                    tools:src="@drawable/home_banner"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:visibility="gone"
                     />
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -39,7 +41,6 @@
                         android:gravity="center_vertical"
                         android:background="@color/white"
                         android:padding="10dp"
-                        android:visibility="gone"
                         >
                         <LinearLayout
                             android:layout_width="0dp"
@@ -50,9 +51,10 @@
                             android:gravity="center_vertical"
                             >
                             <TextView
+                                android:id="@+id/tv_peixun_detail_title"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="麦签英语承认口语培训雅思托福麦签英语承认口语培训雅思托福--32课"
+                                tools:text="麦签英语承认口语培训雅思托福麦签英语承认口语培训雅思托福--32课"
                                 android:lines="2"
                                 android:maxLines="2"
                                 android:ellipsize="end"
@@ -68,16 +70,18 @@
                                 android:layout_marginTop="10dp"
                                 >
                                 <TextView
+                                    android:id="@+id/tv_peixun_detail_price"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="¥999"
+                                    tools:text="¥999"
                                     android:textColor="@color/blue_00"
                                     android:textSize="17sp"
                                     />
                                 <TextView
+                                    android:id="@+id/tv_peixun_detail_old_price"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="¥10000"
+                                    tools:text="¥10000"
                                     android:textSize="12sp"
                                     android:layout_marginLeft="6dp"
                                     />
@@ -91,11 +95,12 @@
                             android:layout_marginRight="10dp"
                             />
                         <TextView
+                            android:id="@+id/tv_peixun_detail_collect"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="收藏"
                             android:gravity="center"
-                            android:drawableTop="@drawable/wujiaoxing"
+                            android:drawableTop="@drawable/collect_normal"
                             android:layout_marginTop="5dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginLeft="10dp"
@@ -119,10 +124,11 @@
                         android:src="@drawable/address"
                         />
                     <TextView
+                        android:id="@+id/tv_peixun_detail_address"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="上海市"
+                        tools:text="上海市"
                         android:gravity="center_vertical"
                         android:layout_marginLeft="10dp"
                         android:lines="2"
@@ -144,7 +150,6 @@
                     android:layout_marginTop="5dp"
                     android:paddingTop="15dp"
                     android:paddingBottom="15dp"
-                    android:visibility="gone"
                     >
                     <LinearLayout
                         android:layout_width="0dp"
@@ -163,9 +168,10 @@
                             android:drawablePadding="7dp"
                             />
                         <TextView
+                            android:id="@+id/tv_peixun_detail_type1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="成人"
+                            tools:text="成人"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -185,9 +191,10 @@
                             android:drawablePadding="7dp"
                             />
                         <TextView
+                            android:id="@+id/tv_peixun_detail_type2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="不限"
+                            tools:text="不限"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -207,9 +214,10 @@
                             android:drawablePadding="7dp"
                             />
                         <TextView
+                            android:id="@+id/tv_peixun_detail_type3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1对1"
+                            tools:text="1对1"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -229,9 +237,10 @@
                             android:drawablePadding="7dp"
                             />
                         <TextView
+                            android:id="@+id/tv_peixun_detail_type4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="美国"
+                            tools:text="美国"
                             />
                     </LinearLayout>
                 </LinearLayout>
@@ -263,9 +272,10 @@
                             android:text="班级名称"
                             />
                         <TextView
+                            android:id="@+id/tv_peixun_detail_banji"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="麦签成人英语口语01"
+                            tools:text="麦签成人英语口语01"
                             />
                     </LinearLayout>
                 <LinearLayout
@@ -285,9 +295,10 @@
                         android:text="课时"
                         />
                     <TextView
+                        android:id="@+id/tv_peixun_detail_keshi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="20课时"
+                        tools:text="20课时"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -307,12 +318,14 @@
                         android:text="上课时间"
                         />
                     <TextView
+                        android:id="@+id/tv_peixun_detail_shangke"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="随时开课，随时随学"
+                        tools:text="随时开课，随时随学"
                         />
                 </LinearLayout>
                 <android.support.design.widget.TabLayout
+                    android:id="@+id/tab_peixun_detail"
                     android:layout_width="match_parent"
                     android:layout_height="43dp"
                     android:background="@color/white"
@@ -323,6 +336,7 @@
                     >
                 </android.support.design.widget.TabLayout>
                 <LinearLayout
+                    android:id="@+id/ll_peixun_detail_kecheng"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:orientation="horizontal"
@@ -363,18 +377,10 @@
                         android:layout_marginBottom="5dp"
                         />
                     <TextView
+                        android:id="@+id/tv_peixun_detail_duixiang"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="·有移民计划有移民计划有移民计划有移民计划有移民计划有移民计划有移民计划"
-                        android:textSize="13sp"
-                        android:background="@color/white"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="3dp"
-                        />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="·有移民计划有移民计划有移民计划有移民计划"
+                        tools:text="·有移民计划有移民计划有移民计划有移民计划有移民计划有移民计划有移民计划"
                         android:textSize="13sp"
                         android:background="@color/white"
                         android:paddingLeft="10dp"
@@ -403,9 +409,10 @@
                     android:layout_marginBottom="5dp"
                     />
                 <TextView
+                    android:id="@+id/tv_peixun_detail_mubiao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分"
+                    tools:text="冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分冲刺更高分"
                     android:textSize="13sp"
                     android:background="@color/white"
                     android:paddingLeft="10dp"
@@ -427,6 +434,7 @@
                     android:id="@+id/rv_shouke_laoshi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/white"
                     >
                 </android.support.v7.widget.RecyclerView>
                 <LinearLayout
@@ -448,27 +456,20 @@
                         android:paddingLeft="10dp"
                         android:layout_marginBottom="5dp"
                         />
-                    <TextView
+                    <com.library.base.view.richedit.RichEditor
+                        android:id="@+id/re_peixun_detail_tese"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="·有移民计划有移民计划有移民计划有移民计划有移民计划有移民计划有移民计划"
-                        android:textSize="13sp"
-                        android:background="@color/white"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="3dp"
-                        />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="·有移民计划有移民计划有移民计划有移民计划"
-                        android:textSize="13sp"
-                        android:background="@color/white"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="3dp"
-                        />
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="10dp"
+                        >
+
+                    </com.library.base.view.richedit.RichEditor>
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_peixun_detail_goumai"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:orientation="horizontal"
@@ -513,12 +514,19 @@
                             android:ems="6"
                             />
                         <TextView
+                            android:id="@+id/tv_peixun_detail_youxiaoqi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="2017.12.12-2018.12.12"
+                            tools:text="2017.12.12-2018.12.12"
                             />
                     </LinearLayout>
-                    <LinearLayout
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_peixun_detail_yuyue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                    </android.support.v7.widget.RecyclerView>
+                    <!--<LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -534,9 +542,10 @@
                             android:ems="6"
                             />
                         <TextView
+                            android:id="@+id/tv_peixun_detail_yuyue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="提前一天预约"
+                            tools:text="提前一天预约"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -555,9 +564,10 @@
                             android:ems="6"
                             />
                         <TextView
+                            android:id="@+id/tv_peixun_detail_shuoming"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="提前一天调课"
+                            tools:text="提前一天调课"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -576,9 +586,10 @@
                             android:ems="6"
                             />
                         <TextView
+                            android:id="@+id/tv_peixun_detail_tuikuan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="支持到店消费前随时退，过期退支持到店消费前随时退，过期退支持到店消费前随时退，过期退"
+                            tools:text="支持到店消费前随时退，过期退支持到店消费前随时退，过期退支持到店消费前随时退，过期退"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -618,9 +629,10 @@
                             android:ems="6"
                             />
                         <TextView
+                            android:id="@+id/tv_peixun_detail_other"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="其他说明"
+                            tools:text="其他说明"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -639,11 +651,12 @@
                             android:ems="6"
                             />
                         <TextView
+                            android:id="@+id/tv_peixun_detail_tishi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="如果需要发票如果需要发票如果需要发票如果需要发票如果需要发票如果需要发票如果需要发票如果需要发票"
+                            tools:text="如果需要发票如果需要发票如果需要发票如果需要发票如果需要发票如果需要发票如果需要发票如果需要发票"
                             />
-                    </LinearLayout>
+                    </LinearLayout>-->
                 </LinearLayout>
             </LinearLayout>
             </android.support.v4.widget.NestedScrollView>
@@ -659,6 +672,7 @@
             android:layout_alignParentBottom="true"
             >
             <TextView
+                android:id="@+id/tv_peixun_detail_zixun"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -668,6 +682,7 @@
                 android:layout_marginTop="5dp"
                 />
             <com.github.customview.MyTextView
+                android:id="@+id/tv_peixun_detail_buy"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -682,6 +697,7 @@
                 android:textSize="14sp"
                 />
             <com.github.customview.MyTextView
+                android:id="@+id/tv_peixun_detail_yuyueshiting"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"

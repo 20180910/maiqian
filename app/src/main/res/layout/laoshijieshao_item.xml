@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 >
                 <ImageView
+                    android:id="@+id/iv_teacher_item_img"
                     android:layout_width="@dimen/img_w"
                     android:layout_height="@dimen/img_h"
                     tools:src="@drawable/item_img"
@@ -43,9 +44,10 @@
                 android:paddingBottom="2dp"
                 >
                 <TextView
+                    android:id="@+id/tv_teacher_item_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游"
+                    tools:text="春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游"
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:textColor="@color/gray_33"
@@ -60,16 +62,18 @@
                     android:background="@color/white"
                     >
                     <TextView
+                        android:id="@+id/tv_teacher_item_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="¥121210"
+                        tools:text="¥121210"
                         android:textColor="@color/blue_00"
                         android:textSize="14sp"
                         />
                     <TextView
+                        android:id="@+id/tv_teacher_item_old_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="¥1212"
+                        tools:text="¥1212"
                         android:textColor="@color/gray_99"
                         android:textSize="10sp"
                         android:layout_marginLeft="10dp"
@@ -84,13 +88,14 @@
                     android:layout_marginTop="1dp"
                     >
                     <TextView
+                        android:id="@+id/tv_teacher_item_title_flag"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="口语"
+                        tools:text="口语"
                         android:textSize="11sp"
                         android:textColor="@color/gray_99"
                         />
-                    <View
+                   <!-- <View
                         android:layout_width="2px"
                         android:layout_height="match_parent"
                         android:background="@color/background_f2"
@@ -117,7 +122,7 @@
                         android:text="1对1"
                         android:textSize="11sp"
                         android:textColor="@color/gray_99"
-                        />
+                        />-->
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

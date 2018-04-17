@@ -40,7 +40,7 @@
         <activity android:name=".module.yingyupeixun.activity.EnglishPeiXunActivity" android:windowSoftInputMode="adjustNothing"/>
         <activity android:name=".module.yingyupeixun.activity.KeChengDetailActivity"/>
         <activity android:name=".module.yingyupeixun.activity.LaoShiJieShaoActivity"/>
-        <activity android:name=".module.yingyupeixun.activity.TiJiaoOrderActivity"/>
+        <activity android:name=".module.yingyupeixun.activity.TiJiaoOrderActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".module.yingyupeixun.activity.YinpinDetailActivity"/>
         <activity android:name=".module.youxue.activity.YouXueActivity"/>
         <activity android:name=".module.youxue.activity.YouXueDetailActivity"/>

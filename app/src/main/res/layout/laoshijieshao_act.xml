@@ -3,6 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
               android:background="@color/background_f2"
               android:orientation="vertical"
     >
@@ -13,301 +14,316 @@
         android:id="@id/pl_load"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <LinearLayout
+<android.support.v4.widget.NestedScrollView
+        android:id="@id/nsv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_f2"
+        android:orientation="vertical"
+        >
+        <!--your view-->
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/background_f2"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
             >
-            <!--your view-->
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:background="@drawable/laoshijieshao_bg01"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    >
-
-                    <com.github.customview.MyImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:src="@drawable/laoshi"
-                        app:my_iv_radius="35dp"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="ella"
-                        android:textColor="@color/white"
-                        android:textSize="17sp"
-                        />
-                </LinearLayout>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="135dp"
-                    app:cardCornerRadius="7dp"
-                    app:cardElevation="4dp"
-                    >
-
-                    <com.github.customview.MyLinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical"
-                        android:padding="7dp"
-                        app:my_ll_corner_radius="7dp"
-                        app:my_ll_solid="@color/white"
-                        >
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:background="@color/white"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            >
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:background="@color/white"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                >
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="7年"
-                                    android:textColor="@color/gray_33"
-                                    android:textSize="15sp"
-                                    />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="3dp"
-                                    android:text="教龄"
-                                    />
-                            </LinearLayout>
-
-                            <View
-                                android:layout_width="2px"
-                                android:layout_height="match_parent"
-                                android:background="@color/background_f2"
-                                />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:background="@color/white"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                >
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="口语"
-                                    android:textColor="@color/gray_33"
-                                    android:textSize="15sp"
-                                    />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="3dp"
-                                    android:text="主攻方向"
-                                    />
-                            </LinearLayout>
-
-                            <View
-                                android:layout_width="2px"
-                                android:layout_height="match_parent"
-                                android:background="@color/background_f2"
-                                />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:background="@color/white"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                >
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="美籍"
-                                    android:textColor="@color/gray_33"
-                                    android:textSize="15sp"
-                                    />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="3dp"
-                                    android:text="教籍"
-                                    />
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2px"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginTop="10dp"
-                            android:background="@color/background_f2"
-                            />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:maxLines="4"
-                            android:text="老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师"
-                            />
-                    </com.github.customview.MyLinearLayout>
-
-                </android.support.v7.widget.CardView>
-            </FrameLayout>
 
             <LinearLayout
+                android:id="@+id/ll_teacher_bg"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="10dp"
+                android:layout_height="150dp"
+                android:background="@drawable/laoshijieshao_bg01"
+                android:gravity="center"
+                android:orientation="vertical"
                 >
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/laoshi2"
+                <com.github.customview.MyImageView
+                    android:id="@+id/iv_teacher_img"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:my_iv_radius="35dp"
+                    tools:src="@drawable/laoshi"
                     />
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tv_teacher_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    tools:text="ella"
+                    />
+            </LinearLayout>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="135dp"
+                app:cardCornerRadius="7dp"
+                app:cardElevation="4dp"
+                >
+
+                <com.github.customview.MyLinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:background="@color/white"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
                     android:gravity="center_vertical"
                     android:orientation="vertical"
+                    android:padding="7dp"
+                    app:my_ll_corner_radius="7dp"
+                    app:my_ll_solid="@color/white"
                     >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_weight="1"
-                        android:ellipsize="end"
-                        android:maxLines="2"
-                        android:text="麦签英语口语培训麦签英语口语培训"
-                        android:textColor="@color/gray_33"
-                        android:textSize="14sp"
-                        />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
                         android:background="@color/white"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         >
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="口语"
-                            android:textSize="10sp"
-                            />
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            >
+
+                            <TextView
+                                android:id="@+id/tv_teacher_age"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="7年"
+                                android:textColor="@color/gray_33"
+                                android:textSize="15sp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="教龄"
+                                />
+                        </LinearLayout>
 
                         <View
                             android:layout_width="2px"
                             android:layout_height="match_parent"
-                            android:background="@color/gray_d7"
-                            android:layout_marginLeft="3dp"
-                            android:layout_marginRight="3dp"
+                            android:background="@color/background_f2"
                             />
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="正式课"
-                            android:textSize="10sp"
-                            />
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            >
+
+                            <TextView
+                                android:id="@+id/tv_teacher_fangxiang"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="口语"
+                                android:textColor="@color/gray_33"
+                                android:textSize="15sp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="主攻方向"
+                                />
+                        </LinearLayout>
 
                         <View
                             android:layout_width="2px"
                             android:layout_height="match_parent"
-                            android:background="@color/gray_d7"
-                            android:layout_marginLeft="3dp"
-                            android:layout_marginRight="3dp"
+                            android:background="@color/background_f2"
                             />
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="1对1"
-                            android:textSize="10sp"
-                            />
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            >
+
+                            <TextView
+                                android:id="@+id/tv_teacher_jiguan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="美籍"
+                                android:textColor="@color/gray_33"
+                                android:textSize="15sp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="教籍"
+                                />
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2px"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/background_f2"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_teacher_jieshao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="4"
+                        tools:text="老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师介绍老师"
+                        />
+                </com.github.customview.MyLinearLayout>
+
+            </android.support.v7.widget.CardView>
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            >
+
+            <ImageView
+                android:id="@+id/iv_teacher_kecheng"
+                android:layout_width="@dimen/img_w"
+                android:layout_height="@dimen/img_h"
+                tools:src="@drawable/laoshi2"
+                />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:gravity="center"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
                 android:background="@color/white"
-                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
                 >
-                <View
-                    android:layout_width="70dp"
-                    android:layout_height="2px"
-                    android:background="@color/background_f2"
-                    />
+
                 <TextView
+                    android:id="@+id/tv_teacher_title"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="主要授课"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    tools:text="麦签英语口语培训麦签英语口语培训"
                     android:textColor="@color/gray_33"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:textSize="14sp"
                     />
-                <View
-                    android:layout_width="70dp"
-                    android:layout_height="2px"
-                    android:background="@color/background_f2"
-                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv_teacher_flag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="口语"
+                        android:textSize="10sp"
+                        />
+
+                    <!--<View
+                        android:layout_width="2px"
+                        android:layout_height="match_parent"
+                        android:background="@color/gray_d7"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="正式课"
+                        android:textSize="10sp"
+                        />
+
+                    <View
+                        android:layout_width="2px"
+                        android:layout_height="match_parent"
+                        android:background="@color/gray_d7"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1对1"
+                        android:textSize="10sp"
+                        />-->
+                </LinearLayout>
             </LinearLayout>
-            <com.library.base.view.MyRecyclerView
-                android:id="@+id/rv_zhuyao_shouke"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2px"
-                >
-            </com.library.base.view.MyRecyclerView>
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_marginTop="5dp"
+            >
+            <View
+                android:layout_width="70dp"
+                android:layout_height="2px"
+                android:background="@color/background_f2"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="主要授课"
+                android:textColor="@color/gray_33"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
+            <View
+                android:layout_width="70dp"
+                android:layout_height="2px"
+                android:background="@color/background_f2"
+                />
+        </LinearLayout>
+        <com.library.base.view.MyRecyclerView
+            android:id="@+id/rv_zhuyao_shouke"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2px"
+            >
+        </com.library.base.view.MyRecyclerView>
+    </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
     </com.library.base.ProgressLayout>
 </LinearLayout>

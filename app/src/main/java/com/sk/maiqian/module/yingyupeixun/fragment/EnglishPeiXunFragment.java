@@ -1,15 +1,18 @@
 package com.sk.maiqian.module.yingyupeixun.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.MyLoadMoreAdapter;
 import com.github.baseclass.adapter.MyRecyclerViewHolder;
 import com.github.rxbus.MyConsumer;
 import com.library.base.view.MyRecyclerView;
 import com.sk.maiqian.Constant;
+import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseFragment;
 import com.sk.maiqian.base.GlideUtils;
@@ -17,6 +20,7 @@ import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.module.home.network.ApiRequest;
 import com.sk.maiqian.module.home.network.response.EnglishPeiXunObj;
 import com.sk.maiqian.module.yingyupeixun.activity.EnglishPeiXunOnlineActivity;
+import com.sk.maiqian.module.yingyupeixun.activity.KeChengDetailActivity;
 import com.sk.maiqian.module.yingyupeixun.event.EnglishSearchEvent;
 import com.sk.maiqian.tools.TextViewUtils;
 
@@ -82,6 +86,15 @@ public class EnglishPeiXunFragment extends BaseFragment {
                 TextViewUtils.underline(holder.getTextView(R.id.tv_englishpeixu_oldprice));
                 holder.setText(R.id.tv_englishpeixu_flag,bean.getBiaoqian());
                 holder.setText(R.id.tv_englishpeixu_peoplenum,"已有"+bean.getPeople_number()+"人预约申请");
+
+                holder.itemView.setOnClickListener(new MyOnClickListener() {
+                    @Override
+                    protected void onNoDoubleClick(View view) {
+                        Intent intent=new Intent();
+                        intent.putExtra(IntentParam.kechengId,bean.getEnglish_training_id());
+                        STActivity(intent,KeChengDetailActivity.class);
+                    }
+                });
             }
         };
         adapter.setOnLoadMoreListener(this);
