@@ -8,7 +8,7 @@ import android.view.View;
 import com.sk.maiqian.R;
 import com.sk.maiqian.adapter.FragmentAdapter;
 import com.sk.maiqian.base.BaseActivity;
-import com.sk.maiqian.module.yingyupeixun.fragment.EnglishPeiXunFragment;
+import com.sk.maiqian.module.yingyupeixun.fragment.EnglishPeiXunOnlineFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,11 +39,11 @@ public class EnglishPeiXunOnlineActivity extends BaseActivity {
         fragmentAdapter=new FragmentAdapter(getSupportFragmentManager());
         fragmentAdapter.setTitle(new String[]{"体验课","正式课"});
 
-        EnglishPeiXunFragment englishPeiXunFragment1 = EnglishPeiXunFragment.newInstance();
-        EnglishPeiXunFragment englishPeiXunFragment2 = EnglishPeiXunFragment.newInstance();
+        EnglishPeiXunOnlineFragment EnglishPeiXunOnlineFragment1 = EnglishPeiXunOnlineFragment.newInstance(EnglishPeiXunOnlineFragment.type_1);
+        EnglishPeiXunOnlineFragment EnglishPeiXunOnlineFragment2 = EnglishPeiXunOnlineFragment.newInstance(EnglishPeiXunOnlineFragment.type_2);
         List<Fragment> list=new ArrayList<>();
-        list.add(englishPeiXunFragment1);
-        list.add(englishPeiXunFragment2);
+        list.add(EnglishPeiXunOnlineFragment1);
+        list.add(EnglishPeiXunOnlineFragment2);
         fragmentAdapter.setList(list);
 
 

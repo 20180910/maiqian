@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import com.github.baseclass.adapter.MyLoadMoreAdapter;
 import com.github.baseclass.adapter.MyRecyclerViewHolder;
 import com.library.base.view.MyRecyclerView;
+import com.sk.maiqian.Constant;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseFragment;
 
@@ -17,6 +18,8 @@ import butterknife.BindView;
  */
 
 public class EnglishPeiXunOnlineFragment extends BaseFragment {
+    public static final String type_1="1";
+    public static final String type_2="2";
     @BindView(R.id.rv_englishpeixundaiban)
     MyRecyclerView rv_englishpeixundaiban;
     @BindView(R.id.iv_englishpeixun_liuyan)
@@ -29,8 +32,9 @@ public class EnglishPeiXunOnlineFragment extends BaseFragment {
         return R.layout.englishpeixun_online_frag;
     }
 
-    public static EnglishPeiXunOnlineFragment newInstance() {
+    public static EnglishPeiXunOnlineFragment newInstance(String type) {
         Bundle args = new Bundle();
+        args.putString(Constant.type,type);
 
         EnglishPeiXunOnlineFragment fragment = new EnglishPeiXunOnlineFragment();
         fragment.setArguments(args);

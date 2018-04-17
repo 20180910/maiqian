@@ -37,7 +37,7 @@
         <activity android:name=".module.home.activity.PaySuccessActivity"/>
         <activity android:name=".module.home.activity.EditShenQingRenActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".module.home.activity.ZaiZhiRenYuanActivity"/>
-        <activity android:name=".module.yingyupeixun.activity.EnglishPeiXunActivity"/>
+        <activity android:name=".module.yingyupeixun.activity.EnglishPeiXunActivity" android:windowSoftInputMode="adjustNothing"/>
         <activity android:name=".module.yingyupeixun.activity.KeChengDetailActivity"/>
         <activity android:name=".module.yingyupeixun.activity.LaoShiJieShaoActivity"/>
         <activity android:name=".module.yingyupeixun.activity.TiJiaoOrderActivity"/>
@@ -78,6 +78,7 @@
         <activity android:name=".module.home.activity.LookAnswerActivity"/>
         <activity android:name=".module.home.activity.RiLiActivity"/>
         <activity android:name=".module.home.activity.MuBanActivity"/>
+        <activity android:name=".module.yingyupeixun.activity.EnglishPeiXunOnlineActivity"/>
     </application>
 
 </manifest>

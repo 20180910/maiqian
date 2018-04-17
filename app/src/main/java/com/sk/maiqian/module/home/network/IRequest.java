@@ -5,6 +5,7 @@ import com.library.base.ResponseObj;
 import com.sk.maiqian.module.home.network.request.QianZhengLiuYanBody;
 import com.sk.maiqian.module.home.network.response.BannerObj;
 import com.sk.maiqian.module.home.network.response.CollectObj;
+import com.sk.maiqian.module.home.network.response.EnglishPeiXunObj;
 import com.sk.maiqian.module.home.network.response.HomeDaYiJieHuoObj;
 import com.sk.maiqian.module.home.network.response.HomeZiXunObj;
 import com.sk.maiqian.module.home.network.response.QianZhengDaiBanObj;
@@ -86,6 +87,10 @@ public interface IRequest {
     //签证代办-资料模板
     @GET("api/MQVisaAgent/GetVisaInformation")
     Call<ResponseObj<List<ZiLiaoMuBanObj>>> getZiLiaoMuBan(@QueryMap Map<String, String> map);
+
+    //英语培训-体验课
+    @GET("api/MQEnglishTraining/GetEnglishTrainingList")
+    Call<ResponseObj<List<EnglishPeiXunObj>>> getEnglishPeiXun(@QueryMap Map<String, String> map);
 
 
 }

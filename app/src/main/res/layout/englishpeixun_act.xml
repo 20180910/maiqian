@@ -7,87 +7,107 @@
               android:background="@color/background_f2"
     >
 <include layout="@layout/app_title"/>
-    <com.library.base.ProgressLayout
-        android:id="@id/pl_load"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
+        android:layout_height="wrap_content"
+        >
+        <com.library.base.ProgressLayout
+            android:id="@id/pl_load"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@color/background_f2"
-            >
-            <!--your view-->
-            <com.github.customview.MyLinearLayout
+            android:layout_height="match_parent">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                app:my_ll_solid="@color/white"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                app:my_ll_corner_radius="18dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:focusableInTouchMode="true"
-                android:focusable="true"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/background_f2"
                 >
-                <TextView
-                    android:id="@+id/tv_englishpeixun_dingwei"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="上海"
-                    android:drawablePadding="4dp"
-                    android:drawableLeft="@drawable/iqianzhengdaiban_icon_location"
-                    android:layout_marginRight="5dp"
-                    />
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/background_f2"
-                    android:layout_margin="5dp"
-                    />
-                <ImageView
-                    android:layout_width="14dp"
-                    android:adjustViewBounds="true"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/dayijiehuo_icon_search"
-                    android:layout_marginLeft="5dp"
-                    />
-                <com.github.customview.MyEditText
-                    android:id="@+id/et_englishpeixun_search"
+                <!--your view-->
+
+                <com.github.customview.MyLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    app:my_ll_corner_radius="18dp"
+                    app:my_ll_solid="@color/white"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv_englishpeixun_dingwei"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:drawableLeft="@drawable/iqianzhengdaiban_icon_location"
+                        android:drawablePadding="4dp"
+                        android:text="上海"
+                        />
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:background="@color/background_f2"
+                        />
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/dayijiehuo_icon_search"
+                        />
+
+                    <com.github.customview.MyEditText
+                        android:id="@+id/et_englishpeixun_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint="搜索课程"
+                        android:imeOptions="actionNone"
+                        android:inputType="text"
+                        android:textSize="13sp"
+                        app:my_et_solid="@color/white"
+                        />
+                </com.github.customview.MyLinearLayout>
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tab_englishpeixun"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:background="@color/white"
+                    android:layout_marginBottom="5dp"
+                    app:tabTextColor="@color/gray_66"
+                    app:tabSelectedTextColor="@color/blue_00"
+                    app:tabIndicatorColor="@color/blue_00"
+                    >
+
+                </android.support.design.widget.TabLayout>
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_englishpeixun"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:textSize="13sp"
-                    app:my_et_solid="@color/white"
-                    android:inputType="text"
-                    android:imeOptions="actionNext"
-                    android:hint="搜索课程"
-                    />
-            </com.github.customview.MyLinearLayout>
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tab_englishpeixun"
-                android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:background="@color/white"
-                android:layout_marginBottom="5dp"
-                app:tabTextColor="@color/gray_66"
-                app:tabSelectedTextColor="@color/blue_00"
-                app:tabIndicatorColor="@color/blue_00"
-                >
+                    >
 
-            </android.support.design.widget.TabLayout>
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vp_englishpeixun"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                >
+                </android.support.v4.view.ViewPager>
+            </LinearLayout>
 
-            </android.support.v4.view.ViewPager>
-        </LinearLayout>
+        </com.library.base.ProgressLayout>
+        <ImageView
+            android:id="@+id/iv_englishpeixun_liuyan"
+            android:layout_width="43dp"
+            android:adjustViewBounds="true"
+            android:layout_height="wrap_content"
+            android:src="@drawable/qianzheng_liuyan"
+            android:layout_marginRight="13dp"
+            android:layout_gravity="center_vertical|right"
+            />
+    </FrameLayout>
 
-    </com.library.base.ProgressLayout>
 </LinearLayout>

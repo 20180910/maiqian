@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 >
                 <ImageView
+                    android:id="@+id/iv_englishpeixu"
                     android:layout_width="@dimen/img_w"
                     android:layout_height="@dimen/img_h"
                     tools:src="@drawable/item_img"
@@ -43,9 +44,10 @@
                 android:paddingBottom="1dp"
                 >
                 <TextView
+                    android:id="@+id/tv_englishpeixu_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游"
+                    tools:text="春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游春节出境游"
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:textColor="@color/gray_33"
@@ -59,16 +61,18 @@
                     android:background="@color/white"
                     >
                     <TextView
+                        android:id="@+id/tv_englishpeixu_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="¥0"
+                        tools:text="¥0"
                         android:textColor="@color/blue_00"
                         android:textSize="12sp"
                         />
                     <TextView
+                        android:id="@+id/tv_englishpeixu_oldprice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="¥1212"
+                        tools:text="¥1212"
                         android:textColor="@color/gray_99"
                         android:textSize="10sp"
                         android:layout_marginLeft="10dp"
@@ -83,13 +87,14 @@
                     android:layout_marginTop="1dp"
                     >
                     <TextView
+                        android:id="@+id/tv_englishpeixu_flag"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="口语"
+                        tools:text="口语"
                         android:textSize="11sp"
                         android:textColor="@color/gray_99"
                         />
-                    <View
+                    <!--<View
                         android:layout_width="2px"
                         android:layout_height="match_parent"
                         android:background="@color/background_f2"
@@ -116,12 +121,13 @@
                         android:text="1对1"
                         android:textSize="11sp"
                         android:textColor="@color/gray_99"
-                        />
+                        />-->
                 </LinearLayout>
                 <TextView
+                    android:id="@+id/tv_englishpeixu_peoplenum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="已有100人预约申请"
+                    tools:text="已有100人预约申请"
                     android:textSize="11sp"
                     android:textColor="@color/gray_99"
                     android:layout_marginTop="1dp"

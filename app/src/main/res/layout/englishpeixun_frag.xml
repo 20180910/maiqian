@@ -17,22 +17,49 @@
             android:background="@color/background_f2"
             >
             <!--your view-->
-        <com.library.base.view.MyRecyclerView
-            android:id="@+id/rv_englishpeixundaiban"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-        </com.library.base.view.MyRecyclerView>
+            <in.srain.cube.views.ptr.PtrClassicFrameLayout
+                android:id="@id/pcfl_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:ptr_resistance="2.1"
+                app:ptr_ratio_of_header_height_to_refresh="1.2"
+                >
+                <com.library.base.view.MyRecyclerView
+                    android:id="@+id/rv_englishpeixundaiban"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                </com.library.base.view.MyRecyclerView>
+            </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/yingyupeixun_image02"
+                    />
+                <com.github.customview.MyTextView
+                    android:id="@+id/tv_peixun_online_study"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="视频音频在线学习"
+                    app:my_tv_all_line="true"
+                    app:my_tv_corner_radius="4dp"
+                    app:my_tv_border_color="@color/white"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    />
+            </FrameLayout>
         </LinearLayout>
-        <ImageView
-            android:id="@+id/iv_englishpeixun_liuyan"
-            android:layout_width="43dp"
-            android:adjustViewBounds="true"
-            android:layout_height="wrap_content"
-            android:src="@drawable/qianzheng_liuyan"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="13dp"
-            />
     </com.library.base.ProgressLayout>
 </LinearLayout>
