@@ -63,8 +63,10 @@ public class EditAddressActivity extends BaseActivity {
     protected void initView() {
 //        isEditAddress = getIntent().getBooleanExtra(IntentParam.isEditAddress, false);
         addressObj = (MyAddressObj) getIntent().getSerializableExtra(IntentParam.addressBean);
-        isEditAddress=(addressObj ==null?false:true);
-        addressId = addressObj.getAddress_id()+"";
+        if(addressObj!=null){
+            isEditAddress=(addressObj ==null?false:true);
+            addressId = addressObj.getAddress_id()+"";
+        }
         getAllArea(false);
 
     }

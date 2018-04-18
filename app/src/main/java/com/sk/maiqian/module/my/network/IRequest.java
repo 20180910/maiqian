@@ -3,6 +3,7 @@ package com.sk.maiqian.module.my.network;
 import com.library.base.BaseObj;
 import com.library.base.ResponseObj;
 import com.sk.maiqian.module.my.network.request.AddBankBody;
+import com.sk.maiqian.module.my.network.request.DeleteAddressBody;
 import com.sk.maiqian.module.my.network.request.EditNickNameBody;
 import com.sk.maiqian.module.my.network.request.FanKuiBody;
 import com.sk.maiqian.module.my.network.request.RegisterBody;
@@ -76,7 +77,7 @@ public interface IRequest {
     //意见反馈
     @Headers("User-Agent:android")
     @POST("api/MQUserBase/PostSubmitFeedback")
-    Call<ResponseObj<BaseObj>> fanKui(@QueryMap Map<String, String> map, @Body List<FanKuiBody> body);
+    Call<ResponseObj<BaseObj>> fanKui(@QueryMap Map<String, String> map, @Body FanKuiBody body);
 
     //获取用户资料
     @Headers("User-Agent:android")
@@ -117,7 +118,7 @@ public interface IRequest {
     //删除地址
     @Headers("User-Agent:android")
     @POST("api/MQCashWithdrawal/PostUserAddressDel")
-    Call<ResponseObj<BaseObj>> deleteAddress(@QueryMap Map<String, String> map, @Body List<String> body);
+    Call<ResponseObj<BaseObj>> deleteAddress(@QueryMap Map<String, String> map, @Body DeleteAddressBody body);
 
     //添加银行卡
     @Headers("User-Agent:android")

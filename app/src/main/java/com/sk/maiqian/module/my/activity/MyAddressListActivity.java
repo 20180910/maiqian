@@ -20,6 +20,7 @@ import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.module.my.network.ApiRequest;
+import com.sk.maiqian.module.my.network.request.DeleteAddressBody;
 import com.sk.maiqian.module.my.network.response.MyAddressObj;
 
 import java.util.ArrayList;
@@ -202,7 +203,9 @@ public class MyAddressListActivity extends BaseActivity {
         Map<String,String>map=new HashMap<String,String>();
         map.put("user_id",getUserId());
         map.put("sign",getSign(map));
-        ApiRequest.deleteAddress(map,list, new MyCallBack<BaseObj>(mContext) {
+        DeleteAddressBody body=new DeleteAddressBody();
+        body.setBody(list);
+        ApiRequest.deleteAddress(map,body, new MyCallBack<BaseObj>(mContext) {
             @Override
             public void onSuccess(BaseObj obj) {
                 showMsg(obj.getMsg());

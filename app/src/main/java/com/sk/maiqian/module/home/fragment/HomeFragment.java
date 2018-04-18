@@ -26,7 +26,9 @@ import com.sk.maiqian.module.home.event.ZiXunEvent;
 import com.sk.maiqian.module.home.network.ApiRequest;
 import com.sk.maiqian.module.home.network.response.BannerObj;
 import com.sk.maiqian.module.home.network.response.HomeDaYiJieHuoObj;
+import com.sk.maiqian.module.liuxue.activity.LiuXueActivity;
 import com.sk.maiqian.module.yingyupeixun.activity.EnglishPeiXunActivity;
+import com.sk.maiqian.module.youxue.activity.YouXueActivity;
 import com.sunfusheng.marqueeview.MarqueeView;
 import com.youth.banner.Banner;
 
@@ -251,10 +253,10 @@ public class HomeFragment extends BaseFragment {
                 STActivity(EnglishPeiXunActivity.class);
                 break;
             case R.id.ll_home_youxue:
-                STActivity(QianZhengDaiBanActivity.class);
+                STActivity(YouXueActivity.class);
                 break;
             case R.id.ll_home_liuxue:
-                STActivity(QianZhengDaiBanActivity.class);
+                STActivity(LiuXueActivity.class);
                 break;
         }
     }

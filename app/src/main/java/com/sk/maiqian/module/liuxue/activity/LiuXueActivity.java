@@ -16,8 +16,8 @@ import butterknife.BindView;
 
 public class LiuXueActivity extends BaseActivity {
 
-    @BindView(R.id.rv_youxue)
-    MyRecyclerView rv_youxue;
+    @BindView(R.id.rv_liuxue)
+    MyRecyclerView rv_liuxue;
 
     MyLoadMoreAdapter adapter;
 
@@ -37,7 +37,7 @@ public class LiuXueActivity extends BaseActivity {
             }
         };
         adapter.setOnLoadMoreListener(this);
-        rv_youxue.setAdapter(adapter);
+        rv_liuxue.setAdapter(adapter);
     }
 
     @Override

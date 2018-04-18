@@ -277,16 +277,18 @@ public class YiJianFanKuiActivity extends BaseActivity {
         map.put("feedback_type",type);
         map.put("mobile",phone);
         map.put("sign",getSign(map));
-        List<FanKuiBody>list=new ArrayList<>();
-        FanKuiBody body;
+        List<FanKuiBody.BodyBean>list=new ArrayList<>();
+        FanKuiBody.BodyBean bean;
         if(notEmpty(imgAdapter.getList())){
             for (int i = 0; i <imgAdapter.getList().size(); i++) {
-                body = new FanKuiBody();
-                body.setImg_url((String) imgAdapter.getList().get(i));
-                list.add(body);
+                bean = new FanKuiBody.BodyBean();
+                bean.setImg_url((String) imgAdapter.getList().get(i));
+                list.add(bean);
             }
         }
-        ApiRequest.fanKui(map,list, new MyCallBack<BaseObj>(mContext) {
+        FanKuiBody body=new FanKuiBody();
+        body.setBody(list);
+        ApiRequest.fanKui(map,body, new MyCallBack<BaseObj>(mContext) {
             @Override
             public void onSuccess(BaseObj obj) {
                 showMsg(obj.getMsg());

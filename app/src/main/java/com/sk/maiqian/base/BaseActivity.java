@@ -22,6 +22,7 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.androidtools.ClickUtils;
 import com.github.androidtools.PhoneUtils;
 import com.github.androidtools.SPUtils;
 import com.github.androidtools.inter.MyOnClickListener;
@@ -499,7 +500,7 @@ public abstract class BaseActivity extends MyBaseActivity {
         }*/
     }
 
-    protected void showZiXun() {
+    private void showZiXun() {
         Dialog dialog = new Dialog(mContext,R.style.DialogStyle);
         setDialogFullWidth(dialog);
         View zixun_popu = getLayoutInflater().inflate(R.layout.kechengdetail_zixun_popu, null);
@@ -612,5 +613,10 @@ public abstract class BaseActivity extends MyBaseActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ClickUtils.clearLastClickTime();
+    }
 }
 

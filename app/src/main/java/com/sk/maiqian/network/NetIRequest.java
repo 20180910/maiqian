@@ -36,6 +36,11 @@ public interface NetIRequest {
     Call<ResponseObj<List<BankNameObj>>> getBankList(@QueryMap Map<String, String> map);
 
 
+    //获取所有城市
+    @GET("api/MQLib/GetAllCity")
+    Call<ResponseObj<List<CityObj>>> getAllCity(@QueryMap Map<String, String> map);
+
+
 
 
 

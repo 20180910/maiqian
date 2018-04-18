@@ -5,14 +5,12 @@ import com.library.base.BaseApiRequest;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.module.my.network.request.AddBankBody;
+import com.sk.maiqian.module.my.network.request.DeleteAddressBody;
 import com.sk.maiqian.module.my.network.request.EditNickNameBody;
 import com.sk.maiqian.module.my.network.request.FanKuiBody;
 import com.sk.maiqian.module.my.network.request.RegisterBody;
 
-import java.util.List;
 import java.util.Map;
-
-import retrofit2.http.Body;
 
 /**
  * Created by Administrator on 2017/6/28.
@@ -35,7 +33,7 @@ public class ApiRequest extends BaseApiRequest {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
         getGeneralClient(IRequest.class).getXieYi(map).enqueue(callBack);
     }
-    public static void register(Map map, @Body RegisterBody body, MyCallBack callBack) {
+    public static void register(Map map, RegisterBody body, MyCallBack callBack) {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
         getGeneralClient(IRequest.class).register(map,body).enqueue(callBack);
     }
@@ -55,7 +53,7 @@ public class ApiRequest extends BaseApiRequest {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
         getGeneralClient(IRequest.class).getFanKuiType(map).enqueue(callBack);
     }
-    public static void fanKui(Map map, List<FanKuiBody> body,MyCallBack callBack) {
+    public static void fanKui(Map map, FanKuiBody body,MyCallBack callBack) {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
         getGeneralClient(IRequest.class).fanKui(map,body).enqueue(callBack);
     }
@@ -87,7 +85,7 @@ public class ApiRequest extends BaseApiRequest {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
         getGeneralClient(IRequest.class).getAddress(map).enqueue(callBack);
     }
-    public static void deleteAddress(Map map,  List<String> body,MyCallBack callBack) {
+    public static void deleteAddress(Map map, DeleteAddressBody body, MyCallBack callBack) {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
         getGeneralClient(IRequest.class).deleteAddress(map,body).enqueue(callBack);
     }

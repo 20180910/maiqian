@@ -22,30 +22,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
                     android:src="@drawable/youxue_banner"
                     />
                 <com.github.customview.MyTextView
+                    android:id="@+id/tv_youxue_shenqing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="我要游学"
                     android:background="@drawable/woyaoyouxue"
                     android:textColor="@color/white"
                     android:layout_gravity="center"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     />
             </FrameLayout>
             <LinearLayout
+                android:id="@+id/ll_youxue_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 >
                 <com.github.customview.MyLinearLayout
                     android:layout_width="match_parent"
@@ -68,6 +73,7 @@
                         android:src="@drawable/dayijiehuo_icon_search"
                         />
                     <com.github.customview.MyEditText
+                        android:id="@+id/et_youxue_search"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
@@ -88,35 +94,78 @@
                 android:gravity="center_vertical"
                 android:background="@color/white"
                 >
-                <TextView
+                <LinearLayout
+                    android:id="@+id/ll_youxue_guojia"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="国家"
+                    android:orientation="horizontal"
                     android:gravity="center"
-                    android:textColor="@color/gray_66"
-                    android:textSize="14sp"
-                    />
-                <TextView
+                    android:background="@color/white"
+                    >
+                    <TextView
+                        android:id="@+id/tv_youxue_guojia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="国家"
+                        android:gravity="center"
+                        android:textColor="@color/gray_66"
+                        android:textSize="14sp"
+                        android:layout_marginRight="5dp"
+                        />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/youxue_order"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_youxue_renqi"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="人气排名"
+                    android:orientation="horizontal"
                     android:gravity="center"
-                    android:textColor="@color/gray_66"
-                    android:textSize="14sp"
-                    />
+                    android:background="@color/white"
+                    >
+                    <TextView
+                        android:id="@+id/tv_youxue_renqi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="人气排名"
+                        android:gravity="center"
+                        android:textColor="@color/gray_66"
+                        android:textSize="14sp"
+                        android:layout_marginRight="5dp"
+                        />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/youxue_order"
+                        />
+                </LinearLayout>
+
             </LinearLayout>
-            <com.library.base.view.MyRecyclerView
-                android:id="@+id/rv_youxue"
+            <in.srain.cube.views.ptr.PtrClassicFrameLayout
+                android:id="@id/pcfl_refresh"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2px"
+                android:layout_height="match_parent"
+                app:ptr_resistance="2.1"
+                app:ptr_ratio_of_header_height_to_refresh="1.2"
                 >
-            </com.library.base.view.MyRecyclerView>
+                <com.library.base.view.MyRecyclerView
+                    android:id="@+id/rv_youxue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2px"
+                    >
+                </com.library.base.view.MyRecyclerView>
+            </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+
         </LinearLayout>
         <ImageView
-            android:id="@+id/iv_englishpeixun_liuyan"
+            android:id="@+id/iv_youxue_liuyan"
             android:layout_width="43dp"
             android:adjustViewBounds="true"
             android:layout_height="wrap_content"

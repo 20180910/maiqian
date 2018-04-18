@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 >
                 <ImageView
+                    android:id="@+id/iv_youxue"
                     android:layout_width="@dimen/img_w"
                     android:layout_height="@dimen/img_h"
                     tools:src="@drawable/item_img"
@@ -43,17 +44,19 @@
                 android:paddingBottom="2dp"
                 >
                 <TextView
+                    android:id="@+id/tv_youxue_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="美国"
+                    tools:text="美国"
                     android:textSize="15sp"
                     android:textColor="@color/gray_33"
                     />
                 <TextView
+                    android:id="@+id/tv_youxue_second_title"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="the usa"
+                    tools:text="the usa"
                     android:textSize="13sp"
                     android:textColor="@color/gray_99"
                     android:layout_marginTop="1dp"
@@ -71,9 +74,10 @@
                         android:src="@drawable/youxue_huo"
                         />
                     <TextView
+                        android:id="@+id/tv_youxue_xingqu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="200人感兴趣"
+                        tools:text="200人感兴趣"
                         android:textColor="@color/orange"
                         android:layout_marginTop="2dp"
                         android:layout_marginLeft="10dp"

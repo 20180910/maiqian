@@ -9,8 +9,7 @@
 
     <include layout="@layout/app_title"/>
 
-    <com.library.base.ProgressLayout
-        android:id="@id/pl_load"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -22,29 +21,21 @@
             >
             <!--your view-->
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:padding="10dp"
-                android:text="想要速度获得游学信息和申请方案想要速度获得游学信息和申请方案想要速度获得游学信息和申请方案"
-                android:textColor="@color/orange"
-                />
-
-            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:text="想去旅游目的地?"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:background="@color/white"
-                android:layout_marginTop="5dp"
+                android:paddingTop="20dp"
                 />
 
             <TextView
+                android:id="@+id/tv_youxue_shenqing_guojia"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:hint="英国"
+                android:hint="请选择目的地"
                 android:gravity="center_vertical"
                 android:background="@color/white"
                 android:paddingLeft="10dp"
@@ -64,6 +55,7 @@
                 />
 
             <com.github.customview.MyEditText
+                android:id="@+id/et_youxue_shenqing"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="请输入手机号码"
@@ -85,9 +77,10 @@
                 />
 
             <TextView
+                android:id="@+id/tv_youxue_shenqing_city"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:hint="上海"
+                android:hint="请选择城市"
                 android:gravity="center_vertical"
                 android:background="@color/white"
                 android:paddingLeft="10dp"
@@ -107,6 +100,7 @@
             android:paddingBottom="5dp"
             >
             <com.github.customview.MyLinearLayout
+                android:id="@+id/ll_youxue_shenqing_zixun"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="40dp"
@@ -135,6 +129,7 @@
             </com.github.customview.MyLinearLayout>
 
             <com.github.customview.MyTextView
+                android:id="@+id/tv_youxue_shenqing_commit"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -147,5 +142,5 @@
                 android:layout_marginRight="15dp"
                 />
         </com.github.customview.MyLinearLayout>
-    </com.library.base.ProgressLayout>
+    </RelativeLayout>
 </LinearLayout>
