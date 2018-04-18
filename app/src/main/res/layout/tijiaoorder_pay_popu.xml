@@ -38,6 +38,7 @@
             android:paddingRight="20dp"
             >
             <com.github.customview.MyRadioButton
+                android:id="@+id/rb_order_pay"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 app:my_radio_checked="@drawable/yingyupeixun_zhifufangshi_icon_select"
@@ -45,6 +46,7 @@
                 app:my_radio_checked_drawable="right"
                 android:button="@drawable/pay_wx"
                 android:text="微信支付"
+                android:checked="true"
                 android:background="@color/white"
                 android:padding="10dp"
                 android:layout_marginLeft="10dp"

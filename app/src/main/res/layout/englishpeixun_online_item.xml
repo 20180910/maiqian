@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 >
                 <ImageView
+                    android:id="@+id/iv_online"
                     android:layout_width="@dimen/img_w"
                     android:layout_height="@dimen/img_h"
                     tools:src="@drawable/item_img"
@@ -42,9 +43,10 @@
                 android:paddingBottom="1dp"
                 >
                 <TextView
+                    android:id="@+id/tv_online_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="英语口语练习"
+                    tools:text="英语口语练习"
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:textColor="@color/gray_33"
@@ -65,9 +67,10 @@
                         android:textColor="@color/gray_99"
                         />
                     <TextView
+                        android:id="@+id/tv_online_renqun"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="零基础"
+                        tools:text="零基础"
                         android:textColor="@color/gray_99"
                         android:layout_marginLeft="10dp"
                         android:textSize="11sp"
@@ -89,9 +92,10 @@
                         android:textColor="@color/gray_99"
                         />
                     <TextView
+                        android:id="@+id/tv_online_shichang"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="00:22:22"
+                        tools:text="00:22:22"
                         android:textSize="11sp"
                         android:textColor="@color/gray_99"
                         android:layout_marginLeft="10dp"
@@ -113,9 +117,10 @@
                         android:textColor="@color/gray_99"
                         />
                     <TextView
+                        android:id="@+id/tv_online_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2018-11-11"
+                        tools:text="2018-11-11"
                         android:textSize="11sp"
                         android:textColor="@color/gray_99"
                         android:layout_marginLeft="10dp"

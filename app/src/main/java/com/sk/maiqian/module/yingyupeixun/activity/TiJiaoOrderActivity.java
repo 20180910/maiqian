@@ -1,6 +1,8 @@
 package com.sk.maiqian.module.yingyupeixun.activity;
 
+import android.support.design.widget.BottomSheetDialog;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -97,9 +99,19 @@ public class TiJiaoOrderActivity extends BaseActivity {
     protected void onViewClick(View v) {
         switch (v.getId()){
             case R.id.tv_order_pay:
-
+                showPay();
             break;
         }
+    }
+
+    private void showPay() {
+        BottomSheetDialog dialog=new BottomSheetDialog(mContext);
+        dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        View view = getLayoutInflater().inflate(R.layout.tijiaoorder_pay_popu, null);
+
+        dialog.setContentView(view);
+        dialog.show();
     }
 
 }

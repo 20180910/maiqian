@@ -2,6 +2,7 @@ package com.sk.maiqian.module.yingyupeixun.network.response;
 
 import com.library.base.BaseObj;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -213,7 +214,7 @@ public class KeChengDetailObj extends BaseObj {
         this.canshu_list = canshu_list;
     }
 
-    public static class TeacherListBean {
+    public static class TeacherListBean implements Serializable{
         /**
          * teacher_id : 1
          * teacher_name : Tom
@@ -259,7 +260,7 @@ public class KeChengDetailObj extends BaseObj {
         }
     }
 
-    public static class CanshuListBean {
+    public static class CanshuListBean implements Serializable{
         /**
          * title : 预约信息
          * content : 提前一天预约

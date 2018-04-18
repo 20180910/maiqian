@@ -92,6 +92,7 @@ public class EnglishPeiXunFragment extends BaseFragment {
                     protected void onNoDoubleClick(View view) {
                         Intent intent=new Intent();
                         intent.putExtra(IntentParam.kechengId,bean.getEnglish_training_id());
+                        intent.putExtra(IntentParam.flag,bean.getBiaoqian());
                         STActivity(intent,KeChengDetailActivity.class);
                     }
                 });

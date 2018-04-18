@@ -543,7 +543,8 @@ public abstract class BaseActivity extends MyBaseActivity {
         win.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         win.setGravity(Gravity.CENTER);
         win.getDecorView().setPadding(0, 0, 0, 0);
-        win.setBackgroundDrawableResource(R.color.transparent_half);
+//        win.setBackgroundDrawableResource(R.color.transparent_half);
+        win.setBackgroundDrawableResource(R.color.white_half);
         WindowManager.LayoutParams lp = win.getAttributes();
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         lp.height= PhoneUtils.getScreenHeight(mContext);

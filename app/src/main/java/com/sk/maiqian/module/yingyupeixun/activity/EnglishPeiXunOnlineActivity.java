@@ -9,6 +9,7 @@ import com.sk.maiqian.R;
 import com.sk.maiqian.adapter.FragmentAdapter;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.module.yingyupeixun.fragment.EnglishPeiXunOnlineFragment;
+import com.sk.maiqian.tools.TablayoutUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class EnglishPeiXunOnlineActivity extends BaseActivity {
     @Override
     protected void initView() {
         fragmentAdapter=new FragmentAdapter(getSupportFragmentManager());
-        fragmentAdapter.setTitle(new String[]{"体验课","正式课"});
+        fragmentAdapter.setTitle(new String[]{"视频","音频"});
 
         EnglishPeiXunOnlineFragment EnglishPeiXunOnlineFragment1 = EnglishPeiXunOnlineFragment.newInstance(EnglishPeiXunOnlineFragment.type_1);
         EnglishPeiXunOnlineFragment EnglishPeiXunOnlineFragment2 = EnglishPeiXunOnlineFragment.newInstance(EnglishPeiXunOnlineFragment.type_2);
@@ -50,6 +51,9 @@ public class EnglishPeiXunOnlineActivity extends BaseActivity {
         vp_englishpeixun_onlie.setOffscreenPageLimit(list.size()-1);
         vp_englishpeixun_onlie.setAdapter(fragmentAdapter);
 
+        tab_englishpeixun_onlie.setupWithViewPager(vp_englishpeixun_onlie);
+        TablayoutUtils.setTabWidth(tab_englishpeixun_onlie,40);
+
     }
 
     @Override
@@ -57,7 +61,6 @@ public class EnglishPeiXunOnlineActivity extends BaseActivity {
 
     }
 
-    @Override
     protected void onViewClick(View v) {
 
     }

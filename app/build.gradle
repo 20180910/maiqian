@@ -85,4 +85,7 @@ dependencies {
     compile 'com.github:RxBus:1.0.4'
     compile 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
     compile 'com.contrarywind:Android-PickerView:3.2.6'
+
+
+    compile 'cn.jzvd:jiaozivideoplayer:6.2.9'
 }

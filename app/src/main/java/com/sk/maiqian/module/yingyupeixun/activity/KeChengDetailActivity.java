@@ -117,7 +117,6 @@ public class KeChengDetailActivity extends BaseActivity {
         kechengId = getIntent().getStringExtra(IntentParam.kechengId);
         flag = getIntent().getStringExtra(IntentParam.flag);
 
-
         adapter=new BaseRecyclerAdapter<KeChengDetailObj.TeacherListBean>(mContext,R.layout.kechengdatail_laoshi_item) {
             @Override
             public void bindData(RecyclerViewHolder holder, int position, KeChengDetailObj.TeacherListBean bean) {

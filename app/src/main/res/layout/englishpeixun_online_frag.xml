@@ -17,22 +17,20 @@
             android:background="@color/background_f2"
             >
             <!--your view-->
-        <com.library.base.view.MyRecyclerView
-            android:id="@+id/rv_englishpeixundaiban"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-        </com.library.base.view.MyRecyclerView>
+            <in.srain.cube.views.ptr.PtrClassicFrameLayout
+                android:id="@id/pcfl_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:ptr_resistance="2.1"
+                app:ptr_ratio_of_header_height_to_refresh="1.2"
+                >
+                <com.library.base.view.MyRecyclerView
+                    android:id="@+id/rv_englishpeixundaiban"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                </com.library.base.view.MyRecyclerView>
+            </in.srain.cube.views.ptr.PtrClassicFrameLayout>
         </LinearLayout>
-        <ImageView
-            android:id="@+id/iv_englishpeixun_liuyan"
-            android:layout_width="43dp"
-            android:adjustViewBounds="true"
-            android:layout_height="wrap_content"
-            android:src="@drawable/qianzheng_liuyan"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="13dp"
-            />
     </com.library.base.ProgressLayout>
 </LinearLayout>
