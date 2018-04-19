@@ -22,7 +22,7 @@ import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.module.liuxue.network.ApiRequest;
-import com.sk.maiqian.module.liuxue.network.response.GuoJiaObj;
+import com.sk.maiqian.module.youxue.network.response.GuoJiaObj;
 import com.sk.maiqian.module.my.activity.LoginActivity;
 import com.sk.maiqian.module.youxue.network.request.YouXueShenQingBody;
 
@@ -108,18 +108,14 @@ public class LiuXueShenQingActivity extends BaseActivity {
         Map<String,String>map=new HashMap<String,String>();
         map.put("rnd",getRnd());
         map.put("sign",getSign(map));
-        ApiRequest.getZhuanYe(map, new MyCallBack<List<String>>(mContext) {
+        ApiRequest.getZhuanYe(map, new MyCallBack<List<GuoJiaObj>>(mContext) {
             @Override
-            public void onSuccess(List<String> list) {
+            public void onSuccess(List<GuoJiaObj> list) {
                 if(isEmpty(list)){
                     showMsg("暂无专业信息");
                     return;
                 }
-                zhuanYeList.clear();
-                for (int i = 0; i < list.size(); i++) {
-                    GuoJiaObj guoJiaObj=new GuoJiaObj(null,list.get(i));
-                    zhuanYeList.add(guoJiaObj);
-                }
+                zhuanYeList=list;
                 if(isShow){
                     showGuoJia(zhuanYeList,3);
                 }
@@ -243,7 +239,7 @@ public class LiuXueShenQingActivity extends BaseActivity {
                         holder.setText(R.id.tv_youxue_popu_guojia,bean.getClass_name());
                         break;
                     case 3://专业
-                        holder.setText(R.id.tv_youxue_popu_guojia,bean.getTitle());
+                        holder.setText(R.id.tv_youxue_popu_guojia,bean.getMajor_name());
                         break;
                 }
                 holder.itemView.setOnClickListener(new MyOnClickListener() {
@@ -258,7 +254,7 @@ public class LiuXueShenQingActivity extends BaseActivity {
                                 tv_liuxue_shenqing_nianji.setText(bean.getClass_name());
                             break;
                             case 3://专业
-                                tv_liuxue_shenqing_zhuanye.setText(bean.getTitle());
+                                tv_liuxue_shenqing_zhuanye.setText(bean.getMajor_name());
                             break;
                         }
                     }

@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.androidtools.PhoneUtils;
+import com.github.androidtools.SPUtils;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.BaseRecyclerAdapter;
 import com.github.baseclass.adapter.MyLoadMoreAdapter;
@@ -19,6 +20,7 @@ import com.github.baseclass.view.MyPopupwindow;
 import com.github.customview.MyEditText;
 import com.github.customview.MyTextView;
 import com.library.base.view.MyRecyclerView;
+import com.sk.maiqian.AppXml;
 import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
@@ -59,6 +61,8 @@ public class YouXueActivity extends BaseActivity {
     LinearLayout ll_youxue_renqi;
     @BindView(R.id.iv_youxue_liuyan)
     ImageView iv_youxue_liuyan;
+    @BindView(R.id.iv_youxue)
+    ImageView iv_youxue;
 
     @BindView(R.id.tv_youxue_guojia)
     TextView tv_youxue_guojia;
@@ -80,6 +84,10 @@ public class YouXueActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        String imgUrl = SPUtils.getString(mContext, AppXml.youXueImg, null);
+        if (imgUrl != null) {
+            GlideUtils.intoD(mContext,imgUrl,iv_youxue,R.drawable.youxue_banner);
+        }
         et_youxue_search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

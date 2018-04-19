@@ -5,6 +5,7 @@ import com.library.base.ResponseObj;
 import com.sk.maiqian.module.my.network.response.BankNameObj;
 import com.sk.maiqian.network.request.UploadImgBody;
 import com.sk.maiqian.network.response.CityObj;
+import com.sk.maiqian.network.response.ImageObj;
 
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,11 @@ public interface NetIRequest {
     //获取所有城市
     @GET("api/MQLib/GetAllCity")
     Call<ResponseObj<List<CityObj>>> getAllCity(@QueryMap Map<String, String> map);
+
+
+    //获取所有城市
+    @GET("api/MQTravelStudyAbroad/GetTravelStudyAbroad")
+    Call<ResponseObj<ImageObj>> getYouXueObj(@QueryMap Map<String, String> map);
 
 
 

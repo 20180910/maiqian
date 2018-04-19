@@ -1,7 +1,8 @@
 package com.sk.maiqian.module.liuxue.network;
 
+import com.library.base.BaseObj;
 import com.library.base.ResponseObj;
-import com.sk.maiqian.module.liuxue.network.response.GuoJiaObj;
+import com.sk.maiqian.module.youxue.network.response.GuoJiaObj;
 import com.sk.maiqian.module.liuxue.network.response.YouXueObj;
 import com.sk.maiqian.module.youxue.network.response.YouXueDetailObj;
 
@@ -10,6 +11,7 @@ import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.QueryMap;
 
 /**
@@ -32,6 +34,8 @@ public interface IRequest {
     Call<ResponseObj<List<GuoJiaObj>>> getNianJi(@QueryMap Map<String, String> map);
     //专业
     @GET("api/MQTravelStudyAbroad/GetMajorList")
-    Call<ResponseObj<List<String>>> getZhuanYe(@QueryMap Map<String, String> map);
+    Call<ResponseObj<List<GuoJiaObj>>> getZhuanYe(@QueryMap Map<String, String> map);
+
+
 
 }

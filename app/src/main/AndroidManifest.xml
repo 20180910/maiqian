@@ -68,7 +68,7 @@
         <activity android:name=".module.my.activity.YiJianFanKuiActivity"/>
         <activity android:name=".module.my.activity.EditPhoneActivity"/>
         <activity android:name=".module.my.activity.MyCollectionActivity"/>
-        <activity android:name=".module.my.activity.ZiXunDetailActivity"/>
+        <activity android:name=".module.home.activity.ZiXunDetailActivity"/>
         <activity android:name=".module.home.activity.PaySuccessActivity"/>
         <activity android:name=".module.order.activity.OrderListActivity"/>
         <activity android:name=".module.order.activity.QianZhengOrderActivity"/>

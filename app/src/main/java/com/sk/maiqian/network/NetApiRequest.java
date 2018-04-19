@@ -34,5 +34,9 @@ public class NetApiRequest extends BaseApiRequest {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
         getGeneralClient(NetIRequest.class).getAllCity(map).enqueue(callBack);
     }
+    public static void getYouXueObj(Map map  , MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        getGeneralClient(NetIRequest.class).getYouXueObj(map).enqueue(callBack);
+    }
 
 }

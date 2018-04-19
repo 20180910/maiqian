@@ -22,9 +22,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
+                    android:id="@+id/iv_liuxue"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
+                    android:layout_height="110dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/youxue_banner"
                     />
@@ -96,7 +96,7 @@
                 android:background="@color/white"
                 >
                 <LinearLayout
-                    android:id="@+id/ll_youxue_guojia"
+                    android:id="@+id/ll_liuxue_guojia"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
@@ -105,10 +105,10 @@
                     android:background="@color/white"
                     >
                     <TextView
-                        android:id="@+id/tv_youxue_guojia"
+                        android:id="@+id/tv_liuxue_guojia"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="国家"
+                        android:text="所有国家"
                         android:gravity="center"
                         android:textColor="@color/gray_66"
                         android:textSize="14sp"
@@ -121,16 +121,17 @@
                         />
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/ll_youxue_xuexiao"
+                    android:id="@+id/ll_liuxue_xuexiao"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:gravity="center"
                     android:background="@color/white"
+                    android:visibility="gone"
                     >
                     <TextView
-                        android:id="@+id/tv_youxue_xuexiao"
+                        android:id="@+id/tv_liuxue_xuexiao"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="学校"
@@ -146,7 +147,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/ll_youxue_zhuanye"
+                    android:id="@+id/ll_liuxue_zhuanye"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
@@ -155,7 +156,7 @@
                     android:background="@color/white"
                     >
                     <TextView
-                        android:id="@+id/tv_youxue_zhuanye"
+                        android:id="@+id/tv_liuxue_zhuanye"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="专业"
@@ -171,7 +172,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/ll_youxue_paiming"
+                    android:id="@+id/ll_liuxue_paiming"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
@@ -180,7 +181,7 @@
                     android:background="@color/white"
                     >
                     <TextView
-                        android:id="@+id/tv_youxue_paiming"
+                        android:id="@+id/tv_liuxue_paiming"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="QS排名"

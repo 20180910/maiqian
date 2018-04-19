@@ -1,26 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/background_f2"
+              android:background="@color/white"
     >
 <include layout="@layout/app_title"/>
     <com.library.base.ProgressLayout
         android:id="@id/pl_load"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@color/background_f2"
-            >
-            <!--your view-->
+        <android.support.v4.widget.NestedScrollView
+                android:id="@id/nsv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                >
+                <TextView
+                    android:id="@+id/tv_zixun_detail_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="title"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@color/white"
+                    android:layout_marginBottom="10dp"
+                    >
+                    <TextView
+                        android:id="@+id/tv_zixun_detail_laiyuan"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        tools:text="来源"
+                        />
+                    <TextView
+                        android:id="@+id/tv_zixun_detail_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="2019-1-1"
+                        />
+                </LinearLayout>
+                <com.library.base.view.richedit.RichEditor
+                    android:id="@+id/re_zixun_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
+                </com.library.base.view.richedit.RichEditor>
+            </LinearLayout>
 
+        </android.support.v4.widget.NestedScrollView>
 
-        </LinearLayout>
     </com.library.base.ProgressLayout>
 </LinearLayout>

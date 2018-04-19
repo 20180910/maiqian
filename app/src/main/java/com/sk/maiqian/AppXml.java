@@ -5,6 +5,8 @@ package com.sk.maiqian;
  */
 
 public class AppXml {
+    public static final String liuXueImg = "liuXueImg";
+    public static final String youXueImg = "youXueImg";
     public static final String user_id = "user_id";
     public static final String mobile = "mobile";
     public static final String sex = "sex";

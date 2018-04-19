@@ -15,11 +15,14 @@ import com.sk.maiqian.AppXml;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
+import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.event.LoginSuccessEvent;
 import com.sk.maiqian.module.home.fragment.HomeFragment;
 import com.sk.maiqian.module.home.fragment.SelectFragment;
 import com.sk.maiqian.module.my.activity.LoginActivity;
 import com.sk.maiqian.module.my.fragment.MyFragment;
+import com.sk.maiqian.network.NetApiRequest;
+import com.sk.maiqian.network.response.ImageObj;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -60,6 +63,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        getYouXueImg();
+        getLiuXueImg();
 
         if(SPUtils.getBoolean(mContext, AppXml.updatePWD,false)){
             clearUserId();
@@ -72,6 +77,29 @@ public class MainActivity extends BaseActivity {
         setTabClickListener();
 
         setBroadcast();
+    }
+
+    private void getYouXueImg() {
+        Map<String,String>map=new HashMap<String,String>();
+        map.put("type","1");
+        map.put("sign",getSign(map));
+        NetApiRequest.getYouXueObj(map, new MyCallBack<ImageObj>(mContext) {
+            @Override
+            public void onSuccess(ImageObj obj) {
+                SPUtils.setPrefString(mContext,AppXml.youXueImg,obj.getImg_url());
+            }
+        });
+    }
+    private void getLiuXueImg() {
+        Map<String,String>map=new HashMap<String,String>();
+        map.put("type","2");
+        map.put("sign",getSign(map));
+        NetApiRequest.getYouXueObj(map, new MyCallBack<ImageObj>(mContext) {
+            @Override
+            public void onSuccess(ImageObj obj) {
+                SPUtils.setPrefString(mContext,AppXml.liuXueImg,obj.getImg_url());
+            }
+        });
     }
 
     private void setTabClickListener() {

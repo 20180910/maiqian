@@ -13,6 +13,7 @@ import com.sk.maiqian.module.home.network.response.QianZhengDetailObj;
 import com.sk.maiqian.module.home.network.response.QianZhengObj;
 import com.sk.maiqian.module.home.network.response.ShenQingRenObj;
 import com.sk.maiqian.module.home.network.response.ZiLiaoMuBanObj;
+import com.sk.maiqian.module.home.network.response.ZiXunDetailObj;
 import com.sk.maiqian.module.home.network.response.ZiXunObj;
 
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
 
@@ -92,6 +94,9 @@ public interface IRequest {
     @GET("api/MQEnglishTraining/GetEnglishTrainingList")
     Call<ResponseObj<List<EnglishPeiXunObj>>> getEnglishPeiXun(@QueryMap Map<String, String> map);
 
-
+    //资讯详情
+    @Headers("User-Agent:android")
+    @GET("api/MQHomePage/GetInformationDetaile")
+    Call<ResponseObj<ZiXunDetailObj>> getZiXunDetail(@QueryMap Map<String, String> map);
 
 }
