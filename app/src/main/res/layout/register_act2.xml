@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+    >
+    <android.support.v4.widget.NestedScrollView
+        android:id="@id/nsv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/zhuce_bg"
+            >
+            <ImageView
+                android:id="@+id/iv_register_bg"
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/zhuce_bg"
+                android:visibility="gone"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="60dp"
+                    android:src="@drawable/zhuce_icon"
+                    />
+                <!--your view-->
+                <com.github.customview.MyLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    app:my_ll_corner_radius="10dp"
+                    app:my_ll_solid="@color/white"
+                    >
+
+                    <com.github.customview.MyEditText
+                        android:id="@+id/et_register_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/white"
+                        android:drawableLeft="@drawable/zhuce_icon01"
+                        android:drawablePadding="15dp"
+                        android:gravity="center_vertical"
+                        android:hint="手机号"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:paddingLeft="7dp"
+                        android:textSize="13sp"
+                        app:my_et_solid="@color/white"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2px"
+                        android:background="@color/background_f2"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        >
+
+                        <com.github.customview.MyEditText
+                            android:id="@+id/et_register_code"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:drawableLeft="@drawable/zhuce_icon02"
+                            android:drawablePadding="15dp"
+                            android:gravity="center_vertical"
+                            android:hint="验证码"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:paddingLeft="7dp"
+                            android:textSize="13sp"
+                            app:my_et_solid="@color/white"
+                            />
+
+                        <com.github.customview.MyTextView
+                            android:id="@+id/tv_register_getmsg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="5"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="获取验证码"
+                            android:textColor="@color/blue_00"
+                            app:my_tv_all_line="true"
+                            app:my_tv_border_color="@color/blue_00"
+                            app:my_tv_corner_radius="4dp"
+                            app:my_tv_solid="@color/white"
+                            />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2px"
+                        android:background="@color/background_f2"
+                        />
+
+                    <com.github.customview.MyEditText
+                        android:id="@+id/et_register_pwd"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/white"
+                        android:drawableLeft="@drawable/zhuce_icon03"
+                        android:drawablePadding="15dp"
+                        android:gravity="center_vertical"
+                        android:hint="填写密码(设置6-12位数字加密码字母组合)"
+                        android:imeOptions="actionNext"
+                        android:inputType="textWebPassword"
+                        android:paddingLeft="7dp"
+                        android:textSize="13sp"
+                        app:my_et_solid="@color/white"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2px"
+                        android:background="@color/background_f2"
+                        />
+
+                    <com.github.customview.MyEditText
+                        android:id="@+id/et_register_repwd"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/white"
+                        android:drawableLeft="@drawable/zhuce_icon03"
+                        android:drawablePadding="15dp"
+                        android:gravity="center_vertical"
+                        android:hint="确认密码"
+                        android:imeOptions="actionNext"
+                        android:inputType="textWebPassword"
+                        android:paddingLeft="7dp"
+                        android:textSize="13sp"
+                        app:my_et_solid="@color/white"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2px"
+                        android:background="@color/background_f2"
+                        />
+
+                    <com.github.customview.MyEditText
+                        android:id="@+id/et_register_fenxiao"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/white"
+                        android:drawableLeft="@drawable/zhuce_icon04"
+                        android:drawablePadding="15dp"
+                        android:gravity="center_vertical"
+                        android:hint="分销码"
+                        android:imeOptions="actionNext"
+                        android:inputType="textWebEditText"
+                        android:paddingLeft="7dp"
+                        android:textSize="13sp"
+                        app:my_et_solid="@color/white"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2px"
+                        android:background="@color/background_f2"
+                        />
+
+                    <com.github.customview.MyTextView
+                        android:id="@+id/tv_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="43dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="注册"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:my_tv_corner_radius="4dp"
+                        app:my_tv_press="@color/blue_press"
+                        app:my_tv_solid="@color/blue_00"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingTop="10dp"
+                        >
+
+                        <com.github.customview.MyCheckBox
+                            android:id="@+id/cb_register_xieyi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:paddingLeft="5dp"
+                            android:text="我已阅读"
+                            android:textColor="@color/gray_99"
+                            app:my_checkbox_checked="@drawable/zhuce_icon05"
+                            app:my_checkbox_normal="@drawable/zhuce_icon06"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_register_xieyi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="《麦签用户协议》"
+                            android:textColor="@color/blue_00"
+                            />
+                    </LinearLayout>
+                </com.github.customview.MyLinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="已有账号?现在"
+                    android:textColor="@color/white"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_register_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="登录"
+                    android:textColor="@color/blue_00"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <include layout="@layout/app_title"/>
+
+</RelativeLayout>
