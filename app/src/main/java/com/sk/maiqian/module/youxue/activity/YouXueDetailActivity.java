@@ -104,6 +104,7 @@ public class YouXueDetailActivity extends BaseActivity {
         id = obj.getId();
         GlideUtils.intoD(mContext,obj.getImage_url(),iv_youxue_detail,R.drawable.liuxue_img);
 
+        tv_youxue_detail_content.setText(obj.getIntroduce());
         tv_youxue_detail_title.setText(obj.getTitle());
         if(notEmpty(obj.getCanshu_list())){
             List<YouXueDetailObj.CanshuListBean> canshuList = obj.getCanshu_list();
@@ -145,18 +146,11 @@ public class YouXueDetailActivity extends BaseActivity {
             tv_youxue_detail_collection.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.collect_normal, 0, 0);
         }
 
-
-
-
     }
 
-    @Override
-    protected void onViewClick(View v) {
-
-    }
 
     @OnClick({R.id.tv_youxue_detail_zixun, R.id.tv_youxue_detail_collection, R.id.tv_youxue_detail_shenqing})
-    public void onClick(View view) {
+    public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.tv_youxue_detail_zixun:
                 showZiXunDialog();

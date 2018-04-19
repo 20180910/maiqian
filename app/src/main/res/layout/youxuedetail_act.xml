@@ -205,7 +205,7 @@
                         android:id="@+id/tv_youxue_detail_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务"
+                        tools:text="提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务提供签证服务"
                         android:textSize="13sp"
                         />
                 </LinearLayout>

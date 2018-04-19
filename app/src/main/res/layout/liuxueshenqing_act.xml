@@ -9,8 +9,7 @@
 
     <include layout="@layout/app_title"/>
 
-    <com.library.base.ProgressLayout
-        android:id="@id/pl_load"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -22,26 +21,18 @@
             >
             <!--your view-->
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:padding="10dp"
-                android:text="想要速度获得游学信息和申请方案想要速度获得游学信息和申请方案想要速度获得游学信息和申请方案"
-                android:textColor="@color/orange"
-                />
-
-            <TextView
+                android:id="@+id/tv_liuxue_shenqing_guojia"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="想去留学学校"
+                android:text="想去留学学校?"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:background="@color/white"
-                android:layout_marginTop="5dp"
+                android:paddingTop="20dp"
                 />
-
             <TextView
+                android:id="@+id/tv_liuxue_shenqing_xuexiao"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="请选择学校"
@@ -65,6 +56,7 @@
                 />
 
             <com.github.customview.MyEditText
+                android:id="@+id/et_liuxue_shenqing_phone"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="请输入手机号码"
@@ -86,6 +78,7 @@
                 />
 
             <TextView
+                android:id="@+id/tv_liuxue_shenqing_nianji"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="请选择年级"
@@ -107,6 +100,7 @@
                 />
 
             <TextView
+                android:id="@+id/tv_liuxue_shenqing_zhuanye"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="请选择就读专业"
@@ -115,6 +109,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:drawableRight="@drawable/jiantou_right"
+                android:layout_marginBottom="2px"
                 />
         </LinearLayout>
         <com.github.customview.MyLinearLayout
@@ -128,6 +123,7 @@
             android:paddingBottom="5dp"
             >
             <com.github.customview.MyLinearLayout
+                android:id="@+id/ll_liuxue_shenqing_zixun"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="40dp"
@@ -156,6 +152,7 @@
             </com.github.customview.MyLinearLayout>
 
             <com.github.customview.MyTextView
+                android:id="@+id/tv_liuxue_shenqing_commit"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -168,5 +165,5 @@
                 android:layout_marginRight="15dp"
                 />
         </com.github.customview.MyLinearLayout>
-    </com.library.base.ProgressLayout>
+    </RelativeLayout>
 </LinearLayout>

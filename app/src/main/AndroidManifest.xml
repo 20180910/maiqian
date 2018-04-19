@@ -42,11 +42,11 @@
         <activity android:name=".module.yingyupeixun.activity.LaoShiJieShaoActivity"/>
         <activity android:name=".module.yingyupeixun.activity.TiJiaoOrderActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".module.yingyupeixun.activity.YinpinDetailActivity"/>
-        <activity android:name=".module.youxue.activity.YouXueActivity"/>
+        <activity android:name=".module.youxue.activity.YouXueActivity"  android:windowSoftInputMode="adjustNothing"/>/>
         <activity android:name=".module.youxue.activity.YouXueDetailActivity"/>
         <activity android:name=".module.youxue.activity.YouXueShenQingActivity"/>
         <activity android:name=".module.liuxue.activity.LiuXueShenQingActivity"/>
-        <activity android:name=".module.liuxue.activity.LiuXueActivity"/>
+        <activity android:name=".module.liuxue.activity.LiuXueActivity" android:windowSoftInputMode="adjustNothing"/>
         <activity android:name=".module.liuxue.activity.LiuXueDetailActivity"/>
         <activity android:name=".module.my.activity.LoginActivity"/>
         <activity android:name=".module.my.activity.RegisterActivity" android:windowSoftInputMode="adjustResize"/>

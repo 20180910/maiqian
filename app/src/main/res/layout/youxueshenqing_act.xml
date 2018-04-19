@@ -86,6 +86,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:drawableRight="@drawable/jiantou_right"
+                android:layout_marginBottom="2px"
                 />
 
         </LinearLayout>

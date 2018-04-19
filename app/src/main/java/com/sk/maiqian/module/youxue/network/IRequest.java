@@ -37,4 +37,6 @@ public interface IRequest {
     @GET("api/MQTravelStudyAbroad/GetVisaDetaile")
     Call<ResponseObj<YouXueDetailObj>> youXueDetail(@QueryMap Map<String, String> map);
 
+
+
 }

@@ -33,7 +33,7 @@ public class YouXueDetailObj extends BaseObj {
     private int is_collect;
     private List<CanshuListBean> canshu_list;
     private List<String> scenery_list;
-    private List<?> major_list;
+    private List<String> major_list;
 
     public String getId() {
         return id;
@@ -115,11 +115,11 @@ public class YouXueDetailObj extends BaseObj {
         this.scenery_list = scenery_list;
     }
 
-    public List<?> getMajor_list() {
+    public List<String> getMajor_list() {
         return major_list;
     }
 
-    public void setMajor_list(List<?> major_list) {
+    public void setMajor_list(List<String> major_list) {
         this.major_list = major_list;
     }
 
