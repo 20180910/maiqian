@@ -71,7 +71,7 @@
         <activity android:name=".module.home.activity.ZiXunDetailActivity"/>
         <activity android:name=".module.home.activity.PaySuccessActivity"/>
         <activity android:name=".module.order.activity.OrderListActivity"/>
-        <activity android:name=".module.order.activity.QianZhengOrderActivity"/>
+        <activity android:name=".module.order.activity.OrderDetailActivity"/>
         <activity android:name=".module.my.activity.XieYiActivity"/>
         <activity android:name=".module.my.activity.UpdatePWDActivity"/>
         <activity android:name=".module.my.activity.ZhuanJiFenActivity"/>

@@ -1,6 +1,7 @@
 package com.sk.maiqian.module.home.fragment;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,14 +15,18 @@ import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.MyLoadMoreAdapter;
 import com.github.baseclass.adapter.MyRecyclerViewHolder;
 import com.github.baseclass.view.MyDialog;
+import com.github.rxbus.MyConsumer;
 import com.library.base.BaseObj;
 import com.sk.maiqian.Constant;
+import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseFragment;
 import com.sk.maiqian.base.GlideUtils;
 import com.sk.maiqian.base.MyCallBack;
+import com.sk.maiqian.module.home.event.RefreshOrderEvent;
 import com.sk.maiqian.module.home.network.ApiRequest;
 import com.sk.maiqian.module.home.network.response.OrderQianZhengObj;
+import com.sk.maiqian.module.order.activity.OrderDetailActivity;
 import com.sk.maiqian.tools.TextViewUtils;
 
 import java.util.HashMap;
@@ -85,6 +90,21 @@ public class OrderListFragment extends BaseFragment {
     }
 
     @Override
+    protected void initRxBus() {
+        super.initRxBus();
+        getEvent(RefreshOrderEvent.class, new MyConsumer<RefreshOrderEvent>() {
+            @Override
+            public void onAccept(RefreshOrderEvent event) {
+                if(event.flag.equals(getArguments().getString(Constant.flag))){
+                    getQianZhengOrder(1,false);
+                }else{
+                    getPeiXunOrder(1,false);
+                }
+            }
+        });
+    }
+
+    @Override
     protected void initView() {
 
         setQianZhengOrderAdapter();
@@ -106,6 +126,16 @@ public class OrderListFragment extends BaseFragment {
                 TextView tv_qianzheng_order_price = holder.getTextView(R.id.tv_qianzheng_order_price);
                 TextView tv_peixu_order_flag = holder.getTextView(R.id.tv_peixu_order_flag);
                 TextView tv_qianzheng_order_title = holder.getTextView(R.id.tv_qianzheng_order_title);
+
+                holder.itemView.setOnClickListener(new MyOnClickListener() {
+                    @Override
+                    protected void onNoDoubleClick(View view) {
+                        Intent intent=new Intent();
+                        intent.putExtra(IntentParam.dataId,bean.getOrder_no());
+                        intent.putExtra(IntentParam.type,getArguments().getString(Constant.flag));
+                        STActivity(intent,OrderDetailActivity.class);
+                    }
+                });
 
                 if(getArguments().getString(Constant.flag).equals(OrderFragment.type_1)){
                     tv_qianzheng_order_title.setMaxLines(2);

@@ -13,9 +13,9 @@ import java.util.Map;
 
 public class ApiRequest extends BaseApiRequest {
 
-    public static void getHuanKuanPlan(Map map, MyCallBack callBack) {
+    public static void getOrderDetail(Map map, MyCallBack callBack) {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
-        getGeneralClient(IRequest.class).getHuanKuanPlan(map).enqueue(callBack);
+        getGeneralClient(IRequest.class).getOrderDetail(map).enqueue(callBack);
     }
 
 

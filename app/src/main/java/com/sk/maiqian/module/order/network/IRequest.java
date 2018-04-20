@@ -1,6 +1,7 @@
 package com.sk.maiqian.module.order.network;
 
 import com.library.base.ResponseObj;
+import com.sk.maiqian.module.order.network.response.OrderDetailObj;
 
 import java.util.Map;
 
@@ -15,8 +16,8 @@ import retrofit2.http.QueryMap;
 public interface IRequest {
 
     //查询模块-获取信用卡列表
-    @GET("api/HandleCardOnline/GetPlanList")
-    Call<ResponseObj<?>> getHuanKuanPlan(@QueryMap Map<String, String> map);
+    @GET("api/MQUserBase/GetOrderDetail")
+    Call<ResponseObj<OrderDetailObj>> getOrderDetail(@QueryMap Map<String, String> map);
 
 
 
