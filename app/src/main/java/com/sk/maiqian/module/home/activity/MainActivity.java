@@ -11,12 +11,15 @@ import com.github.androidtools.SPUtils;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.customview.MyRadioButton;
 import com.github.rxbus.MyConsumer;
+import com.github.rxbus.MyRxBus;
 import com.sk.maiqian.AppXml;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.event.LoginSuccessEvent;
+import com.sk.maiqian.event.SelectOrderEvent;
+import com.sk.maiqian.event.SelectPeiXunOrderEvent;
 import com.sk.maiqian.module.home.fragment.HomeFragment;
 import com.sk.maiqian.module.home.fragment.OrderTypeFragment;
 import com.sk.maiqian.module.my.activity.LoginActivity;
@@ -79,6 +82,8 @@ public class MainActivity extends BaseActivity {
         setBroadcast();
     }
 
+
+
     private void getYouXueImg() {
         Map<String,String>map=new HashMap<String,String>();
         map.put("type","1");
@@ -126,7 +131,7 @@ public class MainActivity extends BaseActivity {
                             STActivity(LoginActivity.class);
                             selectView.setChecked(true);
                         } else {
-                            selectChaXun();
+                            selectOrder();
                         }
                         break;
                     case 3:
@@ -155,6 +160,16 @@ public class MainActivity extends BaseActivity {
                 selectView.setChecked(true);
             }
         });
+
+        getEvent(SelectOrderEvent.class, new MyConsumer<SelectOrderEvent>() {
+            @Override
+            public void onAccept(SelectOrderEvent event) {
+                selectOrder();
+                selectView.setChecked(true);
+                MyRxBus.getInstance().postReplay(new SelectPeiXunOrderEvent());
+            }
+        });
+
     }
 
     private void selectHome() {
@@ -172,7 +187,7 @@ public class MainActivity extends BaseActivity {
         hideFragment(myFragment);
     }
 
-    private void selectChaXun() {
+    private void selectOrder() {
         if (selectView == rb_home_tab2) {
             return;
         }

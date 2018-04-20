@@ -5,11 +5,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.androidtools.SPUtils;
+import com.github.rxbus.MyRxBus;
 import com.sk.maiqian.AppXml;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseFragment;
 import com.sk.maiqian.base.GlideUtils;
 import com.sk.maiqian.base.MyCallBack;
+import com.sk.maiqian.event.SelectOrderEvent;
 import com.sk.maiqian.module.my.activity.FenXiaoActivity;
 import com.sk.maiqian.module.my.activity.JiFenActivity;
 import com.sk.maiqian.module.my.activity.MyAddressListActivity;
@@ -116,8 +118,10 @@ public class MyFragment extends BaseFragment {
                 STActivity(PersonInfoActivity.class);
                 break;
             case R.id.ll_my_qianzheng_order:
+                MyRxBus.getInstance().post(new SelectOrderEvent(SelectOrderEvent.type_1));
                 break;
             case R.id.ll_my_yingyu_order:
+                MyRxBus.getInstance().post(new SelectOrderEvent(SelectOrderEvent.type_2));
                 break;
             case R.id.ll_my_liuxue:
                 break;
