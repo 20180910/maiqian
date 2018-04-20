@@ -4,6 +4,7 @@ import com.github.retrofitutil.NoNetworkException;
 import com.library.base.BaseApiRequest;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.base.MyCallBack;
+import com.sk.maiqian.module.home.network.request.CommitQianZhengBody;
 import com.sk.maiqian.module.home.network.request.QianZhengLiuYanBody;
 
 import java.util.Map;
@@ -81,6 +82,26 @@ public class ApiRequest extends BaseApiRequest {
     public static void getZiXunDetail(Map map , MyCallBack callBack) {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
         getGeneralClient(IRequest.class).getZiXunDetail(map).enqueue(callBack);
+    }
+    public static void getQianZhengOrder(Map map , MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
+        getGeneralClient(IRequest.class).getQianZhengOrder(map).enqueue(callBack);
+    }
+    public static void commitQianZhengOrder(Map map , CommitQianZhengBody body, MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
+        getGeneralClient(IRequest.class).commitQianZhengOrder(map,body).enqueue(callBack);
+    }
+    public static void deleteOrder(Map map  , MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
+        getGeneralClient(IRequest.class).deleteOrder(map).enqueue(callBack);
+    }
+    public static void cancelOrder(Map map  , MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
+        getGeneralClient(IRequest.class).cancelOrder(map).enqueue(callBack);
+    }
+    public static void completeOrder(Map map  , MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
+        getGeneralClient(IRequest.class).completeOrder(map).enqueue(callBack);
     }
 
 

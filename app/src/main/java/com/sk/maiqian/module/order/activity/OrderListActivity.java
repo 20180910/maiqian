@@ -12,9 +12,10 @@ import com.sk.maiqian.base.BaseActivity;
 public class OrderListActivity extends BaseActivity {
     @Override
     protected int getContentView() {
-        setAppTitle("服务订单");
+        setAppTitle("服务/订单");
         setAppRightImg(R.drawable.share);
-        return R.layout.orderlist_act;
+        hiddenBackIcon();
+        return R.layout.ordertype_frag;
     }
 
     @Override

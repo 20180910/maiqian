@@ -2,12 +2,14 @@ package com.sk.maiqian.module.home.network;
 
 import com.library.base.BaseObj;
 import com.library.base.ResponseObj;
+import com.sk.maiqian.module.home.network.request.CommitQianZhengBody;
 import com.sk.maiqian.module.home.network.request.QianZhengLiuYanBody;
 import com.sk.maiqian.module.home.network.response.BannerObj;
 import com.sk.maiqian.module.home.network.response.CollectObj;
 import com.sk.maiqian.module.home.network.response.EnglishPeiXunObj;
 import com.sk.maiqian.module.home.network.response.HomeDaYiJieHuoObj;
 import com.sk.maiqian.module.home.network.response.HomeZiXunObj;
+import com.sk.maiqian.module.home.network.response.OrderQianZhengObj;
 import com.sk.maiqian.module.home.network.response.QianZhengDaiBanObj;
 import com.sk.maiqian.module.home.network.response.QianZhengDetailObj;
 import com.sk.maiqian.module.home.network.response.QianZhengObj;
@@ -98,5 +100,29 @@ public interface IRequest {
     @Headers("User-Agent:android")
     @GET("api/MQHomePage/GetInformationDetaile")
     Call<ResponseObj<ZiXunDetailObj>> getZiXunDetail(@QueryMap Map<String, String> map);
+
+    //签证订单
+    @Headers("User-Agent:android")
+    @GET("api/MQUserBase/GetMyVisaOrder")
+    Call<ResponseObj<List<OrderQianZhengObj>>> getQianZhengOrder(@QueryMap Map<String, String> map);
+
+    //提交签证订单
+    @Headers("User-Agent:android")
+    @POST("api/MQVisaAgent/PostSubmitOrder")
+    Call<ResponseObj<List<OrderQianZhengObj>>> commitQianZhengOrder(@QueryMap Map<String, String> map,@Body CommitQianZhengBody body);
+
+    //删除订单
+    @Headers("User-Agent:android")
+    @GET("api/MQUserBase/GetDelOrder")
+    Call<ResponseObj<BaseObj>> deleteOrder(@QueryMap Map<String, String> map);
+
+    //取消订单
+    @Headers("User-Agent:android")
+    @GET("api/MQUserBase/GetCancelOrder")
+    Call<ResponseObj<List<OrderQianZhengObj>>> cancelOrder(@QueryMap Map<String, String> map);
+    //完成订单
+    @Headers("User-Agent:android")
+    @GET("api/MQUserBase/GetConfirmReceiptGoods")
+    Call<ResponseObj<List<OrderQianZhengObj>>> completeOrder(@QueryMap Map<String, String> map);
 
 }

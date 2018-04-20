@@ -261,6 +261,7 @@ public class QianZhengDetailActivity extends BaseActivity {
             case R.id.tv_qianzheng_detail_yuding:
                 intent=new Intent();
                 intent.putExtra(IntentParam.qianZhengObj,qianZhengDetailObj);
+                intent.putExtra(IntentParam.visaId,visaId);
                 STActivity(intent,DingDanTianXieActivity.class);
                 break;
         }

@@ -46,6 +46,7 @@ public class MyAddressListActivity extends BaseActivity {
     LinearLayout ll_address_list;
 
     private boolean isEdit;
+    private boolean selectAddress;
 
     @Override
     protected int getContentView() {
@@ -56,6 +57,8 @@ public class MyAddressListActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        selectAddress = getIntent().getBooleanExtra(IntentParam.selectAddress, false);
+
         setBottomViewShow();
         adapter = new MyLoadMoreAdapter<MyAddressObj>(mContext, R.layout.myaddress_item, pageSize) {
             @Override
@@ -83,9 +86,15 @@ public class MyAddressListActivity extends BaseActivity {
                     @Override
                     protected void onNoDoubleClick(View view) {
                         Intent intent=new Intent();
-                        intent.putExtra(IntentParam.addressBean,bean);
-                        intent.putExtra(IntentParam.isEditAddress,true);
-                        STActivityForResult(EditAddressActivity.class,100);
+                        if(selectAddress){
+                            intent.putExtra(IntentParam.addressBean,bean);
+                            setResult(RESULT_OK,intent);
+                            finish();
+                        }else{
+                            intent.putExtra(IntentParam.addressBean,bean);
+                            intent.putExtra(IntentParam.isEditAddress,true);
+                            STActivityForResult(EditAddressActivity.class,100);
+                        }
                     }
                 });
             }

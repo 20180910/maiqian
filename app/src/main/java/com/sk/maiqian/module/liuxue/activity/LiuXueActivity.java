@@ -96,7 +96,7 @@ public class LiuXueActivity extends BaseActivity {
     protected void initView() {
         String imgUrl = SPUtils.getString(mContext, AppXml.liuXueImg, null);
         if (imgUrl != null) {
-            GlideUtils.intoD(mContext,imgUrl,iv_liuxue,R.drawable.youxue_banner);
+            GlideUtils.intoD(mContext,imgUrl,iv_liuxue,R.drawable.liuxue_banner);
         }
         et_liuxue_search.addTextChangedListener(new TextWatcher() {
             @Override

@@ -18,7 +18,7 @@ import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.event.LoginSuccessEvent;
 import com.sk.maiqian.module.home.fragment.HomeFragment;
-import com.sk.maiqian.module.home.fragment.SelectFragment;
+import com.sk.maiqian.module.home.fragment.OrderTypeFragment;
 import com.sk.maiqian.module.my.activity.LoginActivity;
 import com.sk.maiqian.module.my.fragment.MyFragment;
 import com.sk.maiqian.network.NetApiRequest;
@@ -38,7 +38,7 @@ public class MainActivity extends BaseActivity {
 //    View status_bar;
 
     HomeFragment homeFragment;
-    SelectFragment selectFragment;
+    OrderTypeFragment orderTypeFragment;
     MyFragment myFragment;
 
     @BindView(R.id.fl_content)
@@ -122,12 +122,12 @@ public class MainActivity extends BaseActivity {
                         selectHome();
                         break;
                     case 2:
-//                        if (TextUtils.equals(noLoginCode, getUserId())) {
-//                            STActivity(LoginActivity.class);
-//                            selectView.setChecked(true);
-//                        } else {
-                        selectChaXun();
-//                        }
+                        if (TextUtils.equals(noLoginCode, getUserId())) {
+                            STActivity(LoginActivity.class);
+                            selectView.setChecked(true);
+                        } else {
+                            selectChaXun();
+                        }
                         break;
                     case 3:
                         if (TextUtils.equals(noLoginCode, getUserId())) {
@@ -168,7 +168,7 @@ public class MainActivity extends BaseActivity {
         } else {
             showFragment(homeFragment);
         }
-        hideFragment(selectFragment);
+        hideFragment(orderTypeFragment);
         hideFragment(myFragment);
     }
 
@@ -177,11 +177,11 @@ public class MainActivity extends BaseActivity {
             return;
         }
         selectView = rb_home_tab2;
-        if (selectFragment == null) {
-            selectFragment = new SelectFragment();
-            addFragment(R.id.fl_content, selectFragment);
+        if (orderTypeFragment == null) {
+            orderTypeFragment = new OrderTypeFragment();
+            addFragment(R.id.fl_content, orderTypeFragment);
         } else {
-            showFragment(selectFragment);
+            showFragment(orderTypeFragment);
         }
         hideFragment(homeFragment);
         hideFragment(myFragment);
@@ -199,7 +199,7 @@ public class MainActivity extends BaseActivity {
             showFragment(myFragment);
         }
         hideFragment(homeFragment);
-        hideFragment(selectFragment);
+        hideFragment(orderTypeFragment);
     }
 
     @Override

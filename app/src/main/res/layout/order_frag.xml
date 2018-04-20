@@ -6,5 +6,21 @@
               android:layout_height="match_parent"
               android:background="@color/background_f2"
     >
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_order"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:background="@color/white"
+        android:layout_marginTop="5dp"
+        app:tabIndicatorColor="@color/blue_00"
+        app:tabSelectedTextColor="@color/blue_00"
+        app:tabTextColor="@color/gray_66"
+        >
+    </android.support.design.widget.TabLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+    </android.support.v4.view.ViewPager>
 </LinearLayout>

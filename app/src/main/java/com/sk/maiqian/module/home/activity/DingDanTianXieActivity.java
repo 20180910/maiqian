@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -25,6 +26,8 @@ import com.github.baseclass.view.MyDialog;
 import com.github.customview.MyEditText;
 import com.github.customview.MyRadioButton;
 import com.github.customview.MyTextView;
+import com.library.base.BaseObj;
+import com.library.base.tools.ZhengZeUtils;
 import com.library.base.view.MyRecyclerView;
 import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
@@ -33,6 +36,7 @@ import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.base.SpaceItemDecoration;
 import com.sk.maiqian.module.home.bean.RiLiObj;
 import com.sk.maiqian.module.home.network.ApiRequest;
+import com.sk.maiqian.module.home.network.request.CommitQianZhengBody;
 import com.sk.maiqian.module.home.network.response.QianZhengDetailObj;
 import com.sk.maiqian.module.home.network.response.ShenQingRenObj;
 import com.sk.maiqian.module.my.activity.LoginActivity;
@@ -90,6 +94,8 @@ public class DingDanTianXieActivity extends BaseActivity {
     private BottomSheetDialog peopleDialog;
     private PtrClassicFrameLayout pcfl_refresh;
     private String addressId;
+    private String chuFaDate;
+    private String visaId;
 
     @Override
     protected int getContentView() {
@@ -100,6 +106,8 @@ public class DingDanTianXieActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+
+        visaId = getIntent().getStringExtra(IntentParam.visaId);
         qianZhengDetailObj = (QianZhengDetailObj) getIntent().getSerializableExtra(IntentParam.qianZhengObj);
         tv_qianzheng_order_title.setText(qianZhengDetailObj.getTitle());
 
@@ -214,12 +222,72 @@ public class DingDanTianXieActivity extends BaseActivity {
                 mDialog.create().show();
                 break;
             case R.id.tv_qianzheng_order_pay:
+                if(noLogin()){
+                    STActivity(LoginActivity.class);
+                    return;
+                }
 
+                int itemCount = adapter.getItemCount();
+
+                String name = getSStr(et_qianzheng_order_name);
+                String phone = getSStr(et_qianzheng_order_phone);
+                String email = getSStr(et_qianzheng_order_email);
+
+                if(TextUtils.isEmpty(chuFaDate)){
+                    showMsg("请选择出发日期");
+                    return;
+                }else if(itemCount==0){
+                    showMsg("请选择申请人");
+                    return;
+                }else if(TextUtils.isEmpty(name)){
+                    showMsg("请填写联系人姓名");
+                    return;
+                }else if(TextUtils.isEmpty(phone)){
+                    showMsg("请填写联系人手机号");
+                    return;
+                }else if(ZhengZeUtils.notMobile(phone)){
+                    showMsg("请填写正确手机号");
+                    return;
+                }else if(TextUtils.isEmpty(email)|| ZhengZeUtils.notEmail(email)){
+                    showMsg("请填写正确邮箱");
+                    return;
+                }else if(TextUtils.isEmpty(kuaiDiName)){
+                    showMsg("请选择快递");
+                    return;
+                }else if(TextUtils.isEmpty(addressId)){
+                    showMsg("请选择地址");
+                    return;
+                }
+
+
+                commitOrder(chuFaDate,name,phone,email,kuaiDiName,addressId);
                 break;
         }
     }
 
+    private void commitOrder(String chuFaDate, String name, String phone, String email, String kuaiDiName, String addressId){
+        showLoading();
+        Map<String,String>map=new HashMap<String,String>();
+        map.put("user_id",getUserId());//用户ID
+        map.put("addres_id",addressId);//地址ID
+        map.put("visa_id",visaId);//签证ID
+        map.put("departure_date",chuFaDate);//出发日期
+        map.put("contact_person_recipient",name);//联系人姓名
+        map.put("contact_person_phone",phone);//联系人电话
+        map.put("email",email);//邮箱
+        map.put("courier",kuaiDiName);//快递
+        map.put("sign",getSign(map));
+        CommitQianZhengBody body=new CommitQianZhengBody();
+        body.setBody(adapter.getList());
+        ApiRequest.commitQianZhengOrder(map,body,new MyCallBack<BaseObj>(mContext) {
+            @Override
+            public void onSuccess(BaseObj obj) {
+                showMsg(obj.getMsg());
+                finish();
+            }
+        });
 
+    }
     private void getPeople(int page,boolean isLoad,boolean isShow) {
         Map<String,String>map=new HashMap<String,String>();
         map.put("user_id",getUserId());
@@ -466,6 +534,7 @@ public class DingDanTianXieActivity extends BaseActivity {
                                 str="六";
                             break;
                         }
+                        chuFaDate = riLiObj.year+"-"+riLiObj.month+"-"+riLiObj.day;
                         tv_qianzheng_order_time.setText(riLiObj.year+"-"+riLiObj.month+"-"+riLiObj.day+"\t\t"+"周"+str+"出发");
                     }
                     break;

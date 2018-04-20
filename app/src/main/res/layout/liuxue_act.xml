@@ -26,7 +26,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/youxue_banner"
+                    android:src="@drawable/liuxue_banner"
                     />
                 <com.github.customview.MyTextView
                     android:id="@+id/tv_liuxue_shenqing"

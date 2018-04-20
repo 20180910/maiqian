@@ -3,6 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              xmlns:tools="http://schemas.android.com/tools"
               android:background="@color/background_f2"
               android:orientation="vertical"
     >
@@ -18,17 +19,19 @@
         >
 
         <TextView
+            android:id="@+id/tv_qianzheng_order_flag"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="美国签证"
+            tools:text="美国签证"
             android:textColor="@color/gray_33"
             />
 
         <TextView
+            android:id="@+id/tv_qianzheng_order_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="待付款"
+            tools:text="待付款"
             android:textColor="@color/blue_00"
             />
     </LinearLayout>
@@ -42,9 +45,11 @@
         android:layout_marginTop="2px"
         >
         <ImageView
+            android:id="@+id/iv_qianzheng_order_img"
             android:layout_width="@dimen/img_w"
             android:layout_height="@dimen/img_h"
-            android:src="@drawable/item_img"
+            tools:src="@drawable/item_img"
+            android:scaleType="centerCrop"
             />
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,19 +62,21 @@
             android:layout_marginLeft="10dp"
             >
             <TextView
+                android:id="@+id/tv_qianzheng_order_title"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="美国三个月单次个人旅游签证"
+                tools:text="美国三个月单次个人旅游签证"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:textColor="@color/gray_33"
                 android:textSize="15sp"
                 />
             <TextView
+                android:id="@+id/tv_qianzheng_order_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="¥300"
+                tools:text="¥300"
                 android:textSize="16sp"
                 />
         </LinearLayout>
@@ -83,6 +90,7 @@
         android:padding="10dp"
         >
         <com.github.customview.MyTextView
+            android:id="@+id/tv_qianzheng_order_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="取消订单"
@@ -96,9 +104,42 @@
             android:layout_marginLeft="5dp"
             />
         <com.github.customview.MyTextView
+            android:id="@+id/tv_qianzheng_order_pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="立即支付"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            app:my_tv_corner_radius="4dp"
+            app:my_tv_solid="@color/white"
+            app:my_tv_border_width="2px"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/blue_00"
+            app:my_tv_border_color="@color/blue_00"
+            />
+        <com.github.customview.MyTextView
+            android:id="@+id/tv_qianzheng_order_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="删除订单"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            app:my_tv_corner_radius="4dp"
+            app:my_tv_solid="@color/white"
+            app:my_tv_border_width="2px"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/blue_00"
+            app:my_tv_border_color="@color/blue_00"
+            />
+        <com.github.customview.MyTextView
+            android:id="@+id/tv_qianzheng_order_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确认完成"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
             android:paddingTop="5dp"
