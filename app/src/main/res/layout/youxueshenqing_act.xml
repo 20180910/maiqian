@@ -9,7 +9,8 @@
 
     <include layout="@layout/app_title"/>
 
-    <RelativeLayout
+    <com.library.base.ProgressLayout
+        android:id="@id/pl_load"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -143,5 +144,5 @@
                 android:layout_marginRight="15dp"
                 />
         </com.github.customview.MyLinearLayout>
-    </RelativeLayout>
+    </com.library.base.ProgressLayout>
 </LinearLayout>

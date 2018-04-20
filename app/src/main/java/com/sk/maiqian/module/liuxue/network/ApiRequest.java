@@ -33,5 +33,9 @@ public class ApiRequest extends BaseApiRequest {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
         getGeneralClient(IRequest.class).getZhuanYe(map).enqueue(callBack);
     }
+    public static void getShenQingDetail(Map map , MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
+        getGeneralClient(IRequest.class).getShenQingDetail(map).enqueue(callBack);
+    }
 
 }

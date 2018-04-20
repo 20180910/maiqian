@@ -22,6 +22,7 @@ import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.module.liuxue.network.ApiRequest;
+import com.sk.maiqian.module.liuxue.network.response.ShenQingObj;
 import com.sk.maiqian.module.youxue.network.response.GuoJiaObj;
 import com.sk.maiqian.module.my.activity.LoginActivity;
 import com.sk.maiqian.module.youxue.network.request.YouXueShenQingBody;
@@ -59,6 +60,7 @@ public class LiuXueShenQingActivity extends BaseActivity {
     private List<GuoJiaObj> nianJiList;
     private List<GuoJiaObj> zhuanYeList=new ArrayList<>();
     private String guoJia;
+    private boolean selectShenQing;
 
     @Override
     protected int getContentView() {
@@ -69,6 +71,8 @@ public class LiuXueShenQingActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        selectShenQing = getIntent().getBooleanExtra(IntentParam.selectShenQing, false);
+
         String phone = SPUtils.getString(mContext, AppXml.mobile, null);
         et_liuxue_shenqing_phone.setText(phone);
 
@@ -103,7 +107,33 @@ public class LiuXueShenQingActivity extends BaseActivity {
     protected void initData() {
         getNianJi(false);
         getZhuanYe(false);
+        if(selectShenQing){
+            showProgress();
+            getData(1,false);
+        }else{
+            showContent();
+        }
     }
+
+    @Override
+    protected void getData(int page, boolean isLoad) {
+        super.getData(page, isLoad);
+        Map<String,String>map=new HashMap<String,String>();
+        map.put("type","2");
+        map.put("user_id",getUserId());
+        map.put("sign",getSign(map));
+        ApiRequest.getShenQingDetail(map, new MyCallBack<ShenQingObj>(mContext,pl_load,pcfl) {
+            @Override
+            public void onSuccess(ShenQingObj obj) {
+                tv_liuxue_shenqing_xuexiao.setText(obj.getDestination());
+                et_liuxue_shenqing_phone.setText(obj.getPhone());
+                tv_liuxue_shenqing_nianji.setText(obj.getCity_gradeschool());
+                tv_liuxue_shenqing_zhuanye.setText(obj.getAttend_professional());
+            }
+        });
+
+    }
+
     private void getZhuanYe(boolean isShow) {
         Map<String,String>map=new HashMap<String,String>();
         map.put("rnd",getRnd());

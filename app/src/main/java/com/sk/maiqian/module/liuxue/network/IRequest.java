@@ -1,9 +1,9 @@
 package com.sk.maiqian.module.liuxue.network;
 
-import com.library.base.BaseObj;
 import com.library.base.ResponseObj;
-import com.sk.maiqian.module.youxue.network.response.GuoJiaObj;
+import com.sk.maiqian.module.liuxue.network.response.ShenQingObj;
 import com.sk.maiqian.module.liuxue.network.response.YouXueObj;
+import com.sk.maiqian.module.youxue.network.response.GuoJiaObj;
 import com.sk.maiqian.module.youxue.network.response.YouXueDetailObj;
 
 import java.util.List;
@@ -11,7 +11,6 @@ import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.QueryMap;
 
 /**
@@ -35,6 +34,11 @@ public interface IRequest {
     //专业
     @GET("api/MQTravelStudyAbroad/GetMajorList")
     Call<ResponseObj<List<GuoJiaObj>>> getZhuanYe(@QueryMap Map<String, String> map);
+
+
+    //申请信息
+    @GET("api/MQTravelStudyAbroad/GetApplyFor")
+    Call<ResponseObj<ShenQingObj>> getShenQingDetail(@QueryMap Map<String, String> map);
 
 
 

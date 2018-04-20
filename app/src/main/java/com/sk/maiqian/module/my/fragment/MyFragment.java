@@ -1,5 +1,6 @@
 package com.sk.maiqian.module.my.fragment;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -7,11 +8,13 @@ import android.widget.TextView;
 import com.github.androidtools.SPUtils;
 import com.github.rxbus.MyRxBus;
 import com.sk.maiqian.AppXml;
+import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseFragment;
 import com.sk.maiqian.base.GlideUtils;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.event.SelectOrderEvent;
+import com.sk.maiqian.module.liuxue.activity.LiuXueShenQingActivity;
 import com.sk.maiqian.module.my.activity.FenXiaoActivity;
 import com.sk.maiqian.module.my.activity.JiFenActivity;
 import com.sk.maiqian.module.my.activity.MyAddressListActivity;
@@ -22,6 +25,7 @@ import com.sk.maiqian.module.my.activity.PersonInfoActivity;
 import com.sk.maiqian.module.my.activity.SettingActivity;
 import com.sk.maiqian.module.my.network.ApiRequest;
 import com.sk.maiqian.module.my.network.response.LoginObj;
+import com.sk.maiqian.module.youxue.activity.YouXueShenQingActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -113,6 +117,7 @@ public class MyFragment extends BaseFragment {
 
     @OnClick({R.id.ll_my, R.id.ll_my_qianzheng_order, R.id.ll_my_yingyu_order, R.id.ll_my_liuxue, R.id.ll_my_youxue, R.id.ll_my_jifen, R.id.ll_my_bank, R.id.ll_my_address, R.id.ll_my_collection, R.id.ll_my_message, R.id.ll_my_setting, R.id.ll_my_fenxiao})
     public void onViewClick(View view) {
+        Intent intent;
         switch (view.getId()) {
             case R.id.ll_my:
                 STActivity(PersonInfoActivity.class);
@@ -124,8 +129,14 @@ public class MyFragment extends BaseFragment {
                 MyRxBus.getInstance().post(new SelectOrderEvent(SelectOrderEvent.type_2));
                 break;
             case R.id.ll_my_liuxue:
+                intent=new Intent();
+                intent.putExtra(IntentParam.selectShenQing,true);
+                STActivity(intent,LiuXueShenQingActivity.class);
                 break;
             case R.id.ll_my_youxue:
+                intent=new Intent();
+                intent.putExtra(IntentParam.selectShenQing,true);
+                STActivity(intent,YouXueShenQingActivity.class);
                 break;
             case R.id.ll_my_jifen:
                 STActivity(JiFenActivity.class);

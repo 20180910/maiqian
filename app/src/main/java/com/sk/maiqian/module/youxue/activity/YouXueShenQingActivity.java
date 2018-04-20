@@ -22,9 +22,11 @@ import com.library.base.BaseObj;
 import com.library.base.tools.ZhengZeUtils;
 import com.library.base.view.MyRecyclerView;
 import com.sk.maiqian.AppXml;
+import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.base.MyCallBack;
+import com.sk.maiqian.module.liuxue.network.response.ShenQingObj;
 import com.sk.maiqian.module.my.activity.LoginActivity;
 import com.sk.maiqian.module.youxue.network.ApiRequest;
 import com.sk.maiqian.module.youxue.network.request.YouXueShenQingBody;
@@ -66,6 +68,8 @@ public class YouXueShenQingActivity extends BaseActivity {
     private List<String> options1Items = new ArrayList<>();
     private List<List<String>> options2Items = new ArrayList<>();
     private List<List<List<String>>> options3Items = new ArrayList<>();
+    private boolean selectShenQing;
+
     @Override
     protected int getContentView() {
         setAppTitle("游学申请");
@@ -75,6 +79,8 @@ public class YouXueShenQingActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+
+        selectShenQing = getIntent().getBooleanExtra(IntentParam.selectShenQing, false);
         String phone = SPUtils.getString(mContext, AppXml.mobile, null);
         et_youxue_shenqing.setText(phone);
     }
@@ -84,6 +90,30 @@ public class YouXueShenQingActivity extends BaseActivity {
         getAllArea(false);
         getGuoJia(false);
         getCity(false);
+        if(selectShenQing){
+            showProgress();
+            getData(1,false);
+        }else{
+            showContent();
+        }
+    }
+
+    @Override
+    protected void getData(int page, boolean isLoad) {
+        super.getData(page, isLoad);
+        Map<String,String>map=new HashMap<String,String>();
+        map.put("type","1");
+        map.put("user_id",getUserId());
+        map.put("sign",getSign(map));
+        com.sk.maiqian.module.liuxue.network.ApiRequest.getShenQingDetail(map, new MyCallBack<ShenQingObj>(mContext,pl_load,pcfl) {
+            @Override
+            public void onSuccess(ShenQingObj obj) {
+                tv_youxue_shenqing_guojia.setText(obj.getDestination());
+                et_youxue_shenqing.setText(obj.getPhone());
+                tv_youxue_shenqing_city.setText(obj.getCity_gradeschool());
+            }
+        });
+
     }
 
     private void getCity(boolean isShow) {
