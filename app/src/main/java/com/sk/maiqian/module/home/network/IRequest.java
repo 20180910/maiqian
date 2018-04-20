@@ -106,6 +106,11 @@ public interface IRequest {
     @GET("api/MQUserBase/GetMyVisaOrder")
     Call<ResponseObj<List<OrderQianZhengObj>>> getQianZhengOrder(@QueryMap Map<String, String> map);
 
+    //英语培训订单
+    @Headers("User-Agent:android")
+    @GET("api/MQUserBase/GetMyEnglishTrainingOrder")
+    Call<ResponseObj<List<OrderQianZhengObj>>> getPeiXunOrder(@QueryMap Map<String, String> map);
+
     //提交签证订单
     @Headers("User-Agent:android")
     @POST("api/MQVisaAgent/PostSubmitOrder")

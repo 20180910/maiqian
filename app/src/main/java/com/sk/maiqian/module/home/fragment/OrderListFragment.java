@@ -14,17 +14,15 @@ import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.MyLoadMoreAdapter;
 import com.github.baseclass.adapter.MyRecyclerViewHolder;
 import com.github.baseclass.view.MyDialog;
-import com.github.rxbus.MyConsumer;
-import com.github.rxbus.MyRxBus;
 import com.library.base.BaseObj;
 import com.sk.maiqian.Constant;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseFragment;
 import com.sk.maiqian.base.GlideUtils;
 import com.sk.maiqian.base.MyCallBack;
-import com.sk.maiqian.module.home.event.RefreshOrderEvent;
 import com.sk.maiqian.module.home.network.ApiRequest;
 import com.sk.maiqian.module.home.network.response.OrderQianZhengObj;
+import com.sk.maiqian.tools.TextViewUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -49,7 +47,6 @@ public class OrderListFragment extends BaseFragment {
 
     OrderFragment fragment;
     private MyLoadMoreAdapter<OrderQianZhengObj> adapter;
-
     @Override
     protected int getContentView() {
         return R.layout.orderlist_frag;
@@ -65,16 +62,23 @@ public class OrderListFragment extends BaseFragment {
         return fragment;
     }
 
-    @Override
-    protected void initRxBus() {
-        super.initRxBus();
-        getEvent(RefreshOrderEvent.class, new MyConsumer<RefreshOrderEvent>() {
-            @Override
-            public void onAccept(RefreshOrderEvent event) {
-                if(event.flag.equals(OrderFragment.type_1)){
-                    getQianZhengOrder(1,false);
-                }else{
 
+    private void getPeiXunOrder(int page, final boolean isLoad) {
+        Map<String,String> map=new HashMap<String,String>();
+        map.put("user_id",getUserId());
+        map.put("type",getArguments().getString(Constant.type));
+        map.put("pagesize",pagesize+"");
+        map.put("page",page+"");
+        map.put("sign",getSign(map));
+        ApiRequest.getPeiXunOrder(map, new MyCallBack<List<OrderQianZhengObj>>(mContext,pl_load,pcfl) {
+            @Override
+            public void onSuccess(List<OrderQianZhengObj> list) {
+                if(isLoad){
+                    pageNum++;
+                    adapter.addList(list,true);
+                }else{
+                    pageNum=2;
+                    adapter.setList(list,true);
                 }
             }
         });
@@ -83,12 +87,46 @@ public class OrderListFragment extends BaseFragment {
     @Override
     protected void initView() {
 
+        setQianZhengOrderAdapter();
+
+        adapter.setOnLoadMoreListener(this);
+
+        rv_order_list.setLayoutManager(new LinearLayoutManager(mContext));
+        rv_order_list.addItemDecoration(getItemDivider(PhoneUtils.dip2px(mContext,5)));
+        rv_order_list.setAdapter(adapter);
+
+    }
+
+    private MyLoadMoreAdapter setQianZhengOrderAdapter() {
         adapter =new MyLoadMoreAdapter<OrderQianZhengObj>(mContext,R.layout.orderlist_item,pageSize) {
             @Override
             public void bindData(MyRecyclerViewHolder holder, int position, OrderQianZhengObj bean) {
                 ImageView imageView = holder.getImageView(R.id.iv_qianzheng_order_img);
                 GlideUtils.into(mContext,bean.getImg_url(),imageView);
-                holder.setText(R.id.tv_qianzheng_order_flag,bean.getVisa_name());
+                TextView tv_qianzheng_order_price = holder.getTextView(R.id.tv_qianzheng_order_price);
+                TextView tv_peixu_order_flag = holder.getTextView(R.id.tv_peixu_order_flag);
+                TextView tv_qianzheng_order_title = holder.getTextView(R.id.tv_qianzheng_order_title);
+
+                if(getArguments().getString(Constant.flag).equals(OrderFragment.type_1)){
+                    tv_qianzheng_order_title.setMaxLines(2);
+                    holder.setText(R.id.tv_qianzheng_order_flag,bean.getVisa_name());
+                    holder.setText(R.id.tv_qianzheng_order_title,bean.getTitle());
+                    holder.setText(R.id.tv_qianzheng_order_price,"¥"+bean.getPrice());
+
+                    tv_peixu_order_flag.setVisibility(View.GONE);
+                    tv_qianzheng_order_price.setVisibility(View.VISIBLE);
+                }else{//培训
+                    tv_qianzheng_order_title.setMaxLines(1);
+                    tv_qianzheng_order_title.setText(bean.getTitle());
+                    holder.setText(R.id.tv_qianzheng_order_flag,bean.getCourse_type());
+                    holder.setText(R.id.tv_peixu_order_price,"¥"+bean.getPrice());
+                    holder.setText(R.id.tv_peixu_order_oldprice,"¥"+bean.getOriginal_price());
+                    TextViewUtils.underline(holder.getTextView(R.id.tv_peixu_order_oldprice));
+
+                    tv_qianzheng_order_price.setVisibility(View.GONE);
+                    tv_peixu_order_flag.setText(bean.getBiaoqian());
+                    tv_peixu_order_flag.setVisibility(View.VISIBLE);
+                }
 
 
                 TextView tv_qianzheng_order_cancel = holder.getTextView(R.id.tv_qianzheng_order_cancel);
@@ -109,46 +147,40 @@ public class OrderListFragment extends BaseFragment {
                         tv_qianzheng_order_pay.setVisibility(View.VISIBLE);
                         tv_qianzheng_order_delete.setVisibility(View.GONE);
                         tv_qianzheng_order_complete.setVisibility(View.GONE);
-                    break;
+                        break;
                     case 2:
                         holder.setText(R.id.tv_qianzheng_order_status,"已付款");
                         tv_qianzheng_order_cancel.setVisibility(View.GONE);
                         tv_qianzheng_order_pay.setVisibility(View.GONE);
                         tv_qianzheng_order_delete.setVisibility(View.GONE);
                         tv_qianzheng_order_complete.setVisibility(View.VISIBLE);
-                    break;
+                        break;
                     case 3:
                         holder.setText(R.id.tv_qianzheng_order_status,"已付款");//待评价
                         tv_qianzheng_order_cancel.setVisibility(View.GONE);
                         tv_qianzheng_order_pay.setVisibility(View.GONE);
                         tv_qianzheng_order_delete.setVisibility(View.GONE);
                         tv_qianzheng_order_complete.setVisibility(View.VISIBLE);
-                    break;
+                        break;
                     case 4:
                         holder.setText(R.id.tv_qianzheng_order_status,"已取消");
                         tv_qianzheng_order_cancel.setVisibility(View.GONE);
                         tv_qianzheng_order_pay.setVisibility(View.GONE);
                         tv_qianzheng_order_delete.setVisibility(View.VISIBLE);
                         tv_qianzheng_order_complete.setVisibility(View.GONE);
-                    break;
+                        break;
                     case 5:
                         holder.setText(R.id.tv_qianzheng_order_status,"已完成");
                         tv_qianzheng_order_cancel.setVisibility(View.GONE);
                         tv_qianzheng_order_pay.setVisibility(View.GONE);
                         tv_qianzheng_order_delete.setVisibility(View.GONE);
                         tv_qianzheng_order_complete.setVisibility(View.GONE);
-                    break;
+                        break;
                 }
-                holder.setText(R.id.tv_qianzheng_order_title,bean.getTitle());
-                holder.setText(R.id.tv_qianzheng_order_price,"¥"+bean.getPrice());
             }
         };
-        adapter.setOnLoadMoreListener(this);
 
-        rv_order_list.setLayoutManager(new LinearLayoutManager(mContext));
-        rv_order_list.addItemDecoration(getItemDivider(PhoneUtils.dip2px(mContext,5)));
-        rv_order_list.setAdapter(adapter);
-
+        return adapter;
     }
 
     @NonNull
@@ -213,7 +245,11 @@ public class OrderListFragment extends BaseFragment {
         ApiRequest.completeOrder(map, new MyCallBack<List<OrderQianZhengObj>>(mContext) {
             @Override
             public void onSuccess(List<OrderQianZhengObj> obj) {
-                MyRxBus.getInstance().post(new RefreshOrderEvent(OrderFragment.type_1));
+                if(getArguments().getString(Constant.flag).equals(OrderFragment.type_1)){
+                    getQianZhengOrder(1,false);
+                }else{
+                    getPeiXunOrder(1,false);
+                }
             }
         });
     }
@@ -228,7 +264,12 @@ public class OrderListFragment extends BaseFragment {
             @Override
             public void onSuccess(List<OrderQianZhengObj> obj) {
                 showMsg("取消成功");
-                MyRxBus.getInstance().post(new RefreshOrderEvent(OrderFragment.type_1));
+                Log("==="+getArguments().getString(Constant.flag));
+                if(getArguments().getString(Constant.flag).equals(OrderFragment.type_1)){
+                    getQianZhengOrder(1,false);
+                }else{
+                    getPeiXunOrder(1,false);
+                }
             }
         });
     }
@@ -247,7 +288,12 @@ public class OrderListFragment extends BaseFragment {
             @Override
             public void onSuccess(BaseObj obj) {
                 showMsg(obj.getMsg());
-                MyRxBus.getInstance().post(new RefreshOrderEvent(OrderFragment.type_1));
+
+                if(getArguments().getString(Constant.flag).equals(OrderFragment.type_1)){
+                    getQianZhengOrder(1,false);
+                }else{
+                    getPeiXunOrder(1,false);
+                }
             }
         });
 
@@ -266,7 +312,7 @@ public class OrderListFragment extends BaseFragment {
         if(getArguments().getString(Constant.flag).equals(OrderFragment.type_1)){
             getQianZhengOrder(page, isLoad);
         }else{//培训
-
+            getPeiXunOrder(page,isLoad);
         }
 
 

@@ -87,6 +87,10 @@ public class ApiRequest extends BaseApiRequest {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
         getGeneralClient(IRequest.class).getQianZhengOrder(map).enqueue(callBack);
     }
+    public static void getPeiXunOrder(Map map , MyCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
+        getGeneralClient(IRequest.class).getPeiXunOrder(map).enqueue(callBack);
+    }
     public static void commitQianZhengOrder(Map map , CommitQianZhengBody body, MyCallBack callBack) {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return;  }
         getGeneralClient(IRequest.class).commitQianZhengOrder(map,body).enqueue(callBack);

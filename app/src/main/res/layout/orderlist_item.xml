@@ -64,20 +64,54 @@
             <TextView
                 android:id="@+id/tv_qianzheng_order_title"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 tools:text="美国三个月单次个人旅游签证"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:textColor="@color/gray_33"
                 android:textSize="15sp"
                 />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                >
+                <TextView
+                    android:id="@+id/tv_peixu_order_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="¥0"
+                    android:textColor="@color/blue_00"
+                    android:textSize="13sp"
+                    />
+                <TextView
+                    android:id="@+id/tv_peixu_order_oldprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="¥1212"
+                    android:textColor="@color/gray_99"
+                    android:textSize="10sp"
+                    android:layout_marginLeft="10dp"
+                    />
+            </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_peixu_order_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="口语"
+                    android:textSize="11sp"
+                    android:textColor="@color/gray_99"
+                    />
             <TextView
                 android:id="@+id/tv_qianzheng_order_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="¥300"
                 android:textSize="16sp"
+                android:visibility="gone"
                 />
         </LinearLayout>
     </LinearLayout>

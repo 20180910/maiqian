@@ -25,6 +25,47 @@ public class OrderQianZhengObj {
     private String img_url;
     private double price;
 
+
+    //英语培训签证
+    //order_id订单ID,order_no订单号,course_type课程类别,english_training_id课程ID,order_status订单状态(1待付款 2已付款 3待评价 4已取消 5已完成),title标题,img_url图片,price现价,original_price原价,biaoqian标签
+    private String course_type;
+    private String english_training_id;//课程ID
+    private String biaoqian;//课程ID
+    private double original_price;//课程ID
+
+
+    public String getCourse_type() {
+        return course_type;
+    }
+
+    public void setCourse_type(String course_type) {
+        this.course_type = course_type;
+    }
+
+    public String getEnglish_training_id() {
+        return english_training_id;
+    }
+
+    public void setEnglish_training_id(String english_training_id) {
+        this.english_training_id = english_training_id;
+    }
+
+    public String getBiaoqian() {
+        return biaoqian;
+    }
+
+    public void setBiaoqian(String biaoqian) {
+        this.biaoqian = biaoqian;
+    }
+
+    public double getOriginal_price() {
+        return original_price;
+    }
+
+    public void setOriginal_price(double original_price) {
+        this.original_price = original_price;
+    }
+
     public String getOrder_id() {
         return order_id;
     }

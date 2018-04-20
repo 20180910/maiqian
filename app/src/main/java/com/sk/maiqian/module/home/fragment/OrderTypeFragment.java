@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.github.customview.MyTextView;
 import com.sk.maiqian.R;
@@ -19,6 +20,8 @@ import butterknife.OnClick;
 
 public class OrderTypeFragment extends BaseFragment {
 
+    @BindView(R.id.app_title)
+    TextView app_title;
     @BindView(R.id.tv_order_qianzheng)
     MyTextView tv_order_qianzheng;
     @BindView(R.id.tv_order_peixun)
@@ -35,6 +38,7 @@ public class OrderTypeFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        app_title.setText("服务/订单");
         orderFragment1 = OrderFragment.newInstance(OrderFragment.type_1);
         getChildFragmentManager().beginTransaction().add(R.id.fl_order, orderFragment1).commitAllowingStateLoss();
     }
