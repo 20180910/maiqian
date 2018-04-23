@@ -81,7 +81,7 @@ public class UpdatePWDActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.updatePWD(map, new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 showMsg(obj.getMsg());
                 SPUtils.setPrefBoolean(mContext, AppXml.updatePWD,true);
                 finish();

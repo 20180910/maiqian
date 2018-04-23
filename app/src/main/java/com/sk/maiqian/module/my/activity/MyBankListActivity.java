@@ -95,7 +95,7 @@ public class MyBankListActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.setDefault(map, new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 Intent intent=new Intent();
                 intent.putExtra(IntentParam.bank,bean);
                 setResult(RESULT_OK,intent);
@@ -113,7 +113,7 @@ public class MyBankListActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.deleteBank(map, new MyCallBack<BaseObj>(mContext,true) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 showMsg(obj.getMsg());
                 getData(1,false);
             }
@@ -135,7 +135,7 @@ public class MyBankListActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.getBank(map, new MyCallBack<List<MyAllBankObj>>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(List<MyAllBankObj> list) {
+            public void onSuccess(List<MyAllBankObj> list, int errorCode, String msg) {
                 if(isLoad){
                     pageNum++;
                     adapter.addList(list,true);

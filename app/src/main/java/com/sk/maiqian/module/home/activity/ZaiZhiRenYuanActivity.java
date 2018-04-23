@@ -100,7 +100,7 @@ public class ZaiZhiRenYuanActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.getZiLiaoMuBan(map, new MyCallBack<List<ZiLiaoMuBanObj>>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(List<ZiLiaoMuBanObj> list) {
+            public void onSuccess(List<ZiLiaoMuBanObj> list, int errorCode, String msg) {
                 if(isLoad){
                     pageNum++;
                     adapter.addList(list,true);

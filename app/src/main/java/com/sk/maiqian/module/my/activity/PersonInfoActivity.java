@@ -135,7 +135,7 @@ public class PersonInfoActivity extends BaseActivity {
                 body.setFile(base64);
                 NetApiRequest.uploadImg(map,body, new MyCallBack<BaseObj>(mContext) {
                     @Override
-                    public void onSuccess(BaseObj obj) {
+                    public void onSuccess(BaseObj obj, int errorCode, String msg) {
                         SPUtils.setPrefString(mContext,AppXml.avatar,obj.getImg());
                         setInfo();
                     }

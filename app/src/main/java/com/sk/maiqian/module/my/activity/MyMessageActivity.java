@@ -98,7 +98,7 @@ public class MyMessageActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.getMyMessage(map, new MyCallBack<List<MyMessageObj>>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(List<MyMessageObj> list) {
+            public void onSuccess(List<MyMessageObj> list, int errorCode, String msg) {
                 if(isLoad){
                     pageNum++;
                     adapter.addList(list,true);

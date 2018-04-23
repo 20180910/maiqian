@@ -91,7 +91,7 @@ public class MyFragment extends BaseFragment {
         map.put("sign",getSign(map));
         ApiRequest.getUserInfo(map, new MyCallBack<LoginObj>(mContext) {
             @Override
-            public void onSuccess(LoginObj obj) {
+            public void onSuccess(LoginObj obj, int errorCode, String msg) {
                 loginResult(obj);
             }
         });

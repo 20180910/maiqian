@@ -95,7 +95,7 @@ public class EditPhoneActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.updatePhone(map, new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 showMsg(obj.getMsg());
                 SPUtils.setPrefString(mContext, AppXml.mobile,phoneStr);
                 finish();
@@ -112,7 +112,7 @@ public class EditPhoneActivity extends BaseActivity {
         map.put("sign", getSign(map));
         NetApiRequest.getMsgCode(map, new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 smsCode = obj.getSMSCode();
                 countDown(tv_editphone_getmsg);
             }

@@ -1,5 +1,7 @@
 package com.sk.maiqian.module.home.activity;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
@@ -9,14 +11,22 @@ import android.widget.FrameLayout;
 
 import com.github.androidtools.SPUtils;
 import com.github.androidtools.inter.MyOnClickListener;
+import com.github.baseclass.permission.PermissionCallback;
+import com.github.baseclass.view.MyDialog;
 import com.github.customview.MyRadioButton;
 import com.github.rxbus.MyConsumer;
 import com.github.rxbus.MyRxBus;
+import com.github.rxbus.rxjava.MyFlowableSubscriber;
+import com.github.rxbus.rxjava.MyRx;
+import com.library.base.bean.AppVersionObj;
+import com.library.base.bean.PayObj;
 import com.sk.maiqian.AppXml;
 import com.sk.maiqian.Config;
+import com.sk.maiqian.GetSign;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.base.MyCallBack;
+import com.sk.maiqian.bean.AppInfo;
 import com.sk.maiqian.event.LoginSuccessEvent;
 import com.sk.maiqian.event.SelectOrderEvent;
 import com.sk.maiqian.event.SelectPeiXunOrderEvent;
@@ -26,11 +36,14 @@ import com.sk.maiqian.module.my.activity.LoginActivity;
 import com.sk.maiqian.module.my.fragment.MyFragment;
 import com.sk.maiqian.network.NetApiRequest;
 import com.sk.maiqian.network.response.ImageObj;
+import com.sk.maiqian.service.MyAPPDownloadService;
+import com.sk.maiqian.tools.FileUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
+import io.reactivex.FlowableEmitter;
 
 /**
  * Created by Administrator on 2017/11/4.
@@ -90,7 +103,7 @@ public class MainActivity extends BaseActivity {
         map.put("sign",getSign(map));
         NetApiRequest.getYouXueObj(map, new MyCallBack<ImageObj>(mContext) {
             @Override
-            public void onSuccess(ImageObj obj) {
+            public void onSuccess(ImageObj obj, int errorCode, String msg) {
                 SPUtils.setPrefString(mContext,AppXml.youXueImg,obj.getImg_url());
             }
         });
@@ -101,7 +114,7 @@ public class MainActivity extends BaseActivity {
         map.put("sign",getSign(map));
         NetApiRequest.getYouXueObj(map, new MyCallBack<ImageObj>(mContext) {
             @Override
-            public void onSuccess(ImageObj obj) {
+            public void onSuccess(ImageObj obj, int errorCode, String msg) {
                 SPUtils.setPrefString(mContext,AppXml.liuXueImg,obj.getImg_url());
             }
         });
@@ -228,19 +241,18 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
         updateApp();
         getPaymentURL(1);//获取支付宝回传地址
         getPaymentURL(2);//获取微信回传地址
     }
 
     private void updateApp() {
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("rnd", getRnd());
-        map.put("sign", getSign(map));
-       /* NetApiRequest.getAPPVersion(map, new MyCallBack<APPVersionObj>(mContext) {
+        Map<String,String>map=new HashMap<String,String>();
+        map.put("rnd",getRnd());
+        map.put("sign",GetSign.getSign(map));
+        NetApiRequest.getAppVersion(map, new MyCallBack<AppVersionObj>(mContext) {
             @Override
-            public void onSuccess(APPVersionObj obj) {
+            public void onSuccess(AppVersionObj obj, int errorCode, String msg) {
                 if(obj.getAndroid_version()>getAppVersionCode()){
                     SPUtils.setPrefString(mContext,Config.appDownloadUrl,obj.getAndroid_vs_url());
                     SPUtils.setPrefBoolean(mContext,Config.appHasNewVersion,true);
@@ -256,37 +268,61 @@ public class MainActivity extends BaseActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
-                            FileUtils.deleteFile("shenqihuanka.apk");
-                            AppInfo info = new AppInfo();
-                            info.setUrl(obj.getAndroid_vs_url());
-                            info.setHouZhui(".apk");
-                            info.setFileName("yangyu");
-                            info.setId(obj.getAndroid_version() + "");
-                            MyAPPDownloadService.intentDownload(mContext, info);
+
+                            downloadApp(obj);
                         }
                     });
                     mDialog.create().show();
                 }else{
-                    SPUtils.setPrefBoolean(mContext, Config.appHasNewVersion,false);
+                    SPUtils.setPrefBoolean(mContext,Config.appHasNewVersion,false);
                 }
             }
-        });*/
+        });
+    }
+    private void downloadApp(AppVersionObj obj) {
+        requestPermission(new String[]{Manifest.permission_group.STORAGE}, new PermissionCallback() {
+            @Override
+            public void onGranted() {
+                MyRx.start(new MyFlowableSubscriber<Boolean>() {
+                    @Override
+                    public void subscribe(@io.reactivex.annotations.NonNull FlowableEmitter<Boolean> subscriber) {
+                        boolean delete = FileUtils.delete(FileUtils.getDownloadDir());
+                        subscriber.onNext(delete);
+                        subscriber.onComplete();
+                    }
+                    @Override
+                    public void onNext(Boolean aBoolean) {
+                        AppInfo info = new AppInfo();
+                        info.setUrl(obj.getAndroid_vs_url());
+                        info.setHouZhui(".apk");
+                        info.setFileName(MyAPPDownloadService.downloadName);
+                        info.setId(obj.getAndroid_version() + "");
+                        MyAPPDownloadService.intentDownload(mContext, info);
+                    }
+                });
+            }
+            @Override
+            public void onDenied(String s) {
+                showMsg("获取权限失败,无法正常更新,请在设置中打开相关权限");
+            }
+        });
+
     }
 
     private void getPaymentURL(int type) {
-       /* Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<String, String>();
         map.put("payment_type", type + "");
         map.put("sign", GetSign.getSign(map));
-        NetApiRequest.paymentURL(map, new MyCallBack<BaseObj>(mContext) {
+        NetApiRequest.getPayNotifyUrl(map, new MyCallBack<PayObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
-               *//* if(obj.getPayment_type()==1){
+            public void onSuccess(PayObj obj, int errorCode, String msg) {
+                if(obj.getPayment_type()==1){
                     SPUtils.setPrefString(mContext,Config.payType_ZFB,obj.getPayment_url());
                 }else{
                     SPUtils.setPrefString(mContext,Config.payType_WX,obj.getPayment_url());
-                }*//*
+                }
             }
-        });*/
+        });
 
     }
 

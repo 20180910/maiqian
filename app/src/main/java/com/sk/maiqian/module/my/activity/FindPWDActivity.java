@@ -100,7 +100,7 @@ public class FindPWDActivity extends BaseActivity {
         map.put("sign",getSign(map));
         NetApiRequest.getMsgCode(map, new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 smsCode = obj.getSMSCode();
                 countDown(tv_findpwd_getmsg);
             }

@@ -110,7 +110,7 @@ public class OrderDetailActivity extends BaseActivity {
         map.put("sign", getSign(map));
         ApiRequest.getOrderDetail(map, new MyCallBack<OrderDetailObj>(mContext, pl_load, pcfl) {
             @Override
-            public void onSuccess(OrderDetailObj obj) {
+            public void onSuccess(OrderDetailObj obj, int errorCode, String msg) {
                 if (type_1.equals(type)) {
 
                     tv_order_detail_name.setText(obj.getAddress_recipient());
@@ -240,7 +240,7 @@ public class OrderDetailActivity extends BaseActivity {
         map.put("sign",getSign(map));
         com.sk.maiqian.module.home.network.ApiRequest.completeOrder(map, new MyCallBack<List<OrderQianZhengObj>>(mContext) {
             @Override
-            public void onSuccess(List<OrderQianZhengObj> obj) {
+            public void onSuccess(List<OrderQianZhengObj> obj, int errorCode, String msg) {
                 MyRxBus.getInstance().post(new RefreshOrderEvent(type));
             }
         });
@@ -254,7 +254,7 @@ public class OrderDetailActivity extends BaseActivity {
         map.put("sign",getSign(map));
         com.sk.maiqian.module.home.network.ApiRequest.cancelOrder(map, new MyCallBack<List<OrderQianZhengObj>>(mContext) {
             @Override
-            public void onSuccess(List<OrderQianZhengObj> obj) {
+            public void onSuccess(List<OrderQianZhengObj> obj, int errorCode, String msg) {
                 showMsg("取消成功");
                 MyRxBus.getInstance().post(new RefreshOrderEvent(type));
             }

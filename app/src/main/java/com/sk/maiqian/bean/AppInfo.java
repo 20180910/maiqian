@@ -1,4 +1,4 @@
-package com.sk.maiqian.module.home.bean;
+package com.sk.maiqian.bean;
 
 import java.io.Serializable;
 

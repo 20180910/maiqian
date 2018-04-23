@@ -104,7 +104,7 @@ public class SettingActivity extends BaseActivity {
         map.put("sign", getSign(map));
         ApiRequest.setMessageSink(map, new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 showMsg(obj.getMsg());
                 sb_setting.setChecked(!checked);
                 SPUtils.setPrefFloat(mContext, AppXml.message_sink,obj.getMessage_sink());

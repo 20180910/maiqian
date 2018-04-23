@@ -69,7 +69,6 @@
         <activity android:name=".module.my.activity.EditPhoneActivity"/>
         <activity android:name=".module.my.activity.MyCollectionActivity"/>
         <activity android:name=".module.home.activity.ZiXunDetailActivity"/>
-        <activity android:name=".module.home.activity.PaySuccessActivity"/>
         <activity android:name=".module.order.activity.OrderListActivity"/>
         <activity android:name=".module.order.activity.OrderDetailActivity"/>
         <activity android:name=".module.my.activity.XieYiActivity"/>
@@ -82,6 +81,27 @@
         <activity android:name=".module.yingyupeixun.activity.ShipinDetailActivity"
                   android:configChanges="orientation|screenSize|keyboardHidden"
                   android:screenOrientation="portrait"/>
+
+
+
+        <service android:name=".service.MyAPPDownloadService"/>
+        <receiver
+            android:name=".broadcast.DownloadBro"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="download" />
+            </intent-filter>
+        </receiver>
+
+
+
+
+
+
+
+
+
     </application>
 
 </manifest>

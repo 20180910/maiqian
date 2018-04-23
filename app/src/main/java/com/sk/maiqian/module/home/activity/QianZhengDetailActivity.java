@@ -109,7 +109,7 @@ public class QianZhengDetailActivity extends BaseActivity {
         showProgress();
         getZiXunData(new MyCallBack<ZiXunObj>(mContext) {
             @Override
-            public void onSuccess(ZiXunObj obj) {
+            public void onSuccess(ZiXunObj obj, int errorCode, String msg) {
                 ziXunObj = obj;
             }
         });
@@ -127,7 +127,7 @@ public class QianZhengDetailActivity extends BaseActivity {
         map.put("sign", getSign(map));
         ApiRequest.qianZhengDetail(map, new MyCallBack<QianZhengDetailObj>(mContext, pl_load, pcfl) {
             @Override
-            public void onSuccess(QianZhengDetailObj obj) {
+            public void onSuccess(QianZhengDetailObj obj, int errorCode, String msg) {
                 qianZhengDetailObj = obj;
                 setData(obj);
             }
@@ -282,7 +282,7 @@ public class QianZhengDetailActivity extends BaseActivity {
         map.put("sign", getSign(map));
         ApiRequest.collect(map, new MyCallBack<CollectObj>(mContext) {
             @Override
-            public void onSuccess(CollectObj obj) {
+            public void onSuccess(CollectObj obj, int errorCode, String msg) {
                 showMsg(obj.getMsg());
                 if (obj.getIs_collect() == 1) {
                     tv_qianzheng_detail_collect.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.collect_normal2, 0, 0);

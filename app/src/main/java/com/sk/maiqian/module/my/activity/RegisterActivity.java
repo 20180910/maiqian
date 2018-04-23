@@ -128,7 +128,7 @@ public class RegisterActivity extends BaseActivity {
         body.setDistribution_yard(fenxiao);
         ApiRequest.register(map,body, new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 showMsg(obj.getMsg());
                 Intent intent=new Intent();
                 intent.putExtra(IntentParam.phone,phone);
@@ -147,7 +147,7 @@ public class RegisterActivity extends BaseActivity {
         map.put("sign",getSign(map));
         NetApiRequest.getMsgCode(map, new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 smsCode = obj.getSMSCode();
                 countDown(tv_register_getmsg);
             }

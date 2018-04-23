@@ -24,7 +24,7 @@ import retrofit2.Response;
  * Created by Administrator on 2017/5/18.
  */
 
-public abstract class MyCallBack<T> implements Callback<ResponseObj<T>> {
+public abstract class MyCallBack2<T> implements Callback<ResponseObj<T>> {
 
     private Context context;
     private boolean noHiddenLoad;
@@ -34,28 +34,28 @@ public abstract class MyCallBack<T> implements Callback<ResponseObj<T>> {
     public Context getContext() {
         return context;
     }
-    public MyCallBack(Context ctx) {
+    public MyCallBack2(Context ctx) {
         this.context = ctx;
     }
-    public MyCallBack(Context ctx, ProgressLayout pl) {
+    public MyCallBack2(Context ctx, ProgressLayout pl) {
         this.context = ctx;
         this.progressLayout = pl;
     }
-    public MyCallBack(Context ctx, PtrFrameLayout pfl) {
+    public MyCallBack2(Context ctx, PtrFrameLayout pfl) {
         this.context = ctx;
         this.pfl = pfl;
     }
-    public MyCallBack(Context ctx, PtrFrameLayout pfl, ProgressLayout pl) {
-        this.context = ctx;
-        this.pfl = pfl;
-        this.progressLayout = pl;
-    }
-    public MyCallBack(Context ctx, ProgressLayout pl, PtrFrameLayout pfl) {
+    public MyCallBack2(Context ctx, PtrFrameLayout pfl, ProgressLayout pl) {
         this.context = ctx;
         this.pfl = pfl;
         this.progressLayout = pl;
     }
-    public MyCallBack(Context ctx, boolean noHiddenLoad) {
+    public MyCallBack2(Context ctx, ProgressLayout pl, PtrFrameLayout pfl) {
+        this.context = ctx;
+        this.pfl = pfl;
+        this.progressLayout = pl;
+    }
+    public MyCallBack2(Context ctx, boolean noHiddenLoad) {
         this.context = ctx;
         this.noHiddenLoad = noHiddenLoad;
     }

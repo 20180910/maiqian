@@ -107,7 +107,7 @@ public class DaYiJieHuoFragment extends BaseFragment {
         map.put("sign",getSign(map));
         ApiRequest.getDaYiJieHuoList(map, new MyCallBack<List<HomeDaYiJieHuoObj.AnswerDoubtsListBean>>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(List<HomeDaYiJieHuoObj.AnswerDoubtsListBean> list) {
+            public void onSuccess(List<HomeDaYiJieHuoObj.AnswerDoubtsListBean> list, int errorCode, String msg) {
                 if(isLoad){
                     pageNum++;
                     adapter.addList(list,true);

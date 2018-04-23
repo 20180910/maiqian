@@ -2,10 +2,13 @@ package com.sk.maiqian.network;
 
 import com.library.base.BaseObj;
 import com.library.base.ResponseObj;
+import com.library.base.bean.AppVersionObj;
+import com.library.base.bean.PayObj;
 import com.sk.maiqian.module.my.network.response.BankNameObj;
 import com.sk.maiqian.network.request.UploadImgBody;
 import com.sk.maiqian.network.response.CityObj;
 import com.sk.maiqian.network.response.ImageObj;
+import com.sk.maiqian.network.response.ShareObj;
 
 import java.util.List;
 import java.util.Map;
@@ -46,9 +49,16 @@ public interface NetIRequest {
     @GET("api/MQTravelStudyAbroad/GetTravelStudyAbroad")
     Call<ResponseObj<ImageObj>> getYouXueObj(@QueryMap Map<String, String> map);
 
+    //获取支付url
+    @GET("api/Lib/GetPayInfo")
+    Call<ResponseObj<PayObj>> getPayNotifyUrl(@QueryMap Map<String,String> map);
 
+    //app更新
+    @GET("api/Lib/GetVersionUpdate")
+    Call<ResponseObj<AppVersionObj>> getAppVersion(@QueryMap Map<String,String> map);
 
-
-
+    //分享页面
+    @GET("api/MQLib/GetShareInformation")
+    Call<ResponseObj<ShareObj>> getShareInformation(@QueryMap Map<String,String> map);
 
 }

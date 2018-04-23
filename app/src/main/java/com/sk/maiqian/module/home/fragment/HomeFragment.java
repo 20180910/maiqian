@@ -163,7 +163,7 @@ public class HomeFragment extends BaseFragment {
         map.put("sign", getSign(map));
         ApiRequest.getDaYiJieHuo(map, new MyCallBack<HomeDaYiJieHuoObj>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(HomeDaYiJieHuoObj obj) {
+            public void onSuccess(HomeDaYiJieHuoObj obj, int errorCode, String msg) {
                 if(notEmpty(obj.getAnswer_doubts_list())){
                     List<String> info = new ArrayList<>();
                     for (int i = 0; i < obj.getAnswer_doubts_list().size(); i++) {
@@ -219,7 +219,7 @@ public class HomeFragment extends BaseFragment {
         map.put("sign", getSign(map));
         ApiRequest.getHomeBanner(map, new MyCallBack<BannerObj>(mContext) {
             @Override
-            public void onSuccess(BannerObj obj) {
+            public void onSuccess(BannerObj obj, int errorCode, String msg) {
                 if (notEmpty(obj.getRoasting_list())) {
                     List<BannerObj.RoastingListBean> list = obj.getRoasting_list();
                     for (int i = 0; i < list.size(); i++) {

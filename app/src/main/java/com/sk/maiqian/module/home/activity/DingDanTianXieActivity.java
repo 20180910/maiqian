@@ -145,7 +145,7 @@ public class DingDanTianXieActivity extends BaseActivity {
         map.put("sign", getSign(map));
         ApiRequest.getKuaiDiList(map, new MyCallBack<List<String>>(mContext) {
             @Override
-            public void onSuccess(List<String> list) {
+            public void onSuccess(List<String> list, int errorCode, String msg) {
                 kuaiDiList = list;
                 if (isShow) {
                     showKuaiDi(kuaiDiList);
@@ -281,7 +281,7 @@ public class DingDanTianXieActivity extends BaseActivity {
         body.setBody(adapter.getList());
         ApiRequest.commitQianZhengOrder(map,body,new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 showMsg(obj.getMsg());
                 finish();
             }
@@ -296,7 +296,7 @@ public class DingDanTianXieActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.getShenQingRen(map, new MyCallBack<List<ShenQingRenObj>>(mContext,pcfl_refresh) {
             @Override
-            public void onSuccess(List<ShenQingRenObj> list) {
+            public void onSuccess(List<ShenQingRenObj> list, int errorCode, String msg) {
                 if(isLoad){
                     pageNum++;
                     peopleAdaper.addList(list,true);

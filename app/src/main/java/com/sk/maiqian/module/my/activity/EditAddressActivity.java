@@ -83,7 +83,7 @@ public class EditAddressActivity extends BaseActivity {
                     map.put("sign", getSign(map));
                     NetApiRequest.getAllArea(map, new MyCallBack<List<CityObj>>(mContext) {
                         @Override
-                        public void onSuccess(List<CityObj> list) {
+                        public void onSuccess(List<CityObj> list, int errorCode, String msg) {
                             cityList = list;
                             emitter.onNext(list);
                             for (int i = 0; i < cityList.size(); i++) {
@@ -183,7 +183,7 @@ public class EditAddressActivity extends BaseActivity {
         map.put("sign", getSign(map));
         ApiRequest.addAddress(map, new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 showMsg(obj.getMsg());
                 setResult(RESULT_OK);
                 finish();

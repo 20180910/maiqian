@@ -73,7 +73,7 @@ public class ResetPWDActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.forgetPWD(map, new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 showMsg(obj.getMsg());
                 setResult(RESULT_OK);
                 finish();

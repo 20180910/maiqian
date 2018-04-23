@@ -50,7 +50,7 @@ public class ZhuanJiFenActivity extends BaseActivity {
         map.put("sign", getSign(map));
         ApiRequest.getJiFenShuoMing(map, new MyCallBack<JiFenShuoMingObj>(mContext, pl_load, pcfl) {
             @Override
-            public void onSuccess(JiFenShuoMingObj obj) {
+            public void onSuccess(JiFenShuoMingObj obj, int errorCode, String msg) {
                 GlideUtils.into(mContext,obj.getImg_url(),iv_zhuanjifen);
             }
         });

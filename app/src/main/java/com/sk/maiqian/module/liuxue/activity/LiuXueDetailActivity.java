@@ -81,7 +81,7 @@ public class LiuXueDetailActivity extends BaseActivity {
     @Override
     protected int getContentView() {
         setAppRightImg(R.drawable.share);
-        setTitleBackgroud(R.color.transparent);
+//        setTitleBackgroud(R.color.transparent);
         return R.layout.liuxuedetail_act;
     }
 
@@ -89,6 +89,25 @@ public class LiuXueDetailActivity extends BaseActivity {
     protected void initView() {
         dataId = getIntent().getStringExtra(IntentParam.dataId);
         guoJia = getIntent().getStringExtra(IntentParam.guoJia);
+
+
+
+
+
+        scrollChangeBackground(nsv,toolbar);
+       /* int screenWidth = PhoneUtils.getScreenWidth(mContext)*2/3;
+        toolbar.getBackground().mutate().setAlpha(0);
+        nsv.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                    if (scrollY >= 0 && scrollY <= screenWidth) {
+                    double alpha = (double) scrollY / screenWidth;
+                    toolbar.getBackground().mutate().setAlpha((int) (alpha * 255));
+                } else {
+                    toolbar.getBackground().mutate().setAlpha(255);
+                }
+            }
+        });*/
     }
 
     @Override
@@ -108,7 +127,7 @@ public class LiuXueDetailActivity extends BaseActivity {
         map.put("sign", getSign(map));
         ApiRequest.youXueDetail(map, new MyCallBack<YouXueDetailObj>(mContext, pl_load, pcfl) {
             @Override
-            public void onSuccess(YouXueDetailObj obj) {
+            public void onSuccess(YouXueDetailObj obj, int errorCode, String msg) {
                 setData(obj);
             }
         });
@@ -199,7 +218,7 @@ public class LiuXueDetailActivity extends BaseActivity {
                 }
                 collect(id, "4", new MyCallBack<CollectObj>(mContext) {
                     @Override
-                    public void onSuccess(CollectObj obj) {
+                    public void onSuccess(CollectObj obj, int errorCode, String msg) {
                         showMsg(obj.getMsg());
                         if (obj.getIs_collect() == 1) {
                             tv_liuxue_detail_collection.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.collect_normal2, 0, 0);

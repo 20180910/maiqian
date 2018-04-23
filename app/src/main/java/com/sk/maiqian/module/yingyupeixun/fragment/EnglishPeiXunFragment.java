@@ -119,7 +119,7 @@ public class EnglishPeiXunFragment extends BaseFragment {
         map.put("sign",getSign(map));
         ApiRequest.getEnglishPeiXun(map, new MyCallBack<List<EnglishPeiXunObj>>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(List<EnglishPeiXunObj> list) {
+            public void onSuccess(List<EnglishPeiXunObj> list, int errorCode, String msg) {
                 if(isLoad){
                     pageNum++;
                     adapter.addList(list,true);

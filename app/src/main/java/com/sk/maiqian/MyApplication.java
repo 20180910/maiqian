@@ -4,6 +4,8 @@ package com.sk.maiqian;
 import android.app.Application;
 import android.content.Context;
 
+import com.aspsine.multithreaddownload.DownloadConfiguration;
+import com.aspsine.multithreaddownload.DownloadManager;
 import com.github.androidtools.SPUtils;
 import com.github.baseclass.view.Loading;
 import com.github.retrofitutil.NetWorkManager;
@@ -24,15 +26,23 @@ public class MyApplication extends Application {
         super.onCreate();
         //正式
         String baseUrl="http://121.40.186.118:10088/";
+
+        baseUrl="http://121.40.186.118:10089/";
         if(true&&BuildConfig.DEBUG){
             //测试
             baseUrl="http://121.40.186.118:10089/";
         }
         NetWorkManager.getInstance(getApplicationContext(),baseUrl,BuildConfig.DEBUG).complete();
 
-
+        initDownloader();
         Loading.setLoadView(R.layout.app_loading_view);
 
+    }
+    private void initDownloader() {
+        DownloadConfiguration configuration = new DownloadConfiguration();
+        configuration.setMaxThreadNum(8);
+        configuration.setThreadNum(2);
+        DownloadManager.getInstance().init(getApplicationContext(), configuration);
     }
 
    //经度

@@ -58,7 +58,7 @@ public class ZiXunDetailActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.getZiXunDetail(map, new MyCallBack<ZiXunDetailObj>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(ZiXunDetailObj obj) {
+            public void onSuccess(ZiXunDetailObj obj, int errorCode, String msg) {
                 re_zixun_detail.setHtml(obj.getContent());
                 re_zixun_detail.setInputEnabled(false);
                 re_zixun_detail.setEditorFontSize(14);

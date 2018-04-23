@@ -98,7 +98,7 @@ public class EnglishPeiXunOnlineFragment extends BaseFragment {
         map.put("sign",getSign(map));
         ApiRequest.getOnlineStudyList(map, new MyCallBack<List<OnlineStudyObj>>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(List<OnlineStudyObj> list) {
+            public void onSuccess(List<OnlineStudyObj> list, int errorCode, String msg) {
                 if(isLoad){
                     pageNum++;
                     adapter.addList(list,true);

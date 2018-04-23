@@ -70,13 +70,15 @@ public class YouXueDetailActivity extends BaseActivity {
     @Override
     protected int getContentView() {
         setAppRightImg(R.drawable.share);
-        setTitleBackgroud(R.color.transparent);
+//        setTitleBackgroud(R.color.transparent);
         return R.layout.youxuedetail_act;
     }
 
     @Override
     protected void initView() {
         dataId = getIntent().getStringExtra(IntentParam.dataId);
+
+        scrollChangeBackground(nsv,toolbar);
     }
 
     @Override
@@ -94,7 +96,7 @@ public class YouXueDetailActivity extends BaseActivity {
         map.put("sign", getSign(map));
         ApiRequest.youXueDetail(map, new MyCallBack<YouXueDetailObj>(mContext, pl_load, pcfl) {
             @Override
-            public void onSuccess(YouXueDetailObj obj) {
+            public void onSuccess(YouXueDetailObj obj, int errorCode, String msg) {
                 setData(obj);
             }
         });
@@ -162,7 +164,7 @@ public class YouXueDetailActivity extends BaseActivity {
                 }
                 collect(id, "3", new MyCallBack<CollectObj>(mContext) {
                     @Override
-                    public void onSuccess(CollectObj obj) {
+                    public void onSuccess(CollectObj obj, int errorCode, String msg) {
                         showMsg(obj.getMsg());
                         if (obj.getIs_collect() == 1) {
                             tv_youxue_detail_collection.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.collect_normal2, 0, 0);

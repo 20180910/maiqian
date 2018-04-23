@@ -46,9 +46,11 @@
                         android:drawableLeft="@drawable/iqianzhengdaiban_icon_location"
                         android:drawablePadding="4dp"
                         android:text="上海"
+                        android:visibility="gone"
                         />
 
                     <View
+                        android:visibility="gone"
                         android:layout_width="2dp"
                         android:layout_height="match_parent"
                         android:layout_margin="5dp"

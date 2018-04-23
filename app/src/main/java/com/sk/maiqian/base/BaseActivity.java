@@ -94,6 +94,7 @@ public abstract class BaseActivity extends MyBaseActivity {
             case R.id.app_right_iv:
                 if("share".equals(v.getTag())){
                     Log("===分享=");
+                    showFenXiangDialog();
                 }
             break;
         }
@@ -352,7 +353,7 @@ public abstract class BaseActivity extends MyBaseActivity {
 
 
     BottomSheetDialog fenXiangDialog;
-    public void showFenXiang(){
+    public void showFenXiangDialog(){
         if (fenXiangDialog == null) {
             View sexView= LayoutInflater.from(mContext).inflate(R.layout.popu_fen_xiang,null);
             sexView.findViewById(R.id.iv_yaoqing_wx).setOnClickListener(new MyOnClickListener() {
@@ -449,7 +450,7 @@ public abstract class BaseActivity extends MyBaseActivity {
                 body.setFile(base64);
                 NetApiRequest.uploadImg(map,body, new MyCallBack<BaseObj>(mContext) {
                     @Override
-                    public void onSuccess(BaseObj obj) {
+                    public void onSuccess(BaseObj obj, int errorCode, String msg) {
                         callback.result(obj.getImg());
                     }
                 });
@@ -603,7 +604,7 @@ public abstract class BaseActivity extends MyBaseActivity {
             showLoading();
             getZiXunData(new MyCallBack<ZiXunObj>(mContext) {
                 @Override
-                public void onSuccess(ZiXunObj obj) {
+                public void onSuccess(ZiXunObj obj, int errorCode, String msg) {
                     ziXunObj = obj;
                     showZiXun();
                 }

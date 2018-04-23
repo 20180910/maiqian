@@ -120,7 +120,7 @@ public class MyCollectFragment extends BaseFragment {
         map.put("sign",getSign(map));
         ApiRequest.cancelMyCollection(map, new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 getData(1,false);
             }
         });
@@ -144,7 +144,7 @@ public class MyCollectFragment extends BaseFragment {
         map.put("sign",getSign(map));
         ApiRequest.getMyCollection(map, new MyCallBack<List<MyCollectionObj>>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(List<MyCollectionObj> list) {
+            public void onSuccess(List<MyCollectionObj> list, int errorCode, String msg) {
                 if(isLoad){
                     pageNum++;
                     adapter.addList(list,true);

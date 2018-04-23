@@ -14,8 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/app_title"/>
-
         <android.support.v4.widget.NestedScrollView
             android:id="@id/nsv"
             android:layout_width="match_parent"
@@ -347,7 +345,6 @@
 
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
-
         <com.github.customview.MyLinearLayout
             android:id="@+id/ll_liuxue_detail"
             android:layout_width="match_parent"
@@ -398,5 +395,6 @@
                 android:textSize="14sp"
                 />
         </com.github.customview.MyLinearLayout>
+        <include layout="@layout/app_title"/>
     </com.library.base.ProgressLayout>
 </LinearLayout>

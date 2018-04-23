@@ -98,7 +98,7 @@ public class ShipinDetailActivity extends BaseActivity {
         map.put("sign", getSign(map));
         ApiRequest.getOnlineStudyDetail(map, new MyCallBack<VideoDetailObj>(mContext, pl_load, pcfl) {
             @Override
-            public void onSuccess(VideoDetailObj obj) {
+            public void onSuccess(VideoDetailObj obj, int errorCode, String msg) {
                 setData(obj);
             }
         });

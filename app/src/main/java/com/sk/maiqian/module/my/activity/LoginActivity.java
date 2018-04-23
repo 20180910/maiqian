@@ -135,8 +135,18 @@ public class LoginActivity extends BaseActivity {
         map.put("sign", getSign(map));
         ApiRequest.userLogin(map, new MyCallBack<LoginObj>(mContext) {
             @Override
-            public void onSuccess(LoginObj obj) {
+            public void onSuccess(LoginObj obj, int errorCode, String msg) {
                 loginResult(obj);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+            }
+
+            @Override
+            public void onError(Throwable e, boolean showContentView) {
+                super.onError(e, showContentView);
             }
         });
     }

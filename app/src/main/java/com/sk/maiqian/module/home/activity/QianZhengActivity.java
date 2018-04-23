@@ -100,7 +100,7 @@ public class QianZhengActivity extends BaseActivity {
         map.put("sign", getSign(map));
         ApiRequest.getQianZhengList(map, new MyCallBack<QianZhengObj>(mContext, pl_load, pcfl) {
             @Override
-            public void onSuccess(QianZhengObj obj) {
+            public void onSuccess(QianZhengObj obj, int errorCode, String msg) {
                 GlideUtils.into(mContext, obj.getNational_flag(), iv_qianzheng_guojia);
                 tv_qianzheng_zhengce.setText(obj.getTitle());
                 tv_qianzheng_shuoming.setText(obj.getPolicys());

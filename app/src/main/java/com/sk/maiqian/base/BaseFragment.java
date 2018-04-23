@@ -3,16 +3,23 @@ package com.sk.maiqian.base;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.support.design.widget.BottomSheetDialog;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.github.androidtools.SPUtils;
+import com.github.androidtools.inter.MyOnClickListener;
 import com.library.base.MyBaseFragment;
+import com.sdklibrary.base.share.ShareParam;
 import com.sk.maiqian.AppXml;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.GetSign;
+import com.sk.maiqian.R;
 import com.youth.banner.Banner;
 
 import org.jsoup.Jsoup;
@@ -20,6 +27,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -202,5 +210,75 @@ public abstract class BaseFragment extends MyBaseFragment {
             Log.e("VersionInfo", "Exception", e);
         }
         return versionName;
+    }
+    BottomSheetDialog fenXiangDialog;
+    public void showFenXiangDialog(){
+        if (fenXiangDialog == null) {
+            View sexView= LayoutInflater.from(mContext).inflate(R.layout.popu_fen_xiang,null);
+            sexView.findViewById(R.id.iv_yaoqing_wx).setOnClickListener(new MyOnClickListener() {
+                @Override
+                protected void onNoDoubleClick(View view) {
+                    fenXiang(ShareParam.friend);
+                    fenXiangDialog.dismiss();
+                }
+            });
+            sexView.findViewById(R.id.iv_yaoqing_friend).setOnClickListener(new MyOnClickListener() {
+                @Override
+                protected void onNoDoubleClick(View view) {
+                    fenXiang(ShareParam.friendCircle);
+                    fenXiangDialog.dismiss();
+
+                }
+            });
+            sexView.findViewById(R.id.iv_yaoqing_qq).setOnClickListener(new MyOnClickListener() {
+                @Override
+                protected void onNoDoubleClick(View view) {
+                    fenXiang(ShareParam.QQ);
+                    fenXiangDialog.dismiss();
+                }
+            });
+            sexView.findViewById(R.id.iv_yaoqing_qzone).setOnClickListener(new MyOnClickListener() {
+                @Override
+                protected void onNoDoubleClick(View view) {
+                    fenXiang(ShareParam.QZONE);
+                    fenXiangDialog.dismiss();
+                }
+            });
+            /*sexView.findViewById(R.id.iv_yaoqing_sina).setOnClickListener(new MyOnClickListener() {
+                @Override
+                protected void onNoDoubleClick(View view) {
+                    showMsg("正在开发中");
+                    fenXiangDialog.dismiss();
+                }
+            });*/
+            sexView.findViewById(R.id.tv_fenxiang_cancle).setOnClickListener(new MyOnClickListener() {
+                @Override
+                protected void onNoDoubleClick(View view) {
+                    fenXiangDialog.dismiss();
+                }
+            });
+            fenXiangDialog=new BottomSheetDialog(mContext);
+            fenXiangDialog.setCanceledOnTouchOutside(true);
+            fenXiangDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            fenXiangDialog.setContentView(sexView);
+        }
+        fenXiangDialog.show();
+    }
+    protected void fenXiang(@ShareParam.MyShareType int platform) {
+        showLoading();
+        Map<String,String> map=new HashMap<String,String>();
+        map.put("rnd",getRnd());
+        map.put("sign",GetSign.getSign(map));
+        /*ApiRequest.fenXiang(map, new MyCallBack<FenXiangObj>(mContext) {
+            @Override
+            public void onSuccess(FenXiangObj obj) {
+                if(platform==ShareParam.QQ||platform==ShareParam.QZONE){
+                    showMsg("QQ分享正在开发中");
+                }else{
+//                    MyWXShare.newInstance(null).shareAudio();
+
+                }
+            }
+        });*/
     }
 }

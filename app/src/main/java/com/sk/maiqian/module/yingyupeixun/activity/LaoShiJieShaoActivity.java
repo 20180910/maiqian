@@ -115,7 +115,7 @@ public class LaoShiJieShaoActivity extends BaseActivity {
         map.put("sign", getSign(map));
         ApiRequest.getTeacherDetail(map, new MyCallBack<TeacherObj>(mContext, pl_load, pcfl) {
             @Override
-            public void onSuccess(TeacherObj obj) {
+            public void onSuccess(TeacherObj obj, int errorCode, String msg) {
                 setData(obj);
             }
         });

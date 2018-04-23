@@ -133,7 +133,7 @@ public class MyAddressListActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.getAddress(map, new MyCallBack<List<MyAddressObj>>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(List<MyAddressObj> list) {
+            public void onSuccess(List<MyAddressObj> list, int errorCode, String msg) {
                 if(isEmpty(list)){
                     isEdit=false;
                     cb_address_all.setChecked(false);
@@ -216,7 +216,7 @@ public class MyAddressListActivity extends BaseActivity {
         body.setBody(list);
         ApiRequest.deleteAddress(map,body, new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 showMsg(obj.getMsg());
                 getData(1,false);
             }

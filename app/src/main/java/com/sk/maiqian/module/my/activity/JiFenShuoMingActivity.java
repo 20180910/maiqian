@@ -48,7 +48,7 @@ public class JiFenShuoMingActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.getJiFenShuoMing(map, new MyCallBack<JiFenShuoMingObj>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(JiFenShuoMingObj obj) {
+            public void onSuccess(JiFenShuoMingObj obj, int errorCode, String msg) {
                 re_jifenshuoming.setInputEnabled(false);
                 re_jifenshuoming.setHtml(obj.getIntegral_description());
             }

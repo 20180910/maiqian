@@ -42,7 +42,7 @@ public class XieYiActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.getXieYi(map, new MyCallBack<BaseObj>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 re_xieyi.setInputEnabled(false);
                 re_xieyi.setHtml(obj.getUser_agreement());
             }

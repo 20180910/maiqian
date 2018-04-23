@@ -121,7 +121,7 @@ public class QianZhengDaiBanActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.getQianZhengDaiBan(map, new MyCallBack<List<QianZhengDaiBanObj>>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(List<QianZhengDaiBanObj> list) {
+            public void onSuccess(List<QianZhengDaiBanObj> list, int errorCode, String msg) {
                 if(isLoad){
                     pageNum++;
                     adapter.addList(list,true);

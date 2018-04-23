@@ -114,7 +114,7 @@ public class HomeHotZiXunFragment extends BaseFragment {
         map.put("sign", getSign(map));
         ApiRequest.getHomeZiXun(map, new MyCallBack<List<HomeZiXunObj>>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(List<HomeZiXunObj> list) {
+            public void onSuccess(List<HomeZiXunObj> list, int errorCode, String msg) {
                 if (isLoad) {
                     pageNum++;
                     adapter.addList(list, true);

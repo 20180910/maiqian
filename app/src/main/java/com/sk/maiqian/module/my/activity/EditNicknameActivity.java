@@ -75,7 +75,7 @@ public class EditNicknameActivity extends BaseActivity {
         body.setUser_id(getUserId());
         ApiRequest.editNickName(map,body, new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 showMsg(obj.getMsg());
                 SPUtils.setPrefString(mContext, AppXml.nick_name,name);
                 finish();

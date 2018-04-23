@@ -72,7 +72,7 @@ public class TiXianActivity extends BaseActivity {
         map.put("sign", getSign(map));
         ApiRequest.getDefaultAccount(map, new MyCallBack<DefaultBankObj>(mContext, pl_load, pcfl) {
             @Override
-            public void onSuccess(DefaultBankObj obj) {
+            public void onSuccess(DefaultBankObj obj, int errorCode, String msg) {
                 if (obj.getId() != 0) {
                     bankId = obj.getId()+"";
                     GlideUtils.into(mContext,obj.getBank_image(),iv_tixian);
@@ -132,7 +132,7 @@ public class TiXianActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.tiXian(map, new MyCallBack<JiFenObj>(mContext) {
             @Override
-            public void onSuccess(JiFenObj obj) {
+            public void onSuccess(JiFenObj obj, int errorCode, String msg) {
                 //需要返回剩余积分
                 //添加银行卡无默认
 //                showMsg(obj.getMsg());

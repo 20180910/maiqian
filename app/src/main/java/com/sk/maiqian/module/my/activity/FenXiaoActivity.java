@@ -75,7 +75,7 @@ public class FenXiaoActivity extends BaseActivity {
         map.put("sign", getSign(map));
         ApiRequest.getFenXiao(map, new MyCallBack<FenXiaoObj>(mContext, pl_load, pcfl) {
             @Override
-            public void onSuccess(FenXiaoObj obj) {
+            public void onSuccess(FenXiaoObj obj, int errorCode, String msg) {
                 GlideUtils.into(mContext,obj.getDistribution_url(),iv_fenxiao);
                 tv_fenxiao_code.setText(obj.getDistribution_yard());
                 tv_fenxiao_content.setText(obj.getContent());

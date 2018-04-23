@@ -119,7 +119,7 @@ public class AddBankActivity extends BaseActivity {
         map.put("sign",getSign(map));
         NetApiRequest.getBankList(map, new MyCallBack<List<BankNameObj>>(mContext) {
             @Override
-            public void onSuccess(List<BankNameObj> list) {
+            public void onSuccess(List<BankNameObj> list, int errorCode, String msg) {
                 bankList = list;
                 if(isShow){
                     showBank(list);
@@ -167,7 +167,7 @@ public class AddBankActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.addBank(map,bankBody,new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 showMsg(obj.getMsg());
                 setResult(RESULT_OK);
                 finish();

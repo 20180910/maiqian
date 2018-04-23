@@ -124,7 +124,7 @@ public class LiuXueShenQingActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.getShenQingDetail(map, new MyCallBack<ShenQingObj>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(ShenQingObj obj) {
+            public void onSuccess(ShenQingObj obj, int errorCode, String msg) {
                 tv_liuxue_shenqing_xuexiao.setText(obj.getDestination());
                 et_liuxue_shenqing_phone.setText(obj.getPhone());
                 tv_liuxue_shenqing_nianji.setText(obj.getCity_gradeschool());
@@ -140,7 +140,7 @@ public class LiuXueShenQingActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.getZhuanYe(map, new MyCallBack<List<GuoJiaObj>>(mContext) {
             @Override
-            public void onSuccess(List<GuoJiaObj> list) {
+            public void onSuccess(List<GuoJiaObj> list, int errorCode, String msg) {
                 if(isEmpty(list)){
                     showMsg("暂无专业信息");
                     return;
@@ -158,7 +158,7 @@ public class LiuXueShenQingActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.getNianJi(map, new MyCallBack<List<GuoJiaObj>>(mContext) {
             @Override
-            public void onSuccess(List<GuoJiaObj> list) {
+            public void onSuccess(List<GuoJiaObj> list, int errorCode, String msg) {
                 nianJiList =list;
                 if(isShow){
                     showGuoJia(nianJiList,2);
@@ -173,7 +173,7 @@ public class LiuXueShenQingActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.getGuoJia(map, new MyCallBack<List<GuoJiaObj>>(mContext) {
             @Override
-            public void onSuccess(List<GuoJiaObj> list) {
+            public void onSuccess(List<GuoJiaObj> list, int errorCode, String msg) {
                 guoJiaObjList =list;
                 if(isShow){
                     showGuoJia(guoJiaObjList,1);
@@ -246,7 +246,7 @@ public class LiuXueShenQingActivity extends BaseActivity {
 
         com.sk.maiqian.module.youxue.network.ApiRequest.youXueShenQing(map, body, new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 showMsg(obj.getMsg());
                 finish();
             }

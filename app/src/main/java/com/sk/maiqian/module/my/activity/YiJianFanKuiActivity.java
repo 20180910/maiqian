@@ -183,7 +183,7 @@ public class YiJianFanKuiActivity extends BaseActivity {
                 body.setFile(base64);
                 NetApiRequest.uploadImg(map,body, new MyCallBack<BaseObj>(mContext) {
                     @Override
-                    public void onSuccess(BaseObj obj) {
+                    public void onSuccess(BaseObj obj, int errorCode, String msg) {
                         imgAdapter.getList().add(obj.getImg());
                         imgAdapter.notifyDataSetChanged();
                     }
@@ -205,7 +205,7 @@ public class YiJianFanKuiActivity extends BaseActivity {
         map.put("sign", getSign(map));
         ApiRequest.getFanKuiType(map, new MyCallBack<List<FanKuiTypeObj>>(mContext) {
             @Override
-            public void onSuccess(List<FanKuiTypeObj> list) {
+            public void onSuccess(List<FanKuiTypeObj> list, int errorCode, String msg) {
                 typeList = list;
                 if(isShow){
                     showType();
@@ -290,7 +290,7 @@ public class YiJianFanKuiActivity extends BaseActivity {
         body.setBody(list);
         ApiRequest.fanKui(map,body, new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 showMsg(obj.getMsg());
                 finish();
             }

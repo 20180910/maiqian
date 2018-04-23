@@ -150,7 +150,7 @@ public class YouXueActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.getGuoJia(map, new MyCallBack<List<GuoJiaObj>>(mContext) {
             @Override
-            public void onSuccess(List<GuoJiaObj> list) {
+            public void onSuccess(List<GuoJiaObj> list, int errorCode, String msg) {
                 guoJiaObjList=new ArrayList<GuoJiaObj>();
                 GuoJiaObj guoJiaObj=new GuoJiaObj("0","所有国家");
                 guoJiaObjList.add(guoJiaObj);
@@ -176,7 +176,7 @@ public class YouXueActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.getYouXueList(map, new MyCallBack<List<YouXueObj>>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(List<YouXueObj> list) {
+            public void onSuccess(List<YouXueObj> list, int errorCode, String msg) {
                 if(isLoad){
                     pageNum++;
                     adapter.addList(list,true);

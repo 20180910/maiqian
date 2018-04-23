@@ -107,7 +107,7 @@ public class YouXueShenQingActivity extends BaseActivity {
         map.put("sign",getSign(map));
         com.sk.maiqian.module.liuxue.network.ApiRequest.getShenQingDetail(map, new MyCallBack<ShenQingObj>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(ShenQingObj obj) {
+            public void onSuccess(ShenQingObj obj, int errorCode, String msg) {
                 tv_youxue_shenqing_guojia.setText(obj.getDestination());
                 et_youxue_shenqing.setText(obj.getPhone());
                 tv_youxue_shenqing_city.setText(obj.getCity_gradeschool());
@@ -122,7 +122,7 @@ public class YouXueShenQingActivity extends BaseActivity {
         map.put("sign",getSign(map));
         NetApiRequest.getAllCity(map, new MyCallBack<List<CityObj>>(mContext) {
             @Override
-            public void onSuccess(List<CityObj> list) {
+            public void onSuccess(List<CityObj> list, int errorCode, String msg) {
                 cityObjList = list;
                 if(isShow){
                     showCity(list);
@@ -138,7 +138,7 @@ public class YouXueShenQingActivity extends BaseActivity {
         map.put("sign",getSign(map));
         ApiRequest.getGuoJia(map, new MyCallBack<List<GuoJiaObj>>(mContext) {
             @Override
-            public void onSuccess(List<GuoJiaObj> list) {
+            public void onSuccess(List<GuoJiaObj> list, int errorCode, String msg) {
                 guoJiaObjList=list;
                 if(isShow){
                     showGuoJia(guoJiaObjList);
@@ -208,7 +208,7 @@ public class YouXueShenQingActivity extends BaseActivity {
         body.setCity_gradeschool(city);
         ApiRequest.youXueShenQing(map, body, new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 showMsg(obj.getMsg());
                 finish();
             }
@@ -272,7 +272,7 @@ public class YouXueShenQingActivity extends BaseActivity {
                     map.put("sign", getSign(map));
                     NetApiRequest.getAllArea(map, new MyCallBack<List<CityObj>>(mContext) {
                         @Override
-                        public void onSuccess(List<CityObj> list) {
+                        public void onSuccess(List<CityObj> list, int errorCode, String msg) {
                             cityList = list;
                             emitter.onNext(list);
                             for (int i = 0; i < cityList.size(); i++) {

@@ -74,7 +74,7 @@ public class JiFenMingXiFragment extends BaseFragment {
         map.put("sign",getSign(map));
         ApiRequest.getJiFenMingXi(map, new MyCallBack<List<JiFenMingXiObj>>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(List<JiFenMingXiObj> list) {
+            public void onSuccess(List<JiFenMingXiObj> list, int errorCode, String msg) {
                 if(isLoad){
                     pageNum++;
                     adapter.addList(list,true);

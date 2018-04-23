@@ -210,7 +210,7 @@ public class KeChengDetailActivity extends BaseActivity {
     protected void initData() {
         getZiXunData(new MyCallBack<ZiXunObj>(mContext) {
             @Override
-            public void onSuccess(ZiXunObj obj) {
+            public void onSuccess(ZiXunObj obj, int errorCode, String msg) {
                 ziXunObj = obj;
             }
         });
@@ -227,7 +227,7 @@ public class KeChengDetailActivity extends BaseActivity {
         map.put("sign", getSign(map));
         ApiRequest.getEnglishPeiXunDetail(map, new MyCallBack<KeChengDetailObj>(mContext, pl_load, pcfl) {
             @Override
-            public void onSuccess(KeChengDetailObj obj) {
+            public void onSuccess(KeChengDetailObj obj, int errorCode, String msg) {
                 setData(obj);
                 ll_peixun_detail_goumai.post(new Runnable() {
                     @Override
@@ -299,7 +299,7 @@ public class KeChengDetailActivity extends BaseActivity {
             case R.id.tv_peixun_detail_collect:
                 collect(englishTrainingId, "2", new MyCallBack<CollectObj>(mContext) {
                     @Override
-                    public void onSuccess(CollectObj obj) {
+                    public void onSuccess(CollectObj obj, int errorCode, String msg) {
                         showMsg(obj.getMsg());
                         if (obj.getIs_collect() == 1) {
                             tv_peixun_detail_collect.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.collect_normal2, 0, 0);

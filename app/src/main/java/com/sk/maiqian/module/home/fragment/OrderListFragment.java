@@ -77,7 +77,7 @@ public class OrderListFragment extends BaseFragment {
         map.put("sign",getSign(map));
         ApiRequest.getPeiXunOrder(map, new MyCallBack<List<OrderQianZhengObj>>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(List<OrderQianZhengObj> list) {
+            public void onSuccess(List<OrderQianZhengObj> list, int errorCode, String msg) {
                 if(isLoad){
                     pageNum++;
                     adapter.addList(list,true);
@@ -274,7 +274,7 @@ public class OrderListFragment extends BaseFragment {
         map.put("sign",getSign(map));
         ApiRequest.completeOrder(map, new MyCallBack<List<OrderQianZhengObj>>(mContext) {
             @Override
-            public void onSuccess(List<OrderQianZhengObj> obj) {
+            public void onSuccess(List<OrderQianZhengObj> obj, int errorCode, String msg) {
                 if(getArguments().getString(Constant.flag).equals(OrderFragment.type_1)){
                     getQianZhengOrder(1,false);
                 }else{
@@ -292,7 +292,7 @@ public class OrderListFragment extends BaseFragment {
         map.put("sign",getSign(map));
         ApiRequest.cancelOrder(map, new MyCallBack<List<OrderQianZhengObj>>(mContext) {
             @Override
-            public void onSuccess(List<OrderQianZhengObj> obj) {
+            public void onSuccess(List<OrderQianZhengObj> obj, int errorCode, String msg) {
                 showMsg("取消成功");
                 Log("==="+getArguments().getString(Constant.flag));
                 if(getArguments().getString(Constant.flag).equals(OrderFragment.type_1)){
@@ -316,7 +316,7 @@ public class OrderListFragment extends BaseFragment {
         map.put("sign",getSign(map));
         ApiRequest.deleteOrder(map, new MyCallBack<BaseObj>(mContext) {
             @Override
-            public void onSuccess(BaseObj obj) {
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
                 showMsg(obj.getMsg());
 
                 if(getArguments().getString(Constant.flag).equals(OrderFragment.type_1)){
@@ -357,7 +357,7 @@ public class OrderListFragment extends BaseFragment {
         map.put("sign",getSign(map));
         ApiRequest.getQianZhengOrder(map, new MyCallBack<List<OrderQianZhengObj>>(mContext,pl_load,pcfl) {
             @Override
-            public void onSuccess(List<OrderQianZhengObj> list) {
+            public void onSuccess(List<OrderQianZhengObj> list, int errorCode, String msg) {
                 if(isLoad){
                     pageNum++;
                     adapter.addList(list,true);
