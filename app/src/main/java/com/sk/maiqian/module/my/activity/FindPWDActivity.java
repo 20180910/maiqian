@@ -90,7 +90,6 @@ public class FindPWDActivity extends BaseActivity {
             }
         }
     }
-
     private String smsCode;
     private void getMsgCode(String phone) {
         showLoading();
