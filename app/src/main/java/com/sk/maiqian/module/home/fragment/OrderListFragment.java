@@ -95,9 +95,9 @@ public class OrderListFragment extends BaseFragment {
         getEvent(RefreshOrderEvent.class, new MyConsumer<RefreshOrderEvent>() {
             @Override
             public void onAccept(RefreshOrderEvent event) {
-                if(event.flag.equals(getArguments().getString(Constant.flag))){
+                if(event.flag.equals(OrderFragment.type_1)){
                     getQianZhengOrder(1,false);
-                }else{
+                }else if(event.flag.equals(OrderFragment.type_2)){
                     getPeiXunOrder(1,false);
                 }
             }
@@ -165,9 +165,15 @@ public class OrderListFragment extends BaseFragment {
                 TextView tv_qianzheng_order_delete = holder.getTextView(R.id.tv_qianzheng_order_delete);
 
                 tv_qianzheng_order_cancel.setOnClickListener(getL(1,bean.getOrder_no()));
-                tv_qianzheng_order_pay.setOnClickListener(getL(2,bean.getOrder_no()));
                 tv_qianzheng_order_complete.setOnClickListener(getL(3,bean.getOrder_no()));
                 tv_qianzheng_order_delete.setOnClickListener(getL(4,bean.getOrder_no()));
+
+                tv_qianzheng_order_pay.setOnClickListener(new MyOnClickListener() {
+                    @Override
+                    protected void onNoDoubleClick(View view) {
+                        payOrder(bean.getOrder_no(),bean.getPrice());
+                    }
+                });
 
                 //1待付款 2已付款 3待评价 4已取消 5已完成
                 switch (bean.getOrder_status()){
@@ -237,11 +243,23 @@ public class OrderListFragment extends BaseFragment {
                         });
                         mDialog.create().show();
                     break;
-                    case 2://支付
-                        payOrder(orderNo);
-                    break;
                     case 3://完成
-                        completeOrder(orderNo);
+                        mDialog=new MyDialog.Builder(mContext);
+                        mDialog.setMessage("是否确认完成?");
+                        mDialog.setNegativeButton(new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        mDialog.setPositiveButton(new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                completeOrder(orderNo);
+                            }
+                        });
+                        mDialog.create().show();
                     break;
                     case 4://删除
                         mDialog=new MyDialog.Builder(mContext);
@@ -304,8 +322,8 @@ public class OrderListFragment extends BaseFragment {
         });
     }
 
-    private void payOrder(String orderNo) {
-
+    private void payOrder(String orderNo,double price) {
+        showPeiXunPay(orderNo,price,getArguments().getString(Constant.flag));
     }
 
     private void deleteOrder(String orderNo) {

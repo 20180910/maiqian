@@ -7,6 +7,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -18,6 +19,8 @@ import android.widget.TextView;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.BaseRecyclerAdapter;
 import com.github.baseclass.adapter.RecyclerViewHolder;
+import com.library.base.BaseObj;
+import com.library.base.tools.ZhengZeUtils;
 import com.library.base.view.richedit.RichEditor;
 import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
@@ -334,7 +337,24 @@ public class KeChengDetailActivity extends BaseActivity {
         tv_yuyue.setOnClickListener(new MyOnClickListener() {
             @Override
             protected void onNoDoubleClick(View view) {
-                dialog.dismiss();
+                String phone = getSStr(et_yuyue_phone);
+                if(TextUtils.isEmpty(phone)|| ZhengZeUtils.notMobile(phone)){
+                    showMsg("请输入正确手机号");
+                    return;
+                }
+                showLoading();
+                Map<String,String>map=new HashMap<String,String>();
+                map.put("english_training_id",kechengId);
+                map.put("phone",phone);
+                map.put("sign",getSign(map));
+                ApiRequest.keChengYuYue(map, new MyCallBack<BaseObj>(mContext) {
+                    @Override
+                    public void onSuccess(BaseObj obj, int errorCode, String msg) {
+                        showMsg(msg);
+                        dialog.dismiss();
+                    }
+                });
+
             }
         });
 

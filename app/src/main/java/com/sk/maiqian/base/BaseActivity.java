@@ -20,6 +20,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.github.androidtools.ClickUtils;
@@ -27,21 +28,37 @@ import com.github.androidtools.PhoneUtils;
 import com.github.androidtools.SPUtils;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.permission.PermissionCallback;
+import com.github.rxbus.MyRxBus;
 import com.github.rxbus.rxjava.MyFlowableSubscriber;
 import com.library.base.BaseObj;
 import com.library.base.MyBaseActivity;
 import com.library.base.tools.has.BitmapUtils;
 import com.library.base.view.MyWebViewClient;
+import com.sdklibrary.base.pay.alipay.MyAliOrderBean;
+import com.sdklibrary.base.pay.alipay.MyAliPay;
+import com.sdklibrary.base.pay.alipay.MyAliPayCallback;
+import com.sdklibrary.base.pay.alipay.PayResult;
 import com.sdklibrary.base.share.ShareParam;
+import com.sdklibrary.base.share.qq.MyQQShare;
+import com.sdklibrary.base.share.qq.MyQQShareListener;
+import com.sdklibrary.base.share.qq.bean.MyQQWebHelper;
+import com.sdklibrary.base.share.wx.MyWXShare;
+import com.sdklibrary.base.share.wx.MyWXShareCallback;
+import com.sdklibrary.base.share.wx.bean.MyWXWebHelper;
 import com.sk.maiqian.AppXml;
 import com.sk.maiqian.BuildConfig;
+import com.sk.maiqian.Config;
 import com.sk.maiqian.GetSign;
 import com.sk.maiqian.R;
+import com.sk.maiqian.module.home.event.RefreshOrderEvent;
 import com.sk.maiqian.module.home.network.ApiRequest;
 import com.sk.maiqian.module.home.network.response.ZiXunObj;
+import com.sk.maiqian.module.order.activity.OrderDetailActivity;
 import com.sk.maiqian.network.NetApiRequest;
 import com.sk.maiqian.network.request.UploadImgBody;
+import com.sk.maiqian.network.response.ShareObj;
 import com.sk.maiqian.tools.FileUtils;
+import com.tencent.tauth.UiError;
 import com.youth.banner.Banner;
 
 import org.jsoup.Jsoup;
@@ -410,17 +427,59 @@ public abstract class BaseActivity extends MyBaseActivity {
         Map<String,String> map=new HashMap<String,String>();
         map.put("rnd",getRnd());
         map.put("sign",GetSign.getSign(map));
-        /*ApiRequest.fenXiang(map, new MyCallBack<FenXiangObj>(mContext) {
+        NetApiRequest.getShareInformation(map, new MyCallBack<ShareObj>(mContext) {
             @Override
-            public void onSuccess(FenXiangObj obj) {
+            public void onSuccess(ShareObj obj,int errorCode,String msg) {
                 if(platform==ShareParam.QQ||platform==ShareParam.QZONE){
-                    showMsg("QQ分享正在开发中");
+                    MyQQWebHelper helper=new MyQQWebHelper(platform);
+                    helper.setTitle(obj.getTitle());
+                    helper.setDescription(obj.getContent());
+                    helper.setImageUrl(obj.getImg());
+                    helper.setUrl(obj.getShare_link());
+                    MyQQShare.newInstance(mContext).shareWeb(helper, new MyQQShareListener() {
+                        @Override
+                        public void doComplete(Object o) {
+                            dismissLoading();
+                            showMsg("分享成功");
+                        }
+                        @Override
+                        public void doError(UiError uiError) {
+                            dismissLoading();
+                            showMsg("分享失败");
+                        }
+                        @Override
+                        public void doCancel() {
+                            dismissLoading();
+                            showMsg("取消分享");
+                        }
+                    });
                 }else{
-//                    MyWXShare.newInstance(null).shareAudio();
+                    MyWXWebHelper helperWX=new MyWXWebHelper(platform);
+                    helperWX.setUrl(obj.getShare_link());
+                    helperWX.setTitle(obj.getTitle());
+                    helperWX.setDescription(obj.getContent());
+                    helperWX.setBitmapResId(R.mipmap.ic_launcher);
+                    MyWXShare.newInstance(mContext).shareWeb(helperWX, new MyWXShareCallback() {
+                        @Override
+                        public void shareSuccess() {
+                            dismissLoading();
+                            showMsg("分享成功");
+                        }
+                        @Override
+                        public void shareFail() {
+                            dismissLoading();
+                            showMsg("分享失败");
+                        }
+                        @Override
+                        public void shareCancel() {
+                            dismissLoading();
+                            showMsg("取消分享");
+                        }
+                    });
 
                 }
             }
-        });*/
+        });
     }
     public interface UploadImgCallback{
         void result(String imgUrl);
@@ -618,6 +677,79 @@ public abstract class BaseActivity extends MyBaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         ClickUtils.clearLastClickTime();
+    }
+
+    /*****************************************************************************/
+    BottomSheetDialog peiXunPayDialog;
+    protected void showPeiXunPay(String orderNo,double price,String orderType) {
+        peiXunPayDialog = new BottomSheetDialog(mContext);
+        peiXunPayDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        View view = LayoutInflater.from(mContext).inflate(R.layout.tijiaoorder_pay_popu, null);
+        RadioButton rb_order_pay = view.findViewById(R.id.rb_order_pay);
+        view.findViewById(R.id.tv_commit_liuyan).setOnClickListener(new MyOnClickListener() {
+            @Override
+            protected void onNoDoubleClick(View view) {
+                showLoading();
+                MyAliOrderBean bean=new MyAliOrderBean();
+                bean.setOut_trade_no(orderNo);
+                bean.setTotal_amount(price);
+                bean.setBody("英语培训订单支付");
+                if(rb_order_pay.isChecked()){
+                    weixinPay(bean,orderType);
+                }else{
+                    aliPay(bean, peiXunPayDialog,orderType);
+                }
+
+            }
+        });
+
+        peiXunPayDialog.setContentView(view);
+        peiXunPayDialog.show();
+    }
+
+    private void weixinPay(MyAliOrderBean bean,String type) {
+
+    }
+    protected void aliPay(MyAliOrderBean bean,BottomSheetDialog payDialog,String type) {
+        String url = SPUtils.getString(mContext, Config.payType_ZFB, null);
+        bean.setAppId(Config.zhifubao_app_id);
+        bean.setPid(Config.zhifubao_pid);
+        bean.setSiYao(Config.zhifubao_rsa2);
+        bean.setNotifyUrl(url);
+        bean.setSubject("麦签订单支付");
+        MyAliPay.newInstance(mContext).startPay(bean, new MyAliPayCallback() {
+            @Override
+            public void paySuccess(PayResult payResult) {
+                MyRxBus.getInstance().post(new RefreshOrderEvent(type));
+
+                if(mContext instanceof OrderDetailActivity){
+                    OrderDetailActivity mContext = (OrderDetailActivity) BaseActivity.this.mContext;
+                    mContext.getData(1,false);
+                }else{
+                    dismissLoading();
+                }
+                if(payDialog!=null){
+                    payDialog.dismiss();
+                }
+            }
+            @Override
+            public void payFail() {
+                dismissLoading();
+                showMsg("支付失败");
+                if(payDialog!=null){
+                    payDialog.dismiss();
+                }
+            }
+            @Override
+            public void payCancel() {
+                dismissLoading();
+                showMsg("支付已取消");
+                if(payDialog!=null){
+                    payDialog.dismiss();
+                }
+            }
+        });
     }
 }
 

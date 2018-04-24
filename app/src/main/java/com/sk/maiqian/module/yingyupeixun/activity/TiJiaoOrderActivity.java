@@ -1,21 +1,40 @@
 package com.sk.maiqian.module.yingyupeixun.activity;
 
+import android.content.Intent;
 import android.support.design.widget.BottomSheetDialog;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.github.androidtools.SPUtils;
+import com.github.androidtools.inter.MyOnClickListener;
 import com.github.customview.MyEditText;
 import com.github.customview.MyTextView;
+import com.library.base.tools.ZhengZeUtils;
+import com.library.base.tools.has.AndroidUtils;
+import com.sdklibrary.base.pay.alipay.MyAliOrderBean;
+import com.sdklibrary.base.pay.alipay.MyAliPay;
+import com.sdklibrary.base.pay.alipay.MyAliPayCallback;
+import com.sdklibrary.base.pay.alipay.PayResult;
 import com.sk.maiqian.AppXml;
+import com.sk.maiqian.Config;
 import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.base.GlideUtils;
+import com.sk.maiqian.base.MyCallBack;
+import com.sk.maiqian.module.home.activity.MainActivity;
+import com.sk.maiqian.module.home.activity.PaySuccessActivity;
 import com.sk.maiqian.module.yingyupeixun.network.response.KeChengDetailObj;
+import com.sk.maiqian.module.yingyupeixun.network.response.PeiXunMakeOrderObj;
+import com.sk.maiqian.tools.TextViewUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -51,6 +70,8 @@ public class TiJiaoOrderActivity extends BaseActivity {
     MyTextView tv_order_pay;
     private KeChengDetailObj keChengDetailObj;
     private String flag;
+    private double price;
+    private BottomSheetDialog payDialog;
 
     @Override
     protected int getContentView() {
@@ -61,12 +82,15 @@ public class TiJiaoOrderActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        flag = getIntent().getStringExtra(IntentParam.flag);
         keChengDetailObj = (KeChengDetailObj) getIntent().getSerializableExtra(IntentParam.keChengDetailObj);
+        flag = getIntent().getStringExtra(IntentParam.flag);
+
+        price = keChengDetailObj.getPrice();
         GlideUtils.into(mContext,keChengDetailObj.getImg_url(),iv_order_img);
         tv_order_title.setText(keChengDetailObj.getTitle());
         tv_order_price.setText("¥"+keChengDetailObj.getPrice());
         tv_order_old_price.setText("¥"+keChengDetailObj.getOriginal_price());
+        TextViewUtils.underline(tv_order_old_price);
         tv_order_flag.setText(flag);
         tv_order_banji.setText(keChengDetailObj.getClass_name());
         et_order_num.setText("1");
@@ -78,16 +102,31 @@ public class TiJiaoOrderActivity extends BaseActivity {
         iv_order_jian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int num = Integer.parseInt(getSStr(et_order_num));
+                if(num==1){
+                    return;
+                }
+                num--;
+                et_order_num.setText(num+"");
+                setPriceAndNum(num);
             }
         });
         iv_order_jia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int num = Integer.parseInt(getSStr(et_order_num));
+                num++;
+                et_order_num.setText(num+"");
+                setPriceAndNum(num);
             }
         });
 
+    }
+
+    private void setPriceAndNum(int num) {
+        double total = AndroidUtils.chengFa(price, num);
+        tv_order_total.setText("¥"+total);
+        tv_order_pay.setText("总计"+total+"元\t去支付");
     }
 
     @Override
@@ -99,19 +138,109 @@ public class TiJiaoOrderActivity extends BaseActivity {
     protected void onViewClick(View v) {
         switch (v.getId()){
             case R.id.tv_order_pay:
-                showPay();
+                String phone = getSStr(et_order_phone);
+                if(TextUtils.isEmpty(phone)|| ZhengZeUtils.notMobile(phone)){
+                    showMsg("请输入正确手机号");
+                    return;
+                }
+                showPeiXunPay(keChengDetailObj.getEnglish_training_id(),getSStr(et_order_num),phone);
             break;
         }
     }
-
-    private void showPay() {
-        BottomSheetDialog dialog=new BottomSheetDialog(mContext);
-        dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+    BottomSheetDialog peiXunPayDialog;
+    protected void showPeiXunPay(String dataId, String num, String phone) {
+        peiXunPayDialog = new BottomSheetDialog(mContext);
+        peiXunPayDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
         View view = getLayoutInflater().inflate(R.layout.tijiaoorder_pay_popu, null);
+        RadioButton rb_order_pay = view.findViewById(R.id.rb_order_pay);
+        view.findViewById(R.id.tv_commit_liuyan).setOnClickListener(new MyOnClickListener() {
+            @Override
+            protected void onNoDoubleClick(View view) {
+                showLoading();
+                Map<String,String> map=new HashMap<String,String>();
+                map.put("english_training_id",dataId);
+                map.put("number",num);
+                map.put("phone",phone);
+                map.put("user_id",getUserId());
+                map.put("sign",getSign(map));
+                com.sk.maiqian.module.yingyupeixun.network.ApiRequest.makePeiXunOrder(map, new MyCallBack<PeiXunMakeOrderObj>(mContext,true) {
+                    @Override
+                    public void onSuccess(PeiXunMakeOrderObj obj, int errorCode, String msg) {
+                        MyAliOrderBean bean=new MyAliOrderBean();
+                        bean.setTotal_amount(obj.getCombined());
+                        bean.setOut_trade_no(obj.getOrder_no());
+                        bean.setBody("英语培训订单支付");
+                        if(rb_order_pay.isChecked()){
+                            weixinPay(bean);
+                        }else{
+                            aliPay(bean);
+                        }
+                    }
+                });
+            }
+        });
 
-        dialog.setContentView(view);
-        dialog.show();
+        peiXunPayDialog.setContentView(view);
+        peiXunPayDialog.show();
     }
+    private void weixinPay(MyAliOrderBean bean) {
+
+    }
+
+    protected void aliPay(MyAliOrderBean bean) {
+        String url = SPUtils.getString(mContext, Config.payType_ZFB, null);
+        bean.setAppId(Config.zhifubao_app_id);
+        bean.setPid(Config.zhifubao_pid);
+        bean.setSiYao(Config.zhifubao_rsa2);
+        bean.setNotifyUrl(url);
+        bean.setSubject("麦签订单支付");
+        MyAliPay.newInstance(mContext).startPay(bean, new MyAliPayCallback() {
+            @Override
+            public void paySuccess(PayResult payResult) {
+                dismissLoading();
+                if(payDialog!=null){
+                    payDialog.dismiss();
+                }
+                STActivity(PaySuccessActivity.class);
+                finish();
+            }
+            @Override
+            public void payFail() {
+                tv_order_title.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        dismissLoading();
+                        showMsg("支付失败");
+                        if(payDialog!=null){
+                            payDialog.dismiss();
+                        }
+                        Intent intent=new Intent(IntentParam.Action.paySuccess);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        STActivity(intent,MainActivity.class);
+                        finish();
+                    }
+                },800);
+            }
+            @Override
+            public void payCancel() {
+                tv_order_title.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        dismissLoading();
+                        showMsg("支付已取消");
+                        if(payDialog!=null){
+                            payDialog.dismiss();
+                        }
+                        Intent intent=new Intent(IntentParam.Action.paySuccess);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        STActivity(intent,MainActivity.class);
+                        finish();
+                    }
+                },800);
+            }
+        });
+    }
+
 
 }

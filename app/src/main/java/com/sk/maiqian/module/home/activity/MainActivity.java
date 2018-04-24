@@ -23,6 +23,7 @@ import com.library.base.bean.PayObj;
 import com.sk.maiqian.AppXml;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.GetSign;
+import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.base.MyCallBack;
@@ -236,6 +237,10 @@ public class MainActivity extends BaseActivity {
         setIntent(intent);
         if (Config.exitAPP.equals(intent.getAction())) {
             finish();
+        }else if(intent.getAction().equals(IntentParam.Action.paySuccess)){
+            selectOrder();
+            selectView.setChecked(true);
+            MyRxBus.getInstance().postReplay(new SelectPeiXunOrderEvent());
         }
     }
 

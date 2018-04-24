@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.github.baseclass.view.MyDialog;
 import com.github.customview.MyTextView;
+import com.github.rxbus.MyConsumer;
 import com.github.rxbus.MyRxBus;
 import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
@@ -81,6 +82,7 @@ public class OrderDetailActivity extends BaseActivity {
 
     private String dataId, type;
 
+    private double price;
     @Override
     protected int getContentView() {
         setAppTitle("签证代办详情");
@@ -93,6 +95,18 @@ public class OrderDetailActivity extends BaseActivity {
         type = getIntent().getStringExtra(IntentParam.type);
         dataId = getIntent().getStringExtra(IntentParam.dataId);
     }
+    @Override
+    protected void initRxBus() {
+        super.initRxBus();
+        getEvent(RefreshOrderEvent.class, new MyConsumer<RefreshOrderEvent>() {
+            @Override
+            public void onAccept(RefreshOrderEvent event) {
+                if(event.flag.equals(3)){
+                    getData(1,false);
+                }
+            }
+        });
+    }
 
     @Override
     protected void initData() {
@@ -101,7 +115,7 @@ public class OrderDetailActivity extends BaseActivity {
     }
 
     @Override
-    protected void getData(int page, boolean isLoad) {
+    public void getData(int page, boolean isLoad) {
         super.getData(page, isLoad);
         Map<String, String> map = new HashMap<String, String>();
         map.put("type", type);
@@ -109,8 +123,12 @@ public class OrderDetailActivity extends BaseActivity {
         map.put("user_id", getUserId());
         map.put("sign", getSign(map));
         ApiRequest.getOrderDetail(map, new MyCallBack<OrderDetailObj>(mContext, pl_load, pcfl) {
+
+
             @Override
             public void onSuccess(OrderDetailObj obj, int errorCode, String msg) {
+
+                price =obj.getPrice();
                 if (type_1.equals(type)) {
 
                     tv_order_detail_name.setText(obj.getAddress_recipient());
@@ -227,8 +245,22 @@ public class OrderDetailActivity extends BaseActivity {
                 payOrder(dataId);
                 break;
             case R.id.tv_order_detail_complete:
-
-                completeOrder(dataId);
+                mDialog=new MyDialog.Builder(mContext);
+                mDialog.setMessage("是否确认完成?");
+                mDialog.setNegativeButton(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                mDialog.setPositiveButton(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        completeOrder(dataId);
+                    }
+                });
+                mDialog.create().show();
                 break;
         }
     }
@@ -238,10 +270,11 @@ public class OrderDetailActivity extends BaseActivity {
         map.put("user_id",getUserId());
         map.put("order_no",orderNo);
         map.put("sign",getSign(map));
-        com.sk.maiqian.module.home.network.ApiRequest.completeOrder(map, new MyCallBack<List<OrderQianZhengObj>>(mContext) {
+        com.sk.maiqian.module.home.network.ApiRequest.completeOrder(map, new MyCallBack<List<OrderQianZhengObj>>(mContext,true) {
             @Override
             public void onSuccess(List<OrderQianZhengObj> obj, int errorCode, String msg) {
                 MyRxBus.getInstance().post(new RefreshOrderEvent(type));
+                getData(1,false);
             }
         });
     }
@@ -252,17 +285,18 @@ public class OrderDetailActivity extends BaseActivity {
         map.put("user_id",getUserId());
         map.put("order_no",orderNo);
         map.put("sign",getSign(map));
-        com.sk.maiqian.module.home.network.ApiRequest.cancelOrder(map, new MyCallBack<List<OrderQianZhengObj>>(mContext) {
+        com.sk.maiqian.module.home.network.ApiRequest.cancelOrder(map, new MyCallBack<List<OrderQianZhengObj>>(mContext,true) {
             @Override
             public void onSuccess(List<OrderQianZhengObj> obj, int errorCode, String msg) {
                 showMsg("取消成功");
                 MyRxBus.getInstance().post(new RefreshOrderEvent(type));
+                getData(1,false);
             }
         });
     }
 
     private void payOrder(String orderNo) {
-
+        showPeiXunPay(orderNo,price,type);
     }
 
 }

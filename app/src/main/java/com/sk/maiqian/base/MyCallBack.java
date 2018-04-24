@@ -62,19 +62,19 @@ public abstract class MyCallBack<T> implements Callback<ResponseObj<T>> {
     public abstract void onSuccess(T obj,int errorCode,String msg);
 
     public void onError(Throwable e) {
-        onError(e, true);
+        onError(e, false);
     }
-    public void onError(Throwable e, boolean showMsg) {
+    public void onError(Throwable e, boolean hiddenMsg) {
         if(pfl!=null){
             pfl.refreshComplete();
             pfl=null;
         }
         if(e instanceof ServerException ||e instanceof NoNetworkException){
-            if(showMsg){
+            if(!hiddenMsg){
                 ToastUtils.showToast(context,e.getMessage());
             }
         }else{
-            if(showMsg){
+            if(!hiddenMsg){
                 ToastUtils.showToast(context,"连接失败");
             }
             e.printStackTrace();

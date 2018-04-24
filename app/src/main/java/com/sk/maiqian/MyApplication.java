@@ -9,6 +9,8 @@ import com.aspsine.multithreaddownload.DownloadManager;
 import com.github.androidtools.SPUtils;
 import com.github.baseclass.view.Loading;
 import com.github.retrofitutil.NetWorkManager;
+import com.sdklibrary.base.share.qq.MyQQShare;
+import com.sdklibrary.base.share.wx.MyWXShare;
 
 
 /**
@@ -37,6 +39,8 @@ public class MyApplication extends Application {
         initDownloader();
         Loading.setLoadView(R.layout.app_loading_view);
 
+        MyWXShare.setAppId(Config.weixing_id,Config.weixing_AppSecret);
+        MyQQShare.setAppId(Config.qq_id);
     }
     private void initDownloader() {
         DownloadConfiguration configuration = new DownloadConfiguration();

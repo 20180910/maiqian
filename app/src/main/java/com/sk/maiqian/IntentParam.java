@@ -38,4 +38,7 @@ public class IntentParam {
     public static final String visaId="visaId";
     public static final String qianZhengObj="qianZhengObj";
     public static final String selectAddress="selectAddress";
+    public static class Action{
+        public static final String paySuccess = "paySuccess";
+    }
 }

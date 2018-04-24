@@ -11,15 +11,22 @@ import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.RadioButton;
 
 import com.github.androidtools.SPUtils;
 import com.github.androidtools.inter.MyOnClickListener;
+import com.github.rxbus.MyRxBus;
 import com.library.base.MyBaseFragment;
+import com.sdklibrary.base.pay.alipay.MyAliOrderBean;
+import com.sdklibrary.base.pay.alipay.MyAliPay;
+import com.sdklibrary.base.pay.alipay.MyAliPayCallback;
+import com.sdklibrary.base.pay.alipay.PayResult;
 import com.sdklibrary.base.share.ShareParam;
 import com.sk.maiqian.AppXml;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.GetSign;
 import com.sk.maiqian.R;
+import com.sk.maiqian.module.home.event.RefreshOrderEvent;
 import com.youth.banner.Banner;
 
 import org.jsoup.Jsoup;
@@ -280,5 +287,73 @@ public abstract class BaseFragment extends MyBaseFragment {
                 }
             }
         });*/
+    }
+    /**************************************************************/
+    /*****************************************************************************/
+    BottomSheetDialog peiXunPayDialog;
+    protected void showPeiXunPay(String orderNo,double price,String orderType) {
+        peiXunPayDialog = new BottomSheetDialog(mContext);
+        peiXunPayDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        View view = LayoutInflater.from(mContext).inflate(R.layout.tijiaoorder_pay_popu, null);
+        RadioButton rb_order_pay = view.findViewById(R.id.rb_order_pay);
+        view.findViewById(R.id.tv_commit_liuyan).setOnClickListener(new MyOnClickListener() {
+            @Override
+            protected void onNoDoubleClick(View view) {
+                showLoading();
+                MyAliOrderBean bean=new MyAliOrderBean();
+                bean.setOut_trade_no(orderNo);
+                bean.setTotal_amount(price);
+                bean.setBody("英语培训订单支付");
+                if(rb_order_pay.isChecked()){
+                    weixinPay(bean,orderType);
+                }else{
+                    aliPay(bean, peiXunPayDialog,orderType);
+                }
+
+            }
+        });
+
+        peiXunPayDialog.setContentView(view);
+        peiXunPayDialog.show();
+    }
+
+    private void weixinPay(MyAliOrderBean bean,String type) {
+
+    }
+
+    protected void aliPay(MyAliOrderBean bean,BottomSheetDialog payDialog,String type) {
+        String url = SPUtils.getString(mContext, Config.payType_ZFB, null);
+        bean.setAppId(Config.zhifubao_app_id);
+        bean.setPid(Config.zhifubao_pid);
+        bean.setSiYao(Config.zhifubao_rsa2);
+        bean.setNotifyUrl(url);
+        bean.setSubject("麦签订单支付");
+        MyAliPay.newInstance(mContext).startPay(bean, new MyAliPayCallback() {
+            @Override
+            public void paySuccess(PayResult payResult) {
+                dismissLoading();
+                if(payDialog!=null){
+                    payDialog.dismiss();
+                }
+                MyRxBus.getInstance().post(new RefreshOrderEvent(type));
+            }
+            @Override
+            public void payFail() {
+                dismissLoading();
+                showMsg("支付失败");
+                if(payDialog!=null){
+                    payDialog.dismiss();
+                }
+            }
+            @Override
+            public void payCancel() {
+                dismissLoading();
+                showMsg("支付已取消");
+                if(payDialog!=null){
+                    payDialog.dismiss();
+                }
+            }
+        });
     }
 }

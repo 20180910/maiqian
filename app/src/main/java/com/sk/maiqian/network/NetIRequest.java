@@ -50,7 +50,7 @@ public interface NetIRequest {
     Call<ResponseObj<ImageObj>> getYouXueObj(@QueryMap Map<String, String> map);
 
     //获取支付url
-    @GET("api/Lib/GetPayInfo")
+    @GET("api/MQLib/GetPayWay")
     Call<ResponseObj<PayObj>> getPayNotifyUrl(@QueryMap Map<String,String> map);
 
     //app更新
@@ -58,7 +58,7 @@ public interface NetIRequest {
     Call<ResponseObj<AppVersionObj>> getAppVersion(@QueryMap Map<String,String> map);
 
     //分享页面
-    @GET("api/MQLib/GetShareInformation")
+    @GET("api/MQLib/GetShareInformations")
     Call<ResponseObj<ShareObj>> getShareInformation(@QueryMap Map<String,String> map);
 
 }

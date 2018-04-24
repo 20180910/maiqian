@@ -41,6 +41,7 @@
                 android:textColor="@color/gray_66"
                 />
             <com.github.customview.MyTextView
+                android:id="@+id/tv_pay_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="返回首页"
