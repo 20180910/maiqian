@@ -1,6 +1,7 @@
 package com.sk.maiqian.base;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.support.design.widget.BottomSheetDialog;
@@ -22,6 +23,7 @@ import com.sdklibrary.base.pay.alipay.MyAliPay;
 import com.sdklibrary.base.pay.alipay.MyAliPayCallback;
 import com.sdklibrary.base.pay.alipay.PayResult;
 import com.sdklibrary.base.share.ShareParam;
+import com.sdklibrary.base.share.qq.MyQQActivityResult;
 import com.sdklibrary.base.share.qq.MyQQShare;
 import com.sdklibrary.base.share.qq.MyQQShareListener;
 import com.sdklibrary.base.share.qq.bean.MyQQWebHelper;
@@ -280,12 +282,15 @@ public abstract class BaseFragment extends MyBaseFragment {
         }
         fenXiangDialog.show();
     }
+
+
+
     protected void fenXiang(@ShareParam.MyShareType int platform) {
         showLoading();
         Map<String,String> map=new HashMap<String,String>();
         map.put("rnd",getRnd());
         map.put("sign",GetSign.getSign(map));
-        NetApiRequest.getShareInformation(map, new MyCallBack<ShareObj>(mContext) {
+        NetApiRequest.getShareInformation(map, new MyCallBack<ShareObj>(mContext,true) {
             @Override
             public void onSuccess(ShareObj obj,int errorCode,String msg) {
                 if(platform==ShareParam.QQ||platform==ShareParam.QZONE){

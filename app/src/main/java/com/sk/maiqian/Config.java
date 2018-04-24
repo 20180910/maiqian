@@ -9,8 +9,8 @@ public class Config {
     public static final String longitude = "longitude";
     public static final String latitude = "latitude";
 
-    public static final String weixing_id = "wx1490c61b4713bceb";
-    public static final String weixing_AppSecret = "e0e4844100e8c4b92c1ce78beccd61a0";
+    public static final String weixing_id = "wx32725acca4dfcf9f";//麦签
+    public static final String weixing_AppSecret = "ed5a7e3ea4ce6540f58658884c34a439";//麦签
     public static final String weixing_miyao = "NVwPLeIStgt1yUQ6H6A0LjMHpe2abwkM";
     public static final String weixing_mch_id = "1489530042";//商户号
 
