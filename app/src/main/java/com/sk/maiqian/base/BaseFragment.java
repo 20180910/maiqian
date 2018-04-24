@@ -22,11 +22,20 @@ import com.sdklibrary.base.pay.alipay.MyAliPay;
 import com.sdklibrary.base.pay.alipay.MyAliPayCallback;
 import com.sdklibrary.base.pay.alipay.PayResult;
 import com.sdklibrary.base.share.ShareParam;
+import com.sdklibrary.base.share.qq.MyQQShare;
+import com.sdklibrary.base.share.qq.MyQQShareListener;
+import com.sdklibrary.base.share.qq.bean.MyQQWebHelper;
+import com.sdklibrary.base.share.wx.MyWXShare;
+import com.sdklibrary.base.share.wx.MyWXShareCallback;
+import com.sdklibrary.base.share.wx.bean.MyWXWebHelper;
 import com.sk.maiqian.AppXml;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.GetSign;
 import com.sk.maiqian.R;
 import com.sk.maiqian.module.home.event.RefreshOrderEvent;
+import com.sk.maiqian.network.NetApiRequest;
+import com.sk.maiqian.network.response.ShareObj;
+import com.tencent.tauth.UiError;
 import com.youth.banner.Banner;
 
 import org.jsoup.Jsoup;
@@ -276,17 +285,59 @@ public abstract class BaseFragment extends MyBaseFragment {
         Map<String,String> map=new HashMap<String,String>();
         map.put("rnd",getRnd());
         map.put("sign",GetSign.getSign(map));
-        /*ApiRequest.fenXiang(map, new MyCallBack<FenXiangObj>(mContext) {
+        NetApiRequest.getShareInformation(map, new MyCallBack<ShareObj>(mContext) {
             @Override
-            public void onSuccess(FenXiangObj obj) {
+            public void onSuccess(ShareObj obj,int errorCode,String msg) {
                 if(platform==ShareParam.QQ||platform==ShareParam.QZONE){
-                    showMsg("QQ分享正在开发中");
+                    MyQQWebHelper helper=new MyQQWebHelper(platform);
+                    helper.setTitle(obj.getTitle());
+                    helper.setDescription(obj.getContent());
+                    helper.setImageUrl(obj.getImg());
+                    helper.setUrl(obj.getShare_link());
+                    MyQQShare.newInstance(mContext).shareWeb(helper, new MyQQShareListener() {
+                        @Override
+                        public void doComplete(Object o) {
+                            dismissLoading();
+                            showMsg("分享成功");
+                        }
+                        @Override
+                        public void doError(UiError uiError) {
+                            dismissLoading();
+                            showMsg("分享失败");
+                        }
+                        @Override
+                        public void doCancel() {
+                            dismissLoading();
+                            showMsg("取消分享");
+                        }
+                    });
                 }else{
-//                    MyWXShare.newInstance(null).shareAudio();
+                    MyWXWebHelper helperWX=new MyWXWebHelper(platform);
+                    helperWX.setUrl(obj.getShare_link());
+                    helperWX.setTitle(obj.getTitle());
+                    helperWX.setDescription(obj.getContent());
+                    helperWX.setBitmapResId(R.mipmap.ic_launcher);
+                    MyWXShare.newInstance(mContext).shareWeb(helperWX, new MyWXShareCallback() {
+                        @Override
+                        public void shareSuccess() {
+                            dismissLoading();
+                            showMsg("分享成功");
+                        }
+                        @Override
+                        public void shareFail() {
+                            dismissLoading();
+                            showMsg("分享失败");
+                        }
+                        @Override
+                        public void shareCancel() {
+                            dismissLoading();
+                            showMsg("取消分享");
+                        }
+                    });
 
                 }
             }
-        });*/
+        });
     }
     /**************************************************************/
     /*****************************************************************************/
