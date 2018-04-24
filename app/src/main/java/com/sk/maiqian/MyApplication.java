@@ -9,6 +9,8 @@ import com.aspsine.multithreaddownload.DownloadManager;
 import com.github.androidtools.SPUtils;
 import com.github.baseclass.view.Loading;
 import com.github.retrofitutil.NetWorkManager;
+import com.sdklibrary.base.pay.alipay.MyAliPay;
+import com.sdklibrary.base.pay.wxpay.MyWXPay;
 import com.sdklibrary.base.share.qq.MyQQShare;
 import com.sdklibrary.base.share.wx.MyWXShare;
 
@@ -41,6 +43,8 @@ public class MyApplication extends Application {
 
         MyWXShare.setAppId(Config.weixing_id,Config.weixing_AppSecret);
         MyQQShare.setAppId(Config.qq_id);
+        MyAliPay.setConfig(Config.zhifubao_app_id,Config.zhifubao_pid,Config.zhifubao_rsa2);
+        MyWXPay.setConfig(Config.weixing_id,Config.weixing_mch_id,Config.weixing_miyao);
     }
     private void initDownloader() {
         DownloadConfiguration configuration = new DownloadConfiguration();
