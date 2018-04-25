@@ -7,6 +7,13 @@ import android.view.View;
 import com.github.androidtools.SPUtils;
 import com.github.customview.MyEditText;
 import com.github.rxbus.MyRxBus;
+import com.google.gson.Gson;
+import com.sdklibrary.base.share.qq.MyQQLoginCallback;
+import com.sdklibrary.base.share.qq.MyQQShare;
+import com.sdklibrary.base.share.qq.bean.MyQQUserInfo;
+import com.sdklibrary.base.share.wx.MyWXLoginCallback;
+import com.sdklibrary.base.share.wx.MyWXShare;
+import com.sdklibrary.base.share.wx.MyWXUserInfo;
 import com.sk.maiqian.AppXml;
 import com.sk.maiqian.BuildConfig;
 import com.sk.maiqian.Constant;
@@ -18,6 +25,7 @@ import com.sk.maiqian.event.LoginSuccessEvent;
 import com.sk.maiqian.module.home.activity.MainActivity;
 import com.sk.maiqian.module.my.network.ApiRequest;
 import com.sk.maiqian.module.my.network.response.LoginObj;
+import com.sk.maiqian.network.NetApiRequest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -103,10 +111,63 @@ public class LoginActivity extends BaseActivity {
                 STActivityForResult(RegisterActivity.class,100);
                 break;
             case R.id.iv_login_forqq:
+                showLoading();
+                MyQQShare.newInstance(mContext).login(new MyQQLoginCallback() {
+                    @Override
+                    public void loginSuccess(MyQQUserInfo myQQUserInfo) {
+                        Log("==="+new Gson().toJson(myQQUserInfo));
+                        loginForApp("1",myQQUserInfo.getUnionid(),myQQUserInfo.getNickname(),myQQUserInfo.getUserImageUrl());
+                    }
+                    @Override
+                    public void loginFail() {
+                        dismissLoading();
+                        showMsg("登录失败");
+                    }
+                    @Override
+                    public void loginCancel() {
+                        dismissLoading();
+                        showMsg("取消登录");
+                    }
+                });
                 break;
             case R.id.iv_login_forwx:
+                showLoading();
+                MyWXShare.newInstance(mContext).login(new MyWXLoginCallback() {
+                    @Override
+                    public void loginSuccess(MyWXUserInfo myWXUserInfo) {
+                        Log("==="+new Gson().toJson(myWXUserInfo));
+                        loginForApp("2",myWXUserInfo.getUnionid(),myWXUserInfo.getNickname(),myWXUserInfo.getHeadimgurl());
+                    }
+                    @Override
+                    public void loginFail() {
+                        dismissLoading();
+                        showMsg("登录失败");
+                    }
+                    @Override
+                    public void loginCancel() {
+                        dismissLoading();
+                        showMsg("取消登录");
+                    }
+                });
                 break;
         }
+    }
+
+    private void loginForApp(String platform,String uid,String name,String img) {
+        Map<String,String>map=new HashMap<String,String>();
+        map.put("platform",platform);
+        map.put("open",uid);
+        map.put("nickname",name);
+        map.put("avatar",img);
+        map.put("RegistrationID",SPUtils.getString(mContext, Constant.registrationId, "0"));
+        map.put("sign",getSign(map));
+        NetApiRequest.appLogin(map, new MyCallBack<LoginObj>(mContext) {
+            @Override
+            public void onSuccess(LoginObj obj, int errorCode, String msg) {
+                loginResult(obj);
+            }
+        });
+
     }
 
     @Override

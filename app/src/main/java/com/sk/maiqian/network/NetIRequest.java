@@ -5,6 +5,7 @@ import com.library.base.ResponseObj;
 import com.library.base.bean.AppVersionObj;
 import com.library.base.bean.PayObj;
 import com.sk.maiqian.module.my.network.response.BankNameObj;
+import com.sk.maiqian.module.my.network.response.LoginObj;
 import com.sk.maiqian.network.request.UploadImgBody;
 import com.sk.maiqian.network.response.CityObj;
 import com.sk.maiqian.network.response.ImageObj;
@@ -60,5 +61,9 @@ public interface NetIRequest {
     //分享页面
     @GET("api/MQLib/GetShareInformations")
     Call<ResponseObj<ShareObj>> getShareInformation(@QueryMap Map<String,String> map);
+
+    //第三方登录
+    @GET("api/MQLib/GetAddWXUser")
+    Call<ResponseObj<LoginObj>> appLogin(@QueryMap Map<String,String> map);
 
 }

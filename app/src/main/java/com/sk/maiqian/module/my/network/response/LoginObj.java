@@ -20,12 +20,67 @@ public class LoginObj extends BaseObj {
      * point : 0
      */
 
+
     private String user_id;
     private String user_name;
+    private String name;
     private String nick_name;
     private String avatar;
+    private String sex;
     private String mobile;
+    private String birthday;
+    private double amount;
+    private int commission;
+    private int is_validation;
     private double point;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public int getCommission() {
+        return commission;
+    }
+
+    public void setCommission(int commission) {
+        this.commission = commission;
+    }
+
+    public int getIs_validation() {
+        return is_validation;
+    }
+
+    public void setIs_validation(int is_validation) {
+        this.is_validation = is_validation;
+    }
 
     public String getUser_id() {
         return user_id;

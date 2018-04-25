@@ -86,4 +86,5 @@ dependencies {
 
 
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    compile 'cz.msebera.android:httpclient:4.4.1.2'
 }

@@ -283,7 +283,7 @@ public class QianZhengDetailActivity extends BaseActivity {
         ApiRequest.collect(map, new MyCallBack<CollectObj>(mContext) {
             @Override
             public void onSuccess(CollectObj obj, int errorCode, String msg) {
-                showMsg(obj.getMsg());
+                showMsg(msg);
                 if (obj.getIs_collect() == 1) {
                     tv_qianzheng_detail_collect.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.collect_normal2, 0, 0);
                 } else {
