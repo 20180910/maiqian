@@ -11,8 +11,8 @@ public class Config {
 
     public static final String weixing_id = "wx32725acca4dfcf9f";//麦签
     public static final String weixing_AppSecret = "ed5a7e3ea4ce6540f58658884c34a439";//麦签
-    public static final String weixing_miyao = "NVwPLeIStgt1yUQ6H6A0LjMHpe2abwkM";
-    public static final String weixing_mch_id = "1489530042";//商户号
+    public static final String weixing_miyao = "maiqian2018425qwertyuiopasdfghjk";//麦签
+    public static final String weixing_mch_id = "1502842581";//麦签
 
     public static final String zhifubao_app_id = "2018042302592946";//麦签支付宝appid
     public static final String zhifubao_pid = "2088031504356890";//麦签
