@@ -7,6 +7,7 @@ import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.base.GlideUtils;
 import com.sk.maiqian.base.MyCallBack;
+import com.sk.maiqian.module.home.activity.QianZhengDaiBanActivity;
 import com.sk.maiqian.module.my.network.ApiRequest;
 import com.sk.maiqian.module.my.network.response.JiFenShuoMingObj;
 
@@ -60,8 +61,10 @@ public class ZhuanJiFenActivity extends BaseActivity {
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.ll_zhuanjifen_xiadan:
+                STActivity(QianZhengDaiBanActivity.class);
                 break;
             case R.id.ll_zhuanjifen_yaoqing:
+                showFenXiangDialog();
                 break;
         }
     }

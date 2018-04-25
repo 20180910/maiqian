@@ -66,7 +66,8 @@ public class JiFenActivity extends BaseActivity {
                 STActivity(JiFenShuoMingActivity.class);
                 break;
             case R.id.tv_jifen_zhuanjifen:
-                STActivity(ZhuanJiFenActivity.class);
+                showFenXiangDialog();
+//                STActivity(ZhuanJiFenActivity.class);
                 break;
             case R.id.tv_jifen_mingxi:
                 STActivity(JiFenMingXiActivity.class);

@@ -133,6 +133,7 @@ public class SettingActivity extends BaseActivity {
                 });
                 break;
             case R.id.ll_setting_share:
+                showFenXiangDialog();
                 break;
             case R.id.ll_setting_resetpwd:
                 STActivity(UpdatePWDActivity.class);
