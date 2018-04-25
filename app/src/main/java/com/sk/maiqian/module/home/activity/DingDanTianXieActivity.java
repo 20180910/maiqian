@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.androidtools.PhoneUtils;
+import com.github.androidtools.SPUtils;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.MyBaseRecyclerAdapter;
 import com.github.baseclass.adapter.MyLoadMoreAdapter;
@@ -26,15 +27,22 @@ import com.github.baseclass.view.MyDialog;
 import com.github.customview.MyEditText;
 import com.github.customview.MyRadioButton;
 import com.github.customview.MyTextView;
-import com.library.base.BaseObj;
+import com.github.rxbus.MyRxBus;
 import com.library.base.tools.ZhengZeUtils;
 import com.library.base.view.MyRecyclerView;
+import com.sdklibrary.base.pay.alipay.MyAliOrderBean;
+import com.sdklibrary.base.pay.alipay.MyAliPay;
+import com.sdklibrary.base.pay.alipay.MyAliPayCallback;
+import com.sdklibrary.base.pay.alipay.PayResult;
+import com.sk.maiqian.Config;
 import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.base.SpaceItemDecoration;
 import com.sk.maiqian.module.home.bean.RiLiObj;
+import com.sk.maiqian.module.home.event.RefreshOrderEvent;
+import com.sk.maiqian.module.home.fragment.OrderFragment;
 import com.sk.maiqian.module.home.network.ApiRequest;
 import com.sk.maiqian.module.home.network.request.CommitQianZhengBody;
 import com.sk.maiqian.module.home.network.response.QianZhengDetailObj;
@@ -42,6 +50,7 @@ import com.sk.maiqian.module.home.network.response.ShenQingRenObj;
 import com.sk.maiqian.module.my.activity.LoginActivity;
 import com.sk.maiqian.module.my.activity.MyAddressListActivity;
 import com.sk.maiqian.module.my.network.response.MyAddressObj;
+import com.sk.maiqian.module.yingyupeixun.network.response.PeiXunMakeOrderObj;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -259,8 +268,22 @@ public class DingDanTianXieActivity extends BaseActivity {
                     return;
                 }
 
-
-                commitOrder(chuFaDate,name,phone,email,kuaiDiName,addressId);
+                mDialog=new MyDialog.Builder(mContext);
+                mDialog.setMessage("是否立即支付?");
+                mDialog.setNegativeButton(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                mDialog.setPositiveButton(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        commitOrder(chuFaDate,name,phone,email,kuaiDiName,addressId);
+                    }
+                });
+                mDialog.create().show();
                 break;
         }
     }
@@ -279,14 +302,63 @@ public class DingDanTianXieActivity extends BaseActivity {
         map.put("sign",getSign(map));
         CommitQianZhengBody body=new CommitQianZhengBody();
         body.setBody(adapter.getList());
-        ApiRequest.commitQianZhengOrder(map,body,new MyCallBack<BaseObj>(mContext) {
+        ApiRequest.commitQianZhengOrder(map,body,new MyCallBack<PeiXunMakeOrderObj>(mContext,true) {
             @Override
-            public void onSuccess(BaseObj obj, int errorCode, String msg) {
-                showMsg(obj.getMsg());
+            public void onSuccess(PeiXunMakeOrderObj obj, int errorCode, String msg) {
+                MyAliOrderBean bean=new MyAliOrderBean();
+                bean.setTotal_amount(obj.getCombined());
+                bean.setOut_trade_no(obj.getOrder_no());
+                bean.setBody("签证代办订单支付");
+                if(rb_qianzheng_order_wx.isChecked()){
+                    weixinPay(bean);
+                }else{
+                    aliPay(bean);
+                }
+            }
+        });
+    }
+    private void weixinPay(MyAliOrderBean bean) {
+
+    }
+
+    protected void aliPay(MyAliOrderBean bean) {
+        String url = SPUtils.getString(mContext, Config.payType_ZFB, null);
+        bean.setAppId(Config.zhifubao_app_id);
+        bean.setPid(Config.zhifubao_pid);
+        bean.setSiYao(Config.zhifubao_rsa2);
+        bean.setNotifyUrl(url);
+        bean.setSubject("麦签订单支付");
+        MyAliPay.newInstance(mContext).startPay(bean, new MyAliPayCallback() {
+            @Override
+            public void paySuccess(PayResult payResult) {
+                MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_1));
+                dismissLoading();
+                Intent intent=new Intent();
+                intent.putExtra(IntentParam.isQianZhengPay,true);
+                STActivity(intent,PaySuccessActivity.class);
+                finish();
+            }
+            @Override
+            public void payFail() {
+                MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_1));
+                dismissLoading();
+                showMsg("支付失败");
+                Intent intent=new Intent(IntentParam.Action.qianZhengPaySuccess);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                STActivity(intent,MainActivity.class);
+                finish();
+            }
+            @Override
+            public void payCancel() {
+                MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_1));
+                dismissLoading();
+                showMsg("支付已取消");
+                Intent intent=new Intent(IntentParam.Action.qianZhengPaySuccess);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                STActivity(intent,MainActivity.class);
                 finish();
             }
         });
-
     }
     private void getPeople(int page,boolean isLoad,boolean isShow) {
         Map<String,String>map=new HashMap<String,String>();

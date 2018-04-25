@@ -1,7 +1,6 @@
 package com.sk.maiqian.base;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.support.design.widget.BottomSheetDialog;
@@ -23,7 +22,6 @@ import com.sdklibrary.base.pay.alipay.MyAliPay;
 import com.sdklibrary.base.pay.alipay.MyAliPayCallback;
 import com.sdklibrary.base.pay.alipay.PayResult;
 import com.sdklibrary.base.share.ShareParam;
-import com.sdklibrary.base.share.qq.MyQQActivityResult;
 import com.sdklibrary.base.share.qq.MyQQShare;
 import com.sdklibrary.base.share.qq.MyQQShareListener;
 import com.sdklibrary.base.share.qq.bean.MyQQWebHelper;
@@ -392,7 +390,7 @@ public abstract class BaseFragment extends MyBaseFragment {
                 if(payDialog!=null){
                     payDialog.dismiss();
                 }
-                MyRxBus.getInstance().post(new RefreshOrderEvent(type));
+                MyRxBus.getInstance().postReplay(new RefreshOrderEvent(type));
             }
             @Override
             public void payFail() {

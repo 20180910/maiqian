@@ -5,6 +5,7 @@ package com.sk.maiqian;
  */
 
 public class IntentParam {
+    public static final String isQianZhengPay = "isQianZhengPay";
     public static final String selectShenQing = "selectShenQing";
     public static final String ziXunId = "ziXunId";
     public static final String guoJia = "guoJia";
@@ -39,6 +40,7 @@ public class IntentParam {
     public static final String qianZhengObj="qianZhengObj";
     public static final String selectAddress="selectAddress";
     public static class Action{
-        public static final String paySuccess = "paySuccess";
+        public static final String peiXunPaySuccess = "peiXunPaySuccess";
+        public static final String qianZhengPaySuccess = "qianZhengPaySuccess";
     }
 }

@@ -14,6 +14,7 @@ import com.github.androidtools.SPUtils;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.customview.MyEditText;
 import com.github.customview.MyTextView;
+import com.github.rxbus.MyRxBus;
 import com.library.base.tools.ZhengZeUtils;
 import com.library.base.tools.has.AndroidUtils;
 import com.sdklibrary.base.pay.alipay.MyAliOrderBean;
@@ -29,6 +30,8 @@ import com.sk.maiqian.base.GlideUtils;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.module.home.activity.MainActivity;
 import com.sk.maiqian.module.home.activity.PaySuccessActivity;
+import com.sk.maiqian.module.home.event.RefreshOrderEvent;
+import com.sk.maiqian.module.home.fragment.OrderFragment;
 import com.sk.maiqian.module.yingyupeixun.network.response.KeChengDetailObj;
 import com.sk.maiqian.module.yingyupeixun.network.response.PeiXunMakeOrderObj;
 import com.sk.maiqian.tools.TextViewUtils;
@@ -198,6 +201,7 @@ public class TiJiaoOrderActivity extends BaseActivity {
         MyAliPay.newInstance(mContext).startPay(bean, new MyAliPayCallback() {
             @Override
             public void paySuccess(PayResult payResult) {
+                MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_2));
                 dismissLoading();
                 if(payDialog!=null){
                     payDialog.dismiss();
@@ -207,37 +211,29 @@ public class TiJiaoOrderActivity extends BaseActivity {
             }
             @Override
             public void payFail() {
-                tv_order_title.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        dismissLoading();
-                        showMsg("支付失败");
-                        if(payDialog!=null){
-                            payDialog.dismiss();
-                        }
-                        Intent intent=new Intent(IntentParam.Action.paySuccess);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        STActivity(intent,MainActivity.class);
-                        finish();
-                    }
-                },800);
+                MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_2));
+                dismissLoading();
+                showMsg("支付失败");
+                if(payDialog!=null){
+                    payDialog.dismiss();
+                }
+                Intent intent=new Intent(IntentParam.Action.peiXunPaySuccess);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                STActivity(intent,MainActivity.class);
+                finish();
             }
             @Override
             public void payCancel() {
-                tv_order_title.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        dismissLoading();
-                        showMsg("支付已取消");
-                        if(payDialog!=null){
-                            payDialog.dismiss();
-                        }
-                        Intent intent=new Intent(IntentParam.Action.paySuccess);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        STActivity(intent,MainActivity.class);
-                        finish();
-                    }
-                },800);
+                MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_2));
+                dismissLoading();
+                showMsg("支付已取消");
+                if(payDialog!=null){
+                    payDialog.dismiss();
+                }
+                Intent intent=new Intent(IntentParam.Action.peiXunPaySuccess);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                STActivity(intent,MainActivity.class);
+                finish();
             }
         });
     }

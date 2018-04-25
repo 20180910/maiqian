@@ -237,10 +237,14 @@ public class MainActivity extends BaseActivity {
         setIntent(intent);
         if (Config.exitAPP.equals(intent.getAction())) {
             finish();
-        }else if(intent.getAction().equals(IntentParam.Action.paySuccess)){
+        }else if(intent.getAction().equals(IntentParam.Action.peiXunPaySuccess)){
             selectOrder();
             selectView.setChecked(true);
             MyRxBus.getInstance().postReplay(new SelectPeiXunOrderEvent());
+        }else if(intent.getAction().equals(IntentParam.Action.qianZhengPaySuccess)){
+            selectOrder();
+            selectView.setChecked(true);
+            MyRxBus.getInstance().postReplay(new SelectPeiXunOrderEvent(true));
         }
     }
 

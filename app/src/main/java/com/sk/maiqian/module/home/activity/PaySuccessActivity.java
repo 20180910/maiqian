@@ -14,6 +14,9 @@ import butterknife.OnClick;
  */
 
 public class PaySuccessActivity extends BaseActivity {
+
+    private boolean isQianZhengPay;
+
     @Override
     protected int getContentView() {
         setAppTitle("付款成功");
@@ -22,6 +25,7 @@ public class PaySuccessActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        isQianZhengPay = getIntent().getBooleanExtra(IntentParam.isQianZhengPay, false);
 
     }
 
@@ -34,7 +38,7 @@ public class PaySuccessActivity extends BaseActivity {
     protected void onViewClick(View v) {
         switch (v.getId()){
             case R.id.tv_pay_result:
-                Intent intent=new Intent(IntentParam.Action.paySuccess);
+                Intent intent=new Intent(isQianZhengPay?IntentParam.Action.qianZhengPaySuccess:IntentParam.Action.peiXunPaySuccess);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 STActivity(intent,MainActivity.class);
                 finish();

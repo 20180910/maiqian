@@ -5,4 +5,10 @@ package com.sk.maiqian.event;
  */
 
 public class SelectPeiXunOrderEvent {
+    public boolean isQianZhengOrder;
+    public SelectPeiXunOrderEvent() {
+    }
+    public SelectPeiXunOrderEvent(boolean flag) {
+        isQianZhengOrder=flag;
+    }
 }

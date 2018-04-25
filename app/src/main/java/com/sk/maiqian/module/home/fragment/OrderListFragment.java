@@ -92,7 +92,7 @@ public class OrderListFragment extends BaseFragment {
     @Override
     protected void initRxBus() {
         super.initRxBus();
-        getEvent(RefreshOrderEvent.class, new MyConsumer<RefreshOrderEvent>() {
+        getEventReplay(RefreshOrderEvent.class, new MyConsumer<RefreshOrderEvent>() {
             @Override
             public void onAccept(RefreshOrderEvent event) {
                 if(event.flag.equals(OrderFragment.type_1)){

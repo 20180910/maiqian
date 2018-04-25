@@ -17,6 +17,7 @@ import com.sk.maiqian.module.home.network.response.ShenQingRenObj;
 import com.sk.maiqian.module.home.network.response.ZiLiaoMuBanObj;
 import com.sk.maiqian.module.home.network.response.ZiXunDetailObj;
 import com.sk.maiqian.module.home.network.response.ZiXunObj;
+import com.sk.maiqian.module.yingyupeixun.network.response.PeiXunMakeOrderObj;
 
 import java.util.List;
 import java.util.Map;
@@ -114,7 +115,7 @@ public interface IRequest {
     //提交签证订单
     @Headers("User-Agent:android")
     @POST("api/MQVisaAgent/PostSubmitOrder")
-    Call<ResponseObj<List<OrderQianZhengObj>>> commitQianZhengOrder(@QueryMap Map<String, String> map,@Body CommitQianZhengBody body);
+    Call<ResponseObj<PeiXunMakeOrderObj>> commitQianZhengOrder(@QueryMap Map<String, String> map, @Body CommitQianZhengBody body);
 
     //删除订单
     @Headers("User-Agent:android")

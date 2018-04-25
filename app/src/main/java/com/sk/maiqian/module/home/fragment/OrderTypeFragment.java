@@ -52,7 +52,11 @@ public class OrderTypeFragment extends BaseFragment {
         getEventReplay(SelectPeiXunOrderEvent.class, new MyConsumer<SelectPeiXunOrderEvent>() {
             @Override
             public void onAccept(SelectPeiXunOrderEvent event) {
-                selectPeiXunOrder();
+                if(event.isQianZhengOrder){
+                    selectQianZhengOrder();
+                }else{
+                    selectPeiXunOrder();
+                }
             }
         });
     }

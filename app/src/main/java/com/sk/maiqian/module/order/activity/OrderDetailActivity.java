@@ -98,7 +98,7 @@ public class OrderDetailActivity extends BaseActivity {
     @Override
     protected void initRxBus() {
         super.initRxBus();
-        getEvent(RefreshOrderEvent.class, new MyConsumer<RefreshOrderEvent>() {
+        getEventReplay(RefreshOrderEvent.class, new MyConsumer<RefreshOrderEvent>() {
             @Override
             public void onAccept(RefreshOrderEvent event) {
                 if(event.flag.equals(3)){
@@ -273,7 +273,7 @@ public class OrderDetailActivity extends BaseActivity {
         com.sk.maiqian.module.home.network.ApiRequest.completeOrder(map, new MyCallBack<List<OrderQianZhengObj>>(mContext,true) {
             @Override
             public void onSuccess(List<OrderQianZhengObj> obj, int errorCode, String msg) {
-                MyRxBus.getInstance().post(new RefreshOrderEvent(type));
+                MyRxBus.getInstance().postReplay(new RefreshOrderEvent(type));
                 getData(1,false);
             }
         });
@@ -289,7 +289,7 @@ public class OrderDetailActivity extends BaseActivity {
             @Override
             public void onSuccess(List<OrderQianZhengObj> obj, int errorCode, String msg) {
                 showMsg("取消成功");
-                MyRxBus.getInstance().post(new RefreshOrderEvent(type));
+                MyRxBus.getInstance().postReplay(new RefreshOrderEvent(type));
                 getData(1,false);
             }
         });

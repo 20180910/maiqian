@@ -727,7 +727,7 @@ public abstract class BaseActivity extends MyBaseActivity {
         MyAliPay.newInstance(mContext).startPay(bean, new MyAliPayCallback() {
             @Override
             public void paySuccess(PayResult payResult) {
-                MyRxBus.getInstance().post(new RefreshOrderEvent(type));
+                MyRxBus.getInstance().postReplay(new RefreshOrderEvent(type));
 
                 if(mContext instanceof OrderDetailActivity){
                     OrderDetailActivity mContext = (OrderDetailActivity) BaseActivity.this.mContext;
