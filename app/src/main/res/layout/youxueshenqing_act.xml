@@ -31,7 +31,6 @@
                 android:background="@color/white"
                 android:paddingTop="20dp"
                 />
-
             <TextView
                 android:id="@+id/tv_youxue_shenqing_guojia"
                 android:layout_width="match_parent"
@@ -42,8 +41,9 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:drawableRight="@drawable/jiantou_right"
+                android:textColor="@color/blue_00"
+                android:textSize="14sp"
                 />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -65,6 +65,8 @@
                 android:paddingLeft="10dp"
                 android:inputType="number"
                 android:imeOptions="actionNext"
+                android:textColor="@color/blue_00"
+                android:textSize="14sp"
                 />
             <TextView
                 android:layout_width="match_parent"
@@ -88,6 +90,8 @@
                 android:paddingRight="10dp"
                 android:drawableRight="@drawable/jiantou_right"
                 android:layout_marginBottom="2px"
+                android:textColor="@color/blue_00"
+                android:textSize="14sp"
                 />
 
         </LinearLayout>

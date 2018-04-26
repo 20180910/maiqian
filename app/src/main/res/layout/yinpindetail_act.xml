@@ -23,7 +23,7 @@
             android:layout_height="3dp"
             android:id="@+id/pb_progress"
             android:progress="0"
-            android:max="100"
+            android:max="1000"
             android:progressDrawable="@drawable/progress"
             />
     </RelativeLayout>

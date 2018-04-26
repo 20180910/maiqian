@@ -43,6 +43,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:drawableRight="@drawable/jiantou_right"
+                android:textSize="14sp"
                 />
 
             <TextView
@@ -66,6 +67,8 @@
                 android:paddingLeft="10dp"
                 android:inputType="number"
                 android:imeOptions="actionNext"
+                android:textColor="@color/blue_00"
+                android:textSize="14sp"
                 />
             <TextView
                 android:layout_width="match_parent"
@@ -88,6 +91,8 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:drawableRight="@drawable/jiantou_right"
+                android:textColor="@color/blue_00"
+                android:textSize="14sp"
                 />
             <TextView
                 android:layout_width="match_parent"
@@ -111,6 +116,8 @@
                 android:paddingRight="10dp"
                 android:drawableRight="@drawable/jiantou_right"
                 android:layout_marginBottom="2px"
+                android:textColor="@color/blue_00"
+                android:textSize="14sp"
                 />
         </LinearLayout>
         <com.github.customview.MyLinearLayout

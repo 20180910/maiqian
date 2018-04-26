@@ -3,8 +3,14 @@ package com.sk.maiqian;
 import com.google.gson.Gson;
 
 import org.junit.Test;
+import org.reactivestreams.Subscription;
 
 import java.util.Date;
+
+import io.reactivex.Flowable;
+import io.reactivex.FlowableSubscriber;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,16 +25,35 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
     @Test
-    public void asdfasd() throws Exception {
-        int flag=3;
-        for (int i = 1; i <= flag; i++) {
-            flag++;
-            System.out.println(i+"==="+flag);
-            if(i==20){
-                break;
-            }
+    public void dfg() throws Exception {
+        double f= Math.pow(2,2);
+        System.out.println(f);
+    }
+    private void a(){
+        Flowable.timer(10, java.util.concurrent.TimeUnit.MINUTES)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(io.reactivex.schedulers.Schedulers.io())
+                .subscribe(new FlowableSubscriber<Long>() {
+                    @Override
+                    public void onSubscribe(@NonNull Subscription s) {
+                        s.request(Long.MAX_VALUE);
+                    }
+                    @Override
+                    public void onNext(Long aLong) {
+                        System.out.println(aLong);
+                    }
+                    @Override
+                    public void onError(Throwable t) {
+                    }
+                    @Override
+                    public void onComplete() {
 
-        }
+                    }
+                });
+    }
+    @Test
+    public void asdfasd() throws Exception {
+        a();
     }
     @Test
     public void asdf() throws Exception {
