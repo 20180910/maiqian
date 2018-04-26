@@ -1,8 +1,9 @@
 package com.sk.maiqian;
 
 
-import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 
 import com.aspsine.multithreaddownload.DownloadConfiguration;
 import com.aspsine.multithreaddownload.DownloadManager;
@@ -19,12 +20,12 @@ import com.sdklibrary.base.share.wx.MyWXShare;
  * Created by administartor on 2017/8/8.
  */
 
-public class MyApplication extends Application {
- /*   @Override
+public class MyApplication extends MultiDexApplication {
+   @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
-    }*/
+    }
     @Override
     public void onCreate() {
         super.onCreate();
