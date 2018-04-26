@@ -14,10 +14,14 @@
         <clip>
             <shape>
                 <corners android:radius="2dp" />
-                <gradient
+               <!-- <gradient
                     android:endColor="@color/colorPrimaryDark1"
-                    android:startColor="@color/colorPrimaryDark2" />
+                    android:startColor="@color/colorPrimaryDark2" />-->
+                <gradient
+                    android:endColor="#982DDB97"
+                    android:startColor="@color/green"
 
+                    />
             </shape>
         </clip>
     </item>

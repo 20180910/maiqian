@@ -19,6 +19,18 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
     @Test
+    public void asdfasd() throws Exception {
+        int flag=3;
+        for (int i = 1; i <= flag; i++) {
+            flag++;
+            System.out.println(i+"==="+flag);
+            if(i==20){
+                break;
+            }
+
+        }
+    }
+    @Test
     public void asdf() throws Exception {
         System.out.println(new Date().getYear());
         System.out.println(new Date().getMonth());

@@ -21,7 +21,7 @@
             android:layout_alignParentTop="true"
             android:layout_width="match_parent"
             android:layout_height="3dp"
-            android:id="@+id/pv_progress"
+            android:id="@+id/pb_progress"
             android:progress="0"
             android:max="100"
             android:progressDrawable="@drawable/progress"
