@@ -173,7 +173,7 @@ public class TiJiaoOrderActivity extends BaseActivity {
                 com.sk.maiqian.module.yingyupeixun.network.ApiRequest.makePeiXunOrder(map, new MyCallBack<PeiXunMakeOrderObj>(mContext,true) {
                     @Override
                     public void onSuccess(PeiXunMakeOrderObj obj, int errorCode, String msg) {
-
+                        peiXunPayDialog.dismiss();
                         if(rb_order_pay.isChecked()){
                             MyWXOrderBean bean=new MyWXOrderBean();
                             bean.setTotalFee((int) AndroidUtils.chengFa(obj.getCombined(),100));
@@ -198,7 +198,7 @@ public class TiJiaoOrderActivity extends BaseActivity {
     private void weixinPay(MyWXOrderBean bean) {
         String url = SPUtils.getString(mContext, Config.payType_WX, null);
         bean.setNotifyUrl(url);
-        bean.setIP(mContext);
+//        bean.setIp("1");
         MyWXPay.newInstance(mContext).startPay(bean, new MyWXPayCallback() {
             @Override
             public void paySuccess() {

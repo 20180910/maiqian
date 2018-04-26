@@ -725,7 +725,7 @@ public abstract class BaseActivity extends MyBaseActivity {
     private void weixinPay(MyWXOrderBean bean,BottomSheetDialog payDialog,String type) {
         String url = SPUtils.getString(mContext, Config.payType_WX, null);
         bean.setNotifyUrl(url);
-        bean.setIP(mContext);
+//        bean.setIp("1");
         MyWXPay.newInstance(mContext).startPay(bean, new MyWXPayCallback() {
             @Override
             public void paySuccess() {

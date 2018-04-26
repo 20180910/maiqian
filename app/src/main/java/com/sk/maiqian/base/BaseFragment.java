@@ -384,7 +384,7 @@ public abstract class BaseFragment extends MyBaseFragment {
     private void weixinPay(MyWXOrderBean bean, BottomSheetDialog payDialog, String type) {
         String url = SPUtils.getString(mContext, Config.payType_WX, null);
         bean.setNotifyUrl(url);
-        bean.setIP(mContext);
+//        bean.setIP(mContext);
         MyWXPay.newInstance(mContext).startPay(bean, new MyWXPayCallback() {
             @Override
             public void paySuccess() {

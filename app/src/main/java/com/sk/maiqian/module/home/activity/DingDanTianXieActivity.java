@@ -329,7 +329,7 @@ public class DingDanTianXieActivity extends BaseActivity {
     private void weixinPay(MyWXOrderBean bean) {
         String url = SPUtils.getString(mContext, Config.payType_WX, null);
         bean.setNotifyUrl(url);
-        bean.setIP(mContext);
+//        bean.setIP(mContext);
         MyWXPay.newInstance(mContext).startPay(bean, new MyWXPayCallback() {
             @Override
             public void paySuccess() {

@@ -215,13 +215,9 @@ public class OrderDetailActivity extends BaseActivity {
         }
     }
 
-    @Override
-    protected void onViewClick(View v) {
-
-    }
 
     @OnClick({R.id.tv_order_detail_cancel, R.id.tv_order_detail_pay, R.id.tv_order_detail_complete})
-    public void onClick(View view) {
+    public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.tv_order_detail_cancel:
                 mDialog=new MyDialog.Builder(mContext);
