@@ -35,6 +35,7 @@ import com.sk.maiqian.module.home.activity.MainActivity;
 import com.sk.maiqian.module.home.activity.PaySuccessActivity;
 import com.sk.maiqian.module.home.event.RefreshOrderEvent;
 import com.sk.maiqian.module.home.fragment.OrderFragment;
+import com.sk.maiqian.module.my.activity.LoginActivity;
 import com.sk.maiqian.module.yingyupeixun.network.response.KeChengDetailObj;
 import com.sk.maiqian.module.yingyupeixun.network.response.PeiXunMakeOrderObj;
 import com.sk.maiqian.tools.TextViewUtils;
@@ -144,6 +145,10 @@ public class TiJiaoOrderActivity extends BaseActivity {
     protected void onViewClick(View v) {
         switch (v.getId()){
             case R.id.tv_order_pay:
+                if(noLogin()){
+                    STActivity(LoginActivity.class);
+                    return;
+                }
                 String phone = getSStr(et_order_phone);
                 if(TextUtils.isEmpty(phone)|| ZhengZeUtils.notMobile(phone)){
                     showMsg("请输入正确手机号");
