@@ -17,10 +17,14 @@ import com.github.androidtools.SPUtils;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.rxbus.MyRxBus;
 import com.library.base.MyBaseFragment;
+import com.library.base.tools.has.AndroidUtils;
 import com.sdklibrary.base.pay.alipay.MyAliOrderBean;
 import com.sdklibrary.base.pay.alipay.MyAliPay;
 import com.sdklibrary.base.pay.alipay.MyAliPayCallback;
 import com.sdklibrary.base.pay.alipay.PayResult;
+import com.sdklibrary.base.pay.wxpay.MyWXOrderBean;
+import com.sdklibrary.base.pay.wxpay.MyWXPay;
+import com.sdklibrary.base.pay.wxpay.MyWXPayCallback;
 import com.sdklibrary.base.share.ShareParam;
 import com.sdklibrary.base.share.qq.MyQQShare;
 import com.sdklibrary.base.share.qq.MyQQShareListener;
@@ -355,13 +359,18 @@ public abstract class BaseFragment extends MyBaseFragment {
             @Override
             protected void onNoDoubleClick(View view) {
                 showLoading();
-                MyAliOrderBean bean=new MyAliOrderBean();
-                bean.setOut_trade_no(orderNo);
-                bean.setTotal_amount(price);
-                bean.setBody("英语培训订单支付");
+
                 if(rb_order_pay.isChecked()){
-                    weixinPay(bean,orderType);
+                    MyWXOrderBean bean=new MyWXOrderBean();
+                    bean.setTotalFee((int) AndroidUtils.chengFa(price,100));
+                    bean.setOut_trade_no(orderNo);
+                    bean.setBody("英语培训订单支付");
+                    weixinPay(bean,peiXunPayDialog,orderType);
                 }else{
+                    MyAliOrderBean bean=new MyAliOrderBean();
+                    bean.setOut_trade_no(orderNo);
+                    bean.setTotal_amount(price);
+                    bean.setBody("英语培训订单支付");
                     aliPay(bean, peiXunPayDialog,orderType);
                 }
 
@@ -372,8 +381,39 @@ public abstract class BaseFragment extends MyBaseFragment {
         peiXunPayDialog.show();
     }
 
-    private void weixinPay(MyAliOrderBean bean,String type) {
-
+    private void weixinPay(MyWXOrderBean bean, BottomSheetDialog payDialog, String type) {
+        String url = SPUtils.getString(mContext, Config.payType_WX, null);
+        bean.setNotifyUrl(url);
+        bean.setIP(mContext);
+        MyWXPay.newInstance(mContext).startPay(bean, new MyWXPayCallback() {
+            @Override
+            public void paySuccess() {
+                BaseFragment.this.paySuccess(payDialog,type);
+            }
+            @Override
+            public void payFail() {
+                dismissLoading();
+                showMsg("支付失败");
+                if(payDialog!=null){
+                    payDialog.dismiss();
+                }
+            }
+            @Override
+            public void payCancel() {
+                dismissLoading();
+                showMsg("支付已取消");
+                if(payDialog!=null){
+                    payDialog.dismiss();
+                }
+            }
+        });
+    }
+    private void paySuccess(BottomSheetDialog payDialog,String type){
+        MyRxBus.getInstance().postReplay(new RefreshOrderEvent(type));
+        dismissLoading();
+        if(payDialog!=null){
+            payDialog.dismiss();
+        }
     }
 
     protected void aliPay(MyAliOrderBean bean,BottomSheetDialog payDialog,String type) {
@@ -386,11 +426,7 @@ public abstract class BaseFragment extends MyBaseFragment {
         MyAliPay.newInstance(mContext).startPay(bean, new MyAliPayCallback() {
             @Override
             public void paySuccess(PayResult payResult) {
-                dismissLoading();
-                if(payDialog!=null){
-                    payDialog.dismiss();
-                }
-                MyRxBus.getInstance().postReplay(new RefreshOrderEvent(type));
+                BaseFragment.this.paySuccess(payDialog,type);
             }
             @Override
             public void payFail() {

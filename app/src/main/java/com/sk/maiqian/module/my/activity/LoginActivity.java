@@ -23,6 +23,8 @@ import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.event.LoginSuccessEvent;
 import com.sk.maiqian.module.home.activity.MainActivity;
+import com.sk.maiqian.module.home.event.RefreshOrderEvent;
+import com.sk.maiqian.module.home.fragment.OrderFragment;
 import com.sk.maiqian.module.my.network.ApiRequest;
 import com.sk.maiqian.module.my.network.response.LoginObj;
 import com.sk.maiqian.network.NetApiRequest;
@@ -214,6 +216,9 @@ public class LoginActivity extends BaseActivity {
 
     private void loginResult(LoginObj obj) {
 
+        MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_1));
+        MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_2));
+
         SPUtils.setPrefString(mContext, AppXml.user_id, obj.getUser_id());
         SPUtils.setPrefString(mContext, AppXml.user_name, obj.getUser_name());
         SPUtils.setPrefString(mContext, AppXml.nick_name, obj.getNick_name());
@@ -226,6 +231,7 @@ public class LoginActivity extends BaseActivity {
 
 //        LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent(Config.Bro.operation));
         MyRxBus.getInstance().post(new LoginSuccessEvent(LoginSuccessEvent.status_1));
+
 //        Intent intent = new Intent();
 //        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 //        STActivity(intent, MainActivity.class);

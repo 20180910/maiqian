@@ -29,11 +29,15 @@ import com.github.customview.MyRadioButton;
 import com.github.customview.MyTextView;
 import com.github.rxbus.MyRxBus;
 import com.library.base.tools.ZhengZeUtils;
+import com.library.base.tools.has.AndroidUtils;
 import com.library.base.view.MyRecyclerView;
 import com.sdklibrary.base.pay.alipay.MyAliOrderBean;
 import com.sdklibrary.base.pay.alipay.MyAliPay;
 import com.sdklibrary.base.pay.alipay.MyAliPayCallback;
 import com.sdklibrary.base.pay.alipay.PayResult;
+import com.sdklibrary.base.pay.wxpay.MyWXOrderBean;
+import com.sdklibrary.base.pay.wxpay.MyWXPay;
+import com.sdklibrary.base.pay.wxpay.MyWXPayCallback;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
@@ -305,22 +309,68 @@ public class DingDanTianXieActivity extends BaseActivity {
         ApiRequest.commitQianZhengOrder(map,body,new MyCallBack<PeiXunMakeOrderObj>(mContext,true) {
             @Override
             public void onSuccess(PeiXunMakeOrderObj obj, int errorCode, String msg) {
-                MyAliOrderBean bean=new MyAliOrderBean();
-                bean.setTotal_amount(obj.getCombined());
-                bean.setOut_trade_no(obj.getOrder_no());
-                bean.setBody("签证代办订单支付");
+
                 if(rb_qianzheng_order_wx.isChecked()){
+                    MyWXOrderBean bean=new MyWXOrderBean();
+                    bean.setTotalFee((int) AndroidUtils.chengFa(obj.getCombined(),100));
+                    bean.setOut_trade_no(obj.getOrder_no());
+                    bean.setBody("签证代办订单支付");
                     weixinPay(bean);
                 }else{
+                    MyAliOrderBean bean=new MyAliOrderBean();
+                    bean.setTotal_amount(obj.getCombined());
+                    bean.setOut_trade_no(obj.getOrder_no());
+                    bean.setBody("签证代办订单支付");
                     aliPay(bean);
                 }
             }
         });
     }
-    private void weixinPay(MyAliOrderBean bean) {
-
+    private void weixinPay(MyWXOrderBean bean) {
+        String url = SPUtils.getString(mContext, Config.payType_WX, null);
+        bean.setNotifyUrl(url);
+        bean.setIP(mContext);
+        MyWXPay.newInstance(mContext).startPay(bean, new MyWXPayCallback() {
+            @Override
+            public void paySuccess() {
+                DingDanTianXieActivity.this.paySuccess();
+            }
+            @Override
+            public void payFail() {
+                DingDanTianXieActivity.this.payFail();
+            }
+            @Override
+            public void payCancel() {
+                DingDanTianXieActivity.this.payCancel();
+            }
+        });
     }
-
+    private void paySuccess(){
+        MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_1));
+        dismissLoading();
+        Intent intent=new Intent();
+        intent.putExtra(IntentParam.isQianZhengPay,true);
+        STActivity(intent,PaySuccessActivity.class);
+        finish();
+    }
+    private void payFail(){
+        MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_1));
+        dismissLoading();
+        showMsg("支付失败");
+        Intent intent=new Intent(IntentParam.Action.qianZhengPaySuccess);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        STActivity(intent,MainActivity.class);
+        finish();
+    }
+    private void payCancel(){
+        MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_1));
+        dismissLoading();
+        showMsg("支付已取消");
+        Intent intent=new Intent(IntentParam.Action.qianZhengPaySuccess);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        STActivity(intent,MainActivity.class);
+        finish();
+    }
     protected void aliPay(MyAliOrderBean bean) {
         String url = SPUtils.getString(mContext, Config.payType_ZFB, null);
         bean.setAppId(Config.zhifubao_app_id);
@@ -331,32 +381,15 @@ public class DingDanTianXieActivity extends BaseActivity {
         MyAliPay.newInstance(mContext).startPay(bean, new MyAliPayCallback() {
             @Override
             public void paySuccess(PayResult payResult) {
-                MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_1));
-                dismissLoading();
-                Intent intent=new Intent();
-                intent.putExtra(IntentParam.isQianZhengPay,true);
-                STActivity(intent,PaySuccessActivity.class);
-                finish();
+                DingDanTianXieActivity.this.paySuccess();
             }
             @Override
             public void payFail() {
-                MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_1));
-                dismissLoading();
-                showMsg("支付失败");
-                Intent intent=new Intent(IntentParam.Action.qianZhengPaySuccess);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                STActivity(intent,MainActivity.class);
-                finish();
+                DingDanTianXieActivity.this.payFail();
             }
             @Override
             public void payCancel() {
-                MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_1));
-                dismissLoading();
-                showMsg("支付已取消");
-                Intent intent=new Intent(IntentParam.Action.qianZhengPaySuccess);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                STActivity(intent,MainActivity.class);
-                finish();
+                DingDanTianXieActivity.this.payCancel();
             }
         });
     }
