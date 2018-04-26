@@ -7,7 +7,7 @@ build/
 .externalNativeBuild
 !build.gradle
 .idea/
-
+gradle/
 gradle.properties
 *.apk
 .svn

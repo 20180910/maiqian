@@ -7,10 +7,25 @@
               android:background="@color/background_f2"
     >
 <include layout="@layout/app_title"/>
-    <WebView
-        android:id="@+id/web_yinpin"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <WebView
+            android:id="@+id/web_yinpin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </WebView>
+        </WebView>
+        <ProgressBar
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:id="@+id/pv_progress"
+            android:progress="0"
+            android:max="100"
+            android:progressDrawable="@drawable/progress"
+            />
+    </RelativeLayout>
+
 </LinearLayout>
