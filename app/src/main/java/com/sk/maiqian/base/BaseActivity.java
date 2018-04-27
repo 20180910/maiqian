@@ -441,7 +441,7 @@ public abstract class BaseActivity extends MyBaseActivity {
                     helperWX.setUrl(obj.getShare_link());
                     helperWX.setTitle(obj.getTitle());
                     helperWX.setDescription(obj.getContent());
-                    helperWX.setBitmapResId(R.mipmap.ic_launcher);
+                    helperWX.setBitmapResId(R.drawable.share_img);
                     MyWXShare.newInstance(mContext).shareWeb(helperWX, new MyWXShareCallback() {
                         @Override
                         public void shareSuccess() {
