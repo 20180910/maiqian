@@ -16,16 +16,25 @@ import com.github.baseclass.adapter.MyRecyclerViewHolder;
 import com.github.customview.MyEditText;
 import com.github.customview.MyImageView;
 import com.github.customview.MyTextView;
+import com.github.rxbus.rxjava.MyFlowableSubscriber;
+import com.google.gson.Gson;
 import com.library.base.BaseObj;
+import com.library.base.tools.has.BitmapUtils;
 import com.library.base.view.MyRecyclerView;
+import com.sk.maiqian.Config;
 import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.base.GlideUtils;
+import com.sk.maiqian.base.HuZhaoCallBack;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.module.home.network.ApiRequest;
 import com.sk.maiqian.module.home.network.response.ShenQingRenObj;
+import com.sk.maiqian.network.NetApiRequest;
+import com.sk.maiqian.network.request.ShiBieHuZhaoBody;
+import com.sk.maiqian.network.response.HuZhaoObj;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +42,8 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.FlowableEmitter;
+import top.zibin.luban.Luban;
 
 /**
  * Created by Administrator on 2018/3/23.
@@ -61,7 +72,7 @@ public class EditShenQingRenActivity extends BaseActivity {
     private boolean isEditPeople;
 
     private int sex=1;
-    private int imgType=1;
+    private int imgType=1;//1正面，2反面，3护照
     private String imgUrl1,imgUrl2;
     private String peopleId;
     private ShenQingRenObj obj;
@@ -97,6 +108,9 @@ public class EditShenQingRenActivity extends BaseActivity {
                 sex=0;
                 break;
             case R.id.tv_addpeople_scan:
+                imgType=3;
+                PhoneUtils.hiddenKeyBoard(mContext);
+                showSelectPhotoDialog();
                 break;
             case R.id.tv_addpeople_age:
                 showAge();
@@ -106,10 +120,12 @@ public class EditShenQingRenActivity extends BaseActivity {
                 break;
             case R.id.fl_addpeople_img1:
                 imgType=1;
+                PhoneUtils.hiddenKeyBoard(mContext);
                 showSelectPhotoDialog();
                 break;
             case R.id.fl_addpeople_img2:
                 imgType=2;
+                PhoneUtils.hiddenKeyBoard(mContext);
                 showSelectPhotoDialog();
                 break;
             case R.id.tv_addpeople_save:
@@ -285,20 +301,71 @@ public class EditShenQingRenActivity extends BaseActivity {
     }
 
     private void uploadImg(String photoPath) {
-        uploadImg(photoPath, new UploadImgCallback() {
+        if(imgType==3){
+            shiBieHuZhao(photoPath);
+        }else{
+            uploadImg(photoPath, new UploadImgCallback() {
+                @Override
+                public void result(String imgUrl) {
+                    if(imgType==1){//正面
+                        imgUrl1=imgUrl;
+                        GlideUtils.into(mContext,imgUrl,iv_addpeople_img1);
+                        iv_addpeople_img1.setVisibility(View.VISIBLE);
+                    }else{//反面
+                        imgUrl2=imgUrl;
+                        GlideUtils.into(mContext,imgUrl,iv_addpeople_img2);
+                        iv_addpeople_img2.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+        }
+
+
+    }
+
+    private void shiBieHuZhao(String photoPath) {
+        showLoading();
+        RXStart(new MyFlowableSubscriber<String>() {
             @Override
-            public void result(String imgUrl) {
-                if(imgType==1){//正面
-                    imgUrl1=imgUrl;
-                    GlideUtils.into(mContext,imgUrl,iv_addpeople_img1);
-                    iv_addpeople_img1.setVisibility(View.VISIBLE);
-                }else{//反面
-                    imgUrl2=imgUrl;
-                    GlideUtils.into(mContext,imgUrl,iv_addpeople_img2);
-                    iv_addpeople_img2.setVisibility(View.VISIBLE);
+            public void subscribe(@io.reactivex.annotations.NonNull FlowableEmitter<String> subscriber) {
+                try {
+                    List<File> files = Luban.with(mContext).load(takePhotoImgSavePath).get();
+                    File file = files.get(0);
+                    String imgStr = BitmapUtils.fileToString(file);
+                    subscriber.onNext(imgStr);
+                    subscriber.onComplete();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    subscriber.onError(e);
                 }
             }
+            @Override
+            public void onNext(String base64) {
+                String header="APPCODE " + Config.appcode;
+                ShiBieHuZhaoBody body=new ShiBieHuZhaoBody();
+                body.setImage(base64);
+                NetApiRequest.shiBieHuZhao(header,body, new HuZhaoCallBack(mContext) {
+                    @Override
+                    public void onSuccess(HuZhaoObj obj) {
+                        Log("==="+new Gson().toJson(obj));
+                        et_addpeople_name.setText(obj.getName_cn());
+                        if("F".equalsIgnoreCase(obj.getSex())){
+                            setSex(false);
+                            sex=0;
+                        }else{
+                            setSex(true);
+                            sex=1;
+                        }
+                        et_addpeople_code.setText(obj.getPassport_no());
+                    }
+                });
+            }
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                dismissLoading();
+                showToastS("图片处理失败");
+            }
         });
-
     }
 }

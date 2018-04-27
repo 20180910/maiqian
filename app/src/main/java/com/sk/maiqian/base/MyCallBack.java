@@ -126,12 +126,12 @@ public abstract class MyCallBack<T> implements Callback<ResponseObj<T>> {
             }else{
                 onError(new ServerException("连接异常"));
             }
+            onCompelte();
             return;
         }
         int errCode = resBody.getErrCode();
         if (errCode == 1) {
             onError(new ServerException(errCode,resBody.getErrMsg()));
-            return;
         } else if (errCode == 2) {//2需要登录
             if (this.progressLayout != null) {//需要finish
                 onError(new ServerException(response.body().getErrMsg()),false);
@@ -141,9 +141,9 @@ public abstract class MyCallBack<T> implements Callback<ResponseObj<T>> {
                 onError(new ServerException(response.body().getErrMsg()));
                 ActUtils.STActivity((Activity) context, LoginActivity.class);
             }
-            return;
+        }else{
+            onSuccess(resBody.getResponse(),resBody.getErrCode(),resBody.getErrMsg());
         }
-        onSuccess(resBody.getResponse(),resBody.getErrCode(),resBody.getErrMsg());
         onCompelte();
         resBody=null;
     }

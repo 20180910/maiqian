@@ -1,9 +1,12 @@
 package com.sk.maiqian.network;
 
+import com.github.retrofitutil.NetWorkManager;
 import com.github.retrofitutil.NoNetworkException;
 import com.library.base.BaseApiRequest;
 import com.sk.maiqian.Config;
+import com.sk.maiqian.base.HuZhaoCallBack;
 import com.sk.maiqian.base.MyCallBack;
+import com.sk.maiqian.network.request.ShiBieHuZhaoBody;
 import com.sk.maiqian.network.request.UploadImgBody;
 
 import java.util.Map;
@@ -53,5 +56,9 @@ public class NetApiRequest extends BaseApiRequest {
     public static void appLogin(Map map  , MyCallBack callBack) {
         if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
         getGeneralClient(NetIRequest.class).appLogin(map).enqueue(callBack);
+    }
+    public static void shiBieHuZhao(String header  , ShiBieHuZhaoBody body, HuZhaoCallBack callBack) {
+        if (notNetWork(callBack.getContext())) { callBack.onFailure(null, new NoNetworkException(Config.noNetWork)); return; }
+        NetWorkManager.getGeneralClient("http://ocrhz.market.alicloudapi.com/").create(NetIRequest.class).shiBieHuZhao(header,body).enqueue(callBack);
     }
 }

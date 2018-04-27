@@ -1,18 +1,14 @@
 package com.sk.maiqian.base;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 
 import com.github.androidtools.ToastUtils;
-import com.github.baseclass.utils.ActUtils;
 import com.github.baseclass.view.Loading;
 import com.github.retrofitutil.NoNetworkException;
-import com.library.base.BaseObj;
 import com.library.base.ProgressLayout;
-import com.library.base.ResponseObj;
 import com.library.base.ServerException;
-import com.sk.maiqian.module.my.activity.LoginActivity;
+import com.sk.maiqian.network.response.HuZhaoObj;
 
 import java.net.ConnectException;
 
@@ -25,7 +21,7 @@ import retrofit2.Response;
  * Created by Administrator on 2017/5/18.
  */
 
-public abstract class MyCallBack3<T> implements Callback<ResponseObj<T>> {
+public abstract class HuZhaoCallBack implements Callback<HuZhaoObj> {
 
     private Context context;
     private boolean noHiddenLoad;
@@ -36,38 +32,38 @@ public abstract class MyCallBack3<T> implements Callback<ResponseObj<T>> {
         return context;
     }
 
-    public MyCallBack3(Context ctx) {
+    public HuZhaoCallBack(Context ctx) {
         this.context = ctx;
     }
 
-    public MyCallBack3(Context ctx, ProgressLayout pl) {
+    public HuZhaoCallBack(Context ctx, ProgressLayout pl) {
         this.context = ctx;
         this.progressLayout = pl;
     }
 
-    public MyCallBack3(Context ctx, PtrFrameLayout pfl) {
+    public HuZhaoCallBack(Context ctx, PtrFrameLayout pfl) {
         this.context = ctx;
         this.pfl = pfl;
     }
 
-    public MyCallBack3(Context ctx, PtrFrameLayout pfl, ProgressLayout pl) {
-        this.context = ctx;
-        this.pfl = pfl;
-        this.progressLayout = pl;
-    }
-
-    public MyCallBack3(Context ctx, ProgressLayout pl, PtrFrameLayout pfl) {
+    public HuZhaoCallBack(Context ctx, PtrFrameLayout pfl, ProgressLayout pl) {
         this.context = ctx;
         this.pfl = pfl;
         this.progressLayout = pl;
     }
 
-    public MyCallBack3(Context ctx, boolean noHiddenLoad) {
+    public HuZhaoCallBack(Context ctx, ProgressLayout pl, PtrFrameLayout pfl) {
+        this.context = ctx;
+        this.pfl = pfl;
+        this.progressLayout = pl;
+    }
+
+    public HuZhaoCallBack(Context ctx, boolean noHiddenLoad) {
         this.context = ctx;
         this.noHiddenLoad = noHiddenLoad;
     }
 
-    public abstract void onSuccess(T obj);
+    public abstract void onSuccess(HuZhaoObj obj);
 
     public void onError(Throwable e, boolean showContentView) {
         if(pfl!=null){
@@ -111,7 +107,7 @@ public abstract class MyCallBack3<T> implements Callback<ResponseObj<T>> {
     }
 
     @Override
-    public void onFailure(Call<ResponseObj<T>> call, Throwable t) {
+    public void onFailure(Call<HuZhaoObj> call, Throwable t) {
         if (t instanceof ConnectException) {
             onError(new ServerException("服务器开小差去了,请稍后再试"));
         } else {
@@ -121,48 +117,19 @@ public abstract class MyCallBack3<T> implements Callback<ResponseObj<T>> {
     }
 
     @Override
-    public void onResponse(Call<ResponseObj<T>> call, Response<ResponseObj<T>> response) {
-        if (response.body() == null) {
-            if (response.code() == 500) {
-                onError(new ServerException("服务器开小差去了,请稍后再试"));
-            } else {
-                onError(new ServerException("连接异常"));
-            }
+    public void onResponse(Call<HuZhaoObj> call, Response<HuZhaoObj> response) {
+        HuZhaoObj resBody = response.body();
+        if (resBody == null) {
+            onError(new ServerException("处理失败"));
+            onCompelte();
             return;
         }
-        int errCode = response.body().getErrCode();
-        if (errCode == 1) {
-            onError(new ServerException(errCode,response.body().getErrMsg()));
-            return;
-        } else if (errCode == 2) {//2需要登录
-            if (this.progressLayout != null) {//需要finish
-                onError(new ServerException(response.body().getErrMsg()),false);
-                ActUtils.STActivity((Activity) context, LoginActivity.class);
-                ((Activity) context).finish();
-            } else {
-                onError(new ServerException(response.body().getErrMsg()));
-                ActUtils.STActivity((Activity) context, LoginActivity.class);
-            }
-            return;
-        }
-        T res = response.body().getResponse();
-        if (res != null) {
-            Class<?> aClass = res.getClass();
-            Class baseClass = BaseObj.class;
-            boolean assignableFrom = baseClass.isAssignableFrom(aClass);
-            if (assignableFrom) {
-                ((BaseObj) res).setMsg(response.body().getErrMsg());
-                onSuccess(res);
-            } else {
-                onSuccess(res);
-            }
-        } else {
-            T result = (T) new BaseObj();
-            ((BaseObj) result).setMsg(response.body().getErrMsg());
-            onSuccess(result);
-//            onError(new ServerException("暂无数据"));
+        if (resBody.isSuccess()) {
+            onSuccess(resBody);
+        }else{
+            onError(new ServerException(1,"处理失败"));
         }
         onCompelte();
-        res = null;
+        resBody = null;
     }
 }

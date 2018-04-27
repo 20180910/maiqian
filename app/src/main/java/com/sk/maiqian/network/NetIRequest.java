@@ -6,8 +6,10 @@ import com.library.base.bean.AppVersionObj;
 import com.library.base.bean.PayObj;
 import com.sk.maiqian.module.my.network.response.BankNameObj;
 import com.sk.maiqian.module.my.network.response.LoginObj;
+import com.sk.maiqian.network.request.ShiBieHuZhaoBody;
 import com.sk.maiqian.network.request.UploadImgBody;
 import com.sk.maiqian.network.response.CityObj;
+import com.sk.maiqian.network.response.HuZhaoObj;
 import com.sk.maiqian.network.response.ImageObj;
 import com.sk.maiqian.network.response.ShareObj;
 
@@ -17,6 +19,7 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
 
@@ -65,5 +68,9 @@ public interface NetIRequest {
     //第三方登录
     @GET("api/MQLib/GetAddWXUser")
     Call<ResponseObj<LoginObj>> appLogin(@QueryMap Map<String,String> map);
+
+    //护照识别
+    @POST("rest/160601/ocr/ocr_passport.json")
+    Call<HuZhaoObj> shiBieHuZhao(@Header("Authorization")String header, @Body ShiBieHuZhaoBody body);
 
 }
