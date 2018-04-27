@@ -168,7 +168,7 @@ public class AddBankActivity extends BaseActivity {
         ApiRequest.addBank(map,bankBody,new MyCallBack<BaseObj>(mContext) {
             @Override
             public void onSuccess(BaseObj obj, int errorCode, String msg) {
-                showMsg(obj.getMsg());
+                showMsg(msg);
                 setResult(RESULT_OK);
                 finish();
             }

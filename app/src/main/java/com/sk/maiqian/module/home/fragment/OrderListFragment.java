@@ -335,7 +335,7 @@ public class OrderListFragment extends BaseFragment {
         ApiRequest.deleteOrder(map, new MyCallBack<BaseObj>(mContext) {
             @Override
             public void onSuccess(BaseObj obj, int errorCode, String msg) {
-                showMsg(obj.getMsg());
+                showMsg(msg);
 
                 if(getArguments().getString(Constant.flag).equals(OrderFragment.type_1)){
                     getQianZhengOrder(1,false);

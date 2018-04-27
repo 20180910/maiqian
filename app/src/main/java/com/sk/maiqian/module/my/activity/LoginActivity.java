@@ -219,6 +219,8 @@ public class LoginActivity extends BaseActivity {
         MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_1));
         MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_2));
 
+        SPUtils.setPrefBoolean(mContext,AppXml.userHasPhone,obj.getBinding_mobile()==1);
+
         SPUtils.setPrefString(mContext, AppXml.user_id, obj.getUser_id());
         SPUtils.setPrefString(mContext, AppXml.user_name, obj.getUser_name());
         SPUtils.setPrefString(mContext, AppXml.nick_name, obj.getNick_name());

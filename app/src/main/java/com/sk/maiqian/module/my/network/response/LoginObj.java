@@ -33,6 +33,15 @@ public class LoginObj extends BaseObj {
     private int commission;
     private int is_validation;
     private double point;
+    private int binding_mobile;//1已绑定，0未绑定
+
+    public int getBinding_mobile() {
+        return binding_mobile;
+    }
+
+    public void setBinding_mobile(int binding_mobile) {
+        this.binding_mobile = binding_mobile;
+    }
 
     public String getName() {
         return name;

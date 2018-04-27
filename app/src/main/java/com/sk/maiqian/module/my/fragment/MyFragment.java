@@ -98,6 +98,9 @@ public class MyFragment extends BaseFragment {
     }
     private void loginResult(LoginObj obj) {
 
+
+        SPUtils.setPrefBoolean(mContext,AppXml.userHasPhone,obj.getBinding_mobile()==1);
+
         SPUtils.setPrefString(mContext, AppXml.user_id, obj.getUser_id());
         SPUtils.setPrefString(mContext, AppXml.user_name, obj.getUser_name());
         SPUtils.setPrefString(mContext, AppXml.nick_name, obj.getNick_name());

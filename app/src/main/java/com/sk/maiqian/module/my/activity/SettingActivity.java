@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.androidtools.SPUtils;
@@ -38,6 +39,8 @@ public class SettingActivity extends BaseActivity {
     SwitchButton sb_setting;
     @BindView(R.id.tv_setting_cache)
     TextView tv_setting_cache;
+    @BindView(R.id.ll_setting_resetpwd)
+    LinearLayout ll_setting_resetpwd;
     private int message_sink;
 
     @Override
@@ -49,6 +52,13 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        boolean userHasPhone = SPUtils.getBoolean(mContext, AppXml.userHasPhone, false);
+        if(userHasPhone){
+            ll_setting_resetpwd.setVisibility(View.VISIBLE);
+        }else {
+            ll_setting_resetpwd.setVisibility(View.GONE);
+        }
+
         message_sink =   SPUtils.getInt(mContext, AppXml.message_sink,0);
         if (message_sink==0) {
             sb_setting.setChecked(false);
@@ -105,7 +115,7 @@ public class SettingActivity extends BaseActivity {
         ApiRequest.setMessageSink(map, new MyCallBack<BaseObj>(mContext) {
             @Override
             public void onSuccess(BaseObj obj, int errorCode, String msg) {
-                showMsg(obj.getMsg());
+                showMsg(msg);
                 sb_setting.setChecked(!checked);
                 SPUtils.setPrefFloat(mContext, AppXml.message_sink,obj.getMessage_sink());
             }

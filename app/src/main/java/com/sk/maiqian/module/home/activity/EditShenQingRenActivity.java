@@ -277,7 +277,7 @@ public class EditShenQingRenActivity extends BaseActivity {
         ApiRequest.addShenQingRen(map, new MyCallBack<BaseObj>(mContext) {
             @Override
             public void onSuccess(BaseObj obj, int errorCode, String msg) {
-                showMsg(obj.getMsg());
+                showMsg(msg);
                 setResult(RESULT_OK);
                 finish();
             }

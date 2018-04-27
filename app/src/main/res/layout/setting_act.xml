@@ -8,8 +8,7 @@
               android:background="@color/white"
     >
 <include layout="@layout/app_title"/>
-    <com.library.base.ProgressLayout
-        android:id="@id/pl_load"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -157,5 +156,5 @@
                     />
             </LinearLayout>
         </LinearLayout>
-    </com.library.base.ProgressLayout>
+    </RelativeLayout>
 </LinearLayout>

@@ -129,7 +129,7 @@ public class RegisterActivity extends BaseActivity {
         ApiRequest.register(map,body, new MyCallBack<BaseObj>(mContext) {
             @Override
             public void onSuccess(BaseObj obj, int errorCode, String msg) {
-                showMsg(obj.getMsg());
+                showMsg(msg);
                 Intent intent=new Intent();
                 intent.putExtra(IntentParam.phone,phone);
                 setResult(RESULT_OK,intent);

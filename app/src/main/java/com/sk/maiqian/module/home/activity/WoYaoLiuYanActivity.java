@@ -102,7 +102,7 @@ public class WoYaoLiuYanActivity extends BaseActivity {
         ApiRequest.qianZhengLiuYan(map,body, new MyCallBack<BaseObj>(mContext) {
             @Override
             public void onSuccess(BaseObj obj, int errorCode, String msg) {
-                showMsg(obj.getMsg());
+                showMsg(msg);
                 finish();
             }
         });

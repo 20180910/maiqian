@@ -219,7 +219,7 @@ public class LiuXueDetailActivity extends BaseActivity {
                 collect(id, "4", new MyCallBack<CollectObj>(mContext) {
                     @Override
                     public void onSuccess(CollectObj obj, int errorCode, String msg) {
-                        showMsg(obj.getMsg());
+                        showMsg(msg);
                         if (obj.getIs_collect() == 1) {
                             tv_liuxue_detail_collection.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.collect_normal2, 0, 0);
                         } else {

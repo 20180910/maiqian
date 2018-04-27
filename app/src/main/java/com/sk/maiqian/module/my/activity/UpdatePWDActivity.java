@@ -82,7 +82,7 @@ public class UpdatePWDActivity extends BaseActivity {
         ApiRequest.updatePWD(map, new MyCallBack<BaseObj>(mContext) {
             @Override
             public void onSuccess(BaseObj obj, int errorCode, String msg) {
-                showMsg(obj.getMsg());
+                showMsg(msg);
                 SPUtils.setPrefBoolean(mContext, AppXml.updatePWD,true);
                 finish();
             }

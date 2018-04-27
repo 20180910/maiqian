@@ -114,7 +114,7 @@ public class MyBankListActivity extends BaseActivity {
         ApiRequest.deleteBank(map, new MyCallBack<BaseObj>(mContext,true) {
             @Override
             public void onSuccess(BaseObj obj, int errorCode, String msg) {
-                showMsg(obj.getMsg());
+                showMsg(msg);
                 getData(1,false);
             }
         });

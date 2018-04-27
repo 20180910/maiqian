@@ -38,6 +38,7 @@ public class EditPhoneActivity extends BaseActivity {
     @BindView(R.id.tv_editphone_save)
     MyTextView tv_editphone_save;
     private String smsCode;
+    private boolean userHasPhone;
 
     @Override
     protected int getContentView() {
@@ -47,7 +48,12 @@ public class EditPhoneActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        userHasPhone = SPUtils.getBoolean(mContext, AppXml.userHasPhone, false);
+        if(userHasPhone){
+            et_editphone_pwd.setVisibility(View.VISIBLE);
+        }else {
+            et_editphone_pwd.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -70,10 +76,13 @@ public class EditPhoneActivity extends BaseActivity {
                 String pwd = getSStr(et_editphone_pwd);
                 String phoneStr = getSStr(et_editphone_phone);
                 String code = getSStr(et_editphone_code);
-                if(TextUtils.isEmpty(pwd)){
-                    showMsg("请输入原密码");
-                    return;
-                }else if (TextUtils.isEmpty(phoneStr)) {
+                if(userHasPhone){
+                    if(TextUtils.isEmpty(pwd)){
+                        showMsg("请输入原密码");
+                        return;
+                    }
+                }
+                if (TextUtils.isEmpty(phoneStr)) {
                     showMsg("请输入手机号");
                     return;
                 }else if (TextUtils.isEmpty(smsCode) || !TextUtils.equals(code, smsCode)) {
@@ -96,7 +105,7 @@ public class EditPhoneActivity extends BaseActivity {
         ApiRequest.updatePhone(map, new MyCallBack<BaseObj>(mContext) {
             @Override
             public void onSuccess(BaseObj obj, int errorCode, String msg) {
-                showMsg(obj.getMsg());
+                showMsg(msg);
                 SPUtils.setPrefString(mContext, AppXml.mobile,phoneStr);
                 finish();
             }

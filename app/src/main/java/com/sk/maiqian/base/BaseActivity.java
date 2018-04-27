@@ -70,6 +70,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.reactivestreams.Subscription;
 
 import java.io.File;
 import java.util.HashMap;
@@ -79,6 +80,7 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableSubscriber;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.schedulers.Schedulers;
@@ -254,18 +256,8 @@ public abstract class BaseActivity extends MyBaseActivity {
         }
     }
 
+    Subscription subscription;
     public void countDown(TextView textView) {
-        MyFlowableSubscriber<Long> subscriber = new MyFlowableSubscriber<Long>() {
-            @Override
-            public void subscribe(@NonNull FlowableEmitter<Long> emitter) {
-                textView.setEnabled(true);
-                textView.setText("获取验证码");
-            }
-            @Override
-            public void onNext(Long aLong) {
-                textView.setText("剩下" + aLong + "s");
-            }
-        };
         textView.setEnabled(false);
         final long count = 30;
         Flowable.interval(1, TimeUnit.SECONDS)
@@ -273,11 +265,10 @@ public abstract class BaseActivity extends MyBaseActivity {
                 .map(integer -> count - integer)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(subscriber);
-        addSubscription(subscriber.getSubscription());
-                /*new FlowableSubscriber<Long>() {
+                .subscribe(new FlowableSubscriber<Long>() {
                     @Override
-                    public void onSubscribe(@NonNull org.reactivestreams.Subscription s) {
+                    public void onSubscribe(@NonNull Subscription s) {
+                        subscription=s;
                         s.request(Long.MAX_VALUE);
                     }
                     @Override
@@ -291,27 +282,9 @@ public abstract class BaseActivity extends MyBaseActivity {
                     public void onComplete() {
                         textView.setEnabled(true);
                         textView.setText("获取验证码");
-
-                    }
-                }*/
-       /* Subscription subscribe = Observable.interval(1, TimeUnit.SECONDS)
-                .take(31)//计时次数
-                .map(integer -> count - integer)
-                .compose(RxUtils.appSchedulers())
-                .subscribe(new Observer<Long>() {
-                    @Override
-                    public void onCompleted() {
-                    }
-
-                    @Override
-                    public void onNext(Long aLong) {
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
                     }
                 });
-        addSubscription(subscribe);*/
+        addSubscription(subscription);
     }
 
     protected void setBannerList(Banner bn_home, List bannerList) {
