@@ -89,7 +89,7 @@ public class FenXiaoActivity extends BaseActivity {
     protected void onViewClick(View v) {
         switch (v.getId()){
             case R.id.tv_fenxiao_yaoqing:
-
+                showFenXiangDialog();
             break;
         }
     }
