@@ -70,7 +70,7 @@ public class EnglishPeiXunActivity extends BaseActivity {
             }
         });
         fragmentAdapter=new FragmentAdapter(getSupportFragmentManager());
-        fragmentAdapter.setTitle(new String[]{"体验课","正式课"});
+        fragmentAdapter.setTitle(new String[]{"正式课","体验课"});
 
         EnglishPeiXunFragment englishPeiXunFragment1 = EnglishPeiXunFragment.newInstance(EnglishPeiXunFragment.type_1);
         EnglishPeiXunFragment englishPeiXunFragment2 = EnglishPeiXunFragment.newInstance(EnglishPeiXunFragment.type_2);
