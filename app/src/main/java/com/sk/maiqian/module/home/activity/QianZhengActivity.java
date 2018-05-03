@@ -5,12 +5,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.androidtools.PhoneUtils;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.MyLoadMoreAdapter;
 import com.github.baseclass.adapter.MyRecyclerViewHolder;
+import com.github.baseclass.view.MyPopupwindow;
 import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
@@ -23,6 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2018/3/22.
@@ -40,6 +43,9 @@ public class QianZhengActivity extends BaseActivity {
 
     @BindView(R.id.tv_qianzheng_shuoming)
     TextView tv_qianzheng_shuoming;
+
+    @BindView(R.id.ll_qianzheng)
+    LinearLayout ll_qianzheng;
 
     MyLoadMoreAdapter adapter;
     private String dataId;
@@ -117,8 +123,31 @@ public class QianZhengActivity extends BaseActivity {
 
     }
 
-    @Override
+    @OnClick({R.id.ll_qianzheng})
     protected void onViewClick(View v) {
+        switch (v.getId()){
+            case R.id.ll_qianzheng:
+                showPopu();
+            break;
+        }
+    }
 
+    private void showPopu() {
+        View view = getLayoutInflater().inflate(R.layout.guojiaqianzheng_popu, null);
+        TextView tv_guojiaqianzheng_title = view.findViewById(R.id.tv_guojiaqianzheng_title);
+
+        tv_guojiaqianzheng_title.setText(getSStr(tv_qianzheng_zhengce));
+        TextView tv_guojiaqianzheng_content = view.findViewById(R.id.tv_guojiaqianzheng_content);
+        tv_guojiaqianzheng_content.setText(getSStr(tv_qianzheng_shuoming));
+
+        MyPopupwindow myPopupwindow=new MyPopupwindow(mContext,view,PhoneUtils.getScreenWidth(mContext),PhoneUtils.getScreenHeight(mContext));
+        myPopupwindow.setBackground(R.color.transparent_half);
+        view.setOnClickListener(new MyOnClickListener() {
+            @Override
+            protected void onNoDoubleClick(View view) {
+                myPopupwindow.dismiss();
+            }
+        });
+        myPopupwindow.showAsDropDown(toolbar);
     }
 }

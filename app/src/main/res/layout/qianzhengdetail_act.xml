@@ -340,9 +340,11 @@
                     android:background="@color/white"
                     app:tabSelectedTextColor="@color/blue_00"
                     app:tabTextColor="@color/gray_66"
+                    app:tabIndicatorColor="@color/blue_00"
                     >
                 </android.support.design.widget.TabLayout>
                 <LinearLayout
+                    android:id="@+id/ll_qianzheng_detail_sxcl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -512,6 +514,7 @@
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/ll_qianzheng_detail_bllc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -843,6 +846,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/ll_qianzheng_detail_bqxz"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"

@@ -2,9 +2,11 @@ package com.sk.maiqian.module.home.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,7 +27,9 @@ import com.sk.maiqian.module.home.network.response.CollectObj;
 import com.sk.maiqian.module.home.network.response.QianZhengDetailObj;
 import com.sk.maiqian.module.home.network.response.ZiXunObj;
 import com.sk.maiqian.module.my.activity.LoginActivity;
+import com.sk.maiqian.tools.TablayoutUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,6 +95,15 @@ public class QianZhengDetailActivity extends BaseActivity {
     @BindView(R.id.ll_qianzheng_detail_top)
     LinearLayout ll_qianzheng_detail_top;
 
+    @BindView(R.id.ll_qianzheng_detail_sxcl)
+    LinearLayout ll_qianzheng_detail_sxcl;
+
+    @BindView(R.id.ll_qianzheng_detail_bllc)
+    LinearLayout ll_qianzheng_detail_bllc;
+
+    @BindView(R.id.ll_qianzheng_detail_bqxz)
+    LinearLayout ll_qianzheng_detail_bqxz;
+
     @BindView(R.id.cv_qianzhengdetail)
     CardView cv_qianzhengdetail;
 
@@ -102,6 +115,9 @@ cv_qianzhengdetail*/
     private String visaId;
     private String mingXi;
     private QianZhengDetailObj qianZhengDetailObj;
+    private TextView sxcl;
+    private TextView bllc;
+    private TextView yjzl;
 
     @Override
     protected int getContentView() {
@@ -114,7 +130,91 @@ cv_qianzhengdetail*/
         visaId = getIntent().getStringExtra(IntentParam.visaId);
         String title = getIntent().getStringExtra(IntentParam.title);
         setAppTitle(title + "签证");
+        setTabView();
+    }
 
+    private void setTabView() {
+        TablayoutUtils.setTabWidth(tab_qianzheng_detail,10);
+
+        /**/
+        List<View>list=new ArrayList<>();
+        list.add(ll_qianzheng_detail_sxcl);
+        list.add(ll_qianzheng_detail_bllc);
+        list.add(ll_qianzheng_detail_bqxz);
+        scrollCheckViewIsShow(nsv, list, new OnScrollAutoSelectViewInter() {
+            @Override
+            public void selectViewPosition(int position,View view) {
+                tab_qianzheng_detail.getTabAt(position).select();
+                switch (position){
+                    case 0:
+                        sxcl.setSelected(true);
+                        bllc.setSelected(false);
+                        yjzl.setSelected(false);
+                        break;
+                    case 1:
+                        sxcl.setSelected(false);
+                        bllc.setSelected(true);
+                        yjzl.setSelected(false);
+                        break;
+                    case 2:
+                        sxcl.setSelected(false);
+                        bllc.setSelected(false);
+                        yjzl.setSelected(true);
+                        break;
+                }
+            }
+        });
+
+        sxcl = new TextView(mContext);
+        bllc = new TextView(mContext);
+        yjzl = new TextView(mContext);
+
+        sxcl.setGravity(Gravity.CENTER);
+        int[] colors = new int[] {ContextCompat.getColor(mContext,R.color.blue_00) , ContextCompat.getColor(mContext,R.color.gray_66)};
+        int[][] states = new int[2][];
+        states[0] = new int[] { android.R.attr.state_selected };
+        states[1] = new int[] { };
+        ColorStateList stateList=new ColorStateList(states,colors);
+        sxcl.setTextColor(stateList);
+        sxcl.setText("所需材料");
+        sxcl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sxcl.setSelected(true);
+                bllc.setSelected(false);
+                yjzl.setSelected(false);
+                scrollAutoSelectView(nsv,ll_qianzheng_detail_sxcl);
+            }
+        });
+        tab_qianzheng_detail.addTab(tab_qianzheng_detail.newTab().setCustomView(sxcl));
+
+        bllc.setGravity(Gravity.CENTER);
+        bllc.setTextColor(stateList);
+        bllc.setText("办理流程");
+        bllc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sxcl.setSelected(false);
+                bllc.setSelected(true);
+                yjzl.setSelected(false);
+                scrollAutoSelectView(nsv,ll_qianzheng_detail_bllc);
+            }
+        });
+        tab_qianzheng_detail.addTab(tab_qianzheng_detail.newTab().setCustomView(bllc));
+
+        yjzl.setGravity(Gravity.CENTER);
+        yjzl.setTextColor(stateList);
+        yjzl.setText("办签须知");
+        yjzl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sxcl.setSelected(false);
+                bllc.setSelected(false);
+                yjzl.setSelected(true);
+                scrollAutoSelectView(nsv,ll_qianzheng_detail_bqxz);
+            }
+        });
+        tab_qianzheng_detail.addTab(tab_qianzheng_detail.newTab().setCustomView(yjzl));
     }
 
     @Override
