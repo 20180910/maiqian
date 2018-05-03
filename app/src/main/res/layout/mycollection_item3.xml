@@ -11,6 +11,7 @@
                                             android:clickable="true"
     >
     <FrameLayout
+        android:id="@+id/fl_collection"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
@@ -51,7 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="美国"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:textColor="@color/gray_33"
                     />
                 <TextView
@@ -84,7 +85,7 @@
                         android:textColor="@color/orange"
                         android:layout_marginTop="2dp"
                         android:layout_marginLeft="10dp"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         />
                 </LinearLayout>
 

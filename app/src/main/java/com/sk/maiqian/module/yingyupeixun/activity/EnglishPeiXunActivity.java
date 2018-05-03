@@ -87,6 +87,8 @@ public class EnglishPeiXunActivity extends BaseActivity {
 
     }
 
+
+
     @Override
     protected void initData() {
 

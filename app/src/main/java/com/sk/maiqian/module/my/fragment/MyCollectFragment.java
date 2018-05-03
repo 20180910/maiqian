@@ -1,5 +1,6 @@
 package com.sk.maiqian.module.my.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,12 +12,18 @@ import com.github.baseclass.adapter.MyLoadMoreAdapter;
 import com.github.baseclass.adapter.MyRecyclerViewHolder;
 import com.library.base.BaseObj;
 import com.sk.maiqian.Constant;
+import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseFragment;
 import com.sk.maiqian.base.GlideUtils;
 import com.sk.maiqian.base.MyCallBack;
+import com.sk.maiqian.module.home.activity.QianZhengDetailActivity;
+import com.sk.maiqian.module.liuxue.activity.LiuXueDetailActivity;
 import com.sk.maiqian.module.my.network.ApiRequest;
 import com.sk.maiqian.module.my.network.response.MyCollectionObj;
+import com.sk.maiqian.module.yingyupeixun.activity.KeChengDetailActivity;
+import com.sk.maiqian.module.youxue.activity.YouXueDetailActivity;
+import com.sk.maiqian.tools.TextViewUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -75,23 +82,65 @@ public class MyCollectFragment extends BaseFragment {
                 ImageView imageView = holder.getImageView(R.id.iv_my_collection);
                 GlideUtils.into(mContext,bean.getImg_url(),imageView);
                 holder.setText(R.id.tv_my_collection_title,bean.getTitle());
+
+                View fl_collection = holder.getView(R.id.fl_collection);
                 switch (type){
                     case type_1:
                         holder.setText(R.id.tv_my_collection_price,bean.getPrice()+"");
+                        holder.setText(R.id.tv_collection_day,bean.getFor_how_long());
+                        fl_collection.setOnClickListener(new MyOnClickListener() {
+                            @Override
+                            protected void onNoDoubleClick(View view) {
+                                Intent intent=new Intent();
+                                intent.putExtra(IntentParam.title,bean.getTitle());
+                                intent.putExtra(IntentParam.visaId,bean.getId());
+                                STActivity(intent,QianZhengDetailActivity.class);
+                            }
+                        });
                         break;
                     case type_2:
                         holder.setText(R.id.tv_my_collection_price,bean.getPrice()+"");
                         holder.setText(R.id.tv_my_collection_old_price,"¥"+bean.getOriginal_price());
                         holder.setText(R.id.tv_my_collection_flag,bean.getBiaoqian());
+                        TextViewUtils.underline(holder.getTextView(R.id.tv_my_collection_old_price));
+                        holder.setText(R.id.tv_collection_peoplenum,"已有"+bean.getPeople_number()+"人购买");
+                        /*if(bean.getTypeid()==1){//1正式课，2体验课
+                        }else{
+                        }*/
+                        fl_collection.setOnClickListener(new MyOnClickListener() {
+                            @Override
+                            protected void onNoDoubleClick(View view) {
+                                Intent intent=new Intent();
+                                intent.putExtra(IntentParam.kechengId,bean.getId()+"");
+                                intent.putExtra(IntentParam.flag,bean.getBiaoqian());
+                                STActivity(intent,KeChengDetailActivity.class);
+                            }
+                        });
                         break;
                     case type_3:
                         holder.setText(R.id.tv_my_collection_subtitle,bean.getEnglish_title());
                         holder.setText(R.id.tv_my_collection_xingqu,bean.getInterested_peopleum()+"人申请");
+                        fl_collection.setOnClickListener(new MyOnClickListener() {
+                            @Override
+                            protected void onNoDoubleClick(View view) {
+                                Intent intent=new Intent();
+                                intent.putExtra(IntentParam.dataId,bean.getId());
+                                STActivity(intent,YouXueDetailActivity.class);
+                            }
+                        });
                         break;
                     case type_4:
                         layoutId=R.layout.mycollection_item3;
                         holder.setText(R.id.tv_my_collection_subtitle,bean.getEnglish_title());
                         holder.setText(R.id.tv_my_collection_xingqu,bean.getInterested_peopleum()+"人感兴趣");
+                        fl_collection.setOnClickListener(new MyOnClickListener() {
+                            @Override
+                            protected void onNoDoubleClick(View view) {
+                                Intent intent=new Intent();
+                                intent.putExtra(IntentParam.dataId,bean.getId());
+                                STActivity(intent, LiuXueDetailActivity.class);
+                            }
+                        });
                         break;
                 }
 

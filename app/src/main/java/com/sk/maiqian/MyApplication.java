@@ -10,10 +10,10 @@ import com.aspsine.multithreaddownload.DownloadManager;
 import com.github.androidtools.SPUtils;
 import com.github.baseclass.view.Loading;
 import com.github.retrofitutil.NetWorkManager;
-import com.sdklibrary.base.pay.alipay.MyAliPay;
-import com.sdklibrary.base.pay.wxpay.MyWXPay;
-import com.sdklibrary.base.share.qq.MyQQShare;
-import com.sdklibrary.base.share.wx.MyWXShare;
+import com.sdklibrary.base.ali.pay.MyAliPay;
+import com.sdklibrary.base.qq.share.MyQQShare;
+import com.sdklibrary.base.wx.pay.MyWXPay;
+import com.sdklibrary.base.wx.share.MyWXShare;
 
 
 /**

@@ -85,7 +85,7 @@ public class EnglishPeiXunFragment extends BaseFragment {
                 holder.setText(R.id.tv_englishpeixu_oldprice,"¥"+bean.getOriginal_price());
                 TextViewUtils.underline(holder.getTextView(R.id.tv_englishpeixu_oldprice));
                 holder.setText(R.id.tv_englishpeixu_flag,bean.getBiaoqian());
-                holder.setText(R.id.tv_englishpeixu_peoplenum,"已有"+bean.getPeople_number()+"人预约申请");
+                holder.setText(R.id.tv_englishpeixu_peoplenum,"已有"+bean.getPeople_number()+"人购买");
 
                 holder.itemView.setOnClickListener(new MyOnClickListener() {
                     @Override

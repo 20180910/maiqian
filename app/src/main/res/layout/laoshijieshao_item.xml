@@ -67,7 +67,8 @@
                         android:layout_height="wrap_content"
                         tools:text="¥121210"
                         android:textColor="@color/blue_00"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
+                        android:layout_gravity="center_vertical"
                         />
                     <TextView
                         android:id="@+id/tv_teacher_item_old_price"
@@ -77,6 +78,8 @@
                         android:textColor="@color/gray_99"
                         android:textSize="10sp"
                         android:layout_marginLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="1dp"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -124,6 +127,15 @@
                         android:textColor="@color/gray_99"
                         />-->
                 </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_teacher_item_peoplenum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="已有100人预约申请"
+                    android:textSize="11sp"
+                    android:textColor="@color/gray_99"
+                    android:layout_marginTop="1dp"
+                    />
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>

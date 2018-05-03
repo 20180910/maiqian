@@ -139,6 +139,24 @@ public class TeacherObj extends BaseObj {
         private String biaoqian;
         private double price;
         private double original_price;
+        private int typeid;
+        private int people_number;
+
+        public int getTypeid() {
+            return typeid;
+        }
+
+        public void setTypeid(int typeid) {
+            this.typeid = typeid;
+        }
+
+        public int getPeople_number() {
+            return people_number;
+        }
+
+        public void setPeople_number(int people_number) {
+            this.people_number = people_number;
+        }
 
         public String getEnglish_training_id() {
             return english_training_id;

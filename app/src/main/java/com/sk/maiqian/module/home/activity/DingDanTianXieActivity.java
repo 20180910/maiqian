@@ -31,13 +31,13 @@ import com.github.rxbus.MyRxBus;
 import com.library.base.tools.ZhengZeUtils;
 import com.library.base.tools.has.AndroidUtils;
 import com.library.base.view.MyRecyclerView;
-import com.sdklibrary.base.pay.alipay.MyAliOrderBean;
-import com.sdklibrary.base.pay.alipay.MyAliPay;
-import com.sdklibrary.base.pay.alipay.MyAliPayCallback;
-import com.sdklibrary.base.pay.alipay.PayResult;
-import com.sdklibrary.base.pay.wxpay.MyWXOrderBean;
-import com.sdklibrary.base.pay.wxpay.MyWXPay;
-import com.sdklibrary.base.pay.wxpay.MyWXPayCallback;
+import com.sdklibrary.base.ali.pay.MyAliOrderBean;
+import com.sdklibrary.base.ali.pay.MyAliPay;
+import com.sdklibrary.base.ali.pay.MyAliPayCallback;
+import com.sdklibrary.base.ali.pay.PayResult;
+import com.sdklibrary.base.wx.inter.MyWXCallback;
+import com.sdklibrary.base.wx.pay.MyWXOrderBean;
+import com.sdklibrary.base.wx.pay.MyWXPay;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
@@ -330,17 +330,17 @@ public class DingDanTianXieActivity extends BaseActivity {
         String url = SPUtils.getString(mContext, Config.payType_WX, null);
         bean.setNotifyUrl(url);
 //        bean.setIP(mContext);
-        MyWXPay.newInstance(mContext).startPay(bean, new MyWXPayCallback() {
+        MyWXPay.newInstance(mContext).startPay(bean, new MyWXCallback() {
             @Override
-            public void paySuccess() {
+            public void onSuccess() {
                 DingDanTianXieActivity.this.paySuccess();
             }
             @Override
-            public void payFail() {
+            public void onFail() {
                 DingDanTianXieActivity.this.payFail();
             }
             @Override
-            public void payCancel() {
+            public void onCancel() {
                 DingDanTianXieActivity.this.payCancel();
             }
         });

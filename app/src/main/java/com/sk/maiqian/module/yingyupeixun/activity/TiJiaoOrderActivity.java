@@ -17,13 +17,13 @@ import com.github.customview.MyTextView;
 import com.github.rxbus.MyRxBus;
 import com.library.base.tools.ZhengZeUtils;
 import com.library.base.tools.has.AndroidUtils;
-import com.sdklibrary.base.pay.alipay.MyAliOrderBean;
-import com.sdklibrary.base.pay.alipay.MyAliPay;
-import com.sdklibrary.base.pay.alipay.MyAliPayCallback;
-import com.sdklibrary.base.pay.alipay.PayResult;
-import com.sdklibrary.base.pay.wxpay.MyWXOrderBean;
-import com.sdklibrary.base.pay.wxpay.MyWXPay;
-import com.sdklibrary.base.pay.wxpay.MyWXPayCallback;
+import com.sdklibrary.base.ali.pay.MyAliOrderBean;
+import com.sdklibrary.base.ali.pay.MyAliPay;
+import com.sdklibrary.base.ali.pay.MyAliPayCallback;
+import com.sdklibrary.base.ali.pay.PayResult;
+import com.sdklibrary.base.wx.inter.MyWXCallback;
+import com.sdklibrary.base.wx.pay.MyWXOrderBean;
+import com.sdklibrary.base.wx.pay.MyWXPay;
 import com.sk.maiqian.AppXml;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.IntentParam;
@@ -204,9 +204,9 @@ public class TiJiaoOrderActivity extends BaseActivity {
         String url = SPUtils.getString(mContext, Config.payType_WX, null);
         bean.setNotifyUrl(url);
 //        bean.setIp("1");
-        MyWXPay.newInstance(mContext).startPay(bean, new MyWXPayCallback() {
+        MyWXPay.newInstance(mContext).startPay(bean, new MyWXCallback() {
             @Override
-            public void paySuccess() {
+            public void onSuccess() {
                 MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_2));
                 dismissLoading();
                 if(payDialog!=null){
@@ -216,7 +216,7 @@ public class TiJiaoOrderActivity extends BaseActivity {
                 finish();
             }
             @Override
-            public void payFail() {
+            public void onFail() {
                 MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_2));
                 dismissLoading();
                 showMsg("支付失败");
@@ -229,7 +229,7 @@ public class TiJiaoOrderActivity extends BaseActivity {
                 finish();
             }
             @Override
-            public void payCancel() {
+            public void onCancel() {
                 MyRxBus.getInstance().postReplay(new RefreshOrderEvent(OrderFragment.type_2));
                 dismissLoading();
                 showMsg("支付已取消");

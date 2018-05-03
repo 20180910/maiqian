@@ -1,6 +1,7 @@
 package com.sk.maiqian.wxapi;
 
-import com.sdklibrary.base.share.wx.MyWXEntryActivity;
+
+import com.sdklibrary.base.wx.share.MyWXEntryActivity;
 
 /**
  * Created by Administrator on 2018/4/24.

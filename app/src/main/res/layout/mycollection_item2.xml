@@ -11,6 +11,7 @@
                                             android:clickable="true"
     >
     <FrameLayout
+        android:id="@+id/fl_collection"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
@@ -51,7 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="美国"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:textColor="@color/gray_33"
                     android:maxLines="1"
                     android:ellipsize="end"
@@ -75,7 +76,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:text="200"
-                        android:textSize="17sp"
+                        android:textSize="12sp"
                         android:textColor="@color/blue_00"
                         android:gravity="center_vertical"
                         />
@@ -84,7 +85,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:text="¥200"
-                        android:textSize="12sp"
+                        android:textSize="10sp"
                         android:textColor="@color/gray_99"
                         android:gravity="center_vertical"
                         android:layout_marginLeft="10dp"
@@ -104,9 +105,18 @@
                         android:layout_height="wrap_content"
                         tools:text="口语正式"
                         android:textColor="@color/gray_99"
-                        android:textSize="13sp"
+                        android:textSize="11sp"
                         />
                 </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_collection_peoplenum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="已有100人预约申请"
+                    android:textSize="11sp"
+                    android:textColor="@color/gray_99"
+                    android:layout_marginTop="1dp"
+                    />
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>

@@ -18,20 +18,19 @@ import com.github.androidtools.inter.MyOnClickListener;
 import com.github.rxbus.MyRxBus;
 import com.library.base.MyBaseFragment;
 import com.library.base.tools.has.AndroidUtils;
-import com.sdklibrary.base.pay.alipay.MyAliOrderBean;
-import com.sdklibrary.base.pay.alipay.MyAliPay;
-import com.sdklibrary.base.pay.alipay.MyAliPayCallback;
-import com.sdklibrary.base.pay.alipay.PayResult;
-import com.sdklibrary.base.pay.wxpay.MyWXOrderBean;
-import com.sdklibrary.base.pay.wxpay.MyWXPay;
-import com.sdklibrary.base.pay.wxpay.MyWXPayCallback;
-import com.sdklibrary.base.share.ShareParam;
-import com.sdklibrary.base.share.qq.MyQQShare;
-import com.sdklibrary.base.share.qq.MyQQShareListener;
-import com.sdklibrary.base.share.qq.bean.MyQQWebHelper;
-import com.sdklibrary.base.share.wx.MyWXShare;
-import com.sdklibrary.base.share.wx.MyWXShareCallback;
-import com.sdklibrary.base.share.wx.bean.MyWXWebHelper;
+import com.sdklibrary.base.ShareParam;
+import com.sdklibrary.base.ali.pay.MyAliOrderBean;
+import com.sdklibrary.base.ali.pay.MyAliPay;
+import com.sdklibrary.base.ali.pay.MyAliPayCallback;
+import com.sdklibrary.base.ali.pay.PayResult;
+import com.sdklibrary.base.qq.share.MyQQShare;
+import com.sdklibrary.base.qq.share.MyQQShareListener;
+import com.sdklibrary.base.qq.share.bean.MyQQWebHelper;
+import com.sdklibrary.base.wx.inter.MyWXCallback;
+import com.sdklibrary.base.wx.pay.MyWXOrderBean;
+import com.sdklibrary.base.wx.pay.MyWXPay;
+import com.sdklibrary.base.wx.share.MyWXShare;
+import com.sdklibrary.base.wx.share.bean.MyWXWebHelper;
 import com.sk.maiqian.AppXml;
 import com.sk.maiqian.Config;
 import com.sk.maiqian.GetSign;
@@ -324,19 +323,19 @@ public abstract class BaseFragment extends MyBaseFragment {
                     helperWX.setTitle(obj.getTitle());
                     helperWX.setDescription(obj.getContent());
                     helperWX.setBitmapResId(R.drawable.share_img);
-                    MyWXShare.newInstance(mContext).shareWeb(helperWX, new MyWXShareCallback() {
+                    MyWXShare.newInstance(mContext).shareWeb(helperWX, new MyWXCallback() {
                         @Override
-                        public void shareSuccess() {
+                        public void onSuccess() {
                             dismissLoading();
                             showMsg("分享成功");
                         }
                         @Override
-                        public void shareFail() {
+                        public void onFail() {
                             dismissLoading();
                             showMsg("分享失败");
                         }
                         @Override
-                        public void shareCancel() {
+                        public void onCancel() {
                             dismissLoading();
                             showMsg("取消分享");
                         }
@@ -385,13 +384,13 @@ public abstract class BaseFragment extends MyBaseFragment {
         String url = SPUtils.getString(mContext, Config.payType_WX, null);
         bean.setNotifyUrl(url);
 //        bean.setIP(mContext);
-        MyWXPay.newInstance(mContext).startPay(bean, new MyWXPayCallback() {
+        MyWXPay.newInstance(mContext).startPay(bean, new MyWXCallback() {
             @Override
-            public void paySuccess() {
+            public void onSuccess() {
                 BaseFragment.this.paySuccess(payDialog,type);
             }
             @Override
-            public void payFail() {
+            public void onFail() {
                 dismissLoading();
                 showMsg("支付失败");
                 if(payDialog!=null){
@@ -399,7 +398,7 @@ public abstract class BaseFragment extends MyBaseFragment {
                 }
             }
             @Override
-            public void payCancel() {
+            public void onCancel() {
                 dismissLoading();
                 showMsg("支付已取消");
                 if(payDialog!=null){

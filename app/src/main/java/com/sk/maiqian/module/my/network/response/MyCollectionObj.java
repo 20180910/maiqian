@@ -13,6 +13,7 @@ public class MyCollectionObj {
      */
 
     private String id;
+    private int typeid;//1正式课 2体验课
     private String title;
     private String english_title;
     private String img_url;
@@ -22,6 +23,26 @@ public class MyCollectionObj {
     private String original_price;
     private String interested_peopleum;
 
+    private String for_how_long;
+
+    private int people_number;
+
+
+    public String getFor_how_long() {
+        return for_how_long;
+    }
+
+    public void setFor_how_long(String for_how_long) {
+        this.for_how_long = for_how_long;
+    }
+
+    public int getPeople_number() {
+        return people_number;
+    }
+
+    public void setPeople_number(int people_number) {
+        this.people_number = people_number;
+    }
 
     public String getEnglish_title() {
         return english_title;
@@ -61,6 +82,14 @@ public class MyCollectionObj {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public int getTypeid() {
+        return typeid;
+    }
+
+    public void setTypeid(int typeid) {
+        this.typeid = typeid;
     }
 
     public String getTitle() {

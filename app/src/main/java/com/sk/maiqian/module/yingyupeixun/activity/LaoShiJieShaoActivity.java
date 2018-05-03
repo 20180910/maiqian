@@ -84,6 +84,7 @@ public class LaoShiJieShaoActivity extends BaseActivity {
                 holder.setText(R.id.tv_teacher_item_old_price,"¥"+bean.getOriginal_price());
                 TextViewUtils.underline(holder.getTextView(R.id.tv_teacher_item_old_price));
                 holder.setText(R.id.tv_teacher_item_title_flag,bean.getBiaoqian());
+                holder.setText(R.id.tv_teacher_item_peoplenum,"已有"+bean.getPeople_number()+"人购买");
                 holder.itemView.setOnClickListener(new MyOnClickListener() {
                     @Override
                     protected void onNoDoubleClick(View view) {
