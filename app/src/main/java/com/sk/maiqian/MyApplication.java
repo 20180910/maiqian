@@ -32,11 +32,12 @@ public class MyApplication extends MultiDexApplication {
         //正式
         String baseUrl="http://121.40.186.118:10088/";
 
-        baseUrl="http://121.40.186.118:10089/";
         if(true&&BuildConfig.DEBUG){
             //测试
             baseUrl="http://121.40.186.118:10089/";
         }
+
+        baseUrl="http://121.40.186.118:10089/";
         NetWorkManager.getInstance(getApplicationContext(),baseUrl,BuildConfig.DEBUG).complete();
 
         initDownloader();

@@ -417,7 +417,7 @@ public abstract class BaseActivity extends MyBaseActivity {
                     MyQQWebHelper helper=new MyQQWebHelper(platform);
                     helper.setTitle(obj.getTitle());
                     helper.setDescription(obj.getContent());
-                    helper.setImageUrl(obj.getImg());
+                    helper.setImagePath(obj.getImg());
                     helper.setUrl(obj.getShare_link());
                     MyQQShare.newInstance(mContext).shareWeb(helper, new MyQQShareListener() {
                         @Override

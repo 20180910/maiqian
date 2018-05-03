@@ -4,7 +4,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.androidtools.PhoneUtils;
@@ -85,6 +87,17 @@ public class QianZhengDetailActivity extends BaseActivity {
     TextView tv_qianzheng_detail_collect;
     @BindView(R.id.tv_qianzheng_detail_yuding)
     TextView tv_qianzheng_detail_yuding;
+
+    @BindView(R.id.ll_qianzheng_detail_top)
+    LinearLayout ll_qianzheng_detail_top;
+
+    @BindView(R.id.cv_qianzhengdetail)
+    CardView cv_qianzhengdetail;
+
+    /*LinearLayout
+ll_qianzheng_detail_top
+CardView
+cv_qianzhengdetail*/
 
     private String visaId;
     private String mingXi;
