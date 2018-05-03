@@ -323,30 +323,35 @@ cv_qianzhengdetail*/
                 intent = new Intent();
                 intent.putExtra(IntentParam.visa_id,visaId);
                 intent.putExtra(IntentParam.type,"1");
+                intent.putExtra(IntentParam.title,"在职人员");
                 STActivity(intent,ZaiZhiRenYuanActivity.class);
                 break;
             case R.id.tv_qianzheng_detail_need2:
                 intent = new Intent();
                 intent.putExtra(IntentParam.visa_id,visaId);
                 intent.putExtra(IntentParam.type,"2");
+                intent.putExtra(IntentParam.title,"自由职业者");
                 STActivity(intent,ZaiZhiRenYuanActivity.class);
                 break;
             case R.id.tv_qianzheng_detail_need3:
                 intent = new Intent();
                 intent.putExtra(IntentParam.visa_id,visaId);
                 intent.putExtra(IntentParam.type,"3");
+                intent.putExtra(IntentParam.title,"退休人员");
                 STActivity(intent,ZaiZhiRenYuanActivity.class);
                 break;
             case R.id.tv_qianzheng_detail_need4:
                 intent = new Intent();
                 intent.putExtra(IntentParam.visa_id,visaId);
                 intent.putExtra(IntentParam.type,"4");
+                intent.putExtra(IntentParam.title,"在校学生");
                 STActivity(intent,ZaiZhiRenYuanActivity.class);
                 break;
             case R.id.tv_qianzheng_detail_need5:
                 intent = new Intent();
                 intent.putExtra(IntentParam.visa_id,visaId);
                 intent.putExtra(IntentParam.type,"5");
+                intent.putExtra(IntentParam.title,"学龄前儿童");
                 STActivity(intent,ZaiZhiRenYuanActivity.class);
                 break;
             case R.id.tv_qianzheng_detail_mx:

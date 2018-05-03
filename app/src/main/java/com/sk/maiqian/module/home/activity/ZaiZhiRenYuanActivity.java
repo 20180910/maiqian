@@ -38,7 +38,6 @@ public class ZaiZhiRenYuanActivity extends BaseActivity {
 
     @Override
     protected int getContentView() {
-        setAppTitle("在职人员");
         setAppRightImg(R.drawable.share);
         return R.layout.zaizhirenyuan_act;
     }
@@ -47,6 +46,8 @@ public class ZaiZhiRenYuanActivity extends BaseActivity {
     protected void initView() {
         visa_id = getIntent().getStringExtra(IntentParam.visa_id);
         type =getIntent().getStringExtra(IntentParam.type);
+        String title =getIntent().getStringExtra(IntentParam.title);
+        setAppTitle(title);
 
         adapter=new MyLoadMoreAdapter<ZiLiaoMuBanObj>(mContext,R.layout.zaizhirenyuan_item,pageSize) {
             @Override
