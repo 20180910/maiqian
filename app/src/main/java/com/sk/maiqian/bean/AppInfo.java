@@ -16,6 +16,7 @@ public class AppInfo implements Serializable {
     public static final int STATUS_INSTALLED = 7;
 
     private int notifPosition;
+    private boolean noApk;
     private String id;
     private String name;
     private String title;
@@ -40,6 +41,14 @@ public class AppInfo implements Serializable {
     }
 
     public AppInfo() {
+    }
+
+    public boolean isNoApk() {
+        return noApk;
+    }
+
+    public void setNoApk(boolean noApk) {
+        this.noApk = noApk;
     }
 
     public String getVersionCode() {

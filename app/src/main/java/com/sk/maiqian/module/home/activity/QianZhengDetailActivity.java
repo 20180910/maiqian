@@ -1,34 +1,47 @@
 package com.sk.maiqian.module.home.activity;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.os.Environment;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.androidtools.PhoneUtils;
+import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.MyBaseRecyclerAdapter;
 import com.github.baseclass.adapter.MyRecyclerViewHolder;
+import com.github.baseclass.permission.PermissionCallback;
 import com.github.baseclass.view.MyDialog;
+import com.github.baseclass.view.MyPopupwindow;
 import com.github.customview.MyTextView;
+import com.github.rxbus.rxjava.MyFlowableSubscriber;
+import com.github.rxbus.rxjava.MyRx;
 import com.library.base.view.MyRecyclerView;
 import com.library.base.view.richedit.RichEditor;
 import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
 import com.sk.maiqian.base.MyCallBack;
+import com.sk.maiqian.bean.AppInfo;
+import com.sk.maiqian.broadcast.DownloadBro;
 import com.sk.maiqian.module.home.network.ApiRequest;
 import com.sk.maiqian.module.home.network.response.CollectObj;
 import com.sk.maiqian.module.home.network.response.QianZhengDetailObj;
 import com.sk.maiqian.module.home.network.response.ZiXunObj;
 import com.sk.maiqian.module.my.activity.LoginActivity;
+import com.sk.maiqian.service.MyAPPDownloadService;
+import com.sk.maiqian.tools.FileUtils;
 import com.sk.maiqian.tools.TablayoutUtils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +49,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.FlowableEmitter;
 
 /**
  * Created by Administrator on 2018/3/22.
@@ -118,6 +132,7 @@ cv_qianzhengdetail*/
     private TextView sxcl;
     private TextView bllc;
     private TextView yjzl;
+    private String wordDocumentUrl;
 
     @Override
     protected int getContentView() {
@@ -134,18 +149,18 @@ cv_qianzhengdetail*/
     }
 
     private void setTabView() {
-        TablayoutUtils.setTabWidth(tab_qianzheng_detail,10);
+        TablayoutUtils.setTabWidth(tab_qianzheng_detail, 10);
 
         /**/
-        List<View>list=new ArrayList<>();
+        List<View> list = new ArrayList<>();
         list.add(ll_qianzheng_detail_sxcl);
         list.add(ll_qianzheng_detail_bllc);
         list.add(ll_qianzheng_detail_bqxz);
         scrollCheckViewIsShow(nsv, list, new OnScrollAutoSelectViewInter() {
             @Override
-            public void selectViewPosition(int position,View view) {
+            public void selectViewPosition(int position, View view) {
                 tab_qianzheng_detail.getTabAt(position).select();
-                switch (position){
+                switch (position) {
                     case 0:
                         sxcl.setSelected(true);
                         bllc.setSelected(false);
@@ -170,11 +185,11 @@ cv_qianzhengdetail*/
         yjzl = new TextView(mContext);
 
         sxcl.setGravity(Gravity.CENTER);
-        int[] colors = new int[] {ContextCompat.getColor(mContext,R.color.blue_00) , ContextCompat.getColor(mContext,R.color.gray_66)};
+        int[] colors = new int[]{ContextCompat.getColor(mContext, R.color.blue_00), ContextCompat.getColor(mContext, R.color.gray_66)};
         int[][] states = new int[2][];
-        states[0] = new int[] { android.R.attr.state_selected };
-        states[1] = new int[] { };
-        ColorStateList stateList=new ColorStateList(states,colors);
+        states[0] = new int[]{android.R.attr.state_selected};
+        states[1] = new int[]{};
+        ColorStateList stateList = new ColorStateList(states, colors);
         sxcl.setTextColor(stateList);
         sxcl.setText("所需材料");
         sxcl.setOnClickListener(new View.OnClickListener() {
@@ -183,7 +198,7 @@ cv_qianzhengdetail*/
                 sxcl.setSelected(true);
                 bllc.setSelected(false);
                 yjzl.setSelected(false);
-                scrollAutoSelectView(nsv,ll_qianzheng_detail_sxcl);
+                scrollAutoSelectView(nsv, ll_qianzheng_detail_sxcl);
             }
         });
         tab_qianzheng_detail.addTab(tab_qianzheng_detail.newTab().setCustomView(sxcl));
@@ -197,7 +212,7 @@ cv_qianzhengdetail*/
                 sxcl.setSelected(false);
                 bllc.setSelected(true);
                 yjzl.setSelected(false);
-                scrollAutoSelectView(nsv,ll_qianzheng_detail_bllc);
+                scrollAutoSelectView(nsv, ll_qianzheng_detail_bllc);
             }
         });
         tab_qianzheng_detail.addTab(tab_qianzheng_detail.newTab().setCustomView(bllc));
@@ -211,7 +226,7 @@ cv_qianzhengdetail*/
                 sxcl.setSelected(false);
                 bllc.setSelected(false);
                 yjzl.setSelected(true);
-                scrollAutoSelectView(nsv,ll_qianzheng_detail_bqxz);
+                scrollAutoSelectView(nsv, ll_qianzheng_detail_bqxz);
             }
         });
         tab_qianzheng_detail.addTab(tab_qianzheng_detail.newTab().setCustomView(yjzl));
@@ -223,8 +238,8 @@ cv_qianzhengdetail*/
         getData(1, false);
     }
 
-    public void getZiXun(String id){
-        getZiXunData(id,new MyCallBack<ZiXunObj>(mContext) {
+    public void getZiXun(String id) {
+        getZiXunData(id, new MyCallBack<ZiXunObj>(mContext) {
             @Override
             public void onSuccess(ZiXunObj obj, int errorCode, String msg) {
                 ziXunObj = obj;
@@ -250,6 +265,7 @@ cv_qianzhengdetail*/
     }
 
     private void setData(QianZhengDetailObj obj) {
+        wordDocumentUrl = obj.getWord_document();
         tv_qianzheng_detail_title.setText(obj.getTitle());
         tv_qianzheng_detail_price.setText("¥" + obj.getPrice());
         tv_qianzheng_detail_shichang.setText(obj.getFor_how_long());
@@ -315,49 +331,73 @@ cv_qianzhengdetail*/
     }
 
 
-    @OnClick({R.id.tv_qianzheng_detail_doc,R.id.tv_qianzheng_detail_need1,R.id.tv_qianzheng_detail_need2,R.id.tv_qianzheng_detail_need3,R.id.tv_qianzheng_detail_need4,
+    @OnClick({R.id.tv_qianzheng_detail_doc, R.id.tv_qianzheng_detail_need1, R.id.tv_qianzheng_detail_need2, R.id.tv_qianzheng_detail_need3, R.id.tv_qianzheng_detail_need4,
             R.id.tv_qianzheng_detail_need5,
             R.id.tv_qianzheng_detail_mx, R.id.tv_qianzheng_detail_zixun, R.id.tv_qianzheng_detail_collect, R.id.tv_qianzheng_detail_yuding})
     public void onViewClick(View view) {
         Intent intent;
         switch (view.getId()) {
             case R.id.tv_qianzheng_detail_doc:
-                STActivity(DocActivity.class);
+                if(TextUtils.isEmpty(wordDocumentUrl)){
+                    MyDialog.Builder mDialog=new MyDialog.Builder(mContext);
+                    mDialog.setMessage("该签证暂无所需资料文档");
+                    mDialog.setNegativeButton(new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    mDialog.setPositiveButton(new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    mDialog.create().show();
+                }else{
+                    if(fileIsExists(getDocFile().getAbsolutePath()+"/"+getDocName())){
+                        showPopu();
+                    }else{
+                        downloadFile();
+                    }
+                }
+
+//                STActivity(DocActivity.class);
                 break;
             case R.id.tv_qianzheng_detail_need1:
                 intent = new Intent();
-                intent.putExtra(IntentParam.visa_id,visaId);
-                intent.putExtra(IntentParam.type,"1");
-                intent.putExtra(IntentParam.title,"在职人员");
-                STActivity(intent,ZaiZhiRenYuanActivity.class);
+                intent.putExtra(IntentParam.visa_id, visaId);
+                intent.putExtra(IntentParam.type, "1");
+                intent.putExtra(IntentParam.title, "在职人员");
+                STActivity(intent, ZaiZhiRenYuanActivity.class);
                 break;
             case R.id.tv_qianzheng_detail_need2:
                 intent = new Intent();
-                intent.putExtra(IntentParam.visa_id,visaId);
-                intent.putExtra(IntentParam.type,"2");
-                intent.putExtra(IntentParam.title,"自由职业者");
-                STActivity(intent,ZaiZhiRenYuanActivity.class);
+                intent.putExtra(IntentParam.visa_id, visaId);
+                intent.putExtra(IntentParam.type, "2");
+                intent.putExtra(IntentParam.title, "自由职业者");
+                STActivity(intent, ZaiZhiRenYuanActivity.class);
                 break;
             case R.id.tv_qianzheng_detail_need3:
                 intent = new Intent();
-                intent.putExtra(IntentParam.visa_id,visaId);
-                intent.putExtra(IntentParam.type,"3");
-                intent.putExtra(IntentParam.title,"退休人员");
-                STActivity(intent,ZaiZhiRenYuanActivity.class);
+                intent.putExtra(IntentParam.visa_id, visaId);
+                intent.putExtra(IntentParam.type, "3");
+                intent.putExtra(IntentParam.title, "退休人员");
+                STActivity(intent, ZaiZhiRenYuanActivity.class);
                 break;
             case R.id.tv_qianzheng_detail_need4:
                 intent = new Intent();
-                intent.putExtra(IntentParam.visa_id,visaId);
-                intent.putExtra(IntentParam.type,"4");
-                intent.putExtra(IntentParam.title,"在校学生");
-                STActivity(intent,ZaiZhiRenYuanActivity.class);
+                intent.putExtra(IntentParam.visa_id, visaId);
+                intent.putExtra(IntentParam.type, "4");
+                intent.putExtra(IntentParam.title, "在校学生");
+                STActivity(intent, ZaiZhiRenYuanActivity.class);
                 break;
             case R.id.tv_qianzheng_detail_need5:
                 intent = new Intent();
-                intent.putExtra(IntentParam.visa_id,visaId);
-                intent.putExtra(IntentParam.type,"5");
-                intent.putExtra(IntentParam.title,"学龄前儿童");
-                STActivity(intent,ZaiZhiRenYuanActivity.class);
+                intent.putExtra(IntentParam.visa_id, visaId);
+                intent.putExtra(IntentParam.type, "5");
+                intent.putExtra(IntentParam.title, "学龄前儿童");
+                STActivity(intent, ZaiZhiRenYuanActivity.class);
                 break;
             case R.id.tv_qianzheng_detail_mx:
                 MyDialog.Builder mDialog = new MyDialog.Builder(mContext);
@@ -382,18 +422,85 @@ cv_qianzhengdetail*/
                 collect();
                 break;
             case R.id.tv_qianzheng_detail_yuding:
-                intent=new Intent();
-                intent.putExtra(IntentParam.qianZhengObj,qianZhengDetailObj);
-                intent.putExtra(IntentParam.visaId,visaId);
-                STActivity(intent,DingDanTianXieActivity.class);
+                intent = new Intent();
+                intent.putExtra(IntentParam.qianZhengObj, qianZhengDetailObj);
+                intent.putExtra(IntentParam.visaId, visaId);
+                STActivity(intent, DingDanTianXieActivity.class);
                 break;
         }
     }
+    private File getDocFile(){
+        File file = new File(Environment.getExternalStorageDirectory(), "maiqiandoc");
+        return file;
+    }
+    private String getDocName(){
+        if(TextUtils.isEmpty(wordDocumentUrl)){
+           return "";
+        }
+        String fileName=wordDocumentUrl.substring(wordDocumentUrl.lastIndexOf("/")+1, wordDocumentUrl.length());
+        return fileName;
+    }
+    MyPopupwindow popupwindow;
+    private void showPopu() {
+        View view = getLayoutInflater().inflate(R.layout.lookdoc_popu, null);
+        view.findViewById(R.id.tv_doc_cancel).setOnClickListener(new MyOnClickListener() {
+            @Override
+            protected void onNoDoubleClick(View view) {
+                popupwindow.dismiss();
+            }
+        });
+        view.findViewById(R.id.tv_doc_download).setOnClickListener(new MyOnClickListener() {
+            @Override
+            protected void onNoDoubleClick(View view) {
+                popupwindow.dismiss();
+                downloadFile();
+            }
+        });
+        view.findViewById(R.id.tv_doc_open).setOnClickListener(new MyOnClickListener() {
+            @Override
+            protected void onNoDoubleClick(View view) {
+                popupwindow.dismiss();
+                DownloadBro.openDoc(mContext,getDocFile().getAbsolutePath()+"/"+getDocName());
+            }
+        });
+        popupwindow=new MyPopupwindow(mContext,view);
+        popupwindow.setElevat(PhoneUtils.dip2px(mContext,10));
+        popupwindow.showAtLocation(tv_qianzheng_detail_title,Gravity.CENTER,0,0);
+    }
 
+    private void downloadFile() {
+        requestPermission(new String[]{Manifest.permission_group.STORAGE}, new PermissionCallback() {
+            @Override
+            public void onGranted() {
+                MyRx.start(new MyFlowableSubscriber<Boolean>() {
+                    @Override
+                    public void subscribe(@io.reactivex.annotations.NonNull FlowableEmitter<Boolean> subscriber) {
+                        boolean delete = FileUtils.delete(getDocFile()+"/"+getDocName());
+                        if(!getDocFile().exists()){
+                            getDocFile().mkdirs();
+                        }
+                        subscriber.onNext(delete);
+                        subscriber.onComplete();
+                    }
+                    @Override
+                    public void onNext(Boolean aBoolean) {
+                        AppInfo info = new AppInfo();
+                        info.setNoApk(true);
+                        info.setUrl(wordDocumentUrl);
+                        info.setFileName(getDocName().split("\\.")[0]);
+                        info.setHouZhui(getDocName().split("\\.")[1]);
+                        info.setId(wordDocumentUrl);
+                        MyAPPDownloadService.intentDownload(mContext, info);
+                    }
+                });
+            }
+            @Override
+            public void onDenied(String s) {
+                showMsg("获取权限失败,无法正常更新,请在设置中打开相关权限");
+            }
+        });
 
-
-
-
+    }
 
 
     private void collect() {

@@ -138,15 +138,19 @@ public class MyAPPDownloadService extends Service {
     }
 
     private void download(final AppInfo appInfo) {
-        ToastUtils.showToast(mContext,"爱尚养御正在下载中...");
-        appInfo.setTitle("爱尚养御");
+        ToastUtils.showToast(mContext,"正在下载中...");
+        appInfo.setTitle(getResources().getString(R.string.app_name));
         if(appInfo.getHouZhui().indexOf(".")==-1){
             appInfo.setHouZhui("."+appInfo.getHouZhui());
+        }
+        File dirPath=getDownloadDir();
+        if(appInfo.isNoApk()){
+            dirPath=new File(Environment.getExternalStorageDirectory(), "maiqiandoc");
         }
         final DownloadRequest request = new DownloadRequest.Builder()
                 .setName(appInfo.getFileName()+appInfo.getHouZhui())
                 .setUri(appInfo.getUrl())
-                .setFolder(getDownloadDir())
+                .setFolder(dirPath)
                 .build();
         mDownloadManager.download(request,appInfo.getId(), new DownloadCallBack( appInfo, mNotificationManager, getApplicationContext()));
     }
@@ -248,8 +252,11 @@ public class MyAPPDownloadService extends Service {
         public void onCompleted() {
             L.i(TAG, "onCompleted()");
             Intent intent = new Intent("download");
-            intent.putExtra("path",getDownloadDir()+"/"+mAppInfo.getFileName()+mAppInfo.getHouZhui());
-            Intent newIntent=intent;
+
+            intent.putExtra("maiqianpath",getDownloadDir()+"/"+mAppInfo.getFileName()+mAppInfo.getHouZhui());
+            if(mAppInfo.isNoApk()){
+                intent.putExtra("tag",true);
+            }
             mBuilder.setContentText(mAppInfo.getTitle()+tag_DownloadComplete);
             mBuilder.setProgress(0, 0, false);
             mBuilder.setTicker(mAppInfo.getTitle() + tag_DownloadComplete)
@@ -259,7 +266,6 @@ public class MyAPPDownloadService extends Service {
 
             mAppInfo.setStatus(AppInfo.STATUS_COMPLETE);
             mAppInfo.setProgress(100);
-//            LocalBroadcastManager.getInstance(mContext).sendBroadcast(newIntent);
             mContext.sendBroadcast(intent);
             sendBroadCast(mAppInfo);
         }

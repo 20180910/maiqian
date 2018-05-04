@@ -337,12 +337,14 @@
                     android:id="@+id/tv_qianzheng_detail_doc"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:text="查看资料文档"
+                    android:text="查看所需资料文档"
                     android:drawableRight="@drawable/jiantou_right"
                     android:gravity="center_vertical"
                     android:background="@color/white"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:textColor="@color/gray_33"
+                    android:textSize="14sp"
                     />
                 <View
                     android:layout_width="match_parent"

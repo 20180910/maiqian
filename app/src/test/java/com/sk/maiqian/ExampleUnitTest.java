@@ -30,6 +30,12 @@ public class ExampleUnitTest {
         System.out.println(new SimpleDateFormat("yyyyMMdd").format(date).toString());
     }
     @Test
+    public void asffgsg() throws Exception {
+        String a="http://121.40.186.118:10089/upload/20.gif1805/03/201805031353477240.doc";
+        String substring = a.substring(a.lastIndexOf("."), a.length());
+        System.out.println(substring);
+    }
+    @Test
     public void asffg() throws Exception {
         String url="http://121.40.186.118:10089/upload/20.gif1805/03/201805031353477240.Gif";
         url=url.toLowerCase();
