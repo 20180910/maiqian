@@ -1,22 +1,16 @@
 package com.sk.maiqian.module.yingyupeixun.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.github.androidtools.PhoneUtils;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.MyLoadMoreAdapter;
 import com.github.baseclass.adapter.MyRecyclerViewHolder;
 import com.github.customview.MyImageView;
-import com.github.rxbus.rxjava.MyFlowableSubscriber;
-import com.github.rxbus.rxjava.MyRx;
 import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
@@ -30,8 +24,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
-import io.reactivex.FlowableEmitter;
-import io.reactivex.annotations.NonNull;
 
 /**
  * Created by Administrator on 2018/3/26.
@@ -125,7 +117,7 @@ public class LaoShiJieShaoActivity extends BaseActivity {
     private void setData(TeacherObj obj) {
         adapter.setList(obj.getShouke_list(),true);
         GlideUtils.into(mContext,obj.getHead_portrait(),iv_teacher_img);
-        MyRx.start(new MyFlowableSubscriber<Bitmap>() {
+       /* MyRx.start(new MyFlowableSubscriber<Bitmap>() {
             @Override
             public void subscribe(@NonNull FlowableEmitter<Bitmap> emitter) {
                 try {
@@ -144,7 +136,7 @@ public class LaoShiJieShaoActivity extends BaseActivity {
                 BitmapDrawable drawable=new BitmapDrawable(getResources(),obj);
                 ll_teacher_bg.setBackground(drawable);
             }
-        });
+        });*/
         tv_teacher_name.setText(obj.getTeacher_name());
         tv_teacher_age.setText(obj.getSchool_age()+"年");
         tv_teacher_fangxiang.setText(obj.getMain_attack());
