@@ -66,6 +66,7 @@ public class YouXueDetailActivity extends BaseActivity {
 
     private String dataId;
     private String id;
+    private String guoJiaId;
 
     @Override
     protected int getContentView() {
@@ -104,6 +105,7 @@ public class YouXueDetailActivity extends BaseActivity {
 
     private void setData(YouXueDetailObj obj) {
         id = obj.getId();
+        guoJiaId = obj.getCountrie_region_id();
         GlideUtils.intoD(mContext,obj.getImage_url(),iv_youxue_detail,R.drawable.liuxue_img);
 
         tv_youxue_detail_content.setText(obj.getIntroduce());
@@ -155,7 +157,7 @@ public class YouXueDetailActivity extends BaseActivity {
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.tv_youxue_detail_zixun:
-                showZiXunDialog();
+                showZiXunDialog(guoJiaId);
                 break;
             case R.id.tv_youxue_detail_collection:
                 if(noLogin()){

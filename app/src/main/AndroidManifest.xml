@@ -153,7 +153,7 @@
                 <data android:scheme="wx32725acca4dfcf9f"/>
             </intent-filter>
         </activity>
-
+        <activity android:name=".module.home.activity.DocActivity"/>
 
 
     </application>

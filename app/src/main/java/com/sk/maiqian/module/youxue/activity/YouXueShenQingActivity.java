@@ -170,7 +170,7 @@ public class YouXueShenQingActivity extends BaseActivity {
                 getAllArea(true);
                 break;
             case R.id.ll_youxue_shenqing_zixun:
-                showZiXunDialog();
+                showZiXunDialog("0");
                 break;
             case R.id.tv_youxue_shenqing_commit:
                 if(noLogin()){

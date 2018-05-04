@@ -211,7 +211,7 @@ public class KeChengDetailActivity extends BaseActivity {
     }
     @Override
     protected void initData() {
-        getZiXunData(new MyCallBack<ZiXunObj>(mContext) {
+        getZiXunData("0",new MyCallBack<ZiXunObj>(mContext) {
             @Override
             public void onSuccess(ZiXunObj obj, int errorCode, String msg) {
                 ziXunObj = obj;
@@ -313,7 +313,7 @@ public class KeChengDetailActivity extends BaseActivity {
                 });
                 break;
             case R.id.tv_peixun_detail_zixun:
-                showZiXunDialog();
+                showZiXunDialog("0");
                 break;
             case R.id.tv_peixun_detail_buy:
                 Intent intent=new Intent();

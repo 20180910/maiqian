@@ -24,6 +24,7 @@ public class YouXueDetailObj extends BaseObj {
      */
 
     private String id;
+    private String countrie_region_id;
     private String image_url;
     private String title;
     private String english_title;
@@ -65,6 +66,14 @@ public class YouXueDetailObj extends BaseObj {
 
     public void setEnglish_title(String english_title) {
         this.english_title = english_title;
+    }
+
+    public String getCountrie_region_id() {
+        return countrie_region_id;
+    }
+
+    public void setCountrie_region_id(String countrie_region_id) {
+        this.countrie_region_id = countrie_region_id;
     }
 
     public int getQs_ranking() {

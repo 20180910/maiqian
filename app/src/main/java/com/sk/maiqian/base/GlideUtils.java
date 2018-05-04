@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -44,6 +45,9 @@ public class GlideUtils {
         }
     }
     public static boolean isGifUrl(String url){
+        if(TextUtils.isEmpty(url)){
+            return false;
+        }
         String imgUrl=url.toLowerCase();
         int index = imgUrl.lastIndexOf(".gif");
         if(index==-1){

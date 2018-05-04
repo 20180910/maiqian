@@ -526,9 +526,12 @@ public abstract class BaseActivity extends MyBaseActivity {
     }
 
     /********************************************咨询******************************************************/
-    protected void getZiXunData(MyCallBack callBack) {
+    /*protected void getZiXunData(MyCallBack callBack) {
+        getZiXunData("0",callBack);
+    }*/
+    protected void getZiXunData(String guoJiaId,MyCallBack callBack) {
         Map<String,String>map=new HashMap<String,String>();
-        map.put("rnd",getRnd());
+        map.put("countrie_region_id",guoJiaId);
         map.put("sign",getSign(map));
         ApiRequest.getZiXunInfo(map,callBack);
         /* new MyCallBack<ZiXunObj>(mContext) {
@@ -598,7 +601,7 @@ public abstract class BaseActivity extends MyBaseActivity {
     protected ZiXunObj ziXunObj;
     private void showWX() {
         View view = getLayoutInflater().inflate(R.layout.kechengdetail_wx_popu, null);
-        view.findViewById(R.id.tv_wx_zixun).setOnClickListener(getListenerSaveIMG());
+//        view.findViewById(R.id.tv_wx_zixun).setOnClickListener(getListenerSaveIMG());
         ImageView iv_wx_zixun = view.findViewById(R.id.iv_wx_zixun);
         iv_wx_zixun.setOnClickListener(getListenerSaveIMG());
         GlideUtils.into(mContext,ziXunObj.getWechat_code(),iv_wx_zixun);
@@ -640,10 +643,13 @@ public abstract class BaseActivity extends MyBaseActivity {
             }
         };
     }
-    protected void showZiXunDialog(){
+//    protected void showZiXunDialog(){
+//        showZiXunDialog("0");
+//    }
+    protected void showZiXunDialog(String id){
         if(ziXunObj==null){
             showLoading();
-            getZiXunData(new MyCallBack<ZiXunObj>(mContext) {
+            getZiXunData(id,new MyCallBack<ZiXunObj>(mContext) {
                 @Override
                 public void onSuccess(ZiXunObj obj, int errorCode, String msg) {
                     ziXunObj = obj;

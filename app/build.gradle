@@ -12,6 +12,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
+
     }
     signingConfigs {
         release {
@@ -39,15 +40,16 @@ android {
             dirs 'libs'
         }
     }
-    sourceSets {
-        main {
-            jniLibs.srcDirs "libs"
-        }
-    }
+
 
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
+    }
+    sourceSets {
+        main{
+            jniLibs.srcDirs = ['libs']
+        }
     }
 }
 
@@ -86,8 +88,7 @@ dependencies {
     compile 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
     compile 'com.contrarywind:Android-PickerView:3.2.6'
     compile 'cn.jzvd:jiaozivideoplayer:6.2.9'
-
-
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     compile 'cz.msebera.android:httpclient:4.4.1.2'
+    compile files('libs/thirdapp.jar')
 }

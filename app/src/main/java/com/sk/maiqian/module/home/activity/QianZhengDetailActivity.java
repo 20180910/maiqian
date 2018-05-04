@@ -220,16 +220,17 @@ cv_qianzhengdetail*/
     @Override
     protected void initData() {
         showProgress();
-        getZiXunData(new MyCallBack<ZiXunObj>(mContext) {
+        getData(1, false);
+    }
+
+    public void getZiXun(String id){
+        getZiXunData(id,new MyCallBack<ZiXunObj>(mContext) {
             @Override
             public void onSuccess(ZiXunObj obj, int errorCode, String msg) {
                 ziXunObj = obj;
             }
         });
-        getData(1, false);
     }
-
-
 
     @Override
     protected void getData(int page, boolean isLoad) {
@@ -241,6 +242,7 @@ cv_qianzhengdetail*/
         ApiRequest.qianZhengDetail(map, new MyCallBack<QianZhengDetailObj>(mContext, pl_load, pcfl) {
             @Override
             public void onSuccess(QianZhengDetailObj obj, int errorCode, String msg) {
+                getZiXun(obj.getCountrie_region_id());
                 qianZhengDetailObj = obj;
                 setData(obj);
             }
@@ -313,12 +315,15 @@ cv_qianzhengdetail*/
     }
 
 
-    @OnClick({R.id.tv_qianzheng_detail_need1,R.id.tv_qianzheng_detail_need2,R.id.tv_qianzheng_detail_need3,R.id.tv_qianzheng_detail_need4,
+    @OnClick({R.id.tv_qianzheng_detail_doc,R.id.tv_qianzheng_detail_need1,R.id.tv_qianzheng_detail_need2,R.id.tv_qianzheng_detail_need3,R.id.tv_qianzheng_detail_need4,
             R.id.tv_qianzheng_detail_need5,
             R.id.tv_qianzheng_detail_mx, R.id.tv_qianzheng_detail_zixun, R.id.tv_qianzheng_detail_collect, R.id.tv_qianzheng_detail_yuding})
     public void onViewClick(View view) {
         Intent intent;
         switch (view.getId()) {
+            case R.id.tv_qianzheng_detail_doc:
+                STActivity(DocActivity.class);
+                break;
             case R.id.tv_qianzheng_detail_need1:
                 intent = new Intent();
                 intent.putExtra(IntentParam.visa_id,visaId);
@@ -367,7 +372,7 @@ cv_qianzhengdetail*/
                 mDialog.create().show();
                 break;
             case R.id.tv_qianzheng_detail_zixun:
-                showZiXunDialog();
+                showZiXunDialog(qianZhengDetailObj.getCountrie_region_id());
                 break;
             case R.id.tv_qianzheng_detail_collect:
                 if (noLogin()) {

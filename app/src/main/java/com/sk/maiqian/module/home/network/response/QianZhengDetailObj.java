@@ -32,6 +32,7 @@ public class QianZhengDetailObj extends BaseObj {
      * is_collect : 1
      */
 
+    private String countrie_region_id;
     private int visa_id;
     private String title;
     private double price;
@@ -48,9 +49,26 @@ public class QianZhengDetailObj extends BaseObj {
     private String visa_instructions;
     private long max_apply_time;
     private String visa_information;
+    private String word_document;
     private int is_collect;
     private List<CanshuListBean> canshu_list;
     private List<LiuchengListBean> liucheng_list;
+
+    public String getWord_document() {
+        return word_document;
+    }
+
+    public void setWord_document(String word_document) {
+        this.word_document = word_document;
+    }
+
+    public String getCountrie_region_id() {
+        return countrie_region_id;
+    }
+
+    public void setCountrie_region_id(String countrie_region_id) {
+        this.countrie_region_id = countrie_region_id;
+    }
 
     public int getVisa_id() {
         return visa_id;

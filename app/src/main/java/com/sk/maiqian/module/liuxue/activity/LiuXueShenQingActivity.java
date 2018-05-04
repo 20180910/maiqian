@@ -201,7 +201,7 @@ public class LiuXueShenQingActivity extends BaseActivity {
                 }
                 break;
             case R.id.ll_liuxue_shenqing_zixun:
-                showZiXunDialog();
+                showZiXunDialog("0");
                 break;
             case R.id.tv_liuxue_shenqing_commit:
                 if(noLogin()){

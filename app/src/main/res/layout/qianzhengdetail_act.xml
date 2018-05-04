@@ -333,6 +333,22 @@
                         android:layout_marginTop="3dp"
                         />
                 </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_qianzheng_detail_doc"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="查看资料文档"
+                    android:drawableRight="@drawable/jiantou_right"
+                    android:gravity="center_vertical"
+                    android:background="@color/white"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="@color/background_f2"
+                    />
                 <android.support.design.widget.TabLayout
                     android:id="@+id/tab_qianzheng_detail"
                     android:layout_width="match_parent"
