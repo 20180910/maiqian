@@ -269,13 +269,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="配送地址"
+                        android:text="家庭地址"
                         />
                     <TextView
                         android:id="@+id/tv_qianzheng_order_address"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="添加配送地址"
+                        android:hint="添加家庭地址"
                         android:textColorHint="@color/blue_00"
                         android:layout_marginLeft="35dp"
                         android:gravity="center_vertical"

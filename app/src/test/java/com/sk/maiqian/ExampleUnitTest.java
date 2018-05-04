@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import org.junit.Test;
 import org.reactivestreams.Subscription;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import io.reactivex.Flowable;
@@ -23,6 +24,28 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
+        String dateStr = "2018年1月1日";
+        String pattern = "yyyy年MM月dd日";
+        Date date = new SimpleDateFormat(pattern).parse(dateStr);
+        System.out.println(new SimpleDateFormat("yyyyMMdd").format(date).toString());
+    }
+    @Test
+    public void asffg() throws Exception {
+        String url="http://121.40.186.118:10089/upload/20.gif1805/03/201805031353477240.Gif";
+        url=url.toLowerCase();
+        int index = url.lastIndexOf(".gif");
+        System.out.println(isGifUrl(url));
+        System.out.println(index+4);
+        System.out.println(url.length());
+    }
+    public static boolean isGifUrl(String url){
+        String imgUrl=url.toLowerCase();
+        int index = imgUrl.lastIndexOf(".gif");
+        if(index==-1){
+            return false;
+        }
+        index+=4;
+        return (index==url.length());
     }
     @Test
     public void dfg() throws Exception {
