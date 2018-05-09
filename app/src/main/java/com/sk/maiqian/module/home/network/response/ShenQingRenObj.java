@@ -22,6 +22,9 @@ public class ShenQingRenObj implements Serializable{
     private String age_duan;
     private String customer_type;
     private String passport_no;
+    private String id_card_url_positive;
+    private String id_card_url_reverse;
+    private String image_url;
     private boolean isCheck;
 
     public boolean isCheck() {
@@ -30,6 +33,30 @@ public class ShenQingRenObj implements Serializable{
 
     public void setCheck(boolean check) {
         isCheck = check;
+    }
+
+    public String getId_card_url_positive() {
+        return id_card_url_positive;
+    }
+
+    public void setId_card_url_positive(String id_card_url_positive) {
+        this.id_card_url_positive = id_card_url_positive;
+    }
+
+    public String getId_card_url_reverse() {
+        return id_card_url_reverse;
+    }
+
+    public void setId_card_url_reverse(String id_card_url_reverse) {
+        this.id_card_url_reverse = id_card_url_reverse;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 
     public String getApplicant_information_id() {

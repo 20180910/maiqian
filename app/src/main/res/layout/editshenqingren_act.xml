@@ -8,57 +8,62 @@
     >
 
     <include layout="@layout/app_title"/>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <com.github.customview.MyLinearLayout
+        android:id="@+id/ll_shengqingren_top"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        app:my_ll_solid="@color/white"
+        app:my_ll_bottom_line="true"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/saoyisao"
+            />
 
+        <TextView
+            android:id="@+id/tv_addpeople_scan"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="识别护照信息"
+            android:textColor="@color/blue_00"
+            android:textSize="16sp"
+            />
+    </com.github.customview.MyLinearLayout>
     <android.support.v4.widget.NestedScrollView
         android:id="@id/nsv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_shengqingren_top"
+        android:layout_above="@+id/ll_shengqingren_bottom"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             >
             <!--your view-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@color/white"
-                android:gravity="center"
-                android:orientation="horizontal"
-                >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/saoyisao"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_addpeople_scan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center_vertical"
-                    android:text="识别护照信息"
-                    android:textColor="@color/blue_00"
-                    android:textSize="16sp"
-                    />
-            </LinearLayout>
-
             <com.github.customview.MyLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                app:my_ll_corner_radius="4dp"
                 app:my_ll_solid="@color/white"
                 >
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
@@ -79,8 +84,6 @@
                     android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:focusableInTouchMode="true"
-                    android:focusable="true"
                     >
                     <TextView
                         android:layout_width="wrap_content"
@@ -336,20 +339,87 @@
                             />
                     </com.github.customview.MyFrameLayout>
                 </LinearLayout>
-                <com.github.customview.MyTextView
-                    android:id="@+id/tv_addpeople_save"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:padding="5dp"
-                    android:text="添加申请人"
-                    android:textColor="@color/white"
-                    app:my_tv_corner_radius="4dp"
-                    app:my_tv_solid="@color/blue_00"
-                    />
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    >
+
+                    <com.github.customview.MyFrameLayout
+                        android:id="@+id/fl_addpeople_img3"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        app:my_fl_all_line="true"
+                        app:my_fl_corner_radius="5dp"
+                        app:my_fl_solid="@color/white"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="个人图片"
+                            android:textColor="@color/gray_99"
+                            android:layout_gravity="center"
+                            />
+                        <com.github.customview.MyImageView
+                            android:id="@+id/iv_addpeople_img3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@color/background_f2"
+                            app:my_iv_radius="5dp"
+                            android:visibility="gone"
+                            android:background="@color/border_e52"
+                            />
+                    </com.github.customview.MyFrameLayout>
+
+                    <com.github.customview.MyFrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        app:my_fl_all_line="true"
+                        app:my_fl_corner_radius="5dp"
+                        app:my_fl_solid="@color/white"
+                        android:visibility="invisible"
+                        >
+                    </com.github.customview.MyFrameLayout>
+                </LinearLayout>
             </com.github.customview.MyLinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
+    <com.github.customview.MyLinearLayout
+        android:id="@+id/ll_shengqingren_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_alignParentBottom="true"
+        app:my_ll_solid="@color/white"
+        app:my_ll_top_line="true"
+        >
+        <com.github.customview.MyTextView
+            android:id="@+id/tv_addpeople_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:text="添加申请人"
+            android:textColor="@color/white"
+            app:my_tv_corner_radius="4dp"
+            app:my_tv_solid="@color/blue_00"
+            />
+    </com.github.customview.MyLinearLayout>
+
+</RelativeLayout>
 
 </LinearLayout>

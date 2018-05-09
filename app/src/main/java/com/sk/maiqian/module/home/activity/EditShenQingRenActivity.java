@@ -67,19 +67,27 @@ public class EditShenQingRenActivity extends BaseActivity {
     MyImageView iv_addpeople_img1;
     @BindView(R.id.iv_addpeople_img2)
     MyImageView iv_addpeople_img2;
+    @BindView(R.id.iv_addpeople_img3)
+    MyImageView iv_addpeople_img3;
+    @BindView(R.id.tv_addpeople_save)
+    TextView tv_addpeople_save;
 
 
     private boolean isEditPeople;
 
     private int sex=1;
-    private int imgType=1;//1正面，2反面，3护照
-    private String imgUrl1,imgUrl2;
+    private int imgType=1;//0护照,1正面，2反面，3自身图片
+    private String imgUrl1,imgUrl2,imgUrl3;
     private String peopleId;
     private ShenQingRenObj obj;
+    private String name;
+    private String age;
+    private String type;
+    private String code;
 
     @Override
     protected int getContentView() {
-        setAppTitle("编辑申请人");
+        setAppRightImg(R.drawable.share);
         return R.layout.editshenqingren_act;
     }
 
@@ -87,8 +95,40 @@ public class EditShenQingRenActivity extends BaseActivity {
     protected void initView() {
         obj = (ShenQingRenObj) getIntent().getSerializableExtra(IntentParam.people);
         if(obj!=null){
+            setAppTitle("编辑申请人");
+            tv_addpeople_save.setText("保存申请人");
             isEditPeople =true;
             peopleId = obj.getApplicant_information_id();
+            name=obj.getChinese_name();
+            age=obj.getAge_duan();
+            type=obj.getCustomer_type();
+            code=obj.getPassport_no();
+
+            et_addpeople_name.setText(name);
+            tv_addpeople_age.setText(age);
+            tv_addpeople_type.setText(type);
+            et_addpeople_code.setText(code);
+
+
+            imgUrl1=obj.getId_card_url_positive();
+            imgUrl2=obj.getId_card_url_reverse();
+            imgUrl3=obj.getImage_url();
+            GlideUtils.into(mContext,imgUrl1,iv_addpeople_img1);
+            GlideUtils.into(mContext,imgUrl2,iv_addpeople_img2);
+            GlideUtils.into(mContext,imgUrl3,iv_addpeople_img3);
+            iv_addpeople_img1.setVisibility(View.VISIBLE);
+            iv_addpeople_img2.setVisibility(View.VISIBLE);
+            iv_addpeople_img3.setVisibility(View.VISIBLE);
+            if("男".equals(obj.getSex())){
+                setSex(true);
+                sex=1;
+            }else{
+                setSex(false);
+                sex=0;
+            }
+        }else{
+            setAppTitle("添加申请人");
+            tv_addpeople_save.setText("添加申请人");
         }
     }
     @Override
@@ -96,7 +136,7 @@ public class EditShenQingRenActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.tv_addpeople_nan,R.id.tv_addpeople_nv,R.id.tv_addpeople_scan, R.id.tv_addpeople_age, R.id.tv_addpeople_type, R.id.fl_addpeople_img1, R.id.fl_addpeople_img2, R.id.tv_addpeople_save})
+    @OnClick({R.id.tv_addpeople_nan,R.id.tv_addpeople_nv,R.id.tv_addpeople_scan, R.id.tv_addpeople_age, R.id.tv_addpeople_type, R.id.fl_addpeople_img1, R.id.fl_addpeople_img2, R.id.fl_addpeople_img3, R.id.tv_addpeople_save})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.tv_addpeople_nan:
@@ -108,7 +148,7 @@ public class EditShenQingRenActivity extends BaseActivity {
                 sex=0;
                 break;
             case R.id.tv_addpeople_scan:
-                imgType=3;
+                imgType=0;
                 PhoneUtils.hiddenKeyBoard(mContext);
                 showSelectPhotoDialog();
                 break;
@@ -128,11 +168,16 @@ public class EditShenQingRenActivity extends BaseActivity {
                 PhoneUtils.hiddenKeyBoard(mContext);
                 showSelectPhotoDialog();
                 break;
+            case R.id.fl_addpeople_img3:
+                imgType=3;
+                PhoneUtils.hiddenKeyBoard(mContext);
+                showSelectPhotoDialog();
+                break;
             case R.id.tv_addpeople_save:
-                String name = getSStr(et_addpeople_name);
-                String age  = getSStr(tv_addpeople_age);
-                String type = getSStr(tv_addpeople_type);
-                String code = getSStr(et_addpeople_code);
+                name = getSStr(et_addpeople_name);
+                age = getSStr(tv_addpeople_age);
+                type = getSStr(tv_addpeople_type);
+                code = getSStr(et_addpeople_code);
                 if(TextUtils.isEmpty(name)){
                     showMsg("请输入姓名");
                     return;
@@ -142,7 +187,7 @@ public class EditShenQingRenActivity extends BaseActivity {
                 }else if(TextUtils.isEmpty(type)){
                     showMsg("请选择客户类型");
                     return;
-                }else if(TextUtils.isEmpty(code)||code.toString().replace(" ","").length()<=0){
+                }else if(TextUtils.isEmpty(code)|| code.toString().replace(" ","").length()<=0){
                     showMsg("请输入护照号码");
                     return;
                 }else if(TextUtils.isEmpty(imgUrl1)){
@@ -151,8 +196,11 @@ public class EditShenQingRenActivity extends BaseActivity {
                 }else if(TextUtils.isEmpty(imgUrl2)){
                     showMsg("请上传身份证背面照");
                     return;
+                }else if(TextUtils.isEmpty(imgUrl3)){
+                    showMsg("请上传个人图片");
+                    return;
                 }
-                addPeople(name,age,type,code);
+                addPeople( );
                 break;
         }
     }
@@ -261,7 +309,7 @@ public class EditShenQingRenActivity extends BaseActivity {
         }
     }
 
-    private void addPeople(String name, String age, String type, String code) {
+    private void addPeople( ) {
         showLoading();
         Map<String,String> map=new HashMap<String,String>();
         map.put("applicant_information_id",isEditPeople?peopleId:"0");
@@ -273,6 +321,7 @@ public class EditShenQingRenActivity extends BaseActivity {
         map.put("passport_no",code);
         map.put("id_card_url_zheng",imgUrl1);
         map.put("id_card_url_fan",imgUrl2);
+        map.put("image_url",imgUrl3);
         map.put("sign",getSign(map));
         ApiRequest.addShenQingRen(map, new MyCallBack<BaseObj>(mContext) {
             @Override
@@ -301,7 +350,7 @@ public class EditShenQingRenActivity extends BaseActivity {
     }
 
     private void uploadImg(String photoPath) {
-        if(imgType==3){
+        if(imgType==0){
             shiBieHuZhao(photoPath);
         }else{
             uploadImg(photoPath, new UploadImgCallback() {
@@ -311,10 +360,14 @@ public class EditShenQingRenActivity extends BaseActivity {
                         imgUrl1=imgUrl;
                         GlideUtils.into(mContext,imgUrl,iv_addpeople_img1);
                         iv_addpeople_img1.setVisibility(View.VISIBLE);
-                    }else{//反面
+                    }else if(imgType==2){//反面
                         imgUrl2=imgUrl;
                         GlideUtils.into(mContext,imgUrl,iv_addpeople_img2);
                         iv_addpeople_img2.setVisibility(View.VISIBLE);
+                    }else{//个人图片
+                        imgUrl3=imgUrl;
+                        GlideUtils.into(mContext,imgUrl,iv_addpeople_img3);
+                        iv_addpeople_img3.setVisibility(View.VISIBLE);
                     }
                 }
             });
