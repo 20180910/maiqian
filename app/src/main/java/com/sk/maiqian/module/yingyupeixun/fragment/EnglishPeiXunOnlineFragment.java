@@ -57,6 +57,12 @@ public class EnglishPeiXunOnlineFragment extends BaseFragment {
         adapter=new MyLoadMoreAdapter<OnlineStudyObj>(mContext,R.layout.englishpeixun_online_item,pageSize) {
             @Override
             public void bindData(MyRecyclerViewHolder holder, int position, OnlineStudyObj bean) {
+                View fl_yinpin = holder.getView(R.id.fl_yinpin);
+                if(type_2.equalsIgnoreCase(getArguments().getString(Constant.type))){
+                    fl_yinpin.setVisibility(View.GONE);
+                }else{
+                    fl_yinpin.setVisibility(View.VISIBLE);
+                }
                 ImageView imageView = holder.getImageView(R.id.iv_online);
                 GlideUtils.into(mContext,bean.getImage_url(),imageView);
                 holder.setText(R.id.tv_online_title,bean.getTitle());

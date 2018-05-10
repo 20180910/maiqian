@@ -21,8 +21,10 @@
             android:background="@color/white"
             >
             <FrameLayout
+                android:id="@+id/fl_yinpin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 >
                 <ImageView
                     android:id="@+id/iv_online"
@@ -39,7 +41,6 @@
                 android:orientation="vertical"
                 android:background="@color/white"
                 android:gravity="center_vertical"
-                android:layout_marginLeft="10dp"
                 android:paddingBottom="1dp"
                 >
                 <TextView
