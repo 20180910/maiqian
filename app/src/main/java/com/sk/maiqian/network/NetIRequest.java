@@ -35,6 +35,10 @@ public interface NetIRequest {
     @POST("api/MQLib/PostUploadFileBase64")
     Call<ResponseObj<BaseObj>> uploadImg(@QueryMap Map<String, String> map, @Body UploadImgBody body);
 
+    //修改用户头像
+    @GET("api/MQUserBase/GetSetUserAvatar")
+    Call<ResponseObj<BaseObj>> setUserImg(@QueryMap Map<String, String> map);
+
     //获取省市区
     @GET("api/MQLib/GetProvinceCityArea")
     Call<ResponseObj<List<CityObj>>> getAllArea(@QueryMap Map<String, String> map);

@@ -133,11 +133,10 @@ public class PersonInfoActivity extends BaseActivity {
                 map.put("sign",getSign(map));
                 UploadImgBody body=new UploadImgBody();
                 body.setFile(base64);
-                NetApiRequest.uploadImg(map,body, new MyCallBack<BaseObj>(mContext) {
+                NetApiRequest.uploadImg(map,body, new MyCallBack<BaseObj>(mContext,true) {
                     @Override
                     public void onSuccess(BaseObj obj, int errorCode, String msg) {
-                        SPUtils.setPrefString(mContext,AppXml.avatar,obj.getImg());
-                        setInfo();
+                        upLoadUserImg(obj.getImg());
                     }
                 });
             }
@@ -149,5 +148,19 @@ public class PersonInfoActivity extends BaseActivity {
             }
         });
 
+    }
+
+    private void upLoadUserImg(String img) {
+        Map<String,String>map=new HashMap<String,String>();
+        map.put("user_id",getUserId());
+        map.put("avatar",img);
+        map.put("sign",getSign(map));
+        NetApiRequest.setUserImg(map, new MyCallBack<BaseObj>(mContext) {
+            @Override
+            public void onSuccess(BaseObj obj, int errorCode, String msg) {
+                SPUtils.setPrefString(mContext,AppXml.avatar,img);
+                setInfo();
+            }
+        });
     }
 }
