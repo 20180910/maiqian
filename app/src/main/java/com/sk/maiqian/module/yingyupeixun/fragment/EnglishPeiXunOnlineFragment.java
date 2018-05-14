@@ -2,8 +2,10 @@ package com.sk.maiqian.module.yingyupeixun.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.MyLoadMoreAdapter;
@@ -20,6 +22,7 @@ import com.sk.maiqian.module.yingyupeixun.activity.YinpinDetailActivity;
 import com.sk.maiqian.module.yingyupeixun.network.ApiRequest;
 import com.sk.maiqian.module.yingyupeixun.network.response.OnlineStudyObj;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +41,8 @@ public class EnglishPeiXunOnlineFragment extends BaseFragment {
 
     MyLoadMoreAdapter adapter;
 
+    private List<Integer> sparseIntArray=new ArrayList<>();
+    private SparseBooleanArray showPosition=new SparseBooleanArray();
     @Override
     protected int getContentView() {
         return R.layout.englishpeixun_online_frag;
@@ -55,6 +60,7 @@ public class EnglishPeiXunOnlineFragment extends BaseFragment {
     @Override
     protected void initView() {
         adapter=new MyLoadMoreAdapter<OnlineStudyObj>(mContext,R.layout.englishpeixun_online_item,pageSize) {
+
             @Override
             public void bindData(MyRecyclerViewHolder holder, int position, OnlineStudyObj bean) {
                 View fl_yinpin = holder.getView(R.id.fl_yinpin);
@@ -82,6 +88,18 @@ public class EnglishPeiXunOnlineFragment extends BaseFragment {
                         }
                     }
                 });
+
+
+
+                TextView tv_online_fenlei = holder.getTextView(R.id.tv_online_fenlei);
+                if(!sparseIntArray.contains(bean.getType_id())||showPosition.get(position)){
+                    showPosition.put(position,true);
+                    sparseIntArray.add(bean.getType_id());
+                    tv_online_fenlei.setVisibility(View.VISIBLE);
+                    tv_online_fenlei.setText(bean.getType_name());
+                }else{
+                    tv_online_fenlei.setVisibility(View.GONE);
+                }
             }
         };
         adapter.setOnLoadMoreListener(this);
@@ -109,6 +127,8 @@ public class EnglishPeiXunOnlineFragment extends BaseFragment {
                     pageNum++;
                     adapter.addList(list,true);
                 }else{
+                    sparseIntArray.clear();
+                    showPosition.clear();
                     pageNum=2;
                     adapter.setList(list,true);
                 }

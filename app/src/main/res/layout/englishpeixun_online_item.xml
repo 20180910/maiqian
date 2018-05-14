@@ -6,11 +6,23 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:background="@color/white"
-              android:padding="10dp"
     >
+    <com.github.customview.MyTextView
+        android:id="@+id/tv_online_fenlei"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        tools:text="分类"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:textSize="14sp"
+        android:textColor="@color/blue_00"
+        app:my_tv_bottom_line="true"
+        android:visibility="gone"
+        />
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="10dp"
         >
 
         <LinearLayout
@@ -32,6 +44,7 @@
                     android:layout_height="@dimen/img_h"
                     tools:src="@drawable/item_img"
                     android:scaleType="fitCenter"
+                    android:background="@color/c_press"
                     />
             </FrameLayout>
 
