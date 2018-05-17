@@ -20,6 +20,7 @@
         android:visibility="gone"
         />
     <FrameLayout
+        android:id="@+id/fl_online_peixun"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"

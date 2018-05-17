@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.SparseBooleanArray;
+import android.util.SparseIntArray;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,6 +36,17 @@ public class ExampleInstrumentedTest {
         SparseBooleanArray showPosition=new SparseBooleanArray();
         System.out.println(showPosition.size());
         System.out.println(showPosition.get(11));
+    }
+    @Test
+    public void sadf() throws Exception {
+        SparseIntArray showPosition=new SparseIntArray();
+        showPosition.put(1,1);
+        System.out.println(showPosition.indexOfKey(1));
+        System.out.println(showPosition.indexOfValue(1));
+
+        System.out.println(showPosition.indexOfKey(0));
+        System.out.println(showPosition.indexOfValue(0));
+
     }
     @Test
     public void asdf() throws Exception {

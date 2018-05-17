@@ -25,6 +25,17 @@ public class OnlineStudyObj {
     private int type_id;
     private String type_name;
 
+    private boolean hidden;
+
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
+    }
+
     public int getType_id() {
         return type_id;
     }

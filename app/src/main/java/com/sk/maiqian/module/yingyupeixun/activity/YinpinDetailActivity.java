@@ -55,7 +55,6 @@ public class YinpinDetailActivity extends BaseActivity {
                 event.progress = event.progress * 10000 / 100;
                 int now = pb_progress.getProgress();
                 for (int i = now; i <= event.progress; i++) {
-                    Log("=========" + i);
                     pb_progress.setProgress(i);
                 }
             }
@@ -86,7 +85,7 @@ public class YinpinDetailActivity extends BaseActivity {
                         sleepFlag=10;
                         emitter.onNext(myProgress);
                     }
-                    Log(myProgress+"===-"+totalProgress);
+//                    Log(myProgress+"===-"+totalProgress);
                     SystemClock.sleep(sleepFlag);
                 }
             }
