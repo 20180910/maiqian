@@ -3,6 +3,7 @@ package com.sk.maiqian;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.util.SparseBooleanArray;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +29,12 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("com.sk.maiqian", appContext.getPackageName());
+    }
+    @Test
+    public void assd() throws Exception {
+        SparseBooleanArray showPosition=new SparseBooleanArray();
+        System.out.println(showPosition.size());
+        System.out.println(showPosition.get(11));
     }
     @Test
     public void asdf() throws Exception {
