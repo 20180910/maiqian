@@ -172,6 +172,12 @@ public class EnglishPeiXunOnlineFragment extends BaseFragment {
         getData(1, false);
     }
 
+    @Override
+    protected void getOtherData() {
+        super.getOtherData();
+        getTypeData(getArguments().getString(Constant.type));
+    }
+
     private void getTypeData(String type) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("type", type);
@@ -180,6 +186,7 @@ public class EnglishPeiXunOnlineFragment extends BaseFragment {
             @Override
             public void onSuccess(List<OnlineTypeObj> list, int errorCode, String msg) {
                 if (notEmpty(list)) {
+                    tab_online.removeAllTabs();
                     typeObjList = new ArrayList<>();
                     OnlineTypeObj obj = new OnlineTypeObj();
                     obj.setType_id("0");
