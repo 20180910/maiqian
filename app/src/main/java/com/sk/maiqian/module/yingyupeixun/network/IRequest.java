@@ -5,6 +5,7 @@ import com.library.base.ResponseObj;
 import com.sk.maiqian.module.home.network.response.EnglishPeiXunObj;
 import com.sk.maiqian.module.yingyupeixun.network.response.KeChengDetailObj;
 import com.sk.maiqian.module.yingyupeixun.network.response.OnlineStudyObj;
+import com.sk.maiqian.module.yingyupeixun.network.response.OnlineTypeObj;
 import com.sk.maiqian.module.yingyupeixun.network.response.PeiXunMakeOrderObj;
 import com.sk.maiqian.module.yingyupeixun.network.response.TeacherObj;
 import com.sk.maiqian.module.yingyupeixun.network.response.VideoDetailObj;
@@ -51,6 +52,10 @@ public interface IRequest {
     //英语培训-课程详情-预约试听
     @GET("api/MQEnglishTraining/GetMakeAppointmentAudition")
     Call<ResponseObj<BaseObj>> keChengYuYue(@QueryMap Map<String, String> map);
+
+    //在线音频视频-类别
+    @GET("api/MQEnglishTraining/GetVideoAudioType")
+    Call<ResponseObj<List<OnlineTypeObj>>> getOnlineType(@QueryMap Map<String, String> map);
 
 
 }

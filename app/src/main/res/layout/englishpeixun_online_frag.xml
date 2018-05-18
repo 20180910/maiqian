@@ -16,6 +16,24 @@
             android:orientation="vertical"
             android:background="@color/background_f2"
             >
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_online"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:background="@color/white"
+                app:tabIndicatorHeight="0dp"
+                app:tabTextColor="@color/gray_66"
+                app:tabSelectedTextColor="@color/blue_00"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                app:paddingEnd="0dp"
+                app:paddingStart="0dp"
+                app:tabPaddingEnd="0dp"
+                app:tabPaddingStart="0dp"
+                app:tabPaddingBottom="0dp"
+                app:tabPaddingTop="0dp"
+                >
+            </android.support.design.widget.TabLayout>
             <!--your view-->
             <in.srain.cube.views.ptr.PtrClassicFrameLayout
                 android:id="@id/pcfl_refresh"
@@ -28,6 +46,7 @@
                     android:id="@+id/rv_englishpeixundaiban"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="2px"
                     >
                 </com.library.base.view.MyRecyclerView>
             </in.srain.cube.views.ptr.PtrClassicFrameLayout>
