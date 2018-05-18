@@ -19,6 +19,7 @@ public class QianZhengDaiBanObj {
     private int countrie_region_id;
     private String title;
     private String content;
+    private String national_flag;
     private String img_url;
     private String for_how_long;
     private int applications;
@@ -51,6 +52,14 @@ public class QianZhengDaiBanObj {
 
     public String getImg_url() {
         return img_url;
+    }
+
+    public String getNational_flag() {
+        return national_flag;
+    }
+
+    public void setNational_flag(String national_flag) {
+        this.national_flag = national_flag;
     }
 
     public void setImg_url(String img_url) {

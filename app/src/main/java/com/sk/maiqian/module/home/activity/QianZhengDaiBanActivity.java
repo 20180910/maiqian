@@ -38,6 +38,8 @@ public class QianZhengDaiBanActivity extends BaseActivity {
     MyEditText et_qianzheng_search;
     @BindView(R.id.rv_qianzhengdaiban)
     MyRecyclerView rv_qianzhengdaiban;
+    @BindView(R.id.iv_qianzheng_fengjing)
+    ImageView iv_qianzheng_fengjing;
 
     MyLoadMoreAdapter adapter;
     private String searchContent="";
@@ -69,7 +71,7 @@ public class QianZhengDaiBanActivity extends BaseActivity {
             @Override
             public void bindData(MyRecyclerViewHolder holder, int position, QianZhengDaiBanObj bean) {
                 ImageView imageView = holder.getImageView(R.id.iv_qianzhengdaiban);
-                GlideUtils.into(mContext,bean.getImg_url(),imageView);
+                GlideUtils.into(mContext,bean.getNational_flag(),imageView);
                 ImageView iv_qianzhengdaiban_tag = holder.getImageView(R.id.iv_qianzhengdaiban_tag);
                 if(bean.getLabel_type()==0){
                     iv_qianzhengdaiban_tag.setVisibility(View.GONE);
@@ -122,6 +124,12 @@ public class QianZhengDaiBanActivity extends BaseActivity {
         ApiRequest.getQianZhengDaiBan(map, new MyCallBack<List<QianZhengDaiBanObj>>(mContext,pl_load,pcfl) {
             @Override
             public void onSuccess(List<QianZhengDaiBanObj> list, int errorCode, String msg) {
+                if(notEmpty(list)&&list.size()==1){
+                    GlideUtils.intoSimple(mContext,list.get(0).getImg_url(),iv_qianzheng_fengjing);
+                    iv_qianzheng_fengjing.setVisibility(View.VISIBLE);
+                }else{
+                    iv_qianzheng_fengjing.setVisibility(View.GONE);
+                }
                 if(isLoad){
                     pageNum++;
                     adapter.addList(list,true);
