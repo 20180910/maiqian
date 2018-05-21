@@ -93,7 +93,7 @@ public class MyAddressListActivity extends BaseActivity {
                         }else{
                             intent.putExtra(IntentParam.addressBean,bean);
                             intent.putExtra(IntentParam.isEditAddress,true);
-                            STActivityForResult(EditAddressActivity.class,100);
+                            STActivityForResult(intent,EditAddressActivity.class,100);
                         }
                     }
                 });

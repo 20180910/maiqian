@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!--<external-path path="Android/data/com.sk.maiqian/" name="files_root" />-->
+    <external-path path="external-path" name="maiqiandownload" />
+    <!--<external-path name="external_files" path="diary sdcard/photo"/>-->
+    <!--<external-cache-path name="cache_maiqiandownload" path="maiqiandownload"/>-->
+    <!--<external-path name="name" path="path" />-->
+</paths>
