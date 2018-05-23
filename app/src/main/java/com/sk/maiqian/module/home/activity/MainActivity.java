@@ -289,7 +289,7 @@ public class MainActivity extends BaseActivity {
         });
     }
     private void downloadApp(AppVersionObj obj) {
-        requestPermission(new String[]{Manifest.permission_group.STORAGE}, new PermissionCallback() {
+        requestPermission(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, new PermissionCallback() {
             @Override
             public void onGranted() {
                 MyRx.start(new MyFlowableSubscriber<Boolean>() {
