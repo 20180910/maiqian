@@ -29,6 +29,7 @@ import com.sk.maiqian.base.GlideUtils;
 import com.sk.maiqian.base.MyCallBack;
 import com.sk.maiqian.module.home.network.response.CollectObj;
 import com.sk.maiqian.module.home.network.response.ZiXunObj;
+import com.sk.maiqian.module.my.activity.LoginActivity;
 import com.sk.maiqian.module.yingyupeixun.network.ApiRequest;
 import com.sk.maiqian.module.yingyupeixun.network.response.KeChengDetailObj;
 import com.sk.maiqian.tools.TablayoutUtils;
@@ -338,12 +339,16 @@ public class KeChengDetailActivity extends BaseActivity {
             @Override
             protected void onNoDoubleClick(View view) {
                 String phone = getSStr(et_yuyue_phone);
-                if(TextUtils.isEmpty(phone)|| ZhengZeUtils.notMobile(phone)){
+                if(noLogin()){
+                    STActivity(LoginActivity.class);
+                    return;
+                }else if(TextUtils.isEmpty(phone)|| ZhengZeUtils.notMobile(phone)){
                     showMsg("请输入正确手机号");
                     return;
                 }
                 showLoading();
                 Map<String,String>map=new HashMap<String,String>();
+                map.put("user_id",getUserId());
                 map.put("english_training_id",kechengId);
                 map.put("phone",phone);
                 map.put("sign",getSign(map));
