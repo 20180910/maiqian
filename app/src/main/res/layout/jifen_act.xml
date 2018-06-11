@@ -80,7 +80,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="赚积分"
+                    android:text="分享"
                     android:gravity="center"
                     android:drawableTop="@drawable/zhuanjifen"
                     android:drawablePadding="10dp"

@@ -160,7 +160,7 @@
                         android:inputType="textWebEditText"
                         android:imeOptions="actionNext"
                         android:drawableLeft="@drawable/zhuce_icon04"
-                        android:hint="分销码"
+                        android:hint="推荐人-分销码"
                         android:drawablePadding="15dp"
                         android:paddingLeft="7dp"
                         android:background="@color/white"

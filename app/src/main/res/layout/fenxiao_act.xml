@@ -62,7 +62,7 @@
                             android:id="@+id/tv_fenxiao_yaoqing"
                             android:layout_width="match_parent"
                             android:layout_height="43dp"
-                            android:text="邀请好友"
+                            android:text="分享好友"
                             android:gravity="center"
                             app:my_tv_solid="@color/blue_00"
                             app:my_tv_press="@color/blue_press"
