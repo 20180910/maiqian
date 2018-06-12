@@ -99,7 +99,7 @@ public class DingDanTianXieActivity extends BaseActivity {
     TextView rb_qianzheng_order_price;
 
     private List<String> kuaiDiList;
-    private String kuaiDiName;
+    private String kuaiDiName="";
     private QianZhengDetailObj qianZhengDetailObj;
 
     MyBaseRecyclerAdapter adapter;
@@ -264,10 +264,10 @@ public class DingDanTianXieActivity extends BaseActivity {
                 }else if(TextUtils.isEmpty(email)|| ZhengZeUtils.notEmail(email)){
                     showMsg("请填写正确邮箱");
                     return;
-                }else if(TextUtils.isEmpty(kuaiDiName)){
+                }/*else if(TextUtils.isEmpty(kuaiDiName)){
                     showMsg("请选择快递");
                     return;
-                }else if(TextUtils.isEmpty(addressId)){
+                }*/else if(TextUtils.isEmpty(addressId)){
                     showMsg("请选择地址");
                     return;
                 }
