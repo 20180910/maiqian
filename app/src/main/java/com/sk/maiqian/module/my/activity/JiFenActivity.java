@@ -7,6 +7,12 @@ import com.github.androidtools.SPUtils;
 import com.sk.maiqian.AppXml;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
+import com.sk.maiqian.base.MyCallBack;
+import com.sk.maiqian.module.my.network.ApiRequest;
+import com.sk.maiqian.module.my.network.response.LoginObj;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -28,22 +34,29 @@ public class JiFenActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-//        showProgress();
-//        getData(1,false);
+        showProgress();
+        getData(1,false);
     }
 
     @Override
     protected void getData(int page, boolean isLoad) {
         super.getData(page, isLoad);
-//        Map<String,String> map=new HashMap<String,String>();
-//        map.put("user_id",getUserId());
-//        map.put("sign",getSign(map));
-//        ApiRequest.method(map, new MyCallBack<BaseObj>(mContext,pl_load,pcfl) {
-//            @Override
-//            public void onSuccess(BaseObj obj) {
-//
-//            }
-//        });
+        Map<String,String> map=new HashMap<String,String>();
+        map.put("user_id",getUserId());
+        map.put("sign",getSign(map));
+        ApiRequest.getUserInfo(map, new MyCallBack<LoginObj>(mContext,pl_load,pcfl) {
+            @Override
+            public void onSuccess(LoginObj obj, int errorCode, String msg) {
+                /*SPUtils.setPrefBoolean(mContext,AppXml.userHasPhone,obj.getBinding_mobile()==1);
+                SPUtils.setPrefString(mContext, AppXml.user_id, obj.getUser_id());
+                SPUtils.setPrefString(mContext, AppXml.user_name, obj.getUser_name());
+                SPUtils.setPrefString(mContext, AppXml.nick_name, obj.getNick_name());
+                SPUtils.setPrefString(mContext, AppXml.avatar, obj.getAvatar());
+                SPUtils.setPrefString(mContext, AppXml.mobile, obj.getMobile());
+                SPUtils.setPrefInt(mContext, AppXml.message_sink, obj.getMessage_sink());*/
+                SPUtils.setPrefString(mContext, AppXml.jifen,  obj.getPoint()+"");
+            }
+        });
     }
 
     @Override

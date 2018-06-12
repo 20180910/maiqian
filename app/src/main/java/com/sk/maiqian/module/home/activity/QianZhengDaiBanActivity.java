@@ -1,6 +1,7 @@
 package com.sk.maiqian.module.home.activity;
 
 import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -26,6 +27,9 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 
 /**
  * Created by Administrator on 2018/3/22.
@@ -49,6 +53,28 @@ public class QianZhengDaiBanActivity extends BaseActivity {
         setAppTitle("签证代办");
         setAppRightImg(R.drawable.share);
         return R.layout.qianzhengdaiban_act;
+    }
+
+    @Override
+    protected void setPulltoRefresh(PtrClassicFrameLayout pcfl) {
+//        super.setPulltoRefresh(pcfl);
+        pcfl.setPtrHandler(new PtrHandler() {
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout ptrFrameLayout, View view, View view1) {
+                LinearLayoutManager layoutManager = (LinearLayoutManager) rv_qianzhengdaiban.getLayoutManager();
+                int itemPosition = layoutManager.findFirstCompletelyVisibleItemPosition();
+                if(itemPosition==0){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            @Override
+            public void onRefreshBegin(PtrFrameLayout ptrFrameLayout) {
+                getOtherData();
+                getData(1, false);
+            }
+        });
     }
 
     @Override

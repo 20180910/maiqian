@@ -226,7 +226,8 @@ public class EnglishPeiXunOnlineFragment extends BaseFragment {
                     sparseIntArray.clear();
                     showPosition.clear();
                     pageNum = 2;
-                    adapter.setList(list, true);
+                    adapter.setList(list);
+                    rv_englishpeixundaiban.setAdapter(adapter);
                 }
             }
         });

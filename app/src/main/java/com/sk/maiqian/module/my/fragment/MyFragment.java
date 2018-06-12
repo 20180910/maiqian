@@ -85,6 +85,11 @@ public class MyFragment extends BaseFragment {
         }
     }
 
+    @Override
+    protected void onMyReStart() {
+        super.onMyReStart();
+    }
+
     private void getUserInfo() {
         Map<String,String> map=new HashMap<String,String>();
         map.put("user_id",getUserId());
