@@ -39,6 +39,7 @@ import com.sdklibrary.base.wx.inter.MyWXCallback;
 import com.sdklibrary.base.wx.pay.MyWXOrderBean;
 import com.sdklibrary.base.wx.pay.MyWXPay;
 import com.sk.maiqian.Config;
+import com.sk.maiqian.Constant;
 import com.sk.maiqian.IntentParam;
 import com.sk.maiqian.R;
 import com.sk.maiqian.base.BaseActivity;
@@ -314,13 +315,13 @@ public class DingDanTianXieActivity extends BaseActivity {
                     MyWXOrderBean bean=new MyWXOrderBean();
                     bean.setTotalFee((int) AndroidUtils.chengFa(obj.getCombined(),100));
                     bean.setOut_trade_no(obj.getOrder_no());
-                    bean.setBody("签证代办订单支付");
+                    bean.setBody(Constant.orderBody1);
                     weixinPay(bean);
                 }else{
                     MyAliOrderBean bean=new MyAliOrderBean();
                     bean.setTotal_amount(obj.getCombined());
                     bean.setOut_trade_no(obj.getOrder_no());
-                    bean.setBody("签证代办订单支付");
+                    bean.setBody(Constant.orderBody1);
                     aliPay(bean);
                 }
             }

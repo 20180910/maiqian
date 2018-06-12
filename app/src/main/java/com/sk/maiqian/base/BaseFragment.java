@@ -33,6 +33,7 @@ import com.sdklibrary.base.wx.share.MyWXShare;
 import com.sdklibrary.base.wx.share.bean.MyWXWebHelper;
 import com.sk.maiqian.AppXml;
 import com.sk.maiqian.Config;
+import com.sk.maiqian.Constant;
 import com.sk.maiqian.GetSign;
 import com.sk.maiqian.R;
 import com.sk.maiqian.module.home.event.RefreshOrderEvent;
@@ -363,13 +364,13 @@ public abstract class BaseFragment extends MyBaseFragment {
                     MyWXOrderBean bean=new MyWXOrderBean();
                     bean.setTotalFee((int) AndroidUtils.chengFa(price,100));
                     bean.setOut_trade_no(orderNo);
-                    bean.setBody("英语培训订单支付");
+                    bean.setBody(Constant.orderBody1);
                     weixinPay(bean,peiXunPayDialog,orderType);
                 }else{
                     MyAliOrderBean bean=new MyAliOrderBean();
                     bean.setOut_trade_no(orderNo);
                     bean.setTotal_amount(price);
-                    bean.setBody("英语培训订单支付");
+                    bean.setBody(Constant.orderBody1);
                     aliPay(bean, peiXunPayDialog,orderType);
                 }
 

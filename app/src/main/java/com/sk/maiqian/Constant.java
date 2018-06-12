@@ -17,6 +17,7 @@ public class Constant {
     public static final String cardId="cardId";
     public static final int houTian=3;
     public static final String isEditAddress="isEditAddress";
+    public static final String orderBody1="麦签订单支付";
     public static class Bro{
         public static final String operation ="operation";
         public static final String flag="flag";
