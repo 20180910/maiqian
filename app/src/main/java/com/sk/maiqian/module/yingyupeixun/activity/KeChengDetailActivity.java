@@ -266,7 +266,7 @@ public class KeChengDetailActivity extends BaseActivity {
         tv_peixun_detail_type4.setText(obj.getTeacher_nationality());
 
         tv_peixun_detail_banji.setText(obj.getClass_name());
-        tv_peixun_detail_keshi.setText(obj.getClss_hour()+"课时");
+        tv_peixun_detail_keshi.setText(obj.getClss_hour()+"分钟");
         tv_peixun_detail_shangke.setText(obj.getTopclass_time());
         tv_peixun_detail_duixiang.setText(obj.getApplicable_object());
         tv_peixun_detail_mubiao.setText(obj.getLearning_goals());
