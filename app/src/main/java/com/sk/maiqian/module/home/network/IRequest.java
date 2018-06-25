@@ -72,7 +72,7 @@ public interface IRequest {
     @GET("api/MQUserBase/GetCollectAll")
     Call<ResponseObj<CollectObj>> collect(@QueryMap Map<String, String> map);
 
-    //签证代办-收藏
+    //咨询信息
     @GET("api/MQLib/GetConsultingInformation")
     Call<ResponseObj<ZiXunObj>> getZiXunInfo(@QueryMap Map<String, String> map);
 

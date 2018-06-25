@@ -196,6 +196,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="全球签证、加急签证"
                                     android:textSize="11sp"
+                                    android:gravity="center"
                                     />
                             </LinearLayout>
 
@@ -237,6 +238,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="托福、雅思"
                                     android:textSize="11sp"
+                                    android:gravity="center"
                                     />
                             </LinearLayout>
 
@@ -282,6 +284,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="游学的特点"
                                     android:textSize="11sp"
+                                    android:gravity="center"
                                     />
                             </LinearLayout>
 
@@ -323,6 +326,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="留学的特点"
                                     android:textSize="11sp"
+                                    android:gravity="center"
                                     />
                             </LinearLayout>
 
