@@ -166,13 +166,15 @@
                             android:text="适合人群"
                             android:textColor="@color/gray_99"
                             android:drawableTop="@drawable/kecheng1"
-                            android:drawablePadding="7dp"
+                            android:drawablePadding="11dp"
+                            android:paddingTop="2dp"
                             />
                         <TextView
                             android:id="@+id/tv_peixun_detail_type1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             tools:text="成人"
+                            android:gravity="center"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -196,6 +198,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             tools:text="不限"
+                            android:gravity="center"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -219,6 +222,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             tools:text="1对1"
+                            android:gravity="center"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -242,6 +246,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             tools:text="美国"
+                            android:gravity="center"
                             />
                     </LinearLayout>
                 </LinearLayout>
