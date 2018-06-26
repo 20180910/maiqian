@@ -375,7 +375,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="使用对象"
+                        android:text="适用对象"
                         android:textSize="15sp"
                         android:textColor="@color/gray_66"
                         android:background="@color/white"
