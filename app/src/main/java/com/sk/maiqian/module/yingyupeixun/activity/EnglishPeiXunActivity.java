@@ -56,7 +56,7 @@ public class EnglishPeiXunActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        TablayoutUtils.setTabWidth(tab_englishpeixun,40);
+        TablayoutUtils.setTabWidth(tab_englishpeixun,30);
         et_englishpeixun_search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -70,7 +70,8 @@ public class EnglishPeiXunActivity extends BaseActivity {
             }
         });
         fragmentAdapter=new FragmentAdapter(getSupportFragmentManager());
-        fragmentAdapter.setTitle(new String[]{"正式课","体验课"});
+//        fragmentAdapter.setTitle(new String[]{"正式课","体验课"});
+        fragmentAdapter.setTitle(new String[]{"考试类英语课","商务、口语类英语课"});
 
         EnglishPeiXunFragment englishPeiXunFragment1 = EnglishPeiXunFragment.newInstance(EnglishPeiXunFragment.type_1);
         EnglishPeiXunFragment englishPeiXunFragment2 = EnglishPeiXunFragment.newInstance(EnglishPeiXunFragment.type_2);

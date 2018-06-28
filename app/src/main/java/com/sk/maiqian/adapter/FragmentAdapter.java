@@ -12,7 +12,7 @@ import java.util.List;
 
 public class FragmentAdapter extends FragmentStatePagerAdapter {
     private List<Fragment> list;
-    private String[]title=new String[]{"签证代办","英语培训","游学","留学"};
+    private String[]title=new String[]{"英语培训","签证代办","游学","留学"};
 
     public void setList(List<Fragment> list) {
         this.list = list;

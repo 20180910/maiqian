@@ -123,8 +123,8 @@ public class HomeFragment extends BaseFragment {
         HomeHotZiXunFragment homeHotZiXunFragment4 = HomeHotZiXunFragment.newInstance(HomeHotZiXunFragment.type_4);
 
         List<Fragment> list = new ArrayList<>();
-        list.add(homeHotZiXunFragment1);
         list.add(homeHotZiXunFragment2);
+        list.add(homeHotZiXunFragment1);
         list.add(homeHotZiXunFragment3);
         list.add(homeHotZiXunFragment4);
 
