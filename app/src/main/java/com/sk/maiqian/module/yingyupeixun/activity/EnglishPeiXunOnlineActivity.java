@@ -38,13 +38,13 @@ public class EnglishPeiXunOnlineActivity extends BaseActivity {
     @Override
     protected void initView() {
         fragmentAdapter=new FragmentAdapter(getSupportFragmentManager());
-        fragmentAdapter.setTitle(new String[]{"视频","音频"});
+        fragmentAdapter.setTitle(new String[]{"音频","视频"});
 
         EnglishPeiXunOnlineFragment EnglishPeiXunOnlineFragment1 = EnglishPeiXunOnlineFragment.newInstance(EnglishPeiXunOnlineFragment.type_1);
         EnglishPeiXunOnlineFragment EnglishPeiXunOnlineFragment2 = EnglishPeiXunOnlineFragment.newInstance(EnglishPeiXunOnlineFragment.type_2);
         List<Fragment> list=new ArrayList<>();
-        list.add(EnglishPeiXunOnlineFragment1);
         list.add(EnglishPeiXunOnlineFragment2);
+        list.add(EnglishPeiXunOnlineFragment1);
         fragmentAdapter.setList(list);
 
 
