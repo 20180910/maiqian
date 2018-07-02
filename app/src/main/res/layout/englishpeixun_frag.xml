@@ -36,28 +36,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 >
+                <!--
+                    android:src="@drawable/yingyupeixun_image02"-->
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/yingyupeixun_image02"
+                    android:background="@color/red"
                     />
                 <com.github.customview.MyTextView
                     android:id="@+id/tv_peixun_online_study"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="视频音频在线学习"
+                    android:text="视频音频免费学习"
                     app:my_tv_all_line="true"
                     app:my_tv_corner_radius="4dp"
-                    app:my_tv_border_color="@color/white"
+                    app:my_tv_border_color="#FFF4E325"
                     android:gravity="center"
                     android:layout_gravity="center"
-                    android:textColor="@color/white"
+                    android:textColor="#FFF4E325"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingTop="6dp"
                     android:paddingBottom="6dp"
+                    android:textSize="19sp"
                     />
             </FrameLayout>
         </LinearLayout>
