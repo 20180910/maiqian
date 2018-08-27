@@ -66,7 +66,7 @@ dependencies {
     //    compile project(':baselibrary')
     releaseCompile project(path: ':baselibrary', configuration: 'release')
     debugCompile project(path: ':baselibrary', configuration: 'debug')
-    compile(name: 'sdklibrary', ext: 'aar')
+    compile(name: 'sdk_library', ext: 'aar')
     compile(name: 'myrefresh', ext: 'aar')
     compile(name: 'baseclass', ext: 'aar')
     compile(name: 'androidutils', ext: 'aar')

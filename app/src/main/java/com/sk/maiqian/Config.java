@@ -11,7 +11,7 @@ public class Config {
     public static final String latitude = "latitude";
 
     public static final String weixing_id = "wx32725acca4dfcf9f";//麦签
-    public static final String weixing_AppSecret = "ed5a7e3ea4ce6540f58658884c34a439";//麦签
+    public static final String weixing_AppSecret = "8a3eaaf7718a364d3a17b2e9368652ec";//麦签
     public static final String weixing_miyao = "maiqian2018425qwertyuiopasdfghjk";//麦签
     public static final String weixing_mch_id = "1502842581";//麦签
 

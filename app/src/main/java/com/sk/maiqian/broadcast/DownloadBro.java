@@ -59,6 +59,7 @@ public class DownloadBro extends BroadcastReceiver {
 
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Uri data;
         // 判断版本大于等于7.0
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
